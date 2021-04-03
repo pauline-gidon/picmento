@@ -19,7 +19,6 @@
 </main>
 
 
-
 <div class="content">
     <div id="slideshow">
                 <div id="masque">
