@@ -1,0 +1,738 @@
+/*---------------------------------------
+CE QUI EST SPECIFIQUE AU PROJET
+---------------------------------------*/
+:root {
+    --beige-claire: #FFFCF8;
+    --beige: #FDFCDC;
+    --saumon: #FED9B7;
+    --corail:#F07167;
+    --bleu-claire: #00AFB9;
+    --bleu-confé:#0081A7;
+
+  }
+body {
+    font-family: 'Comfortaa', cursive;
+    background-color: #FFFCF8;
+    line-height: 1.5;
+    padding-top: 70px;
+    padding-top: 20vh;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+input[type=number] { 
+    -moz-appearance: textfield;
+    appearance: textfield;
+    margin: 0; 
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; 
+      margin: 0; 
+}
+
+#logo {
+    font-family: 'Hachi Maru Pop', cursive;
+    font-size: 30px;
+    line-height: 1;
+    background-color: transparent;
+    color: #F07167;
+    position: absolute;
+    left: 8%;
+    top:15px;
+}
+
+header{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #FFFCF8;
+    box-shadow: 0  1px 10px #858585;
+    z-index: 50;
+}
+.mla {
+	margin-left: auto;
+}
+
+header nav a {
+    display: block;
+    color: #F07167;
+    text-decoration: none;
+    padding: 20px;
+}
+
+
+header nav li {
+    text-align: center;
+    width: 18%;
+    font-size: 20px;
+}
+#nav2 i, #nav2 a {
+    color: #f0ecec;
+}
+
+
+h1 {
+    margin: 100px 0 70px;
+    text-align: center;
+    color: #F07167;
+}
+
+
+
+footer {
+    /* background-color: rgb(105, 104, 104); */
+    background-color: rgba(0, 0, 0, 0.507);
+
+}
+footer p a {
+    color:#FFF;
+    text-decoration: none;
+    display: block;
+    padding: 8px;
+    font-size: 15px;
+}
+footer p a:hover {
+    
+    text-decoration: underline #FFF;
+
+}
+
+ footer p {
+    color: #FFF;
+}
+
+
+.feedback {
+    background-color: #490d0de1;
+    color: #FFF;
+    width:100%;
+    height: 90px;
+}
+
+
+
+#slideshow {
+    background-color: rgb(161, 161, 161); 
+    padding: 50px 20px;
+}
+#masque {
+    width: 100%;
+    max-width: 660px;
+    overflow: hidden;
+    margin: 0 auto 20px;
+    border: solid 3px #FED9B7;
+    background-color: black;
+}
+#bandeau {
+    position: relative;
+}
+
+#slideshow figure img {
+    float: left;
+     width: 100%; 
+}
+#pagination{
+    text-align: center;
+}
+#pagination i {
+    font-size: 40px;
+    cursor: pointer;
+    margin: 0 10px;
+    color: #F07167;
+}
+#pagination i:hover {
+    color: #ffa46b;
+    
+}
+
+
+.words {
+    font-family: "Archivo Black", sans-serif;
+    display: flex;
+    justify-content: center;
+    height: 100px;
+    color: #FFFCF8;
+    font-size: 0;
+    line-height: 1.5;
+    margin-bottom: 50px;
+  }
+  
+  .words span {
+    font-size: 5rem;
+    display: inline-block;
+    animation: move 5s ease-in-out infinite;
+  }
+  
+  @keyframes move {
+    0% {
+      transform: translate(-20%, 100);
+    }
+    50% {
+      text-shadow: 0 25px 50px #686868;
+    }
+    100% {
+      transform: translate(30%, 0);
+    }
+  }
+  
+  .words span:nth-child(2) {
+    animation-delay: 0.5s;
+  }
+  
+  .words span:nth-child(3) {
+    animation-delay: 1s;
+  }
+  
+  .words span:nth-child(4) {
+    animation-delay: 1.5s;
+  }
+  
+  .words span:nth-child(5) {
+    animation-delay: 2s;
+  }
+  
+  .words span:nth-child(6) {
+    animation-delay: 2.5s;
+  }
+  
+  .words span:nth-child(7) {
+    animation-delay: 3s;
+  }
+  .words span:nth-child(8) {
+    animation-delay: 3.5s;
+  }
+ 
+  .page404 {
+    /* background-image: url(../images/pont-404.jpg); */
+    background-color: red;
+    /* background-repeat: no-repeat;
+    background-size: cover; */
+ }
+ #nav2{
+     min-height: 20vh;
+ }
+ .votre-espace #nav2{
+     background-image: url(../images/plumeblanche.jpg);
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-position: center;
+ 
+
+ }
+
+ /* -------------------------------Espace perso-------------------------------------- */
+#secondaire{
+    margin: 0 auto 50px;
+    width: 430px;
+}
+
+fieldset {
+    padding: 15px 0 15px 25px;
+}
+fieldset a {
+    display: inline-block;
+    text-decoration: none;
+    color: #afa6a4;
+    margin: 10px ;
+}
+
+.modifier-votre-profil {
+    background-image: url(../images/jouet.jpg);
+    background-size: cover;
+
+}
+
+ /* ------------------------------- tribu-------------------------------------- */
+ .toutes-mes-tribus h1 {
+    color: #cfbac0;
+ }
+ .tribubaby {
+     margin-bottom: 50px;
+     padding: 20px;
+     /* background-color: var(--beige); */
+     background-image: url(../images/plumeblanche.jpg);
+     background-repeat: no-repeat;
+     background-size: cover;
+     border: solid 1.5px rgb(88, 75, 75);
+     border-radius: 5px;
+     /* position: relative; */
+ }
+ .tribubaby .nav-tribu ul {
+    list-style-type: none;
+ }
+ .tribubaby .nav-tribu ul a{
+    
+    color: var(--beige-claire) ;
+    background-color: #00AFB9;
+    padding: 12px;
+    border-radius: 50%;
+    margin: 15px 0;
+    position: relative;
+    display: block;
+ }
+
+ .tribubaby .nav-tribu ul i{
+    position:absolute;
+ }
+ 
+
+ .baby {
+     position: relative;
+     padding: 20px 0;
+     width: 15vw;
+     margin: 0 35px 0;
+ }
+ .tribubaby .colG{
+    width: 100%;
+    min-height: 200px;
+    text-align: center;
+    margin: 0 auto;
+}
+.colG > h2{
+    padding:5px 0 0 0;
+    width: 100%;
+    color:#FFF
+}
+
+.id-baby{
+    cursor: pointer;
+}
+.toutes-mes-tribus #nav-tribu ul{
+    list-style-type: none;
+}
+.tribubaby #nav-tribu{
+    right: 0px;
+    top: 0;
+    /* position: absolute; */
+    /* width: 5%; */
+    background-color: green;
+    
+}
+.ico {
+    font-family: "icofont";
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+}
+
+/* --------------------------------------------- */
+.cassbonbon{
+    /* background: #FFF; */
+	width: 100%;
+	/* background-color: rgb(255, 153, 0); */
+	position: relative;
+    margin: 0 auto;
+}
+.cassbonbon:after {
+    content:'';
+	display: block;
+	padding-bottom: 100%;
+}
+.photo-carre-tribu img {
+    /* opacity: 1; */
+    /* -webkit-transition: .3s ease-in-out; */
+    /* transition: .3s ease-in-out; */
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	object-fit: cover;
+    left: 0;
+}
+.cassbonbon:hover img {
+    /* opacity: .5; */
+    /* box-shadow: 0px 0px 60px 0 rgb(255, 255, 255); */
+    filter: brightness(110%);
+    /* border: solid 1px #CCC; */
+}
+/* --------------------------------------------------- */
+.nom-baby{
+
+    color:  #cfbac0;
+    margin: 0 auto ;
+    /* width: 500px; */
+    /* z-index: 80; */
+    /* padding-top: 80px; */
+    font-size: 30px;
+    /* background-image: url(../images/background-3063287_1920.png); */
+    /* background-size: cover; */
+    /* mix-blend-mode:multiply; */
+
+
+    /* position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%); */
+}
+
+
+.modale {
+    /* display: none; */
+	/* width: 300px; */
+	/* height: 100vh; */
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+9,000000+88,000000+88,ffffff+100,ffffff+100&1+71,1+73,0+100 */
+    background: -moz-linear-gradient(top,  rgba(0,0,0,1) 9%, rgba(0,0,0,1) 71%, rgba(0,0,0,1) 73%, rgba(0,0,0,0.44) 88%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(0,0,0,1) 9%,rgba(0,0,0,1) 71%,rgba(0,0,0,1) 73%,rgba(0,0,0,0.44) 88%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(0,0,0,1) 9%,rgba(0,0,0,1) 71%,rgba(0,0,0,1) 73%,rgba(0,0,0,0.44) 88%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+	position: absolute;
+	top: 20px;
+    /* bottom: 0; */
+    transition: 1.5s linear;
+	left: -100vw;
+    width: 100%;
+    padding: 5px 0 20px;
+    /* transform: translate(-50%); */
+
+}
+.modale.open{
+    left: 0;
+}
+.modale a{
+    text-align: left;
+    color: #FFF;
+    display: block;
+    padding: 5px 0 5px 10px ;
+}
+.modale a:hover{
+    /* color: #F07167;
+    background-color: #FED9B7; */
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+0,d4f1f3+57,7fd7da+100 */
+    color: var(--bleu-claire);
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(left,  #ffffff 0%, #d4f1f3 57%, #7fd7da 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  #ffffff 0%,#d4f1f3 57%,#7fd7da 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  #ffffff 0%,#d4f1f3 57%,#7fd7da 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#7fd7da',GradientType=1 ); /* IE6-9 */
+
+}
+.modale h3 {
+    font-size: 23px;
+    color: white;
+    text-decoration: underline #FFF;
+    padding-bottom: 10px;
+
+}
+.close{
+	font-size: 30px;
+	color: #FFF;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	cursor: pointer;
+}
+/* .hidden{
+    left:-100vw;
+    transition: 3s;
+    opacity:0;
+    transition: opacity 2s linear;
+
+} */
+.btnaddtribu{
+    text-align: center;
+    padding-bottom: 40px;
+}
+.btnaddtribu a{
+    color: coral;
+}
+.btnaddtribu i {
+   color: #cfbac0;
+}
+/* ---------------------------------------Souvenir------------------------------------------ */
+.les-souvenirs h2 {
+    text-align: center;
+}
+.add-souvenir a {
+    color: salmon
+}
+.add-souvenir{
+text-align: right;
+}
+.article-baby{
+    position: relative;
+    background-color: rgb(167, 143, 189);
+    padding: 20px;
+}
+.ruban-date {
+    position: absolute;
+    text-align: center;
+    left: 0;
+    top:-52px;
+    background-image: url(../images/ruban-date.png);
+    /* background-size: cover; */
+    background-repeat: no-repeat;
+    font-size: 11px;
+    height: 53px;
+    min-width: 93px;
+}
+.ruban-date p {
+    position: relative;
+}
+.souv-carre {
+    background-color: #FFF;
+    width: 30%;
+	position: relative;
+    margin: 0 20px;
+}
+.souv-carre:after {
+    content:'';
+    display: block;
+    padding-bottom: 100%;
+}
+.souv-carre img {
+    width: 100%;
+	height: 100%;
+	position: absolute;
+	object-fit: cover;
+    opacity: 1;
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+    /* padding: 0 20px 0; */
+}
+.souv-carre:hover img {
+	opacity: .5;
+    box-shadow: 0 8px 32px 0 rgb(27, 42, 75);
+    /* border-radius: 10px; */
+    /* border: 1px solid rgba( 255, 255, 255, 0.18 ); */
+}
+/* ---------------------------------------navimg----------------- */
+.souv-carre ul {
+    list-style-type: none;
+    width: 100%;
+    position: absolute;
+    right: 9px;
+    top: 5px;
+    text-align: right;
+
+}
+.souv-carre li li{  
+    position: relative;
+    /* text-align: left; */
+}
+
+/* les ul de 2nd et 3eme niveaux */
+.souv-carre ul ul{ 
+    position: absolute;
+    top: 20px;
+    right: 0;
+}
+
+.souv-carre a {
+    display: block;
+    padding: 0 5px 0 5px;
+    text-decoration: none;
+    color: cadetblue;
+}
+.souv-carre a:hover {
+
+    color: rgb(9, 68, 70);
+}
+.souv-carre ul ul {
+    display: none;
+}
+
+.souv-carre li:hover > ul {
+    display: block;
+}
+
+.trait-nom-baby:hover{
+    color: coral;
+}
+
+/* ---------------------------------trait nav baby---------------------------------------- */
+.trait-baby {
+    width: 100px;
+    margin-left: auto;
+    padding-right: 20px;
+    background-color: cadetblue;
+}
+.trait-baby ul {
+    list-style-type: none;
+    /* width: 190px; */
+}
+.trait-baby li{  
+    position: relative;
+    width: 105px;
+}
+
+/* les ul de 2nd et 3eme niveaux */
+.trait-baby ul ul{ 
+    position: absolute;
+}
+/* les ul de 3eme niveaux */
+.trait-baby ul ul ul {
+    top:0;
+    left: -105px;
+    /* background-color: blueviolet; */
+}
+.trait-baby a {
+    display: block;
+    padding: 0 5px 0 5px;
+    text-decoration: none;
+    color: cadetblue;
+}
+.trait-baby a:hover {
+
+    color: rgb(9, 68, 70);
+}
+.trait-baby ul ul {
+    display: none;
+}
+
+.trait-baby li:hover > ul {
+    display: block;
+}
+
+.trait-nom-baby:hover{
+    color: coral;
+}
+
+
+
+/*-------------------------------------------------- formulaire---------------------------------------------- */
+#zone-form {
+    background-color: rgba(255, 255, 255, 0.63);
+    border-radius: 10px;
+    margin-bottom: 100px;
+}
+
+
+
+form {
+    width: 70%;
+    margin: 0 auto;
+
+}
+
+form p {
+    padding: 20px 0;
+    
+}
+form a {
+    color: #8994a6;
+}
+.contenue-form {
+    margin: 0 auto;
+    background-color: #f0ecec;
+    padding: 20px;
+    margin: 50px auto;
+}
+ .consigne {
+    color: #707070;
+    width: 15%;
+    height: 30px;
+    display: inline-block;
+    
+}
+/* .contenue-form .champ {
+    height: 30px;
+    width: 30vw;
+    margin-bottom: 20px;
+} */
+/* .consigne, .champ {
+    width: 50%;
+} */
+.champ {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background: #edebe8;
+    width: 50%;
+    position: relative;
+    left: 150px;
+
+}
+.btn {
+    border: none;
+    margin-top: 10px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background: #e0e0e0;
+    box-shadow:  20px 20px 60px #bebebe,
+                 -20px -20px 60px #ffffff;
+}
+.btn:hover {
+    color: #707070;
+    text-decoration: underline #707070;
+}
+.btn-inscription {
+    text-align: center;
+    background-color: #FED9B7 ;
+    background-image: url(../images/plumevertbleu.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+  
+    width: 170px;
+    padding: 15px 5px;
+    margin: 20px auto;
+}
+.btn-inscription a {
+    display: block;
+    text-decoration: none;
+    width: 100%;
+    color: #fffcf8;
+    font-weight: 600;
+
+
+}
+
+/* *****************************formulaire ajouter souvenir*******************************u */
+.ajouter-un-souvenir{
+    background-image: url(../images/attrape-reve.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+
+} 
+
+.prenom-title{
+    text-align: center;
+    /* color: */
+}
+/*----------------------------------------- naissance ---------------------------------------------------*/
+.naissance {
+    background-image: url(../images/newborn.jpg);
+    background-size: cover;
+    /* min-height: 1100vh ; */
+}
+.naissance section {
+    background: rgba(255, 255, 255, 0.555);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur( 15.0px );
+    -webkit-backdrop-filter: blur( 15.0px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    min-height: 300px;
+    margin-bottom: 200px;
+    font-size: 30px;
+    color: rgb(122, 121, 121);
+    padding: 45px;
+}
+
+
+.spnaissance {
+    color: #ffffff;
+    font-size: 32px;
+
+}
+
+/*
+:nth-child(odd)			impaires
+:nth-child(even)		paires
+:nth-child(2)				juste le second
+:nth-child(n+2)			je pars du second et les n suivants
+:nth-child(-n+2)		je pars du second et les n précédents
+:nth-child(4n+2)		je pars du second puis tous les 4 suivants
+:first-child				le premier
+:last-child					le dernier
+:nth-last-child(2)	avant dernier
+*/
+
+
+/* --------------------------------------------------------------
+                        Book
+---------------------------------------------------------------- */

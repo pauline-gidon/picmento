@@ -1,0 +1,160 @@
+/*---------------------------------------
+POINTS DE RUPTURE UTILES AU PROJET
+---------------------------------------*/
+#burger, #burger + label {
+	display: none;
+}
+
+@media screen and (max-width: 1260px){
+
+    .consigne {
+        width: 100%;
+    }
+    .champ {
+        width: 100%;
+        left:0;
+    }
+    .inscription #zone-form p{
+        width: 100%;
+    }
+    .inscription #zone-form .visu-mdp{
+        right: -25px;
+        top: 59px;
+    }
+    .inscription form {
+        width: 100%;
+    }
+    .mg-6 {
+        width:48%;
+    }
+    .m-12{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 965px){
+    h1{
+        padding-top: 140px;
+    }
+	.wrap {
+		width: 90%;
+	}
+    .s-12{
+        width: 100%;
+    }
+	#logo {
+		left: 6%;
+	}
+	header nav {
+		width: 100%;
+	}
+	nav ul {
+		width: 100%;
+	}
+
+	nav ul li {
+		width: 100%;
+		text-align: right;
+		padding: 10px 0 10px 0 ;
+	}
+	nav ul li :hover {
+		width: 100%;
+        background-color: transparent;
+        color: #FFF;
+		/* text-decoration: underline 2px #FFF; */
+	}
+	nav ul li a {
+		padding: 0 0 0 0;
+	}
+	header {
+		width: 100%;
+		height: 70px;
+		/* position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 50; */
+        background-color: #f8dec5ce;
+	}
+	
+	nav li:last-child {
+		border: none;
+	}
+	
+
+	#burger {
+		position: absolute;
+		top: 15px;
+		right: 25px;
+		width: 40px;
+		height: 40px;
+		display: block;
+		cursor: pointer;
+		opacity: 0;
+		z-index: 53;
+	}
+	#burger + label {
+		display: block;
+		padding: 5px 0 10px 50px;
+		background-image: url(/picmento/site/templates/front/images/burgerSprite.png);
+		background-repeat: no-repeat;
+		background-size: 40px;
+		background-position: left top;
+		position: absolute;
+		top: 15px;
+		right: 25px;
+		z-index: 52;
+		transition: All 0.2s ease;
+		color: #F07167;
+		font-size: 18px;
+	}
+
+	#burger:checked + label {
+		background-position: left bottom;
+	}
+	header nav {
+		display: none;
+		padding-top: 70px;
+	}
+	#burger:checked ~ nav {
+		display: block;
+        background-color: #f8dec5ce;
+		box-shadow: 0  0px 10px #ffffff;
+
+	}
+	#burger:checked ~ body {
+    padding-top: 150px;
+
+	}
+	
+
+}
+@media only screen and (max-width: 768px) {
+    /* tablettes et ordinateurs */
+    
+    
+	
+}	
+@media only screen and (max-width: 650px) {
+    /* tablettes et ordinateurs */
+footer #pipe{
+    display: none;
+}
+}	
+@media only screen and (max-width: 568px) {
+	/* tablettes et ordinateurs */
+    .authentification h1 {
+        font-size: 28px;
+    }
+
+	
+}	
+@media only screen and (max-width: 378px) {
+	/* tablettes et ordinateurs */
+footer span {
+    display: none;
+}
+
+	
+}
+
+

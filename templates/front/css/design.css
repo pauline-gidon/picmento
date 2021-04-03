@@ -1,0 +1,468 @@
+/*---------------------------------------
+CE QUI EST SPECIFIQUE AU PROJET
+---------------------------------------*/
+
+body {
+    font-family: 'Comfortaa', cursive;
+    background-color: var(--beige-claire);
+    line-height: 1.5;
+
+    overflow: hidden;
+    overflow-y: scroll;
+}
+/*----------------------------------- commun -----------------------------------------*/
+
+#logo {
+    font-family: 'Hachi Maru Pop', cursive;
+    font-size: 30px;
+    line-height: 1;
+    position: absolute;
+    top: 13px;
+    left: 10%;
+    background-color: transparent;
+    color: rgb(177, 98, 98);
+    /* color: rgb(255, 255, 255); */
+
+}
+
+header{
+    width: 100%;
+    /* position: relative; */
+
+    /* background-color: #fed9b7de; */
+    background-color: rgba(233, 202, 197, 0.829);
+
+    box-shadow: none;
+    /* z-index: 50; */
+    /* min-height: 10vh;
+    background-image: url(../images/); */
+}
+.mla {
+	margin-left: auto;
+}
+
+header nav a {
+    display: block;
+    /* color: #F07167; */
+    color: #614846;
+    text-decoration: none;
+    padding: 20px 0;
+}
+header nav li :hover {
+    color:#F07167;
+    background-color: #FFFCF8;
+}
+
+header nav li {
+    text-align: center;
+    width: 17%;
+    font-size: 20px;
+}
+ h1 {
+     font-size: 30px;
+    text-align: center;
+    padding: 70px;
+    /* letter-spacing: 1px; */
+}
+
+
+
+
+
+
+.feedback {
+    background-color: #5a5a5aa4;
+    color: #F07167;
+    width:100%;
+    height: 90px;
+}
+
+
+
+/*----------------------------------- page accueil-------------------------------------------- */
+
+.blok-presentation {
+    border: solid 1px #cbb4bb;
+    border-radius: 5px;
+    width: 30%;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.xlg-4{
+    width: 30%;
+}
+
+.blok-presentation h2 {
+    color:#c0adaa;
+    margin-bottom: 10px;
+}
+
+.blok-presentation p {
+    color: #b3b0ac;
+    margin-bottom: 10px;
+}
+
+
+ header nav{
+    background-color: rgb(233, 202, 197);
+    box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.37);
+
+    /* border: 1px solid rgba( 255, 255, 255, 0.18 );
+    backdrop-filter: blur(10px); */
+    /* -webkit-backdrop-filter: blur(10px); */
+    
+}
+ header nav a{
+    color: #614846;
+    
+}
+ #logo{
+    color: rgb(177, 98, 98);
+    
+}
+
+.sauvegarde-de-souvenirs-en-ligne h1{
+    color: #faddd4;
+}
+.sauvegarde-de-souvenirs-en-ligne #imgBandeau{
+    background-image: url(../images/souvenir-enfant.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    min-height: 230px;
+}
+
+#slideshow {
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#fed9b7+63,f07167+100 */
+    /* background: #fed9b7; /* Old browsers */
+    /* background: -moz-linear-gradient(top,  #fed9b7 63%, #f07167 100%);
+    background: -webkit-linear-gradient(top,  #fed9b7 63%,#f07167 100%); 
+    background: linear-gradient(to bottom,  #fed9b7 63%,#f07167 100%); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fed9b7', endColorstr='#f07167',GradientType=0 );  */
+    padding: 55px 20px;
+    width: 77vw;
+    margin: 0 auto;
+    border-radius: 20px;
+}
+@keyframes gradient{
+    0% {transform: translate(-25%, -50);
+    }
+    100% {transform: translate(-75%, -50%);
+        
+    }
+}
+#masque {
+    border-radius: 10px;
+    width: 100%;
+    max-width:55vw;
+    overflow: hidden;
+    margin: 0 auto 20px;
+    background-color: black;
+}
+#bandeau {
+    position: relative;
+}
+
+#slideshow figure img {
+    float: left;
+     width: 100%; 
+}
+#pagination{
+    text-align: center;
+}
+#pagination i {
+    font-size: 40px;
+    cursor: pointer;
+    margin: 0 10px;
+    color: #fed9b7;
+}
+#pagination i:hover {
+    color: #FFFCF8;
+    
+}
+/* #pagination i::before{
+    content:'';
+    position: absolute;
+    background: radial-gradient(circle closest-side #ffa46b, transparent) ;
+} */
+
+
+
+
+
+
+
+/* ---------------------------------page inscription-------------------------------------- */
+.inscription {
+    background-image: url(../images/livre-boule-bleu.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+}
+.inscription h1 {
+color: #FFF;
+}
+.inscription form {
+    width: 82%;
+    margin-left: 0 auto;
+    filter:blur(4px);
+    -o-filter:blur(4px);
+    -ms-filter:blur(4px);
+    -moz-filter:blur(4px);
+    -webkit-filter:blur(4px);
+    backdrop-filter: blur( 20.0px );
+    -webkit-backdrop-filter: blur( 20.0px );
+
+
+}
+.inscription #zone-form {
+    background: rgba( 255, 255, 255, 0.45 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    
+    margin-bottom: 100px;
+}
+.inscription #zone-form a{
+    color:#FFF;
+}
+.inscription #zone-form p{
+    width: 930px;
+}
+.inscription #zone-form .consigne{
+    color:black;
+}
+.inscription .champ {
+    background-color: rgba(255, 255, 255,0.84);
+}
+.inscription footer {
+    background-color: rgba(0, 0, 0, 0.507);
+}
+form ::placeholder {
+    letter-spacing: 0.5px;
+}
+
+
+/* ----------------------------------------------------page connexion---------------------------------- */
+.authentification {
+    background-image: url(../images/baby.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    background-position: bottom;
+}
+.authentification header {
+    background-color: #926a45ce;
+    box-shadow: none;
+}
+.visu-mdp{
+    right: 100px;
+    top: 30px;
+}
+
+.authentification h1 {
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px 3px rgba(100, 100, 100, 0.472);
+    mix-blend-mode: overlay;
+}
+.authentification .consigne {
+    color: #54585f;
+}
+.authentification ::placeholder {
+    letter-spacing: 0.5px;
+}
+.authentification .champ {
+    background-color: rgba(255, 255, 255, 0.692);
+}
+.authentification #zone-form {
+    background: rgba( 255, 255, 255, 0.40 );
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur( 15.0px );
+    -webkit-backdrop-filter: blur( 15.0px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    margin-bottom: 106px;
+}
+.authentification #zone-form #passe-oublie{
+    text-decoration: underline #8994a6;
+}
+#connexion, #inscription, #go {
+    background-color: rgba(255, 255, 255, 0.692);
+}
+/* ---------------------------------------------- page contact ------------------------------------- */
+.contact {
+    background-image: url(../images/declick.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    background-position: bottom;
+}
+.contact h1 {
+    color: #FFF;
+}
+.contact form {
+    background: rgba( 255, 255, 255, 0.40 );
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur( 15.0px );
+    -webkit-backdrop-filter: blur( 15.0px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    margin-bottom: 106px;
+}
+.contact .champ {
+    background-color: rgba(255, 255, 255, 0.856);
+}
+
+
+
+
+
+
+
+
+
+
+
+ /* -------------------------------------------LES FORMULAIRES-------------- */
+
+/* #zone-form {
+    background: rgba( 255, 255, 255, 0.15 );
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur( 9.0px );
+    -webkit-backdrop-filter: blur( 9.0px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    margin-bottom: 100px;
+    padding: 60px 0;
+} */
+
+
+
+form {
+    width: 100%;
+    padding: 60px;
+    margin: 0 auto;
+
+}
+
+form p {
+    padding: 20px 0;
+    
+}
+form a {
+    color: #8994a6;
+}
+form ul {
+    padding-left: 20px;
+}
+.contenue-form {
+    margin: 0 auto;
+    background-color: #f0ecec;
+    padding: 20px;
+    margin: 50px auto;
+}
+ .consigne {
+    color: #707070;
+    width: 20%;
+    height: 30px;
+    display: inline-block;
+    
+}
+
+.champ {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    /* background: #FFF; */
+    width: 55%;
+    position: relative;
+    left: 150px;
+
+}
+.btn {
+    border: none;
+    margin-top: 10px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background: rgba( 254, 217, 183, 0.30 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 9.0px );
+    -webkit-backdrop-filter: blur( 9.0px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );}
+.btn:hover {
+    color: #707070;
+    text-decoration: underline #707070;
+}
+.btn-inscription {
+    text-align: center;
+    background-color: #FED9B7 ;
+    border-radius: 10px;
+    width: 170px;
+    padding: 15px 5px;
+    margin: 60px auto;
+}
+.btn-inscription a {
+    display: block;
+    text-decoration: none;
+    width: 100%;
+    color: #fffcf8;
+    font-weight: 600;
+
+
+}
+
+ /* -------------------------------------------footer-------------- */
+
+footer a{
+    color:#FFF
+}
+
+footer {
+     background-color: rgba(0, 0, 0, 0.507);
+    width: 100vw;
+    padding: 5px 0;
+    /* position:fixed;
+    left: 0;
+    bottom: 0; */
+}
+
+
+footer p a {
+    text-decoration: none;
+    display: block;
+    padding: 8px;
+    font-size: 15px;
+}
+footer p a:hover {
+    
+    text-decoration: underline #FFF;
+
+}
+
+ footer p {
+    color: #FFF;
+}
+
+
+.alerte { 
+    color: rgb(138, 31, 31);
+
+}
+/*
+:nth-child(odd)			impaires
+:nth-child(even)		paires
+:nth-child(2)				juste le second
+:nth-child(n+2)			je pars du second et les n suivants
+:nth-child(-n+2)		je pars du second et les n précédents
+:nth-child(4n+2)		je pars du second puis tous les 4 suivants
+:first-child				le premier
+:last-child					le dernier
+:nth-last-child(2)	avant dernier
+*/
+
+
+/* --------------------------------------------------------------
+                        Book
+---------------------------------------------------------------- */
