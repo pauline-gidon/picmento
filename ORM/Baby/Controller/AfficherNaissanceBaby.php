@@ -15,8 +15,6 @@ use ORM\User\Model\ManagerUser;
 
 
 class AfficherNaissanceBaby extends Controller {
-        
-        
         use Navbaby;
         
         function getResult() {	
