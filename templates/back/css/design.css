@@ -73,7 +73,7 @@ header nav li {
 
 
 h1 {
-    margin: 100px 0 70px;
+    /* margin: 100px 0 70px; */
     text-align: center;
     color: #F07167;
 }
@@ -544,6 +544,7 @@ text-align: right;
     margin-left: auto;
     padding-right: 20px;
     background-color: cadetblue;
+    z-index: 50;
 }
 .trait-baby ul {
     list-style-type: none;

@@ -57,13 +57,15 @@ class AssocierParentTribu extends Controller {
                     "email_user" 	=> $emailDest
                 ]);
                 //je regarde si un user existe avec ce mail
-                $userDest	= $managerU->userExist($new_user->getEmailUser());
                 //si c'est null ( pas de user avec ce mail )
-                if(is_null($userDest)){
+                if(is_null($managerU->userExist($new_user->getEmailUser()))){ 
                     //  crée cet user
                     //je recupère son id
                     $id_userDest = $managerU->insertEmailUserInvitation($emailDest);
 
+                }else{
+                    $user = $managerU->userExist($new_user->getEmailUser());
+                    $id_userDest = $user->getIdUser();
                 }
          
             
@@ -73,7 +75,7 @@ class AssocierParentTribu extends Controller {
                 $date->setTimestamp(strtotime("+6 month")); 
                 $validity_token = $date->format("Y-m-d H:i:s");
                 
-                $id_userDest = $userDest->getIdUser();
+                // $id_userDest = $userDest->getIdUser();
 
                 $new_amis = new Amis([
                     'user_id_expediteur'    => $id_userExp,
@@ -85,7 +87,8 @@ class AssocierParentTribu extends Controller {
                 // $id_amis = $managerAmis->insertAmis($new_amis);
                 // var_dump($new_amis);die();
 
-
+                $nom = $userExp->getNomUser();
+                $prenom = $userExp->getPrenomUser();
                 if($managerAmis->insertAmis($new_amis) > 0){
                     // j'envoie un mail avec un lien pour association avec l'AutoMailer
 					$automailer = new AutoMailer(
@@ -97,7 +100,7 @@ class AssocierParentTribu extends Controller {
                             <img src=\"http://picmento.fr/templates/fron/????\" 
                             alt=\"Logo picmento\">
 						</p>
-						<p>(metre le nom prenom) vous invite à être le 2eme parent pour sa tribu.</p>
+						<p>".$prenom.$nom." vous invite à être le 2eme parent pour sa tribu.</p>
 						<p>Pour voir l'invitation, veuillez cliquer sur ce lien : </p>
 						<p>
                             <a 

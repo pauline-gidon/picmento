@@ -1,13 +1,14 @@
 <?php
 namespace ORM\Baby\Controller;
-use OCFram\Controller;
-use OCFram\HTTPRequest;
-use OCFram\Connexion;
-
-
 use OCFram\Navbaby;
+use OCFram\Connexion;
+use OCFram\Controller;
+
+
+use OCFram\HTTPRequest;
 // use ORM\Baby\Entity\Baby;
 use ORM\Baby\Model\ManagerBaby;
+use ORM\User\Model\ManagerUser;
 
 
 
@@ -19,21 +20,27 @@ class AfficherNaissanceBaby extends Controller {
         use Navbaby;
         
         function getResult() {	
-                $cx			= new Connexion();
-                $manager	= new ManagerBaby($cx);
+            $this->setLayout("back");
+            $this->setTitle("Naissance");
+            $this->setView("ORM/Baby/View/afficher-naissance-baby.php");
+            $http = new HTTPRequest();
+            $id_baby = $http->getDataGet("id");
+            $cx			= new Connexion();
+            $managerU = new ManagerUser($cx);
+            if($managerU->verifUser($id_baby)){
+                
+                $manager = new ManagerBaby($cx);
                 $babys=  $manager->allBabyHasUser();
                 $this->navConstruction($babys);
-                $http = new HTTPRequest();
-                $id = $http->getDataGet("id");
-                $cx	= new Connexion();
-                $manager = new ManagerBaby($cx);
-                $baby = $manager->oneBabyById($id);
-                $nom = $baby->getNomBaby();
-                $this->setLayout("back");
-                $this->setTitle("Naissance");
-                $this->setView("ORM/Baby/View/afficher-naissance-baby.php");
-                return $baby;
+                $baby = $manager->oneBabyById($id_baby);
+                if(!is_null($baby)){
+                    return $baby;
                 }
+            }else{
+                header("location: ".DOMAINE."errors/404.php");
+                die();
+            }
+        }
 	
 }
 

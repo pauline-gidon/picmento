@@ -277,6 +277,14 @@ $route[] = [
 	"logged"			=> true, 
 	"droits"			=> 1
 ];
+$route[] = [
+	"url"					=> PTH."editer-souvenir-photo-([0-9]+)", 
+	"namespace"		=> "ORM", 
+	"module"			=> "Article", 
+	"action"			=> "EditerPhoto",  
+	"logged"			=> true, 
+	"droits"			=> 1
+];
 
 //---------------------------------------------------service naissance
 

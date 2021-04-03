@@ -252,7 +252,24 @@ class ManagerUser extends Manager {
         }
 	}
 
+    //----------------------------------------------------------
+	// Controle de la personne connecter
+	//----------------------------------------------------------
+    function verifUser($id_baby){
+        $user_id = $_SESSION["auth"]["id"];
+        if((is_numeric($user_id)) && (is_numeric($id_baby))){
+           $req= "SELECT * FROM baby
+			INNER JOIN tribu
+            ON baby.tribu_id_tribu = tribu.id_tribu
+            INNER JOIN user
+            ON tribu.user_id_parent1 = user.id_user OR tribu.user_id_parent2 = user.id_user
+            WHERE user.id_user = $user_id
+            And baby.id_baby = $id_baby";        
+		$query 	= $this->db->query($req);
+		return ($query->num_rows == 1)?TRUE:FALSE;
+        }
 
+    }
 
 //Fermeture ManagerUser
 }

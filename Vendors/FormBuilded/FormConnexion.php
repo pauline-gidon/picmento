@@ -15,7 +15,7 @@ class FormConnexion extends Form {
 
 		$this->add(new InputEmail([
 			"label" 				=> "Votre&nbsp;identifiant ",
-			"placeholder" 	=> "ophelie@gmail.fr",
+			"placeholder" 	=> "ophelie@gmail.com",
 			"name" 					=> "email_user",
 			"cssLabel" 			=> "consigne",
 			"cssChamp" 			=> "champ",

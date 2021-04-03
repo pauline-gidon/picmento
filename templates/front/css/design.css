@@ -206,13 +206,13 @@ color: #FFF;
 .inscription form {
     width: 82%;
     margin-left: 0 auto;
-    filter:blur(4px);
+    /* filter:blur(4px);
     -o-filter:blur(4px);
     -ms-filter:blur(4px);
     -moz-filter:blur(4px);
     -webkit-filter:blur(4px);
     backdrop-filter: blur( 20.0px );
-    -webkit-backdrop-filter: blur( 20.0px );
+    -webkit-backdrop-filter: blur( 20.0px ); */
 
 
 }

@@ -32,6 +32,19 @@ class ManagerMedias extends Manager {
       $query 	= $this->db->query($req);
       return $this->db->insert_id;
   }
+    //----------------------------------------------------------
+	// medias par id
+	//----------------------------------------------------------
+    function oneMediasById($id){
+        if(is_numeric($id)){
+
+        }
+
+        $req 		= "SELECT * FROM medias WHERE id_medias = $id";
+        $query = $this->db->query($req);
+        return ($query->num_rows == 1)?new Medias($query->fetch_array()):NULL;
+
+  }
     //--------------------------------------------------------
 	//Association du medias à son article
 	//--------------------------------------------------------
