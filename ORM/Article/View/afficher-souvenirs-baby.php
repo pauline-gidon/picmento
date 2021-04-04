@@ -53,9 +53,9 @@ if(isset($result[1])){
                     for ($i=0; $i < count($ids); $i++) { 
                         echo "<div class=\"souv-carre\">
                                 <img src=\"".DOMAINE."medias/souvenir/".$photos[$i]."\" alt=\"Photo de ".$obj->getTitreArticle()."\">
-                                <ul>
-                                    <li><i class=\"fas fa-chevron-down\"></i>
-                                        <ul>
+                                <ul class=\"menu-photo\">
+                                    <li class=\"checked\"><i class=\"fas fa-chevron-down\"></i>
+                                        <ul class=\"chec\">
                                         <li><a href=\"editer-souvenir-photo-".$ids[$i]."\" title=\"Modifier la photo\"><i class=\"fas fa-pen-square\"></i></a></li>
                                         <li><a href=\"supprimer-souvenir-photo-".$ids[$i]."\" title=\"Supprimer la photo\"><i class=\"fas fa-trash\"></i></a></li>
                                         </ul>

@@ -10,3 +10,4 @@ if(isset($result)){
 ?>
 <script src="<?php echo DOMAINE; ?>templates/front/js/visuMdp.js"></script>
 <script src="<?php echo DOMAINE; ?>templates/front/js/creaMdp.js"></script>
+<script src="<?php echo DOMAINE; ?>templates/front/js/alerte.js"defer></script>

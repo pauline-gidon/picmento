@@ -494,51 +494,61 @@ text-align: right;
     /* border-radius: 10px; */
     /* border: 1px solid rgba( 255, 255, 255, 0.18 ); */
 }
-/* ---------------------------------------navimg----------------- */
-.souv-carre ul {
+/* ---------------------------------------menu photo----------------- */
+.menu-photo , .menu-photo ul{
     list-style-type: none;
-    width: 100%;
+    width: 25px;
     position: absolute;
-    right: 9px;
+    right: 11px;
     top: 5px;
     text-align: right;
 
 }
-.souv-carre li li{  
+.menu-photo li li{  
     position: relative;
+    /* padding: 5px; */
     /* text-align: left; */
 }
 
 /* les ul de 2nd et 3eme niveaux */
-.souv-carre ul ul{ 
+.menu-photo ul { 
     position: absolute;
     top: 20px;
     right: 0;
 }
 
-.souv-carre a {
+.menu-photo a {
     display: block;
-    padding: 0 5px 0 5px;
+    padding: 5px 0;
     text-decoration: none;
     color: cadetblue;
 }
-.souv-carre a:hover {
+.menu-photo a:hover {
 
     color: rgb(9, 68, 70);
 }
-.souv-carre ul ul {
+.menu-photo ul {
     display: none;
 }
-
-.souv-carre li:hover > ul {
+.checked:checked ~ .chec {
     display: block;
 }
+.menu-photo li:hover > ul {
+    display: block;
+}
+.menu-photo i {
+    font-size: 25px;
+    cursor: pointer;
+}
+.menu-photo > li > i {
+    color: rgb(83, 82, 82);
+}
 
+
+/* ---------------------------------trait nav baby---------------------------------------- */
 .trait-nom-baby:hover{
     color: coral;
 }
-
-/* ---------------------------------trait nav baby---------------------------------------- */
 .trait-baby {
     width: 100px;
     margin-left: auto;
