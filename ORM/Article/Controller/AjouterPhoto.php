@@ -40,7 +40,7 @@ class AjouterPhoto extends Controller {
             if(($form->isSubmit("addPhoto"))&&($form->isValid())){
                  $flash = new Flash();
                  
-             	$file		= $http->getDataFiles("nom_photo");
+             	$file		= $http->getDataFiles("photo");
              	$destination = "medias/souvenir/";
              	$uploader = new Uploader($file,$destination);
              	$nom_file = $uploader->upload();

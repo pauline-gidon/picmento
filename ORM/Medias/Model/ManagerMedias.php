@@ -45,17 +45,31 @@ class ManagerMedias extends Manager {
         return ($query->num_rows == 1)?new Medias($query->fetch_array()):NULL;
 
   }
-    //--------------------------------------------------------
-	//Association du medias à son article
-	//--------------------------------------------------------
-	function insertMediasHasArticle($id_article,$id_medias){
-        if((is_numeric($id_article)) && (is_numeric($id_medias))) {
-            $req = "
-                INSERT INTO article_has_medias 
-                VALUES('$id_article','$id_medias')";
-            $query = $this->db->query($req);
-            return ($this->db->affected_rows == 1)?true:false;
-        }
-	}
-	
+  //--------------------------------------------------------
+  //Association du medias à son article
+  //--------------------------------------------------------
+  function insertMediasHasArticle($id_article,$id_medias){
+      if((is_numeric($id_article)) && (is_numeric($id_medias))) {
+          $req = "
+              INSERT INTO article_has_medias 
+              VALUES('$id_article','$id_medias')";
+          $query = $this->db->query($req);
+          return ($this->db->affected_rows == 1)?true:false;
+      }
+  }
+  //--------------------------------------------------------
+  //Update medias by id
+  //--------------------------------------------------------
+  function updateMedias(Medias $medias){
+    $nom_medias = $this->db->real_escape_string($medias->getNomMedias());
+    $id_medias = $this->db->real_escape_string($medias->getIdMedias());
+
+    $req = "UPDATE medias 
+        SET nom_medias = '$nom_medias'
+        WHERE id_medias = $id_medias ";
+    $query = $this->db->query($req);
+    return ($this->db->affected_rows == 1)?TRUE:FALSE;
+  
+  }
+  
 }

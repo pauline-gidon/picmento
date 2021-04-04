@@ -135,22 +135,10 @@ class ManagerBaby extends Manager {
 	// update Photo baby
 	//----------------------------------------------------------
     function updatePhotoBaby(Baby $baby){
-		$nom_baby		        = $this->db->real_escape_string($baby->getNombaby());
-		$photo_baby	            = $baby->getphotoBaby();
-		$date_naissance_baby	= $this->db->real_escape_string($baby->getDateNaissanceBaby());
-		$heure_naissance_baby	= $this->db->real_escape_string($baby->getHeureNaissanceBaby());
-		$lieu_naissance_baby	= $this->db->real_escape_string($baby->getLieuNaissanceBaby());
-		$poids_naissance_baby	= $this->db->real_escape_string($baby->getPoidsNaissanceBaby());
-		$taille_naissance_baby	= $this->db->real_escape_string($baby->getTailleNaissanceBaby());
+		$photo_baby = $this->db->real_escape_string($baby->getphotoBaby());
 
         $req = "UPDATE baby SET 
-        nom_baby			        = '$nom_baby',
-        photo_baby		            = '$photo_baby',
-        date_naissance_baby		    = '$date_naissance_baby',
-        heure_naissance_baby		= '$heure_naissance_baby', 
-        lieu_naissance_baby		    = '$lieu_naissance_baby', 
-        poids_naissance_baby		= '$poids_naissance_baby', 
-        taille_naissance_baby		= '$taille_naissance_baby' 
+        photo_baby		            = '$photo_baby'
         WHERE id_baby = ".$baby->getIdBaby();
         
         $query = $this->db->query($req);

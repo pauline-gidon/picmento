@@ -23,7 +23,7 @@ class AfficherTimelineBaby extends Controller {
             $flash 			= new Flash();
             $cx = new Connexion();
             $managerU = new ManagerUser($cx);
-            if($managerU->verifUser($id_baby)){
+            if($managerU->verifUserBaby($id_baby)){
                 
                 $managerB = new ManagerBaby($cx);
                 $baby = $managerB->oneBabyById($id_baby);

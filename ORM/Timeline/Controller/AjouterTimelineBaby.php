@@ -24,7 +24,7 @@ class AjouterTimelineBaby extends Controller {
             $id_baby 	= $http->getDataGet("id");
             $cx = new Connexion();
             $managerU = new ManagerUser($cx);
-            if($managerU->verifUser($id_baby)){
+            if($managerU->verifUserBaby($id_baby)){
 
                 $flash 			= new Flash();
     

@@ -253,9 +253,9 @@ class ManagerUser extends Manager {
 	}
 
     //----------------------------------------------------------
-	// Controle de la personne connecter
+	// Controle de la personne connecter id baby
 	//----------------------------------------------------------
-    function verifUser($id_baby){
+    function verifUserBaby($id_baby){
         $user_id = $_SESSION["auth"]["id"];
         if((is_numeric($user_id)) && (is_numeric($id_baby))){
            $req= "SELECT * FROM baby
@@ -265,6 +265,32 @@ class ManagerUser extends Manager {
             ON tribu.user_id_parent1 = user.id_user OR tribu.user_id_parent2 = user.id_user
             WHERE user.id_user = $user_id
             And baby.id_baby = $id_baby";        
+		$query 	= $this->db->query($req);
+		return ($query->num_rows == 1)?TRUE:FALSE;
+        }
+
+    }
+    //----------------------------------------------------------
+	// Controle de la personne connecter id medias
+	//----------------------------------------------------------
+    function verifUserMedias($id_medias){
+        $user_id = $_SESSION["auth"]["id"];
+        if((is_numeric($user_id)) && (is_numeric($id_medias))){
+           $req= "SELECT * FROM medias
+           INNER JOIN article_has_medias
+           ON article_has_medias.medias_id_medias = medias.id_medias
+           INNER JOIN article
+           ON article_has_medias.article_id_article = article.id_article
+           INNER JOIN baby_has_article
+           ON baby_has_article.article_id_article = article.id_article
+           INNER JOIN baby
+           ON baby_has_article.baby_id_baby = baby.id_baby
+           INNER JOIN tribu
+           ON baby.tribu_id_tribu = tribu.id_tribu
+           INNER JOIN user
+           ON tribu.user_id_parent1 = user.id_user OR tribu.user_id_parent2 = user.id_user
+           WHERE user.id_user = $user_id
+           And medias.id_medias = $id_medias";        
 		$query 	= $this->db->query($req);
 		return ($query->num_rows == 1)?TRUE:FALSE;
         }

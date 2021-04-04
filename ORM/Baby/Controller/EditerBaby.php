@@ -26,7 +26,7 @@ class EditerBaby extends Controller {
 		$id_baby = $http->getDataGet("id");
 		$cx			= new Connexion();
         $managerU = new ManagerUser($cx);
-        if($managerU->verifUser($id_baby)){
+        if($managerU->verifUserBaby($id_baby)){
 
             $manager	= new ManagerBaby($cx);
             $baby 		= $manager->oneBabyById($id_baby);

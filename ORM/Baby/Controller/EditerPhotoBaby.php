@@ -26,37 +26,37 @@ class EditerPhotoBaby extends Controller {
         $managerU = new ManagerUser($cx);
         $http = new HTTPRequest();
         $id = $http->getDataGet("id");
-        if($managerU->verifUser($id)){
+        if($managerU->verifUserBaby($id)){
 
             
             $manager	= new ManagerBaby($cx);
             $baby 		= $manager->oneBabyById($id);
             if (!is_null($baby)){
                 $nom_baby = $baby->getNomBaby();
+                $photo_baby = $baby->getPhotoBaby();
                 
             
                 $form 		= new FormPhotoBaby("post",$baby);
                 $build 		= $form->buildForm();
                 
+                $flash = new Flash();
                 if(($form->isSubmit("addbaby"))&&($form->isValid())){
-                    $flash = new Flash();
-                    
+                    //suppression de l'ancienne image
+                    $destination = "medias/photo-baby/";
+
+
+                    unlink($destination.$photo_baby);
                     //upload de fichier
                     $file 		= $http->getDataFiles("photo_baby");
-                    $destination = "medias/photo-baby/";
                     $uploader = new Uploader($file,$destination);
                     $nom_file = $uploader->upload();
                     
                     if(!is_null($nom_file)){
                         //Avec redimensionnement si nécessaire
-                        $uploader->imageSizing(500);
-                    }
-                    
-                    if((isset($nom_file))&&(!is_null($nom_file))) {
                         $baby->setPhotoBaby($nom_file);
-                    }
-                
-        
+                        
+                        $uploader->imageSizing(300);
+
                         if($manager->updatephotoBaby($baby)){
                             
                             $flash->setFlash("La photo de ".$nom_baby." a bien été modifée");
@@ -64,24 +64,24 @@ class EditerPhotoBaby extends Controller {
                             $flash->setFlash("Impossible de modifier la photo de ".$nom_baby." réesayez ou contactez l'équipe picmento");
                         }
                         header("Location: afficher-tribu");
+                    }else{
+                        $flash->setFlash("Problème lors de l'upload du fichier");
+                    }
         
                         
                 }
-        
-    
             }else{
                 header("location: afficher-tribu");
             }
-        
         }else{
             header("location: ".DOMAINE."errors/404.php");
             die();
         }
 
-		return $build;
+    return $build;
 
-		}
-	}
+    }
+}
 
 
 		

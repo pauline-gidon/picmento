@@ -23,12 +23,19 @@ class ModifierAvatar extends Controller {
 		$connexion	= new Connexion();
 		$manager	= new ManagerUser($connexion);
 		$user		= $manager->oneUserById($_SESSION["auth"]["id"]);
-
+        
 		$form 	= new FormAvatar();
 		$build 	= $form->buildForm();
 		// var_dump($build);
 		if(($form->isSubmit("go"))&&($form->isValid())){
-			$destination = "medias/avatar/";
+            
+            $user_avatar = $user->getAvatarUser();
+            // var_dump($user_avatar);die();
+            $destination = "medias/avatar/";
+            if(!is_null($user_avatar)){
+                unlink($destination.$user_avatar);
+            }
+
 			$flash 		 = New Flash();
 
 			$http 		 = New HTTPRequest();
@@ -47,7 +54,7 @@ class ModifierAvatar extends Controller {
 				//Update de la table avec le nouveau nom de fichier
 				if($manager->updateAvatar($user)){
 					$_SESSION["auth"]["avatar"] 	= $avatar;
-					$flash->setFlash("Avatar uploadé");
+					$flash->setFlash("Avatar uploadé <a href=\"espace-perso\" title=\"retour espace perso\" class=\"flash-retourgit \">Retour</a>");
 				}else{
 					$flash->setFlash("Impossible de changer l'avatar pour le moment");
 				}
