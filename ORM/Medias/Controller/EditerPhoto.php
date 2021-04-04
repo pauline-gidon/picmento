@@ -31,7 +31,7 @@ class EditerPhoto extends Controller {
         // var_dump($id_baby); die();
 		$cx			= new Connexion();
         $managerU = new ManagerUser($cx);
-        if($managerU->verifUserMedias($id_photo)){
+        if(($managerU->verifUserMedias($id_photo))&&($managerU->verifUserBaby($id_baby))){
 
 
             $managerM = new ManagerMedias($cx);
@@ -82,7 +82,8 @@ class EditerPhoto extends Controller {
             return $build;
 
         }else{
-
+                header("location: ".DOMAINE."errors/404.php");
+                exit();
         }
     }
 }

@@ -285,6 +285,14 @@ $route[] = [
 	"logged"			=> true, 
 	"droits"			=> 1
 ];
+$route[] = [
+	"url"					=> PTH."supprimer-souvenir-photo-([0-9]+)-([0-9]+)", 
+	"namespace"		=> "ORM", 
+	"module"			=> "Medias", 
+	"action"			=> "SupprimerPhoto",  
+	"logged"			=> true, 
+	"droits"			=> 1
+];
 
 //---------------------------------------------------service naissance
 
