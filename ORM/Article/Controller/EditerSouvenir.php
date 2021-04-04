@@ -6,11 +6,7 @@ use OCFram\Connexion;
 
 
 use ORM\Article\Model\ManagerArticle;
-// use ORM\Medias\Model\ManagerMedias;
-// use ORM\Article\Entity\Article;
-// use ORM\Medias\Entity\Medias;
-// use ORM\Baby\Model\ManagerBaby;
-
+use ORM\User\Model\ManagerUser;
 use Vendors\Flash\Flash;
 use Vendors\FormBuilded\FormEditeSouvenir;
 
@@ -25,42 +21,44 @@ class EditerSouvenir extends Controller {
 		$id = $http->getDataGet("id");
 		
 		$cx			= new Connexion();
-		$manager	= new ManagerArticle($cx);
-        $article = $manager->oneArticleById($id);
+        $managerU = new ManagerUser($cx);
+        if($managerU->verifUserArticle($id)){
+            $manager	= new ManagerArticle($cx);
+            $article = $manager->oneArticleById($id);
 
-        // var_dump($article);die;
-		
-		
-		$form 		= new FormEditeSouvenir("post",$article);
-		$build 		= $form->buildForm();
-		
-		if(($form->isSubmit("souvenir"))&&($form->isValid())){
-            $flash = new Flash();
-			
-            $article->setTitreArticle($http->getDataPost("titre_article"));
-            $article->setDescriptionArticle($http->getDataPost("description_article"));
-            $article->setDateArticle($http->getDataPost("date_article"));
-            $article->setActifArticle($http->getDataPost("actif_article"));
-
+            // var_dump($article);die;
+            if(!is_null($article)){
+                $form 		= new FormEditeSouvenir("post",$article);
+                $build 		= $form->buildForm();
+                
+                if(($form->isSubmit("souvenir"))&&($form->isValid())){
+                    $flash = new Flash();
+                    
+                    $article->setTitreArticle($http->getDataPost("titre_article"));
+                    $article->setDescriptionArticle($http->getDataPost("description_article"));
+                    $article->setDateArticle($http->getDataPost("date_article"));
+                    $article->setActifArticle($http->getDataPost("actif_article"));
     
-            $baby = $manager->babyWithArticleById($id);
-            $id_baby = $baby->getIdBaby();
-
             
-            if($manager->updateArticle($article)){
-					
-                $flash->setFlash("L'article a bien été modifié <a href=\"afficher-souvenirs-".$id_baby."\" title=\"Retour aux souvenirs\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
-            }else{
-                $flash->setFlash("Vous n'avez pas fait de modification <a href=\"afficher-souvenirs-".$id_baby."\" title=\"Retour aux souvenirs\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
+                    $baby = $manager->babyWithArticleById($id);
+                    $id_baby = $baby->getIdBaby();
+    
+                    
+                    if($manager->updateArticle($article)){
+                            
+                        $flash->setFlash("L'article a bien été modifié <a href=\"afficher-souvenirs-".$id_baby."\" title=\"Retour aux souvenirs\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
+                    }else{
+                        $flash->setFlash("Vous n'avez pas fait de modification <a href=\"afficher-souvenirs-".$id_baby."\" title=\"Retour aux souvenirs\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
+                    }
+                }    
+                    
             }
-
-
-
-				
-		}
-	
-
-		return $build;
+        
+            return $build;
+        }else{
+            header("location: ".DOMAINE."errors/404.php");
+            exit();
+        }
 
 		}
 	}

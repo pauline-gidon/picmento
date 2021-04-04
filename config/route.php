@@ -293,6 +293,22 @@ $route[] = [
 	"logged"			=> true, 
 	"droits"			=> 1
 ];
+$route[] = [
+	"url"					=> PTH."visible-souvenir-([0-9]+)-([0-9]+)", 
+	"namespace"		=> "ORM", 
+	"module"			=> "Article", 
+	"action"			=> "VisibleSouvenir",  
+	"logged"			=> true, 
+	"droits"			=> 1
+];
+$route[] = [
+	"url"					=> PTH."supprimer-souvenir-([0-9]+)-([0-9]+)", 
+	"namespace"		=> "ORM", 
+	"module"			=> "Article", 
+	"action"			=> "SupprimerSouvenir",  
+	"logged"			=> true, 
+	"droits"			=> 1
+];
 
 //---------------------------------------------------service naissance
 

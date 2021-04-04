@@ -227,7 +227,7 @@ class ManagerArticle extends Manager {
     }
 
     //----------------------------------------------------------
-	//combien de media son associé a cet article
+	//combien de media son associé a cet article pour empéché l'upload de nouveau fichier
 	//----------------------------------------------------------
     function articleCountMedias($id){
         if(is_numeric($id)){
@@ -247,23 +247,32 @@ class ManagerArticle extends Manager {
 
         }
     }
+    //----------------------------------------------------------
+	//Recupéré tous les medias pour la suppression de l'article
+	//----------------------------------------------------------
+    function articleCountMediasById($id){
+        if(is_numeric($id)){
+            $req = "SELECT * FROM article
+            INNER JOIN article_has_medias
+                      ON article_has_medias.article_id_article = article.id_article 
+                       INNER JOIN medias
+                           ON article_has_medias.medias_id_medias = medias.id_medias 
+                           WHERE article.id_article = $id";
 
-    // //----------------------------------------------------------
-	// // quel baby est associé  cet id_article 
-	// //----------------------------------------------------------
-    // function articleByIdMedias($id_medias){
-    //     if(is_numeric($id_medias)){
-    //         $req = "SELECT * FROM article
-    //         INNER JOIN article_has_medias
-    //         ON article_has_medias.article_id_article = article.id_article
-    //         INNER JOIN medias
-    //         ON article_has_medias.medias_id_medias = medias.id_medias
-    //         WHERE medias.id_medias = $id_medias";
+            $query = $this->db->query($req);     
+            if($query->num_rows > 0){
+                while($row = $query->fetch_array()){
+                $objs[] = new Medias($row);
+                }
+                return $objs;
+            }else{
+                return null;
+            }      
 
-    //         $query = $this->db->query($req);     
-    //         return ($query->num_rows > 0)?new Article($query->fetch_array()):NULL;
-    //     }
-    // }
+        }
+    }
+
+
 
 
 

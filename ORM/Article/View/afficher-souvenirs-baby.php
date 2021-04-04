@@ -90,12 +90,12 @@ if(isset($result[1])){
                 </li>
 
                 <li>
-                    <a href=\"signaler-souvenir-".$obj->getIdArticle()."\" title=\"Ajouter un commentaire\">
+                    <a href=\"ajouter-commentaire-souvenir-".$obj->getIdArticle()."\" title=\"Ajouter un commentaire\">
                     <i class=\"ico icofont-comment\"></i>
                     </a>
                 </li>
                 <li>
-                    <a href=\"signaler-souvenir-".$obj->getIdArticle()."\" title=\"Visible/Invisible\">
+                    <a href=\"visible-souvenir-".$obj->getIdArticle()."-".$result[0]->getIdBaby()."\" title=\"Visible/Invisible\">
                     ".$vi."
                     </a>
                 </li>
@@ -105,7 +105,7 @@ if(isset($result[1])){
                     </a>
                 </li>
                 <li>
-                    <a href=\"supprimer-souvenir-".$obj->getIdArticle()."\" title=\"Supprimer l'article\" class=\"gogo\" data-gogo=\"".$obj->getTitreArticle()."\">
+                    <a href=\"supprimer-souvenir-".$obj->getIdArticle()."-".$result[0]->getIdBaby()."\" title=\"Supprimer l'article\" class=\"gogo\" data-gogo=\"".$obj->getTitreArticle()."\">
                             <i class=\"fas fa-trash\"></i>
                     </a>
                 </li>
