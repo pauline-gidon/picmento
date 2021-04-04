@@ -213,6 +213,23 @@ class ManagerArticle extends Manager {
         }
     }
 
+    // //----------------------------------------------------------
+	// // quel baby est associé  cet id_article 
+	// //----------------------------------------------------------
+    // function articleByIdMedias($id_medias){
+    //     if(is_numeric($id_medias)){
+    //         $req = "SELECT * FROM article
+    //         INNER JOIN article_has_medias
+    //         ON article_has_medias.article_id_article = article.id_article
+    //         INNER JOIN medias
+    //         ON article_has_medias.medias_id_medias = medias.id_medias
+    //         WHERE medias.id_medias = $id_medias";
+
+    //         $query = $this->db->query($req);     
+    //         return ($query->num_rows > 0)?new Article($query->fetch_array()):NULL;
+    //     }
+    // }
+
 
 
 	

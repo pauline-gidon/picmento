@@ -278,7 +278,7 @@ $route[] = [
 	"droits"			=> 1
 ];
 $route[] = [
-	"url"					=> PTH."editer-souvenir-photo-([0-9]+)", 
+	"url"					=> PTH."editer-souvenir-photo-([0-9]+)-([0-9]+)", 
 	"namespace"		=> "ORM", 
 	"module"			=> "Medias", 
 	"action"			=> "EditerPhoto",  

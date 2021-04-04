@@ -1,9 +1,9 @@
 <?php
 use Vendors\Flash\Flash;
 $flash = new FLash();
+echo $flash->getFlash();
 // echo $flash->getFlash();
 if(isset($result)){
-    echo $flash->getFlash();
 
     echo "<h2 class\"prenom-title\">".$result[0]->getNomBaby()."</h2>
           <p class=\"add-souvenir\"><a href=\"ajouter-souvenir-".$result[0]->getIdBaby()."\" title=\"Ajouter un souvenir à ".$result[0]->getNomBaby()." \">
@@ -17,7 +17,7 @@ if(isset($result)){
 if(isset($result[1])){
     // var_dump($result[1]);
 
-    echo "<section>";
+    echo "<section class=\"fc fw wrap\">";
     foreach($result[1] as $obj) {
             $photos = explode("/",$obj->liste_photo);
             $ids = explode("/",$obj->liste_id);
@@ -56,8 +56,8 @@ if(isset($result[1])){
                                 <ul class=\"menu-photo\">
                                     <li class=\"checked\"><i class=\"fas fa-chevron-down\"></i>
                                         <ul class=\"chec\">
-                                        <li><a href=\"editer-souvenir-photo-".$ids[$i]."\" title=\"Modifier la photo\"><i class=\"fas fa-pen-square\"></i></a></li>
-                                        <li><a href=\"supprimer-souvenir-photo-".$ids[$i]."\" title=\"Supprimer la photo\"><i class=\"fas fa-trash\"></i></a></li>
+                                        <li><a href=\"editer-souvenir-photo-".$ids[$i]."-".$result[0]->getIdBaby()."\" title=\"Modifier la photo\"><i class=\"fas fa-pen-square\"></i></a></li>
+                                        <li><a href=\"supprimer-souvenir-photo-".$ids[$i]."-".$result[0]->getIdBaby()."\" title=\"Supprimer la photo\" class=\"gogo\" data-gogo=\"la photo\"><i class=\"fas fa-trash\"></i></a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -68,15 +68,15 @@ if(isset($result[1])){
                     }
                     $visible = $obj->getActifArticle();
                     if($visible == 1){
-                        $vi = "<i class=\"far fa-eye\"></i>";
+                        $vi = "<i class=\"fas fa-eye\"></i>";
                     }else{
-                        $vi = "<i class=\"far fa-eye-slash\"></i>";
+                        $vi = "<i class=\"fas fa-eye-slash\"></i>";
                     }
                     echo "<p>".$year."</p>
             
                 </article>
                 
-            <div class=\"nav-baby\">
+            <div class=\"menu-article\">
             <ul>
                 <li>
                     <a href=\"editer-souvenir-".$obj->getIdArticle()."\" title=\"Modifier l'article : ".$obj->getTitreArticle()." \">
@@ -101,7 +101,7 @@ if(isset($result[1])){
                 </li>
                 <li>
                     <a href=\"signaler-souvenir-".$obj->getIdArticle()."\" title=\"Signaler l'article : ".$obj->getTitreArticle()." \">
-                    <i class=\"ico icofont-alarm\"></i>
+                    <i class=\"fas fa-bell\"></i>
                     </a>
                 </li>
                 <li>
@@ -121,3 +121,5 @@ if(isset($result[1])){
         echo "</section>";
     }
 }
+?>
+<script type="text/javascript" src="templates/back/js/confirmation.js"></script>

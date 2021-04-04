@@ -26,6 +26,9 @@ class EditerPhoto extends Controller {
 		
         $http = new HTTPRequest();
 		$id_photo = $http->getDataGet("id");
+        $id_baby = $http->getDataGet("idbaby");
+        // var_dump($id_photo);
+        // var_dump($id_baby); die();
 		$cx			= new Connexion();
         $managerU = new ManagerUser($cx);
         if($managerU->verifUserMedias($id_photo)){
@@ -43,29 +46,32 @@ class EditerPhoto extends Controller {
             
             $flash = new Flash();
             if(($form->isSubmit("addPhoto"))&&($form->isValid())){
-
+                //je recupère le nom de la photo qui va etre remplacer
+                $nom_photo = $photo->getNomMedias();
+                //suppression du précédant medias
+                $destination = "medias/souvenir/";
+                unlink($destination.$nom_photo);
+                
                 //upload de fichier
                 $file 		= $http->getDataFiles("photo");
-                $destination = "medias/souvenir/";
                 $uploader = new Uploader($file,$destination);
                 $nom_file = $uploader->upload();
-                
+
                 if(!is_null($nom_file)){
                     //Avec redimensionnement si nécessaire
                     $photo->setNomMedias($nom_file);
                     $uploader->imageSizing(400);
 
+                    if($managerM->updateMedias($photo)){
 
+                        $flash->setFlash("La photo de a bien été modifée <a href=\"afficher-souvenirs-".$id_baby."\" title=\"Retour aux souvenirs\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
+
+
+
+                    }
                 }
     
                 
-                if($manager->updateArticle($article)){
-                        
-                    $flash->setFlash("L'article a bien été modifié <a href=\"afficher-souvenirs-".$id_baby."\" title=\"Retour aux souvenirs\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
-                }else{
-                    $flash->setFlash("Impossible de modifier l'article, veuillez réesayer ou contacter l'équipe <a href=\"afficher-souvenirs-".$id_baby."\" title=\"Retour aux souvenirs\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
-                }
-                header("Location: afficher-souvenirs-".$id_baby."");
     
     
     

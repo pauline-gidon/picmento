@@ -42,10 +42,8 @@ class EditerPhotoBaby extends Controller {
                 $flash = new Flash();
                 if(($form->isSubmit("addbaby"))&&($form->isValid())){
                     //suppression de l'ancienne image
-                    $destination = "medias/photo-baby/";
-
-
-                    unlink($destination.$photo_baby);
+                            $destination = "medias/photo-baby/";
+                            unlink($destination.$photo_baby);
                     //upload de fichier
                     $file 		= $http->getDataFiles("photo_baby");
                     $uploader = new Uploader($file,$destination);

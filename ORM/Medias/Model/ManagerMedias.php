@@ -63,12 +63,14 @@ class ManagerMedias extends Manager {
   function updateMedias(Medias $medias){
     $nom_medias = $this->db->real_escape_string($medias->getNomMedias());
     $id_medias = $this->db->real_escape_string($medias->getIdMedias());
+    if(is_numeric($id_medias)){
 
-    $req = "UPDATE medias 
-        SET nom_medias = '$nom_medias'
-        WHERE id_medias = $id_medias ";
-    $query = $this->db->query($req);
-    return ($this->db->affected_rows == 1)?TRUE:FALSE;
+        $req = "UPDATE medias 
+            SET nom_medias = '$nom_medias'
+            WHERE id_medias = $id_medias ";
+        $query = $this->db->query($req);
+        return ($this->db->affected_rows == 1)?TRUE:FALSE;
+    }
   
   }
   
