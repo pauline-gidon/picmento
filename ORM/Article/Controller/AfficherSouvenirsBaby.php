@@ -40,7 +40,6 @@ class AfficherSouvenirsBaby extends Controller {
                 $manager = new ManagerArticle($cx);
                 
                 $articles = $manager->fullArticle($id_baby);
-                // var_dump($articles);die();
                 //il faudra que je gère l'affichage des commantire $generale[] = $commentaires
                 if(is_null($articles)){
                     $flash = new Flash;
@@ -51,11 +50,11 @@ class AfficherSouvenirsBaby extends Controller {
                 }
 
             }
-            // var_dump($articles);die();
+            $cx->close();
             return $general;
         }else{
             header("location: ".DOMAINE."errors/404.php");
-            die();
+            exit();
         }
 		
 		

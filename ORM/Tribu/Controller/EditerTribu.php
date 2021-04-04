@@ -37,10 +37,9 @@ class EditerTribu extends Controller {
 			$tribu->setNomTribu($http->getDataPost("nom_tribu"));
 
 			if($manager->updateTribu($tribu)){
-				$flash->setFlash("Modification appliquée");
-				header("Location: afficher-tribu");
+				$flash->setFlash("Modification appliquée <a href=\"afficher-tribu\" title=\"Retour Tribu\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
 			}else{
-				$flash->setFlash("La modification n'a pas pu être appliquée");
+				$flash->setFlash("La modification n'a pas pu être appliquée <a href=\"afficher-tribu\" title=\"Retour Tribu\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
 
 			}
 
@@ -48,6 +47,7 @@ class EditerTribu extends Controller {
 	
 
 		return $build;
+        $cx->close();
 
 		}
 	}

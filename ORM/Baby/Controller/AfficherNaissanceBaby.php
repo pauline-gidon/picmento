@@ -36,7 +36,7 @@ class AfficherNaissanceBaby extends Controller {
                 }
             }else{
                 header("location: ".DOMAINE."errors/404.php");
-                die();
+                exit();
             }
         }
 	

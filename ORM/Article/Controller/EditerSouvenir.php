@@ -49,11 +49,10 @@ class EditerSouvenir extends Controller {
             
             if($manager->updateArticle($article)){
 					
-                $flash->setFlash("L'article a bien été modifié");
+                $flash->setFlash("L'article a bien été modifié <a href=\"afficher-souvenirs-".$id_baby."\" title=\"Retour aux souvenirs\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
             }else{
-                $flash->setFlash("Impossible de modifier l'article, veuillez réesayer ou contacter l'équipe <span class=\"flash-logo\">Picmento</span>");
+                $flash->setFlash("Vous n'avez pas fait de modification <a href=\"afficher-souvenirs-".$id_baby."\" title=\"Retour aux souvenirs\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
             }
-            header("Location: afficher-souvenirs-".$id_baby."");
 
 
 

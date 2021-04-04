@@ -46,17 +46,14 @@ class ModifierProfil extends Controller {
 					$_SESSION["auth"]["prenom"] 	= $user->getPrenomUser();
 					$_SESSION["auth"]["pseudo"] 	= $user->getPseudoUser();
 					
-					$flash->setFlash("Modification ok");
-					header("Location: modifier-profil");
-					exit();
+					$flash->setFlash("Modification ok <a href=\"espace-perso\" title=\"retour espace perso\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
 				}else{
-					$flash->setFlash("Vous n'avez pas fait de modification");
+					$flash->setFlash("Vous n'avez pas fait de modification <a href=\"espace-perso\" title=\"retour espace perso\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
 				}
 
 			}else{
 				//Attention pas le bon mdp
-				$flash->setFlash("Merci de renseigner le 
-					bon mot de passe actuel");
+				$flash->setFlash("Mot de passe incorrect");
 			}
 			
 			

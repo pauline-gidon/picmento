@@ -79,11 +79,9 @@ class AcceptationAssociationTribu extends Controller {
                 $user_dest = $managerUser->oneUserById($id_dest);
                 $nom_user = $user_dest->getNomUser();
                 if(is_null($nom_user)){
-                    $flash->setFlash("La demande a bien été acceptée vous pouvez crée votre compte et y retrouver votre tribu !");
-                    header("location: inscription");
+                    $flash->setFlash("La demande a bien été acceptée vous pouvez crée votre compte et y retrouver votre tribu ! <a href=\"inscription\" title=\"Inscription\" class=\"flash-retour\"><i class=\"fas fa-sign-in-alt\"></i> Inscription</a>");
                 }else{
-                    $flash->setFlash("La demande a bien été acceptée vous pouvez vous connecter et retrouver votre tribu !");
-                    header("location: connexion");
+                    $flash->setFlash("La demande a bien été acceptée vous pouvez vous connecter et retrouver votre tribu ! <a href=\"connexion\" title=\"Connexion\" class=\"flash-retour\"><i class=\"fas fa-sign-in-alt\"></i> Connexion</a>");
                 }
            
             }else{
@@ -107,13 +105,13 @@ class AcceptationAssociationTribu extends Controller {
             
             }
             //fermeture du if submit go 
-
-            return $general;
             
         }else{
             $flash->setFlash("Désoler la demande à expirer.");
             
         }
+        $cx->close();
+        return $general;
         //if is null amis
     }
 

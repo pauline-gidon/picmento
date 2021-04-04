@@ -18,7 +18,7 @@ use Vendors\FormBuilded\FormAssociation;
 class AssocierParentTribu extends Controller {
 
 	function getResult(){
-		$this->setLayout("front");
+		$this->setLayout("back");
 		$this->setTitle("Associer un parent");
 		$this->setView("ORM/User/View/afficher-form.php");
 
@@ -45,7 +45,7 @@ class AssocierParentTribu extends Controller {
             if($actif == 0){
                 header("Location: annuler-demande-".$id_tribu."");
             }else{
-                $flash->setFlash("Désolé un parent est déjà associé à cette tribu, il ne peut pas être remplacé");
+                $flash->setFlash("Désolé un parent est déjà associé à cette tribu, il ne peut pas être remplacé <a href=\"afficher-tribu\" title=\"Retour Tribu\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
             }            
         }else{
             $form 	= new FormAssociation();
@@ -115,10 +115,9 @@ class AssocierParentTribu extends Controller {
                     
                     
                     
-                    $flash->setFlash("Votre demande à bien été envoyé !");
+                    $flash->setFlash("Votre demande à bien été envoyé ! <a href=\"afficher-tribu\" title=\"Retour Tribu\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
                 }
                 
-                header("Location: afficher-tribu");
 
 
 
@@ -127,7 +126,7 @@ class AssocierParentTribu extends Controller {
 
         // il va recevoir el lien clicer sur le mail et un autre controller prend le relait ne pas oublier de dire que c'est trop lent si il y a mi 6 mois lol
 
-
+        $cx->close();
 		return $build;
 
         }

@@ -42,10 +42,9 @@ class AjouterTribu extends Controller {
 		
 
 			if($manager->insertNewTribu($new_tribu)){
-				$flash->setFlash("Votre nouvelle tribu a été ajoutée");
-				header("Location: afficher-tribu");
+				$flash->setFlash("Votre nouvelle tribu a été ajoutée <a href=\"afficher-tribu\" title=\"Retour Tribu\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
 			}else{
-				$flash->setFlash("l'ajout de votre tribu n'a pas fonctionné, veuillez ressayer ou contacter l'équipe picmento");
+				$flash->setFlash("l'ajout de votre tribu n'a pas fonctionné, veuillez ressayer ou contacter l'équipe <span class=\"flash-logo\">Picmento</span> <a href=\"afficher-tribu\" title=\"Retour Tribu\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
 
 			}
 

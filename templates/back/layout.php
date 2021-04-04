@@ -86,12 +86,7 @@
 
 	
 
-	<div class="wrap">
-	
-		<?php
-		if(isset($vue)) include($vue);
-		?>	
-	</div>
+<div><?php if(isset($vue)) include($vue); ?></div>
 
 
 

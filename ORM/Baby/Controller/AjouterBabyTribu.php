@@ -59,16 +59,14 @@ class AjouterBabyTribu extends Controller {
 				"taille_naissance_baby" 	=> $http->getDataPost("taille_naissance_baby"),
 				"tribu_id_tribu"		=> $id_tribu
 				]);
-				// var_dump($new_baby);
-				// die();
+	
 			$manager	= new ManagerBaby($cx);
 				if($manager->insertNewBaby($new_baby)){
 					
-					$flash->setFlash("Votre enfant a bien été ajouté à la tribu");
+					$flash->setFlash("Votre enfant a bien été ajouté à la tribu <a href=\"afficher-tribu\" title=\"Retour Tribu\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
 				}else{
-					$flash->setFlash("Impossible d'ajouter un enfant à la tribu veuillez réesayer ou contacter l'équipe <span class=\"flash-logo\">Picmento</span>");
+					$flash->setFlash("Impossible d'ajouter un enfant à la tribu veuillez réesayer ou contacter l'équipe <span class=\"flash-logo\">Picmento</span> <a href=\"afficher-tribu\" title=\"Retour Tribu\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
 				}
-				header("Location: afficher-tribu");
 
 				
 		}

@@ -54,7 +54,7 @@ class ModifierAvatar extends Controller {
 				//Update de la table avec le nouveau nom de fichier
 				if($manager->updateAvatar($user)){
 					$_SESSION["auth"]["avatar"] 	= $avatar;
-					$flash->setFlash("Avatar uploadé <a href=\"espace-perso\" title=\"retour espace perso\" class=\"flash-retourgit \">Retour</a>");
+					$flash->setFlash("Avatar uploadé <a href=\"espace-perso\" title=\"retour espace perso\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
 				}else{
 					$flash->setFlash("Impossible de changer l'avatar pour le moment");
 				}

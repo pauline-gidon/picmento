@@ -44,8 +44,7 @@ class AjouterSouvenirTribu extends Controller {
             }
 
         }else{
-            $flash->setFlash("Pour ajouter un souvenir votre tribu doit être composée d'au moins un enfant");
-			header("Location: afficher-tribu");
+            $flash->setFlash("Pour ajouter un souvenir votre tribu doit être composée d'au moins un enfant <a href=\"afficher-tribu\" title=\"Retour Tribu\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
         }
 
         // var_dump($id_baby);die();
@@ -140,17 +139,16 @@ class AjouterSouvenirTribu extends Controller {
 
 			if($managerA->insertArticleHasbaby($id,$new_id_article)){
 				
-				$flash->setFlash("Votre souvenir a bien été ajouté à la tribu !");
+				$flash->setFlash("Votre souvenir a bien été ajouté à la tribu ! <a href=\"afficher-tribu\" title=\"Retour Tribu\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
 			}else{
-				$flash->setFlash("Impossible d'ajouter un souvenir à la tribu, essayez à nouveau ou contactez l'équipe picmento");
+				$flash->setFlash("Impossible d'ajouter un souvenir à la tribu, essayez à nouveau ou contactez l'équipe <span class=\"flash-logo\">Picmento</span> <a href=\"afficher-tribu\" title=\"Retour Tribu\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
 			}
-			header("Location: afficher-tribu");
 
 				
 		}
 
 	
-
+        $cx->close();
 		return $general;
 
 		}

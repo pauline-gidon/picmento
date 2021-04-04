@@ -59,11 +59,10 @@ class EditerPhotoBaby extends Controller {
 
                         if($manager->updatephotoBaby($baby)){
                             
-                            $flash->setFlash("La photo de ".$nom_baby." a bien été modifée");
+                            $flash->setFlash("La photo de ".$nom_baby." a bien été modifée <a href=\"afficher-tribu\" title=\"Retour Tribu\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
                         }else{
-                            $flash->setFlash("Impossible de modifier la photo de ".$nom_baby." réesayez ou contactez l'équipe picmento");
+                            $flash->setFlash("Impossible de modifier la photo de ".$nom_baby." réesayez ou contactez l'équipe <span class=\"flash-logo\">Picmento</span> <a href=\"afficher-tribu\" title=\"Retour Tribu\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
                         }
-                        header("Location: afficher-tribu");
                     }else{
                         $flash->setFlash("Problème lors de l'upload du fichier");
                     }
@@ -75,9 +74,9 @@ class EditerPhotoBaby extends Controller {
             }
         }else{
             header("location: ".DOMAINE."errors/404.php");
-            die();
+            exit();
         }
-
+    $cx->close();
     return $build;
 
     }

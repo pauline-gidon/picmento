@@ -1,14 +1,12 @@
 <?php
 use Vendors\Flash\Flash;
-?>
-
-<div class="wrap">
-<h2>Avatar</h2>
-
-<?php
 $flash = new FLash();
 echo $flash->getFlash();
 ?>
+
+<div class="wrap">
+<!-- <h2>Avatar</h2> -->
+
 
 <div class="fc">
 	<div class="xlg-3">

@@ -14,7 +14,7 @@ use Vendors\FormBuilded\FormAnnul;
 class AnnulerDemande extends Controller {
 
 	function getResult(){
-		$this->setLayout("front");
+		$this->setLayout("back");
 		$this->setTitle("Annuler demande");
 		$this->setView("ORM/User/View/form-annule.php");
 
@@ -27,34 +27,37 @@ class AnnulerDemande extends Controller {
         $cx = new Connexion();
         $managerAmis = new ManagerAmis($cx);
         $amis = $managerAmis->oneAmisByIdTribu($id_tribu);
-        // si la demander est annuler il faut recuperer l'id_user_destinataire
-        $id_user_dest = $amis->getUserIdDestinataire();
-        //je vais cherche cet user en bdd par son id pour un affichage dynamique 
-        $managerUser = new ManagerUser($cx);
-        $user = $managerUser->oneUserById($id_user_dest);
-        $general [] = $user;
+        if(!is_null($amis)){
+            // si la demander est annuler il faut recuperer l'id_user_destinataire
 
-
-        $form 	= new FormAnnul();
-		$build 	= $form->buildForm();
-        $general [] = $build;
-        if(($form->isSubmit("annuler"))&&($form->isValid())){
-            $annule = $http->getDataPost('annule');
-            if($annule == 1) {
-                if($managerAmis->deleteAmisByIdTribuAndIdDestinatatire($id_tribu,$id_user_dest)){
-                    $flash->setFlash("La demande a bien été annulée, vous pouvez renvoyer une nouvelle demande");
-                header("Location:associer-parent-tribu-".$id_tribu."");
-
-                    
+            $id_user_dest = $amis->getUserIdDestinataire();
+            //je vais cherche cet user en bdd par son id pour un affichage dynamique 
+            $managerUser = new ManagerUser($cx);
+            $user = $managerUser->oneUserById($id_user_dest);
+            $general [] = $user;
+    
+    
+            $form 	= new FormAnnul();
+            $build 	= $form->buildForm();
+            $general [] = $build;
+            if(($form->isSubmit("annuler"))&&($form->isValid())){
+                $annule = $http->getDataPost('annule');
+                if($annule == 1) {
+                    if($managerAmis->deleteAmisByIdTribuAndIdDestinatatire($id_tribu,$id_user_dest)){
+                        $flash->setFlash("La demande a bien été annulée, vous pouvez renvoyer une nouvelle demande <a href=\"associer-parent-tribu-".$id_tribu."\" title=\"Nouvelle demande\" class=\"flash-retour\"><i class=\"fas fa-share-square\"></i> Faire une nouvelle demande</a>");
+    
+                        
+                    }
+                }else{
+                    $flash->setFlash("l'annulation n'a pas été effectuée ! <a href=\"afficher-tribu\" title=\"Retour Tribu\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
                 }
-            }else{
-                header("Location: afficher-tribu");
-                $flash->setFlash("l'annulation n'a pas été effectuée ! ");
             }
+            $cx->close();
+            return $general;
+        }else{
+            header("location: afficher-tribu");
         }
         
-		$cx->close();
-        return $general;
 	}
 
 }

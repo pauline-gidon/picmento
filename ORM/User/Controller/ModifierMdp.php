@@ -39,15 +39,12 @@ class ModifierMdp extends Controller {
 			if($manager->oneUserByIdAndPass($user)){
 				$user->setPassUser($http_request->getDataPost("pass_user2"));
 				if($manager->updatePassUser($user)){
-					$flash->setFlash("Mot de passe modifié");	
-					header("Location: modifier-mdp");
-					exit();
+					$flash->setFlash("Mot de passe modifié <a href=\"espace-perso\" title=\"retour espace perso\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");	
 				}else{
-					$flash->setFlash("Pas de modification");
+					$flash->setFlash("Pas de modification <a href=\"espace-perso\" title=\"retour espace perso\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
 				}
 			}else{
-				$flash->setFlash("Merci de renseigner le 
-					bon mot de passe actuel");
+				$flash->setFlash("Mot de passe actuel incorrect");
 			}
 
 			$connexion->close();

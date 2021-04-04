@@ -114,21 +114,20 @@ class AjouterSouvenirBaby extends Controller {
         
                     if($manager->insertArticleHasbaby($id_baby,$new_id_article)){
                         
-                        $flash->setFlash("Votre souvenir a bien été ajouté !");
+                        $flash->setFlash("Votre souvenir a bien été ajouté ! <a href=\"afficher-souvenirs-".$id_baby."\" title=\"Retour aux souvenirs\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
                     }else{
-                        $flash->setFlash("Impossible d'ajouter un souvenir à ".$nom_baby." veuillez réesayer ou contacter l'équipe <span class=\"flash-logo\">Picmento</span>");
+                        $flash->setFlash("Impossible d'ajouter un souvenir à ".$nom_baby." veuillez réesayer ou contacter l'équipe <span class=\"flash-logo\">Picmento</span> <a href=\"afficher-souvenirs-".$id_baby."\" title=\"Retour aux souvenirs\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
                     }
-                    header("Location: afficher-souvenirs-".$id_baby."");
         
                         
                 }
-                return $general;
             }
         }else{
             header("location: ".DOMAINE."errors/404.php");
-            die();
+            exit();
         }
-
+        $cx->close();
+        return $general;
 		}
 	}
 

@@ -104,122 +104,29 @@ footer p a:hover {
 
 
 .feedback {
-    background-color: #490d0de1;
-    color: #FFF;
+    padding: 10px;
+    background-color: #614846;
+    color: #CCC;
     width:100%;
     height: 90px;
 }
-
-
-
-#slideshow {
-    background-color: rgb(161, 161, 161); 
-    padding: 50px 20px;
+.flash-retour{
+    color: #FFF;
+    font-size: 20px;
+    padding-left: 20px;
+    
 }
-#masque {
-    width: 100%;
-    max-width: 660px;
-    overflow: hidden;
-    margin: 0 auto 20px;
-    border: solid 3px #FED9B7;
-    background-color: black;
-}
-#bandeau {
-    position: relative;
-}
-
-#slideshow figure img {
-    float: left;
-     width: 100%; 
-}
-#pagination{
-    text-align: center;
-}
-#pagination i {
-    font-size: 40px;
-    cursor: pointer;
-    margin: 0 10px;
-    color: #F07167;
-}
-#pagination i:hover {
-    color: #ffa46b;
+.flash-retour:hover{
+    text-decoration: underline;
     
 }
 
 
-.words {
-    font-family: "Archivo Black", sans-serif;
-    display: flex;
-    justify-content: center;
-    height: 100px;
-    color: #FFFCF8;
-    font-size: 0;
-    line-height: 1.5;
-    margin-bottom: 50px;
-  }
-  
-  .words span {
-    font-size: 5rem;
-    display: inline-block;
-    animation: move 5s ease-in-out infinite;
-  }
-  
-  @keyframes move {
-    0% {
-      transform: translate(-20%, 100);
-    }
-    50% {
-      text-shadow: 0 25px 50px #686868;
-    }
-    100% {
-      transform: translate(30%, 0);
-    }
-  }
-  
-  .words span:nth-child(2) {
-    animation-delay: 0.5s;
-  }
-  
-  .words span:nth-child(3) {
-    animation-delay: 1s;
-  }
-  
-  .words span:nth-child(4) {
-    animation-delay: 1.5s;
-  }
-  
-  .words span:nth-child(5) {
-    animation-delay: 2s;
-  }
-  
-  .words span:nth-child(6) {
-    animation-delay: 2.5s;
-  }
-  
-  .words span:nth-child(7) {
-    animation-delay: 3s;
-  }
-  .words span:nth-child(8) {
-    animation-delay: 3.5s;
-  }
- 
-  .page404 {
-    /* background-image: url(../images/pont-404.jpg); */
-    background-color: red;
-    /* background-repeat: no-repeat;
-    background-size: cover; */
- }
- #nav2{
-     min-height: 20vh;
- }
- .votre-espace #nav2{
-     background-image: url(../images/plumeblanche.jpg);
-     background-repeat: no-repeat;
-     background-size: cover;
-     background-position: center;
- 
 
- }
+  
+
+
+
 
  /* -------------------------------Espace perso-------------------------------------- */
 #secondaire{

@@ -50,23 +50,22 @@ class EditerBaby extends Controller {
                     
                         if($manager->updateProfilBaby($baby)){
                             
-                            $flash->setFlash("Le profil de ".$nom_baby." a bien été modifié");
+                            $flash->setFlash("Le profil de ".$nom_baby." a bien été modifié <a href=\"afficher-tribu\" title=\"Retour Tribu\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
                         }else{
-                            $flash->setFlash("Impossible de modifier le profil de ".$nom_baby." réesayez ou contactez l'équipe <span class=\"flash-logo\">Picmento</span>");
-                        }
-                        header("Location: afficher-tribu");
-        
-                        
+                            $flash->setFlash("Vous n'avez pas fait de modification <a href=\"afficher-tribu\" title=\"Retour Tribu\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
+                        }                       
                 }
-                return $build;
+                
             }
-        
-    
+            
+            
         }else{
             header("location: ".DOMAINE."errors/404.php");
-            die();
+            exit();
         }
-
+        
+        return $build;
+        $cx->close();
 		}
 	}
 
