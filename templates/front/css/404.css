@@ -1,18 +1,32 @@
-body{
-    background-image: url(../images/livre404.jpg);
+body, html {
+    height: 100%;
+    margin: 0;
+  }
+.bg{
+    position: relative;
+    background-image: url(../images/404-1.jpg);
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: top 0 left 0;
     background-size: cover;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    /* width: 100vw; */
     color: #FFFCF8;
-    font-family: 'Montserrat', sans-serif;}
+    font-family: 'Montserrat', sans-serif;
+}
+.m404{
+    position: absolute;
+    width: 30vw;
+    top:0;
+    left: 50%;
+    transform: translate(-50%);
 
+}
+/* 
 h1, h2 {
     text-align: center;
     width: 90%;
-}
-h1{
+} */
+/* h1{
     mix-blend-mode: overlay;
     font-size: 100px;
     position: absolute;
@@ -27,30 +41,48 @@ h2 {
     top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
+} */
 
 #oups{
     /* mix-blend-mode: overlay; */
+    /* display: flex; */
+    /* justify-content: space-between; */
     position: absolute;
+    bottom: 15px;
+    left: 0; 
+    width: 90%;
+    
+    
+}
+#oups p{
+    /* mix-blend-mode: overlay; */
     background-color: rgba(2, 2, 2, 0.596);
     border-radius: 30px;
-    bottom: 10px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 30px;
-    width: 70%;
+    bottom: 20px;
+    /* left: 50%; */
+    color:#FFF;
+    /* transform: translate(-50%, -50%); */
+    font-size: 18px;
+    width: 90%;
     padding: 20px 35px;
     
     
 }
  
-
-img {
-    z-index: 10;
+.rel{
+    position: relative;
+    width: 100vw;
+}
+.continuer{
     position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 250px;
+    z-index: 10;
+    bottom: -20px;
+    right: 50px;
+    display: block;
+
+}
+.tigre {
+    width: 10vw;
 }
 
 @media only screen and (max-width: 1050px) {

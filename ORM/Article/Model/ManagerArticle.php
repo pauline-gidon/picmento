@@ -88,18 +88,53 @@ class ManagerArticle extends Manager {
         }
     }
     //----------------------------------------------------------
-	//Suppression des articles du baby avec ces commentaires  et ces tables associatives par l'id_article
+    //je supprime une relation avant de supprimer l'article pour voir si l'article est associé a d'autre baby
 	//----------------------------------------------------------
 
-    function deleteArticleById($id){
-        if(is_numeric($id)){
+    function deleteArticleHasBaby($id_article, $id_baby){
+        if((is_numeric($id_article))&&(is_numeric($id_baby))){
             // $req = "DELETE FROM commentaire WHERE article_id_article = $id";
             // $query = $this->db->query($req);
 
-            $req = "DELETE FROM baby_has_article WHERE article_id_article = $id";
+            $req = "DELETE FROM baby_has_article WHERE article_id_article = $id_article
+            AND baby_id_baby = $id_baby";
             $query = $this->db->query($req);
+            return ($this->db->affected_rows == 1)?true:false;
 
-            $req = "DELETE FROM article WHERE id_article = $id";
+        }
+    }
+    //----------------------------------------------------------
+    //je regarde si cette article est associé a un/des baby(s)
+	//----------------------------------------------------------
+
+    function fullArticleHasBaby($id_article){
+        if(is_numeric($id_article)){
+            // $req = "DELETE FROM commentaire WHERE article_id_article = $id";
+            // $query = $this->db->query($req);
+
+            $req = "SELECT * FROM article INNER JOIN baby_has_article ON baby_has_article.article_id_article = article.id_article
+            INNER JOIN baby ON baby_has_article.baby_id_baby = baby.id_baby
+             WHERE article.id_article = $id_article";
+            $query = $this->db->query($req);
+            if($query->num_rows > 0){
+                while($row = $query->fetch_array()){
+                $objs[] = new Baby($row);
+                }
+                return $objs;
+            }else{
+                return null;
+            }      
+
+        }
+    }
+    //----------------------------------------------------------
+    //je supprime l'article qui n'est plus associé a des babys
+	//----------------------------------------------------------
+
+    function deleteArticleByIds($id_article){
+        if((is_numeric($id_article))){
+
+            $req = "DELETE FROM article WHERE id_article = $id_article";
             $query = $this->db->query($req);
 
             return ($this->db->affected_rows == 1)?true:false;
