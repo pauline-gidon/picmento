@@ -152,36 +152,56 @@ fieldset a {
 
  /* ------------------------------- tribu-------------------------------------- */
  .toutes-mes-tribus h1 {
-    color: #cfbac0;
+    color: var(--bleu-confé);
+    padding-bottom: 40px;
+ }
+ .toutes-mes-tribus {
+    background-image: url(../images/plume-paysage.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+
  }
  .tribubaby {
      margin-bottom: 50px;
      padding: 20px;
-     /* background-color: var(--beige); */
-     background-image: url(../images/plumeblanche.jpg);
-     background-repeat: no-repeat;
+      background-repeat: no-repeat;
      background-size: cover;
-     border: solid 1.5px rgb(88, 75, 75);
-     border-radius: 5px;
+     /* border: solid 1.5px rgb(194, 194, 194);
+     border-radius: 5px; */
      /* position: relative; */
  }
  .tribubaby .nav-tribu ul {
     list-style-type: none;
  }
+ .tribubaby .nav-tribu ul li{
+     margin: 6px 0;
+ }
  .tribubaby .nav-tribu ul a{
     
-    color: var(--beige-claire) ;
-    background-color: #00AFB9;
-    padding: 12px;
-    border-radius: 50%;
-    margin: 15px 0;
-    position: relative;
     display: block;
+    color: var(--bleu-confé);
+    /* border: dashed 1px rgb(87, 86, 86); */
  }
 
  .tribubaby .nav-tribu ul i{
-    position:absolute;
- }
+    font-size: 25px;
+    color: var(--bleu-confé);
+}
+ .tribubaby .nav-tribu ul .ico{
+    font-size: 30px;
+    color: var(--bleu-confé);
+}
+.tribubaby .nav-tribu ul i:hover{
+    color: var(--saumon);
+}
+
+
+.ico {
+    font-family: "icofont";
+    font-size: 35px;
+    color: var(--bleu-confé);
+}
  
 
  .baby {
@@ -191,15 +211,21 @@ fieldset a {
      margin: 0 35px 0;
  }
  .tribubaby .colG{
-    width: 100%;
+    width: 92%;
     min-height: 200px;
     text-align: center;
     margin: 0 auto;
+    padding-bottom: 20px;
+    background: rgba( 255, 255, 255, 0.45 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+
 }
 .colG > h2{
-    padding:5px 0 0 0;
+    padding: 25px;
     width: 100%;
-    color:#FFF
+    color: #8BA5AD
 }
 
 .id-baby{
@@ -216,11 +242,6 @@ fieldset a {
     background-color: green;
     
 }
-.ico {
-    font-family: "icofont";
-    font-size: 25px;
-    color: rgb(255, 255, 255);
-}
 
 /* --------------------------------------------- */
 .cassbonbon{
@@ -236,10 +257,9 @@ fieldset a {
 	padding-bottom: 100%;
 }
 .photo-carre-tribu img {
-    /* opacity: 1; */
-    /* -webkit-transition: .3s ease-in-out; */
-    /* transition: .3s ease-in-out; */
-	width: 100%;
+    border-radius: 8px;
+    border: solid 1px #CCC;
+    width: 100%;
 	height: 100%;
 	position: absolute;
 	object-fit: cover;
@@ -254,41 +274,24 @@ fieldset a {
 /* --------------------------------------------------- */
 .nom-baby{
 
-    color:  #cfbac0;
+    color:  #4b4949;
     margin: 0 auto ;
-    /* width: 500px; */
-    /* z-index: 80; */
-    /* padding-top: 80px; */
-    font-size: 30px;
-    /* background-image: url(../images/background-3063287_1920.png); */
-    /* background-size: cover; */
-    /* mix-blend-mode:multiply; */
-
-
-    /* position: absolute;
-    top:50%;
-    left: 50%;
-    transform: translate(-50%,-50%); */
+    font-size: 20px;
+    padding-top: 10px;
 }
 
 
 .modale {
-    /* display: none; */
-	/* width: 300px; */
-	/* height: 100vh; */
-    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+9,000000+88,000000+88,ffffff+100,ffffff+100&1+71,1+73,0+100 */
     background: -moz-linear-gradient(top,  rgba(0,0,0,1) 9%, rgba(0,0,0,1) 71%, rgba(0,0,0,1) 73%, rgba(0,0,0,0.44) 88%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(top,  rgba(0,0,0,1) 9%,rgba(0,0,0,1) 71%,rgba(0,0,0,1) 73%,rgba(0,0,0,0.44) 88%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom,  rgba(0,0,0,1) 9%,rgba(0,0,0,1) 71%,rgba(0,0,0,1) 73%,rgba(0,0,0,0.44) 88%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
 	position: absolute;
 	top: 20px;
-    /* bottom: 0; */
     transition: 1.5s linear;
 	left: -100vw;
     width: 100%;
     padding: 5px 0 20px;
-    /* transform: translate(-50%); */
 
 }
 .modale.open{
@@ -301,9 +304,6 @@ fieldset a {
     padding: 5px 0 5px 10px ;
 }
 .modale a:hover{
-    /* color: #F07167;
-    background-color: #FED9B7; */
-    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+0,d4f1f3+57,7fd7da+100 */
     color: var(--bleu-claire);
     background: #ffffff; /* Old browsers */
     background: -moz-linear-gradient(left,  #ffffff 0%, #d4f1f3 57%, #7fd7da 100%); /* FF3.6-15 */
@@ -327,22 +327,16 @@ fieldset a {
 	right: 5px;
 	cursor: pointer;
 }
-/* .hidden{
-    left:-100vw;
-    transition: 3s;
-    opacity:0;
-    transition: opacity 2s linear;
 
-} */
 .btnaddtribu{
-    text-align: center;
-    padding-bottom: 40px;
+    text-align: right;
+    padding: 0 60px 40px ;
 }
 .btnaddtribu a{
-    color: coral;
+    color: #ffc9b5;
 }
 .btnaddtribu i {
-   color: #cfbac0;
+   color: #ffffff;
 }
 /* ---------------------------------------Souvenir------------------------------------------ */
 .les-souvenirs h2 {
@@ -380,7 +374,7 @@ text-align: right;
     background-color: #FFF;
     width: 30%;
 	position: relative;
-    margin: 0 20px;
+    margin: 0 auto;
 }
 .souv-carre:after {
     content:'';

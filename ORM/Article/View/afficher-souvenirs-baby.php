@@ -49,7 +49,7 @@ if(isset($result[1])){
                         <p class=\"description\">".$obj->getDescriptionArticle()."</p>
                     <div class=\"ruban-date\"><p>".$jour."</p><p>".$mois."</p></div>";
                     if(!is_null($obj->liste_photo)){
-                        echo"<div class=\"fc fw jc-c\">";
+                        echo"<div class=\"fc fw\">";
                     for ($i=0; $i < count($ids); $i++) { 
                         echo "<div class=\"souv-carre\">
                                 <img src=\"".DOMAINE."medias/souvenir/".$photos[$i]."\" alt=\"Photo de ".$obj->getTitreArticle()."\">

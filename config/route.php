@@ -367,7 +367,7 @@ $route[] = [
 	"droits"			=> 1
 ];
 $route[] = [
-	"url"					=> PTH."ajouter-timeline-([0-9]+)", 
+    "url"					=> PTH."ajouter-timeline-([0-9]+)", 
 	"namespace"		=> "ORM", 
 	"module"			=> "Timeline", 
 	"action"			=> "AjouterTimelineBaby",  
@@ -375,6 +375,15 @@ $route[] = [
 	"droits"			=> 1
 ];
 
+//------------------------------------------------------service amis
+$route[] = [
+    "url"					=> PTH."amis", 
+	"namespace"		=> "ORM", 
+	"module"			=> "Amis", 
+	"action"			=> "AfficherAmis",  
+	"logged"			=> true, 
+	"droits"			=> 1
+];
 
 
 

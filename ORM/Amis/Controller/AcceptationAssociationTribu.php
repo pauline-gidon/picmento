@@ -20,7 +20,7 @@ class AcceptationAssociationTribu extends Controller {
 
 	function getResult(){
 
-		$this->setLayout("front");
+		$this->setLayout("Back");
 		$this->setTitle("Demande d'association à une tribu");
 		$this->setView("ORM/Amis/View/form-demande.php");
 

@@ -95,6 +95,31 @@ class ManagerAmis extends Manager {
 		}
 
     }
+//-------------------------------------------------------------------------------------------------
+// full ami by id user
+//-------------------------------------------------------------------------------------------------
+	function fullAmisActif(){
+        $id = $_SESSION["auth"]["id"];
+        if(is_numeric($id)){
+            $req = "SELECT * FROM amis
+            WHERE actif_amis = 1
+            AND acceptation_amis = 1
+            AND user_id_expediteur = $id
+            OR user_id_destinataire = $id";
+            // var_dump($req);die();
+            $query = $this->db->query($req);     
+
+            if($query->num_rows > 0){
+                while($row = $query->fetch_array()){
+                $objs[] = new Amis($row);
+                }
+                return $objs;
+            }else{
+                return null;
+            }      
+		}
+
+    }
 
 
 

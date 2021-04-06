@@ -319,5 +319,27 @@ class ManagerUser extends Manager {
 
     }
 
+	//----------------------------------------------------------
+	//Je recupère les relation d'amitié du user
+    //----------------------------------------------------------
+	function fullAmisUser(){
+        $id = $_SESSION["auth"]["id"];
+            $req="SELECT * FROM user_has_user WHERE
+        	    user_id_user  = $id 
+                OR user_id_user1  = $id 
+        ";
+        var_dump($req);
+		$query = $this->db->query($req);
+        if($query->num_rows > 0){
+            while($row = $query->fetch_array()){
+            $objs[] = $row;
+            }
+            return $objs;
+        }else{
+            return null;
+        }      
+    
+	}
+
 //Fermeture ManagerUser
 }

@@ -69,7 +69,6 @@ class AjouterPhoto extends Controller {
                     }else{
                         $flash = new Flash();
                         $flash->setFlash("Votre souvenir a atteint le nombre maximal de photos. Pour ajouter cette photo, veuillez modifier ou supprimer une autre photo <a href=\"afficher-souvenirs-".$id_baby."\" title=\"Retour aux souvenirs\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
-                        
                     }
                 }
             }else{

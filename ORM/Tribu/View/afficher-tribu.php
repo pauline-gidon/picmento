@@ -88,7 +88,7 @@ if(isset($result)){
     </div>";                
     }//fin du foreach
 
-    echo "<p class=\"btnaddtribu\">
+    echo "<p class=\"btnaddtribu wrap\">
     <a href=\"ajouter-tribu\" title=\"Ajoutez une nouvelle tribu \"><i class=\"ico icofont-inbox\"></i> Ajouter une nouvelle tribu</a>
     </p>";
 
