@@ -220,6 +220,7 @@ fieldset a {
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
+    
 
 }
 .colG > h2{
@@ -259,6 +260,7 @@ fieldset a {
 .photo-carre-tribu img {
     border-radius: 8px;
     border: solid 1px #CCC;
+    box-sizing: border-box;
     width: 100%;
 	height: 100%;
 	position: absolute;
@@ -284,7 +286,7 @@ fieldset a {
 .modale {
     background: -moz-linear-gradient(top,  rgba(0,0,0,1) 9%, rgba(0,0,0,1) 71%, rgba(0,0,0,1) 73%, rgba(0,0,0,0.44) 88%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(top,  rgba(0,0,0,1) 9%,rgba(0,0,0,1) 71%,rgba(0,0,0,1) 73%,rgba(0,0,0,0.44) 88%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom,  rgba(0,0,0,1) 9%,rgba(0,0,0,1) 71%,rgba(0,0,0,1) 73%,rgba(0,0,0,0.44) 88%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background: linear-gradient(to bottom,  rgb(59, 59, 59,1) 9%,rgba(59, 59, 59,1) 71%,rgba(59, 59, 59,1) 73%,rgba(59,59,59,0.44) 88%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
 	position: absolute;
 	top: 20px;
@@ -305,12 +307,7 @@ fieldset a {
 }
 .modale a:hover{
     color: var(--bleu-claire);
-    background: #ffffff; /* Old browsers */
-    background: -moz-linear-gradient(left,  #ffffff 0%, #d4f1f3 57%, #7fd7da 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(left,  #ffffff 0%,#d4f1f3 57%,#7fd7da 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to right,  #ffffff 0%,#d4f1f3 57%,#7fd7da 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#7fd7da',GradientType=1 ); /* IE6-9 */
-
+    background: #ffffff; 
 }
 .modale h3 {
     font-size: 23px;
@@ -330,7 +327,7 @@ fieldset a {
 
 .btnaddtribu{
     text-align: right;
-    padding: 0 60px 40px ;
+    padding: 0 80px 40px ;
 }
 .btnaddtribu a{
     color: #ffc9b5;
@@ -616,10 +613,49 @@ form a {
     text-align: center;
     /* color: */
 }
+/*----------------------------------------- Timeline ---------------------------------------------------*/
+.btnaddtimeline{
+
+}
+.div-time {
+    padding: 60px 0;
+}
+.time-carre {
+    background-color: #FFF;
+    width: 20%;
+	position: relative;
+    margin: 0 10px;
+}
+.time-carre:after {
+    content:'';
+    display: block;
+    padding-bottom: 100%;
+}
+.time-carre img {
+    width: 100%;
+	height: 100%;
+	position: absolute;
+	object-fit: cover;
+    opacity: 1;
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+    /* padding: 0 20px 0; */
+}
+.time-carre:hover img {
+	opacity: .5;
+    box-shadow: 0 8px 32px 0 rgb(27, 42, 75);
+    /* border-radius: 10px; */
+    /* border: 1px solid rgba( 255, 255, 255, 0.18 ); */
+}
 /*----------------------------------------- naissance ---------------------------------------------------*/
 .naissance {
-    background-image: url(../images/newborn.jpg);
+    background-image: url(../images/naissance.jpg);
     background-size: cover;
+    /* min-height: 1100vh ; */
+}
+.naissance h1 {
+    padding-bottom: 40px;
+
     /* min-height: 1100vh ; */
 }
 .naissance section {
@@ -641,7 +677,7 @@ form a {
 
 
 .spnaissance {
-    color: #ffffff;
+    color: var(--saumon);
     font-size: 32px;
 
 }

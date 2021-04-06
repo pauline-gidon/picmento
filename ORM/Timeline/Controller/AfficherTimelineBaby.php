@@ -7,11 +7,13 @@ use Vendors\Flash\Flash;
 use ORM\Baby\Model\ManagerBaby;
 use ORM\User\Model\ManagerUser;
 use ORM\Timeline\Model\ManagerTimeline;
+use OCFram\Navbaby;
+
 
 
 
 class AfficherTimelineBaby extends Controller {
-
+use Navbaby;
 
         function getResult() {
             $this->setLayout("back");
@@ -22,6 +24,10 @@ class AfficherTimelineBaby extends Controller {
             $id_baby 	= $http->getDataGet("id");
             $flash 			= new Flash();
             $cx = new Connexion();
+            $manager = new ManagerBaby($cx);
+            $babys=  $manager->allBabyHasUser();
+            $this->navConstruction($babys);
+
             $managerU = new ManagerUser($cx);
             if($managerU->verifUserBaby($id_baby)){
                 
