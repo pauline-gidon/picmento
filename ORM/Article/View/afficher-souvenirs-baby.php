@@ -72,9 +72,21 @@ if(isset($result[1])){
                     }else{
                         $vi = "<i class=\"fas fa-eye-slash\"></i>";
                     }
-                    echo "<p>".$year."</p>
-            
-                </article>
+                    echo "<p>".$year."</p>";
+                    if(isset($result[2])){
+                        echo"<div>";
+                            foreach($result[2] as $com){
+                                if((!empty($result[3]->getPseudoUser()))&&(!is_null($result[3]->getPseudoUser()))){
+                                    echo"<p>".$result[3]->getPseudoUser()."</p>";
+                                }else{
+                                    echo"<p>".$result[3]->getPrenomUser()." ".$result[3]->getNomUser()."</p>";
+                                }
+                                echo"<p>".$com->getDescriptionCommentaire()."</p>";
+                            }
+                        echo"</div>";
+
+                    }
+                echo"</article>
                 
             <div class=\"menu-article\">
             <ul>
@@ -90,7 +102,7 @@ if(isset($result[1])){
                 </li>
 
                 <li>
-                    <a href=\"ajouter-commentaire-souvenir-".$obj->getIdArticle()."\" title=\"Ajouter un commentaire\">
+                    <a href=\"ajouter-commentaire-souvenir-".$obj->getIdArticle()."-".$result[0]->getIdBaby()."\" title=\"Ajouter un commentaire\">
                     <i class=\"ico icofont-comment\"></i>
                     </a>
                 </li>

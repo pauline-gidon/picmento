@@ -55,7 +55,7 @@ if(!defined('DOMAINE')) die();
 					</a>
 				</li>
 
-				<?php else: ?>
+				<?php else: header("location: afficher-tribu")?>
 
 				<li>
 					<a href="<?php echo DOMAINE; ?>deconnexion" title="Déconnexion">

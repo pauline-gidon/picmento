@@ -309,6 +309,14 @@ $route[] = [
 	"logged"			=> true, 
 	"droits"			=> 1
 ];
+$route[] = [
+	"url"					=> PTH."ajouter-commentaire-souvenir-([0-9]+)-([0-9]+)", 
+	"namespace"		=> "ORM", 
+	"module"			=> "Commentaire", 
+	"action"			=> "AjouterCommentaire",  
+	"logged"			=> true, 
+	"droits"			=> 1
+];
 
 //---------------------------------------------------service naissance
 

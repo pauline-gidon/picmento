@@ -1,5 +1,5 @@
 <?php
-use Vendors\Flash\Flash;
+
 if(isset($result)){
     $date = new DateTime($result->getDateNaissanceBaby());
     

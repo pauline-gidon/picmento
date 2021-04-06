@@ -63,14 +63,14 @@ class AjouterPhoto extends Controller {
 
                         }
                     }
+                    $cx->close();
+                    return $build;
                     
                     }else{
                         $flash = new Flash();
                         $flash->setFlash("Votre souvenir a atteint le nombre maximal de photos. Pour ajouter cette photo, veuillez modifier ou supprimer une autre photo <a href=\"afficher-souvenirs-".$id_baby."\" title=\"Retour aux souvenirs\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
                         
                     }
-                    $cx->close();
-                    return $build;
                 }
             }else{
                 header("location: ".DOMAINE."errors/404.php");
