@@ -1,4 +1,4 @@
-<main class="fc fw wrap jc-sb">
+<main class="fc fw wrap jc-sb presentation">
     <section class="xlg-4 mg-6 s-12 blok-presentation">
         <h2>Application web</h2>
         <p>Ultra simple pour sauvegarder, partager vos propres souvenirs.</p>
@@ -19,7 +19,7 @@
 </main>
 
 
-<div class="content">
+<div class="content wrap">
     <div id="slideshow">
                 <div id="masque">
                     <div id="bandeau" class="fc">
