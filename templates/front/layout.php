@@ -1,5 +1,7 @@
 <?php 
 if(!defined('DOMAINE')) die();
+
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -18,7 +20,9 @@ if(!defined('DOMAINE')) die();
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<!-- lien vers les fonts -->
 	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap" rel="stylesheet"> 
 	<!-- <link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">  -->
 
@@ -55,7 +59,11 @@ if(!defined('DOMAINE')) die();
 					</a>
 				</li>
 
-				<?php else: header("location: afficher-tribu")?>
+				<?php else: if((isset($_SESSION["auth"]) && isset($_GET["id"]))){
+                               header("location: acceptation-".$_GET["id"]."");
+                                }else{
+                               header("location: afficher-tribu");
+                                }  ?>
 
 				<li>
 					<a href="<?php echo DOMAINE; ?>deconnexion" title="Déconnexion">

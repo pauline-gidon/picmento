@@ -66,12 +66,10 @@ class ManagerAmis extends Manager {
 //-------------------------------------------------------------------------------------------------
 	function oneAmisByToken($token){
         if(is_numeric($token)){
-			$req 	= "
-				SELECT * 
+			$req 	= " SELECT * 
 				FROM amis 
 				WHERE 
                 token_tribu = $token
-                AND validity_token_tribu >= NOW()
 			";
 			$query 	= $this->db->query($req);
 			return ($query->num_rows == 1)?new Amis($query->fetch_array()):NULL;

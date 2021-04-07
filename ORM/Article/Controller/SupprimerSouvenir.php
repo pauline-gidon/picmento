@@ -39,7 +39,7 @@ class SupprimerSouvenir extends Controller {
                 }
             }
             $managerC = new ManagerCommentaire($cx);
-            $commentaires = $managerC->commentaireHasArticleById($id_article);
+            $commentaires = $managerC->fullCommentaireByIdArticle($id_article);
             if(!is_null($commentaires)){
                 foreach($commentaires as $commentaire){
                     $id_coms []= $commentaire->getIdCommentaire();
@@ -51,16 +51,16 @@ class SupprimerSouvenir extends Controller {
             if($managerA->deleteArticleHasBaby($id_article,$id_baby)){
                 if($managerA->deleteArticleByIds($id_article)){
                     $flash->setFlash("L'article a bien été modifié supprimer");
-                    header("location: afficher-souvenirs-".$id_baby."");
-
+                    
                 }
                 
-
+                
             }
-
-
-
+            
+            
+            
         }
+        header("location: afficher-souvenirs-".$id_baby."");
 
 
 

@@ -21,7 +21,7 @@ class SupprimerTribu extends Controller {
 		$this->setLayout("back");
 		$this->setTitle("Supprimer la tribu");
 		$this->setView("ORM/Tribu/View/form-tribu.php");
-
+        $flash = new Flash(); 
 		$http = new HTTPRequest();
 		$id = $http->getDataGet("id");
 
@@ -88,8 +88,13 @@ class SupprimerTribu extends Controller {
 	
 		}
 			//Je peux enfin supprimer la tribu
-			$managerT->deleteTribu($id);
-			header("location: afficher-tribu");
+			if($managerT->deleteTribu($id)){
+                $flash->setFlash("Votre tribu a bien été supprimée");
+            }else{
+                $flash->setFlash("Impossible de supprimer la tribu réesayez ou contactez l'équipe <span class=\"flash-logo\">Picmento</span> <a href=\"afficher-tribu\" title=\"Retour Tribu\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
+
+            }
+			// header("location: afficher-tribu");
 		
 	}
 }

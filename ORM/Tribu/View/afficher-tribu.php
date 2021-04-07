@@ -88,14 +88,14 @@ if(isset($result)){
     </div>";                
     }//fin du foreach
 
-    echo "<p class=\"btnaddtribu wrap\">
-    <a href=\"ajouter-tribu\" title=\"Ajoutez une nouvelle tribu \"><i class=\"ico icofont-inbox\"></i> Ajouter une nouvelle tribu</a>
-    </p>";
-
-
-
-
+    
+    
+    
+    
 }
+echo "<p class=\"btnaddtribu wrap\">
+<a href=\"ajouter-tribu\" title=\"Ajoutez une nouvelle tribu \"><i class=\"ico icofont-inbox\"></i> Ajouter une nouvelle tribu</a>
+</p>";
 ?>
 <script type="text/javascript" src="templates/back/js/confirmation.js"></script>
 <script type="text/javascript" src="templates/back/js/yup.js" defer></script>

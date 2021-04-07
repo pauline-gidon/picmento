@@ -167,10 +167,10 @@ $route[] = [
 	"droits"			=> 1
 ];
 $route[] = [
-	"url"					=> PTH."acceptation-tribu-([0-9]+)", 
+	"url"					=> PTH."acceptation-([0-9]+)", 
 	"namespace"		=> "ORM", 
 	"module"			=> "Amis", 
-	"action"			=> "AcceptationAssociationTribu",  
+	"action"			=> "AcceptationAmis",  
 	"logged"			=> false, 
 	"droits"			=> null
 ];

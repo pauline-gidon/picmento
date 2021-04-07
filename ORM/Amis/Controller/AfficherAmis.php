@@ -31,30 +31,28 @@ class AfficherAmis extends Controller {
         $managerA = new ManagerAmis($cx);
         $managerU = new ManagerUser($cx);
         $amis = $managerA->fullAmisActif();
-        // var_dump($amis);
         //si elle sont pas null je parcour le tableau d'amis
+        $moi = $_SESSION["auth"]["id"];
+        // var_dump($moi);die();
         if(!is_null($amis)){
-
+            $user_amis = [];
             foreach($amis as $ami){
-                $id_exps = $ami->getUserIdExpediteur();
-                $id_dests = $ami->getUserIdDestinataire();
-
-                    if($id_exps = $_SESSION["auth"]["id"]){
-                        $user = $managerU->oneUserById($id_dests);
-                    }
+                // var_dump($ami);
+                if($ami->getUserIdExpediteur() !== $moi){
+                        array_push($user_amis,$managerU->oneUserById($ami->getUserIdExpediteur())); 
+                }else{
+                        array_push($user_amis,$managerU->oneUserById($ami->getUserIdDestinataire())); 
+                }
                 
-                    if($id_dests = $_SESSION["auth"]["id"]){
-                        $user = $managerU->oneUserById($id_exps);
-                    }
-                    var_dump($user);
-                    
                 
                 
             }            
+            // var_dump($user_amis);die();
             
-            // return $users;
+            return $user_amis;
         }else{
             $flash->setFlash("Vous n'avez pas encore d'amis, lancez vous faite des demandes !");
+            
         }
         $cx->close();
     }

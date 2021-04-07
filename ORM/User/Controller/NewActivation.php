@@ -44,21 +44,21 @@ class NewActivation extends Controller {
 						//Envoi du mail
 						$automailer = new AutoMailer(
 							$mail,
-							"Création de votre compte",
+							"Creation de votre compte",
 							"
 							<h1>Création de compte</h1>
 							<p>
-							<img src=\"http://localhost/WOW/SITE/????\" 
-							alt=\"Logo WOW\">
+							<img src=\"http://picmento.fr/templates/front/images/logo-picmento.png\" 
+							alt=\"Logo picmento\">
 							</p>
 							<p>Voici votre nouveau mail d'activation.</p>
 							<p>Pour finaliser votre inscription, 
 							veuillez cliquer sur ce lien :</p>
 							<p>
 							<a 
-							href=\"http://localhost/WOW/SITE/activation-".$token."\" 
+							href=\"http://picmento.fr/activation-".$token."\" 
 							title=\"Activer le compte\">
-							http://localhost/WOW/SITE/activation-".$token."
+							http://picmento.fr/activation-".$token."
 							</a>
 							</p>
 							"

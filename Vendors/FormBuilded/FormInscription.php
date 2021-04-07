@@ -72,7 +72,7 @@ class FormInscription extends Form {
 			"label" 				=> " En soumettant ce formulaire, 
 			j'accepte la <a href=\"politique-confidentialite\" title=\"Consultez\" target=\"_blank\">politique de confidentialité</a> de Picmento",
 			"validators" 		=> [
-				new IssetValidator("Sans votre consentement, nous ne pouvons pas traiter vos données","rgpd_user")
+				new IssetValidator("<span class=\"rgpdAlerte\">Sans votre consentement, nous ne pouvons pas traiter vos données</span>","rgpd_user")
 			]
 		]));
 

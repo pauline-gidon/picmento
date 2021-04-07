@@ -91,20 +91,21 @@ class AssocierParentTribu extends Controller {
                 $prenom = $userExp->getPrenomUser();
                 if($managerAmis->insertAmis($new_amis) > 0){
                     // j'envoie un mail avec un lien pour association avec l'AutoMailer
+                    // var_dump($emailDest);die();
 					$automailer = new AutoMailer(
 						$emailDest,
 						"Invitation pour une association de tribu",
 						"
 						<h1>Invitation pour une association de tribu</h1>
 						<p>
-                            <img src=\"http://picmento.fr/templates/fron/????\" 
+                            <img src=\"http://picmento.fr/templates/front/images/logo-picmento.png\" 
                             alt=\"Logo picmento\">
 						</p>
 						<p>".$prenom.$nom." vous invite à être le 2eme parent pour sa tribu.</p>
 						<p>Pour voir l'invitation, veuillez cliquer sur ce lien : </p>
 						<p>
                             <a 
-                            href=\"http://picmento.fr/acceptation-tribu-".$token."\" 
+                            href=\"http://picmento.fr/acceptation-".$token."\" 
                             title=\"Acceptation invitation\">
                             Ouvrir l'invitation
                             </a>
@@ -112,10 +113,19 @@ class AssocierParentTribu extends Controller {
 						"
 					);
 
+                    if($automailer->sendMail()){
+						//Allez voir votre mail d'activation
+                        $flash->setFlash("Votre demande à bien été envoyé ! <a href=\"afficher-tribu\" title=\"Retour Tribu\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
+					}else{
+						//Erreur mail pas parti
+						$flash->setFlash("Pb lors de l'envoi du mail. 
+						Veuillez contacter le webmaster.");
+					}
+
+
                     
                     
                     
-                    $flash->setFlash("Votre demande à bien été envoyé ! <a href=\"afficher-tribu\" title=\"Retour Tribu\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
                 }
                 
 

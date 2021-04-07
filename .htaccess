@@ -1,4 +1,4 @@
-﻿#-----------------------------------------------------
+#-----------------------------------------------------
 # Un .htaccess permet de :
 # - Restreindre des accès à des fichiers, des dossiers
 # - Resteindre l'accès à un site complet (.htpassword)

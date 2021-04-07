@@ -48,18 +48,18 @@ class AfficherSouvenirsBaby extends Controller {
                 }else{
         
                     $general[] = $articles;
-                }
-                foreach ($articles as $article) {
-                    $id_article = $article->getIdArticle(); 
-                    $managerC = new ManagerCommentaire($cx);
-                    $commentaires = $managerC->fullCommentaireByIdArticle($id_article);
-                    // var_dump($commentaires);die();
-                    if(!is_null($commentaires)){
-                        $general[] = $commentaires;
-                        foreach($commentaires as $commentaire){
-                            $id_user = $commentaire->getUserIdUser();
-                            $user = $managerU->oneUserById($id_user);
-                            $general[] = $user;
+                    foreach ($articles as $article) {
+                        $id_article = $article->getIdArticle(); 
+                        $managerC = new ManagerCommentaire($cx);
+                        $commentaires = $managerC->fullCommentaireByIdArticle($id_article);
+                        // var_dump($commentaires);die();
+                        if(!is_null($commentaires)){
+                            $general[] = $commentaires;
+                            foreach($commentaires as $commentaire){
+                                $id_user = $commentaire->getUserIdUser();
+                                $user = $managerU->oneUserById($id_user);
+                                $general[] = $user;
+                            }
                         }
                     }
                 }

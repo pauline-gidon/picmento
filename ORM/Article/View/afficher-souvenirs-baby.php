@@ -3,12 +3,12 @@ use Vendors\Flash\Flash;
 $flash = new FLash();
 echo $flash->getFlash();
 // echo $flash->getFlash();
+echo "<h2 class\"prenom-title\">".$result[0]->getNomBaby()."</h2>
+      <p class=\"add-souvenir\"><a href=\"ajouter-souvenir-".$result[0]->getIdBaby()."\" title=\"Ajouter un souvenir à ".$result[0]->getNomBaby()." \">
+        <i class=\"ico icofont-memorial\"></i> Ajouter un souvenir
+        </a></p>";
 if(isset($result)){
 
-    echo "<h2 class\"prenom-title\">".$result[0]->getNomBaby()."</h2>
-          <p class=\"add-souvenir\"><a href=\"ajouter-souvenir-".$result[0]->getIdBaby()."\" title=\"Ajouter un souvenir à ".$result[0]->getNomBaby()." \">
-            <i class=\"ico icofont-memorial\"></i> Ajouter un souvenir
-            </a></p>";
     // var_dump($result[1]);die();
 
 
