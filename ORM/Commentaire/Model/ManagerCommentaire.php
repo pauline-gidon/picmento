@@ -43,10 +43,10 @@ class ManagerCommentaire extends Manager {
     //----------------------------------------------------------
 	//insert Commentaire
 	//----------------------------------------------------------
-    function insertNewCommentaire(Commentaire $obj){
+    function insertNewCommentaire(Commentaire $obj,$id_article){
         $description_commentaire = $this->db->real_escape_string($obj->getDescriptionCommentaire());
         $user_id_user = $this->db->real_escape_string($obj->getUserIdUser());
-        $article_id_article = $this->db->real_escape_string($obj->getArticleIdArticle());
+        $article_id_article = $this->db->real_escape_string($id_article);
     
         $req = "
         INSERT INTO Commentaire VALUES(
@@ -55,12 +55,11 @@ class ManagerCommentaire extends Manager {
             '$user_id_user',
             '$article_id_article'
         )
-    ";
-    $query = $this->db->query($req);
-    return $this->db->insert_id;
-
-
+        ";
+        $query = $this->db->query($req);
+        return $this->db->insert_id;
     }
+
 
 	
 }

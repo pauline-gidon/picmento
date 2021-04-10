@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 	<title><?php if(isset($title)) echo $title; ?></title>
+    <link rel="icon" type="image/png" href="<?php echo DOMAINE; ?>templates/front/images/favicon.png" />
 
 	<link rel="stylesheet" type="text/css" href="<?php echo DOMAINE; ?>templates/back/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo DOMAINE; ?>templates/back/css/starter.css">

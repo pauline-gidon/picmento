@@ -1,10 +1,11 @@
 <?php
 namespace ORM\Article\Model;
 use OCFram\Manager;
-use ORM\Article\Entity\Article;
 use ORM\Baby\Entity\Baby;
-use ORM\Commentaire\Entity\Commentaire;
+use ORM\User\Entity\User;
 use ORM\Medias\Entity\Medias;
+use ORM\Article\Entity\Article;
+use ORM\Commentaire\Entity\Commentaire;
 
 class ManagerArticle extends Manager {
     //----------------------------------------------------------
@@ -48,9 +49,9 @@ class ManagerArticle extends Manager {
         }
     }
     //----------------------------------------------------------
-	//Selectionner tous les article du baby avec ses medias si il y en as
+	//Selectionner tous les article du baby avec ses medias si il y en as et le user qui a crée le souvenir
 	//----------------------------------------------------------
-    function fullArticle($id_baby){
+    function fullArticleWithMedias($id_baby){
         if(is_numeric($id_baby)){
             
             $req = "SELECT 
@@ -59,6 +60,10 @@ class ManagerArticle extends Manager {
             article.description_article,
             article.date_article,
             article.actif_article,
+            article.user_id_user,
+            user.nom_user,
+            user.prenom_user,
+            user.pseudo_user,
             GROUP_CONCAT(medias.id_medias SEPARATOR '/') AS liste_id,
             GROUP_CONCAT(medias.nom_medias SEPARATOR '/') AS liste_photo
             FROM article
@@ -66,6 +71,47 @@ class ManagerArticle extends Manager {
             ON article_has_medias.article_id_article = id_article
             LEFT JOIN medias
             ON medias.id_medias = medias_id_medias
+            INNER JOIN baby_has_article
+            ON baby_has_article.article_id_article = id_article
+            INNER JOIN user
+            ON article.user_id_user = user.id_user
+            WHERE baby_id_baby = $id_baby
+            GROUP BY article.id_article
+            ORDER BY article.date_article DESC
+                   ";
+
+
+
+            $query = $this->db->query($req);     
+            if($query->num_rows > 0){
+                while($row = $query->fetch_array()){
+                $articles[] = new Article($row);
+                }
+                return $articles;
+            }else{
+                return null;
+            }      
+   
+        }
+    }
+    //----------------------------------------------------------
+	//Selectionner tous les article du baby avec ses commentaires si il y en a
+	//----------------------------------------------------------
+    function fullArticleWithCommentaire($id_baby){
+        if(is_numeric($id_baby)){
+            
+            $req = "SELECT 
+            article.id_article,
+            article.titre_article,
+            article.description_article,
+            article.date_article,
+            article.actif_article,
+            GROUP_CONCAT(commentaire.id_commentaire SEPARATOR '/') AS liste_id_com,
+            GROUP_CONCAT(commentaire.description_commentaire SEPARATOR '/') AS liste_desc_com,
+            GROUP_CONCAT(commentaire.user_id_user SEPARATOR '/') AS liste_is_user_com
+            FROM article
+   			LEFT JOIN commentaire
+            ON commentaire.article_id_article = article.id_article
             INNER JOIN baby_has_article
             ON baby_has_article.article_id_article = id_article
             WHERE baby_id_baby = $id_baby
@@ -87,6 +133,89 @@ class ManagerArticle extends Manager {
    
         }
     }
+    //----------------------------------------------------------
+	//Selectionner tous les article du baby avec ses medias si il y en as et commentaires idem
+	//----------------------------------------------------------
+    function fullArticleWithMediasAndCommentaire($id_baby){
+        if(is_numeric($id_baby)){
+            
+            $req = "SELECT 
+            article.id_article,
+            article.titre_article,
+            article.description_article,
+            article.date_article,
+            article.actif_article,
+           
+            GROUP_CONCAT(DISTINCT user.id_user SEPARATOR '/') AS liste_id_user,
+            GROUP_CONCAT(DISTINCT user.nom_user SEPARATOR '/') AS liste_nom_user,
+            GROUP_CONCAT(DISTINCT user.prenom_user SEPARATOR '/') AS liste_prenom_user,
+            GROUP_CONCAT(DISTINCT  user.pseudo_user SEPARATOR '/') AS liste_pseudo_user,
+            GROUP_CONCAT(DISTINCT medias.id_medias SEPARATOR '/') AS liste_id,
+            GROUP_CONCAT(DISTINCT medias.nom_medias SEPARATOR '/') AS liste_photo,
+            GROUP_CONCAT(DISTINCT commentaire.id_commentaire SEPARATOR '/') AS liste_id_com,
+            GROUP_CONCAT(DISTINCT commentaire.description_commentaire SEPARATOR '/') AS liste_desc_com,
+            GROUP_CONCAT(DISTINCT commentaire.user_id_user SEPARATOR '/') AS liste_id_user_com
+            FROM article
+	  	    LEFT JOIN article_has_medias
+            ON article_has_medias.article_id_article = id_article
+            LEFT JOIN medias
+            ON medias.id_medias = medias_id_medias
+   			LEFT JOIN commentaire
+            ON commentaire.article_id_article = article.id_article
+            INNER JOIN baby_has_article
+            ON baby_has_article.article_id_article = id_article
+            INNER JOIN user
+            ON user.id_user = commentaire.user_id_user
+            WHERE baby_id_baby = $id_baby
+            GROUP BY article.id_article
+            ORDER BY article.date_article DESC , liste_id_user DESC
+                   ";
+
+
+
+            $query = $this->db->query($req);     
+            if($query->num_rows > 0){
+                while($row = $query->fetch_array()){
+                $objs[] = new Article($row);
+                }
+                return $objs;
+            }else{
+                return null;
+            }      
+   
+        }
+    }
+    //----------------------------------------------------------
+	//Selectionner tous les commentaire de l'article
+	//----------------------------------------------------------
+    function oneArticleWithCommentaireByIdArticle($id_article){
+        if(is_numeric($id_article)){
+            
+            $req = "SELECT * FROM commentaire
+            INNER JOIN article
+            ON commentaire.article_id_article = article.id_article
+            INNER JOIN user
+            ON commentaire.user_id_user = user.id_user
+            WHERE article.id_article = $id_article
+            ORDER BY commentaire.id_commentaire"; 
+                
+
+
+
+            $query = $this->db->query($req);     
+            if($query->num_rows > 0){
+                while($row = $query->fetch_array()){
+                $objs[] = new Commentaire($row);
+                }
+                return $objs;
+            }else{
+                return null;
+            }      
+   
+        }
+    }
+
+
     //----------------------------------------------------------
     //je supprime une relation avant de supprimer l'article pour voir si l'article est associé a d'autre baby
 	//----------------------------------------------------------

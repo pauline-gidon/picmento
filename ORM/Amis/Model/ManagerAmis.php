@@ -37,6 +37,21 @@ class ManagerAmis extends Manager {
 
     }
 //-------------------------------------------------------------------------------------------------
+// supprimerssion de la demande par suppremiier de tribu par id_tribu
+//-------------------------------------------------------------------------------------------------
+function deleteAmisByIdTribu($id_tribu){
+    if(is_numeric($id_tribu)){
+        $req 	= " DELETE  
+            FROM amis 
+            WHERE 
+            tribu_id_tribu = $id_tribu
+        ";
+        $query 	= $this->db->query($req);
+        return ($this->db->affected_rows == 1)?TRUE:FALSE;
+    }
+
+}
+//-------------------------------------------------------------------------------------------------
 // insert invitation association tribu avec le 2eme parent
 //-------------------------------------------------------------------------------------------------
 	function insertAmis(Amis $amis){

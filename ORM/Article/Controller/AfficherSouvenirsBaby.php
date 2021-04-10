@@ -32,41 +32,65 @@ class AfficherSouvenirsBaby extends Controller {
             $babys=  $manager1->allBabyHasUser();
             $this->navConstruction($babys);
             $baby = $manager1->oneBabyById($id_baby);
+            $general["baby"] =  $baby;
+            // var_dump($general);die();
             if(!is_null($baby)){
 
                 $nom = $baby->getNomBaby();
-                $general[] = $baby;
-        
-                $cx = new Connexion();
+                
                 $manager = new ManagerArticle($cx);
                 
-                $articles = $manager->fullArticle($id_baby);
+                $articles = $manager->fullArticleWithMedias($id_baby);
+                // $articles = [
+                //     "articles" => $articles
+                // ];
+               // $general[] = $articles;
+                // var_dump($general);die();
+                // $articles_c = $manager->fullArticleWithCommentaire($id_baby);
+                // $id_user_com = $articles->get
+                // var_dump($articles);die();
                 //il faudra que je gère l'affichage des commantire $generale[] = $commentaires
                 if(is_null($articles)){
                     $flash = new Flash;
                     $flash->setFlash("Votre enfant n'a pas encore de souvenir, lancez-vous !");
                 }else{
-        
-                    $general[] = $articles;
-                    foreach ($articles as $article) {
-                        $id_article = $article->getIdArticle(); 
-                        $managerC = new ManagerCommentaire($cx);
-                        $commentaires = $managerC->fullCommentaireByIdArticle($id_article);
-                        // var_dump($commentaires);die();
-                        if(!is_null($commentaires)){
-                            $general[] = $commentaires;
-                            foreach($commentaires as $commentaire){
-                                $id_user = $commentaire->getUserIdUser();
-                                $user = $managerU->oneUserById($id_user);
-                                $general[] = $user;
+                    // $general[]= $articles;
+                    $general["articles"] = [];
+                    foreach($articles as $article){
+                        $wrapArticle = [ 
+                            "souvenir" => $article,
+                            "commentaires" => [], 
+                        ];
+                        $id_article = $article->getIdArticle();
+                        $coms = $manager->oneArticleWithCommentaireByIdArticle($id_article);
+                        // var_dump($coms);
+                        if(!is_null($coms)){
+                            foreach($coms as $com){
+                                array_push($wrapArticle["commentaires"], $com);
                             }
                         }
+                        // array_push($tableau,$coms);
+                        // var_dump($tableau);die();
+                        
+                        array_push($general["articles"],$wrapArticle);
+                        
+                        // $id_user_com= $article_c->liste_is_user_com;
                     }
+                    // var_dump($general["articles"][0]["commentaires"]);die();
+                   //$general[] =$articles;
+                    // var_dump($general);die();
+                    // var_dump($general); die();
+                        // array_push($general,$articles); 
+
+                        
+                        // var_dump($general);die();
+                    // $general[] = $articles_c;
+
                 }
 
+                return $general;
             }
             $cx->close();
-            return $general;
         }else{
             header("location: ".DOMAINE."errors/404.php");
             exit();

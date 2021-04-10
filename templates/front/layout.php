@@ -8,9 +8,9 @@ if(!defined('DOMAINE')) die();
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+    <meta name="description" content="Toutes vos photos et videos conservées dans une capsule temporelle à partager avec vos proches ! N'hésitez plus et sauvegardez vos souvenirs en ligne">
 	<title><?php if(isset($title)) echo $title; ?></title>
-
+    <link rel="icon" type="image/png" href="<?php echo DOMAINE; ?>templates/front/images/favicon.png" />
 	<!-- Nos feuilles de style -->
 	<link rel="stylesheet" type="text/css" href="<?php echo DOMAINE ?>templates/front/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo DOMAINE ?>templates/front/css/starter.css">
@@ -27,7 +27,7 @@ if(!defined('DOMAINE')) die();
 	<link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">  -->
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="/picmento/site/templates/front/js/slideshow.js"></script>
+	<script src="<?php echo DOMAINE; ?>templates/front/js/slideshow.js"></script>
 
 
 	<!-- Le lien vers le CDN de jQuery -->

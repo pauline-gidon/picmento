@@ -14,6 +14,7 @@ use ORM\Medias\Model\ManagerMedias;
 use ORM\Article\Model\ManagerArticle;
 use ORM\Commentaire\Entity\Commentaire;
 use ORM\Commentaire\Model\ManagerCommentaire;
+use ORM\Tribu\Model\ManagerTribu;
 
 class AjouterCommentaire extends Controller {
 
@@ -28,50 +29,64 @@ class AjouterCommentaire extends Controller {
 
 		$cx			= new Connexion();
         $managerU = new ManagerUser($cx);
-        if($managerU->verifUserArticle($id_article)){
-
-
-            $managerM = new ManagerArticle($cx);
-            $souvenir = $managerM->oneArticleById($id_article);
-    
-            // var_dump($article);die;
-            
-            if(!is_null($souvenir)){
-                // var_dump($souvenir);die();
-                $form 		= new FormCommentaire();
-                $build 		= $form->buildForm();
-
-                $flash = new Flash();
-                if(($form->isSubmit("go"))&&($form->isValid())){
+        //pour ajouter un commentaire je verifie les relation user
+        //pour sa je vais recupéré la tribu lié a l'article du bébé
+        $managerT = new ManagerTribu($cx);
+        $tribu = $managerT->oneTribuByIdArticle($id_article,$id_baby);
+        if(!is_null($tribu)){
+            //je recupère parent 1 et parent 2 et je les compare a l'auth qui est connecter
+            if($tribu->getUserIdParent1() == $_SESSION["auth"]["id"] || $tribu->getUserIdParent2() == $_SESSION["auth"]["id"]){
+                $managerA = new ManagerArticle($cx);
+                $souvenir = $managerA->oneArticleById($id_article);
+        
+                // var_dump($article);die;
+                
+                if(!is_null($souvenir)){
+                    $id_article = $souvenir->getIdArticle();
+                    $form 		= new FormCommentaire();
+                    $build 		= $form->buildForm();
                     
-                    $new_commentaire = new Commentaire ([
-                        "description_commentaire" 	=> $http->getDataPost("description_commentaire"),
-                        "user_id_user" => $_SESSION["auth"]["id"],
-                        "article_id_article" => $id_article
-                    ]);
-
-                    $managerC = new ManagerCommentaire($cx);
-                    if($managerC->insertNewCommentaire($new_commentaire)){
-                        $flash->setFlash("Votre commentaire a bien été ajouter");
-                    }else{
-                        $flash->setFlash("Impossible d'ajouter votre commentaire");
+                    $flash = new Flash();
+                    if(($form->isSubmit("go"))&&($form->isValid())){
+                        
+                        $new_commentaire = new Commentaire ([
+                            "description_commentaire" 	=> $http->getDataPost("description_commentaire"),
+                            "user_id_user" => $_SESSION["auth"]["id"]
+                            
+                            ]);
+                            
+                            // var_dump($id_article);die();
+                        $managerC = new ManagerCommentaire($cx);
+                        if($managerC->insertNewCommentaire($new_commentaire,$id_article)){
+                            $flash->setFlash("Votre commentaire a bien été ajouter");
+                        }else{
+                            $flash->setFlash("Impossible d'ajouter votre commentaire");
+                        }
+                        header("location: afficher-souvenirs-".$id_baby."");
+    
+    
+        
+        
+        
                     }
-                    header("location: afficher-souvenirs-".$id_baby."");
-
-
-    
-    
-    
                 }
+
+                return $build;
+            }else{
+                header("location: ".DOMAINE."errors/404.php");
+                exit();
             }
-            return $build;
-            
+        
+     
+
         }else{
             header("location: ".DOMAINE."errors/404.php");
             exit();
         }
+            
+        }
     }
-}
+
     
                 
     

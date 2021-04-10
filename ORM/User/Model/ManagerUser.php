@@ -314,7 +314,7 @@ class ManagerUser extends Manager {
            WHERE user.id_user = $user_id
            And article.id_article = $id_article";        
 		$query 	= $this->db->query($req);
-		return ($query->num_rows == 1)?TRUE:FALSE;
+		return ($query->num_rows > 0)?TRUE:FALSE;
         }
 
     }
@@ -340,6 +340,28 @@ class ManagerUser extends Manager {
         }      
     
 	}
+    //----------------------------------------------------------
+	//Verif user avant insert commentaire
+	//----------------------------------------------------------
+    function verifUserCommentaire($id_baby){
+        $user_co = $_SESSION["auth"]["id"];
+        if(is_numeric($id_baby)){
+
+        }
+    
+        $req = "SELECT * tribu
+        INNER JOIN Baby
+        ON tribu.id_tribu = baby.tribu_id_tribu
+        WHERE tribu.user_id_parent1 = $user_co OR tribu.user_id_parent2 = $user_co
+        AND  baby.id_baby = $id_baby
+    ";
+    var_dump($req);
+    $query = $this->db->query($req);
+    return ($query->num_rows > 0)?TRUE:FALSE;
+
+
+
+    }
 
 //Fermeture ManagerUser
 }

@@ -73,7 +73,7 @@ header nav li {
 
 
 h1 {
-    /* margin: 100px 0 70px; */
+    padding: 0px 0 40px;
     text-align: center;
     color: #F07167;
 }
@@ -134,6 +134,8 @@ footer p a:hover {
     width: 430px;
 }
 
+
+
 fieldset {
     padding: 15px 0 15px 25px;
 }
@@ -144,19 +146,37 @@ fieldset a {
     margin: 10px ;
 }
 
+/* _____________________________modifier profil */
+
 .modifier-votre-profil {
     background-image: url(../images/jouet.jpg);
     background-size: cover;
 
 }
+/* _____________________________mot de pass */
+
+/* _____________________________avatar */
+.avatar{
+    width: 300px;
+    height: 300px;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+}
+.votre-avatar 
+.xlg-3{
+    width: 30%;
+}
+.xlg-9{
+    width: 70%;
+}
 
  /* ------------------------------- tribu-------------------------------------- */
  .toutes-mes-tribus h1 {
     color: var(--bleu-confé);
-    padding-bottom: 40px;
  }
  .toutes-mes-tribus {
     background-image: url(../images/plume-paysage.jpg);
+    background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;
@@ -194,7 +214,7 @@ fieldset a {
     color: var(--bleu-confé);
 }
 .tribubaby .nav-tribu ul i:hover{
-    color: var(--saumon);
+    color: var(--beige-claire);
 }
 
 
@@ -372,7 +392,7 @@ text-align: right;
     background-color: #FFF;
     width: 30%;
 	position: relative;
-    margin: 0 auto;
+    margin: 0 10px;
 }
 .souv-carre:after {
     content:'';
@@ -522,7 +542,6 @@ text-align: right;
 
 
 form {
-    width: 70%;
     margin: 0 auto;
 
 }

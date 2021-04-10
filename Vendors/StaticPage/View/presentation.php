@@ -1,8 +1,8 @@
 <main class="fc fw wrap jc-sb presentation">
+<p class="accroche">Toutes vos photos et videos conservées dans une capsule temporelle à partager avec vos proches !</p>
     <section class="xlg-4 mg-6 s-12 blok-presentation">
         <h2>Application web</h2>
         <p>Ultra simple pour sauvegarder, partager vos propres souvenirs.</p>
-        <p>Ils seront enregistrés dans un environnement sécurisé.</p>
     </section>
     <section class="xlg-4 mg-6 s-12 blok-presentation">
         <h2>Créez votre tribu</h2>
@@ -14,6 +14,8 @@
         <h2>Sauvegardez vos souvenirs</h2>
         <p>Confectionnez l'histoire de vos enfants</p>
         <p>Les photos et les vidéos sont les meilleurs moyens d'apporter une richesse aux moments importants d’une vie. </p>
+        <p>Ils seront enregistrés dans un environnement sécurisé.</p>
+
     </section>
 
 </main>

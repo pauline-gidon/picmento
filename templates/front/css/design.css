@@ -157,6 +157,12 @@ header nav li {
 .presentation{
     margin-bottom: 80px;
 }
+.accroche{
+    width: 100%;
+    padding: 0 0 40px;
+    text-align: center;
+    color: #c0adaa;
+}
 #slideshow {
     /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#fed9b7+63,f07167+100 */
     /* background: #fed9b7; /* Old browsers */
