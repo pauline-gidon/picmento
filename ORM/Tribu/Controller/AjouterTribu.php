@@ -25,6 +25,7 @@ class AjouterTribu extends Controller {
 
 		$form 		= new FormNewTribu();
 		$build 		= $form->buildForm();
+        $cx			= new Connexion();
 
 
 
@@ -37,23 +38,23 @@ class AjouterTribu extends Controller {
 				'nom_tribu'=>$http->getDataPost("nom_tribu")
 				]);
 
-			$cx			= new Connexion();
 			$manager	= new ManagerTribu($cx);
 		
 
 			if($manager->insertNewTribu($new_tribu)){
-				$flash->setFlash("Votre nouvelle tribu a été ajoutée <a href=\"afficher-tribu\" title=\"Retour Tribu\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
+				$flash->setFlash("Votre nouvelle tribu a été ajoutée !");
+                
 			}else{
-				$flash->setFlash("l'ajout de votre tribu n'a pas fonctionné, veuillez ressayer ou contacter l'équipe <span class=\"flash-logo\">Picmento</span> <a href=\"afficher-tribu\" title=\"Retour Tribu\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
-
+				$flash->setFlash("l'ajout de votre tribu n'a pas fonctionné. Veuillez réesayer ou contacter l'équipe <span class=\"flash-logo\">Picmento</span> !");
 			}
+            header("location: afficher-tribu");
+            exit();
 
 		
 		}
+        $cx->close();
 		return $build;
-
 	}
-
 }
 
 

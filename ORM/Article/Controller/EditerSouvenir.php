@@ -26,7 +26,6 @@ class EditerSouvenir extends Controller {
             $manager	= new ManagerArticle($cx);
             $article = $manager->oneArticleById($id);
 
-            // var_dump($article);die;
             if(!is_null($article)){
                 $form 		= new FormEditeSouvenir("post",$article);
                 $build 		= $form->buildForm();
@@ -46,14 +45,18 @@ class EditerSouvenir extends Controller {
                     
                     if($manager->updateArticle($article)){
                             
-                        $flash->setFlash("L'article a bien été modifié <a href=\"afficher-souvenirs-".$id_baby."\" title=\"Retour aux souvenirs\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
+                        $flash->setFlash("L'article a bien été modifié !");
+                        header("location: afficher-souvenirs-".$id_baby."");
+                        exit();
                     }else{
-                        $flash->setFlash("Vous n'avez pas fait de modification <a href=\"afficher-souvenirs-".$id_baby."\" title=\"Retour aux souvenirs\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
+                        $flash->setFlash("Vous n'avez pas fait de modification !");
+                        header("location: afficher-souvenirs-".$id_baby."");
+                        exit();
                     }
                 }    
                     
             }
-        
+            $cx->close();
             return $build;
         }else{
             header("location: ".DOMAINE."errors/404.php");

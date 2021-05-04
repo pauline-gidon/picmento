@@ -57,9 +57,13 @@ class EditerPhotoBaby extends Controller {
 
                         if($manager->updatephotoBaby($baby)){
                             
-                            $flash->setFlash("La photo de ".$nom_baby." a bien été modifée <a href=\"afficher-tribu\" title=\"Retour Tribu\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
+                            $flash->setFlash("La photo de ".$nom_baby." a bien été modifée !");
+                            header("location: afficher-tribu");
+                            exit();
                         }else{
-                            $flash->setFlash("Impossible de modifier la photo de ".$nom_baby." réesayez ou contactez l'équipe <span class=\"flash-logo\">Picmento</span> <a href=\"afficher-tribu\" title=\"Retour Tribu\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
+                            $flash->setFlash("Impossible de modifier la photo de ".$nom_baby." réesayez ou contactez l'équipe <span class=\"flash-logo\">Picmento</span> !");
+                            header("location: afficher-tribu");
+                            exit();
                         }
                     }else{
                         $flash->setFlash("Problème lors de l'upload du fichier");

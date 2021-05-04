@@ -4,7 +4,6 @@ $flash = new Flash();
 echo $flash->getFlash();
 
 if(isset($result)){
-// var_dump($result);die();
 	echo "<h2 class=\"prenom-title\">".$result[0]->getNomBaby()."</h2>
         <div id=\"zone-form\" class=\"wrap content\">".$result[1]->getForm()."</div>";
     

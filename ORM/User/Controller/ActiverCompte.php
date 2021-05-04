@@ -33,7 +33,7 @@ class ActiverCompte extends Controller {
 			$flash->setFlash("Compte activé, merci de vous connecter");
 			$manager = new ManagerTribu($connexion);
 			$manager->insertTribu();
-			header("Location: connexion#toto");
+			header("Location: connexion");
 			exit();
 		}else{
 			$flash->setFlash("Trop lent ! Merci de cliquer 

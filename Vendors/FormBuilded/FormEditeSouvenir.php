@@ -2,6 +2,7 @@
 namespace Vendors\FormBuilded;
 use OCFram\HTTPRequest;
 use Vendors\FormBuilder\Form;
+use Vendors\FormBuilder\InputDate;
 use Vendors\FormBuilder\TextArea;
 use Vendors\FormBuilder\InputText;
 use Vendors\FormBuilder\InputRadio;
@@ -17,7 +18,7 @@ class FormEditeSouvenir extends Form {
 		$http = new HTTPRequest();
 
 		$this->add(new InputText([
-			"label" 				=> "Le titre : ",
+			"label" 				=> "Le titre",
 			"name" 					=> "titre_article",
 			"cssLabel" 				=> "consigne",
 			"cssChamp" 				=> "champ",
@@ -28,7 +29,7 @@ class FormEditeSouvenir extends Form {
 		]));
 
 		$this->add(new TextArea([
-			"label" 			=> "Description du souvenir : ",
+			"label" 			=> "Description du souvenir",
 			"name"				=> "description_article",
 			"cssLabel" 			=> "consigne",
             "security"          => 2,
@@ -39,37 +40,21 @@ class FormEditeSouvenir extends Form {
 			]
 		]));
 
-		$this->add(new InputText([
-			"label" 		=> "Date du souvenir : ",
+		$this->add(new InputDate([
+			"label" 		=> "Date du souvenir",
 			"name" 			=> "date_article",
 			"cssLabel" 		=> "consigne",
 			"cssChamp" 		=> "champ",
 			"validators"	=> [
 				new DateValidator(
-					"Choisissez une date valide"
-				)
+					"Choisissez une date inférieur ou égale à aujourd'hui"
+                ),
+				new VideValidator("Date obligatoire")
+
 			],
 			"getterEntity" => "getDateArticle"
 		]));
 
-
-		$this->add(new InputRadio([
-			"label" 		=> "Privé (visible uniquement pour moi ",
-			"value" 		=> 0,
-			"name" 			=> "actif_article",
-			"cssLabel" 		=> "consigne",
-			"cssChamp" 		=> "champ",
-			"getterEntity" 	=> "getActifArticle"
-		]));
-		$this->add(new InputRadio([
-			// "checked"		=>TRUE,
-			"label" 		=> "Public",
-			"value"			=> 1,
-			"name" 			=> "actif_article",
-			"cssLabel" 		=> "consigne",
-			"cssChamp" 		=> "champ",
-			"getterEntity" 	=> "getActifArticle"
-		]));
 
 
 		$this->add(new InputSubmit([

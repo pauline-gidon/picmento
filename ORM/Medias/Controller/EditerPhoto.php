@@ -27,8 +27,6 @@ class EditerPhoto extends Controller {
         $http = new HTTPRequest();
 		$id_photo = $http->getDataGet("id");
         $id_baby = $http->getDataGet("idbaby");
-        // var_dump($id_photo);
-        // var_dump($id_baby); die();
 		$cx			= new Connexion();
         $managerU = new ManagerUser($cx);
         if(($managerU->verifUserMedias($id_photo))&&($managerU->verifUserBaby($id_baby))){
@@ -37,7 +35,6 @@ class EditerPhoto extends Controller {
             $managerM = new ManagerMedias($cx);
             $photo = $managerM->oneMediasById($id_photo);
     
-            // var_dump($article);die;
             
             if(!is_null($photo)){
                 $form 		= new FormPhoto();
@@ -64,21 +61,15 @@ class EditerPhoto extends Controller {
 
                     if($managerM->updateMedias($photo)){
 
-                        $flash->setFlash("La photo de a bien été modifée <a href=\"afficher-souvenirs-".$id_baby."\" title=\"Retour aux souvenirs\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
-
-
+                        $flash->setFlash("La photo a bien été modifée");
+                        header("location: afficher-souvenirs-".$id_baby."");
+                        exit();
 
                     }
                 }
-    
-                
-    
-    
-    
-                    
             }
         
-    
+            $cx->close();
             return $build;
 
         }else{

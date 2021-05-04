@@ -20,12 +20,11 @@ class VisibleSouvenir extends Controller {
         $http = new HTTPRequest();
 		$id_article = $http->getDataGet("id");
 		$id_baby = $http->getDataGet("idbaby");
-		
 		$cx			= new Connexion();
 		$manager	= new ManagerArticle($cx);
         $article = $manager->oneArticleById($id_article);
-
-        // var_dump($article);die;
+        
+		$flash = new Flash();
         if(!is_null($article)){
             if($article->getActifArticle() == 1){
                 $article->setActifArticle(0);
@@ -33,16 +32,20 @@ class VisibleSouvenir extends Controller {
                 $article->setActifArticle(1);
             }
             $manager->updateArticle($article);
+            $cx->close();
+
+            $actif = $article->getActifArticle();
+            $titre = $article->getTitreArticle();
+            if($actif == 0){
+                $flash->setFlash("Votre souvenir \"".$titre."\" est devenue privé !");
+            }else{
+                $flash->setFlash("Votre souvenir \"".$titre."\" est devenue public !");
+            }
             header("location: afficher-souvenirs-".$id_baby."");
-
+            exit();
         }
-		
-		
-	
-
-
-		}
 	}
+}
 
 
 		

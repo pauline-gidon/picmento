@@ -25,7 +25,7 @@
 
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	
+    <script src="<?php echo DOMAINE; ?>templates/back/js/traitBaby.js" defer></script>
 	<script src="<?php echo DOMAINE; ?>templates/back/datetimepicker/datetimepicker.js"></script>
 	<link rel="stylesheet" type="text/css" href="<?php echo DOMAINE; ?>templates/back/datetimepicker/datetimepicker.css">
 
@@ -90,7 +90,7 @@
 
 	
 
-<div><?php if(isset($vue)) include($vue); ?></div>
+<div class="content"><?php if(isset($vue)) include($vue); ?></div>
 
 
 

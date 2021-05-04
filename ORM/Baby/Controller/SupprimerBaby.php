@@ -28,6 +28,7 @@ class SupprimerBaby extends Controller {
 		$manager	= new ManagerBaby($cx);
         //je recupère le baby par son id
 		$baby 		= $manager->oneBabyById($id);
+        
 		if(!is_null($baby)){
             
             //Je récupère son id de baby
@@ -50,7 +51,7 @@ class SupprimerBaby extends Controller {
             }
             //Je vais chercher tous les articles lié a ce baby et les medias des articles
             $manager1	= new ManagerArticle($cx);
-            $articles 	= $manager1->fullArticle($id_baby);
+            $articles 	= $manager1->fullArticleWithMedias($id_baby);
             if(!is_null($articles)){
                 foreach($articles as $article){
                     $id_articles []= $article->getIdArticle();
@@ -84,7 +85,7 @@ class SupprimerBaby extends Controller {
                                 }
                                 // je regarde les commentaires associé a l'article
                                 $manager2 = new ManagerCommentaire($cx);
-                                $commentaires = $manager2->commentaireHasArticleById($id_article);
+                                $commentaires = $manager2->fullCommentaireByIdArticle($id_article);
                                 if(!is_null($commentaires)){
                                     
                                     foreach($commentaires as $commentaire){
@@ -106,15 +107,17 @@ class SupprimerBaby extends Controller {
                       //foreach pour chaque article
                 }
                 
-                // si il n'y as pas d'article associé a ce baby je delete le baby
+                // si il n'y as pas d'article associé a ce baby je delete le baby directement
                 if($manager->deleteBabyById($id_baby)){
                     $flash->setFlash("Suppression effectuée");
                 }else{
                     $flash->setFlash("Suppression impossible");
                 }
             }
-            //si ce baby exist
-                header("Location: afficher-tribu");
+        //si ce baby exist
+        $cx->close();
+        header("Location: afficher-tribu");
+        exit();
     }		
 }
     

@@ -148,7 +148,44 @@ class ManagerTribu extends Manager {
                 return ($query->num_rows > 0)?new Tribu($query->fetch_array()):NULL;
             }
     }
+    //----------------------------------------------------------
+	//verif user pour suppression commentaire, id_com pour trouver la tribu
+	//----------------------------------------------------------
+
+    function oneTribuByIdCom($id_com){
+        if(is_numeric($id_com)){
+            $req = "SELECT * FROM tribu
+            INNER JOIN baby
+            ON baby.tribu_id_tribu = tribu.id_tribu
+            INNER JOIN baby_has_article
+            ON baby_has_article.baby_id_baby = baby.id_baby
+            INNER JOIN article
+            ON baby_has_article.article_id_article = article.id_article
+            INNER JOIN commentaire
+            ON commentaire.article_id_article = article.id_article
+            WHERE commentaire.id_commentaire = $id_com
+           ";
+                $query = $this->db->query($req);
+                return ($query->num_rows > 0)?new Tribu($query->fetch_array()):NULL;
+            }
+    }
+    //----------------------------------------------------------
+	//verif user pour visite de la tribu par id_baby
+	//----------------------------------------------------------
+
+    function oneTribuByIdBaby($id_baby){
+        if(is_numeric($id_baby)){
+            $req = "SELECT * FROM tribu
+            INNER JOIN baby
+            ON baby.tribu_id_tribu = tribu.id_tribu
+            WHERE baby.id_baby = $id_baby
+           ";
+                $query = $this->db->query($req);
+                return ($query->num_rows == 1)?new Tribu($query->fetch_array()):NULL;
+            }
+    }
 
 
+    
 
 }

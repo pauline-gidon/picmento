@@ -26,11 +26,9 @@ class ModifierAvatar extends Controller {
         
 		$form 	= new FormAvatar();
 		$build 	= $form->buildForm();
-		// var_dump($build);
 		if(($form->isSubmit("go"))&&($form->isValid())){
             
             $user_avatar = $user->getAvatarUser();
-            // var_dump($user_avatar);die();
             $destination = "medias/avatar/";
             if(!is_null($user_avatar)){
                 unlink($destination.$user_avatar);

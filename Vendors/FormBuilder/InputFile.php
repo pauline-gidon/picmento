@@ -8,11 +8,11 @@ class InputFile extends Field {
 
 		$id = (isset($this->id))?$this->id:$this->name;
 
-		$widget = isset($this->label)?"<label for=\"$id\" ":NULL;
+		$widget = $this->errorMessage;
+		$widget .= isset($this->label)?"<label for=\"$id\" ":NULL;
 		$widget .= isset($this->cssLabel)?" class=\"".$this->cssLabel."\"":NULL;
 		$widget .= isset($this->label)?">".$this->label."</label>":NULL;
 
-		$widget .= $this->errorMessage;
 
 		$widget .= "<input type=\"file\"";
 

@@ -53,16 +53,16 @@ class NewMdp extends Controller {
 							"
 							<h1>Réinitialisation de votre mot de passe</h1>
 							<p>
-							<img src=\"http://localhost/WOW/SITE/????\" 
-							alt=\"Logo WOW\">
+							<img src=\"https://picmento.fr/templates/front/images/logo-picmento.png\" 
+						alt=\"Logo picmento\">
 							</p>
 							<p>Pour réinitialiser votre mot de passe, 
 							veuillez cliquer sur ce lien :</p>
 							<p>
 							<a 
-							href=\"http://localhost/WOW/SITE/nouveau-mdp-".$token."\" 
+							href=\"https://picmento.fr/nouveau-mdp-".$token."\" 
 							title=\"Réinitialiser votre mot de passe\">
-							http://localhost/WOW/SITE/nouveau-mdp-".$token."
+							https://picmento.fr/nouveau-mdp-".$token."
 							</a>
 							</p>
 							"
@@ -70,9 +70,9 @@ class NewMdp extends Controller {
 						//...
 						if($automailer->sendMail()){
 							//Allez voir votre mail d'activation
-							$flash->setFlash("Un mail de réinitialisation vous a été envoyé. Vous disposez de 15 minutes pour vous recréer un mot de passe. Il est possible que ce mail soit dans vos spams ou messages indésirables.");
+							$flash->setFlash("Un email de réinitialisation vous a été envoyé. Vous disposez de 15 minutes pour vous recréer un mot de passe. Il est possible que ce mail soit dans vos spams ou messages indésirables.");
 							
-							header("Location: authentification");
+							header("Location: connexion");
 							exit();
 						}else{
 							//Erreur mail pas parti
@@ -82,7 +82,7 @@ class NewMdp extends Controller {
 
 				}else{
 					$flash->setFlash("Vous ne pouvez pas réinitialiser 
-						votre mot de passe car vous n'avez plus de compte 
+						votre mot de passe car vous n'avez pas de compte 
 						actif chez nous");
 				}
 			}else{

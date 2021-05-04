@@ -24,9 +24,9 @@ document.querySelectorAll('.id-baby').forEach(el => {
     })
 })
 
-document.querySelector('.modale.open').addEventListener('click', function(e){
-    e.stopPropagation();
-})
+// document.querySelector('.modale.open').addEventListener('click', function(e){
+//     e.stopPropagation();
+// })
 
 
 

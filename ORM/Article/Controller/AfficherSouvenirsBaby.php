@@ -33,7 +33,6 @@ class AfficherSouvenirsBaby extends Controller {
             $this->navConstruction($babys);
             $baby = $manager1->oneBabyById($id_baby);
             $general["baby"] =  $baby;
-            // var_dump($general);die();
             if(!is_null($baby)){
 
                 $nom = $baby->getNomBaby();
@@ -45,10 +44,8 @@ class AfficherSouvenirsBaby extends Controller {
                 //     "articles" => $articles
                 // ];
                // $general[] = $articles;
-                // var_dump($general);die();
                 // $articles_c = $manager->fullArticleWithCommentaire($id_baby);
                 // $id_user_com = $articles->get
-                // var_dump($articles);die();
                 //il faudra que je gère l'affichage des commantire $generale[] = $commentaires
                 if(is_null($articles)){
                     $flash = new Flash;
@@ -63,27 +60,21 @@ class AfficherSouvenirsBaby extends Controller {
                         ];
                         $id_article = $article->getIdArticle();
                         $coms = $manager->oneArticleWithCommentaireByIdArticle($id_article);
-                        // var_dump($coms);
                         if(!is_null($coms)){
                             foreach($coms as $com){
                                 array_push($wrapArticle["commentaires"], $com);
                             }
                         }
                         // array_push($tableau,$coms);
-                        // var_dump($tableau);die();
                         
                         array_push($general["articles"],$wrapArticle);
                         
                         // $id_user_com= $article_c->liste_is_user_com;
                     }
-                    // var_dump($general["articles"][0]["commentaires"]);die();
                    //$general[] =$articles;
-                    // var_dump($general);die();
-                    // var_dump($general); die();
                         // array_push($general,$articles); 
 
                         
-                        // var_dump($general);die();
                     // $general[] = $articles_c;
 
                 }

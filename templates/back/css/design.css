@@ -15,7 +15,6 @@ body {
     background-color: #FFFCF8;
     line-height: 1.5;
     padding-top: 70px;
-    padding-top: 20vh;
     overflow: hidden;
     overflow-y: scroll;
 }
@@ -29,7 +28,10 @@ input[type=number]::-webkit-outer-spin-button {
       -webkit-appearance: none; 
       margin: 0; 
 }
-
+/* importation de mes vue en une div */
+.content{
+    min-height: 68vh;
+}
 #logo {
     font-family: 'Hachi Maru Pop', cursive;
     font-size: 30px;
@@ -73,7 +75,7 @@ header nav li {
 
 
 h1 {
-    padding: 0px 0 40px;
+    padding: 50px 0 15px;
     text-align: center;
     color: #F07167;
 }
@@ -133,7 +135,27 @@ footer p a:hover {
     margin: 0 auto 50px;
     width: 430px;
 }
+.votre-espace {
+    background-image: url(../images/boite.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
 
+}
+.votre-espace h1 {
+  color: #FFF;
+
+}
+.votre-espace fieldset, .votre-espace fieldset i, .votre-espace  fieldset a{
+color: #FFF;
+
+}
+
+
+
+.votre-espace legend {
+    padding: 0 15px;
+}
 
 
 fieldset {
@@ -247,7 +269,7 @@ fieldset a {
 .colG > h2{
     padding: 25px;
     width: 100%;
-    color: #8BA5AD
+    color: #43637a;
 }
 
 .id-baby{
@@ -259,9 +281,7 @@ fieldset a {
 .tribubaby #nav-tribu{
     right: 0px;
     top: 0;
-    /* position: absolute; */
-    /* width: 5%; */
-    background-color: green;
+
     
 }
 
@@ -280,7 +300,6 @@ fieldset a {
 }
 .photo-carre-tribu img {
     border-radius: 8px;
-    border: solid 1px #CCC;
     box-sizing: border-box;
     width: 100%;
 	height: 100%;
@@ -307,7 +326,7 @@ fieldset a {
 .modale {
     background: -moz-linear-gradient(top,  rgba(0,0,0,1) 9%, rgba(0,0,0,1) 71%, rgba(0,0,0,1) 73%, rgba(0,0,0,0.44) 88%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(top,  rgba(0,0,0,1) 9%,rgba(0,0,0,1) 71%,rgba(0,0,0,1) 73%,rgba(0,0,0,0.44) 88%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom,  rgb(59, 59, 59,1) 9%,rgba(59, 59, 59,1) 71%,rgba(59, 59, 59,1) 73%,rgba(59,59,59,0.44) 88%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background: linear-gradient(to bottom,  rgba(13, 35, 65, 0.712) 9%,rgba(13, 35, 65,1) 71%,rgba(13, 35, 65,1) 73%,rgba(13,35,65,0.44) 88%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
 	position: absolute;
 	top: 20px;
@@ -315,6 +334,7 @@ fieldset a {
 	left: -100vw;
     width: 100%;
     padding: 5px 0 20px;
+    border-radius: 5px;
 
 }
 .modale.open{
@@ -324,12 +344,15 @@ fieldset a {
     text-align: left;
     color: #FFF;
     display: block;
-    padding: 5px 0 5px 10px ;
+    padding: 5px 10px 5px 10px ;
 }
 .modale a:hover{
-    color: var(--bleu-claire);
+    /* color: var(--bleu-claire); */
+    color: rgb(19, 47, 87) ;
     background: #ffffff; 
+    border-radius: 3px;
 }
+
 .modale h3 {
     font-size: 23px;
     color: white;
@@ -337,53 +360,94 @@ fieldset a {
     padding-bottom: 10px;
 
 }
-.close{
-	font-size: 30px;
-	color: #FFF;
-	position: absolute;
-	top: 5px;
-	right: 5px;
-	cursor: pointer;
-}
 
+.double-border-bottom {
+    border-bottom: thick double var(--saumon);
+
+}
 .btnaddtribu{
     text-align: right;
     padding: 0 80px 40px ;
 }
 .btnaddtribu a{
-    color: #ffc9b5;
+    color: #ffffff;
 }
 .btnaddtribu i {
    color: #ffffff;
 }
 /* ---------------------------------------Souvenir------------------------------------------ */
+.les-souvenirs {
+    background-image: url(../images/ciel5.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    min-height: 90vh;
+
+ }
+.les-souvenirs h1 , .les-souvenirs h2 {
+   color: #FFF;
+   
+}
 .les-souvenirs h2 {
     text-align: center;
 }
+.les-souvenirs section{
+    /* background: linear-gradient(to left var(--saumon) 53%, rgba(255, 255, 255, 0.801) 57%); */
+    /* background: linear-gradient(to left, rgba(0, 0, 0, 0) 99%, var(--saumon) 1%); */
+    /* color: rgb(105, 104, 104); */
+    color: #FFF;
+    
+}
+.les-souvenirs article h1 {
+    color: #FFF;
+    /* color: rgb(105, 104, 104); */
+    /* border-bottom: thick double var(--saumon); */
+    padding: 15px 0 15px ; 
+}
 .add-souvenir a {
-    color: salmon
+    color: #FFF;
+    
 }
 .add-souvenir{
-text-align: right;
+    text-align: right;
+    margin: 0 15px 20px 0;
 }
 .article-baby{
     position: relative;
-    background-color: rgb(167, 143, 189);
     padding: 20px;
     width: 90%;
-    margin-bottom: 70px;
+    min-height: 200px;
+    margin: 0 auto 65px;
+    background: rgba(97, 80, 80, 0.322);
+    box-shadow: 0 8px 32px 0 rgba(160, 104, 71, 0.37);
+    border-radius: 5px;
+    /* border: 1px solid rgba( 255, 255, 255, 0.18 ); */
+}
+.article-baby .description {
+    padding: 20px 0;
+}
+
+.year{
+    text-align: right;
+    padding: 15px 0 15px ; 
+    border-bottom: thick double var(--saumon);
 }
 .ruban-date {
-    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient( var(--beige-claire) 50%, var(--saumon) 50%);
     text-align: center;
-    left: 0;
-    top:-52px;
-    background-image: url(../images/ruban-date.png);
-    /* background-size: cover; */
-    background-repeat: no-repeat;
-    font-size: 11px;
-    height: 53px;
-    min-width: 93px;
+    position: absolute;
+    top: -26px;
+    left: 40px;
+    width: 50px;
+    height: 50px;
+    color: var(--corail);
+    font-size: 14px;
+    padding-top: 4px;
+}
+.solide {
+    /* border: solid 1px #FFF; */
 }
 .ruban-date p {
     position: relative;
@@ -392,7 +456,7 @@ text-align: right;
     background-color: #FFF;
     width: 30%;
 	position: relative;
-    margin: 0 10px;
+    margin: 0 10px 20px;
 }
 .souv-carre:after {
     content:'';
@@ -417,13 +481,18 @@ text-align: right;
 }
 /* ----------------------------***--------**---menu article---***-------****------- */
 .menu-article{
-    width: 5%;
-    background-color: yellow;
+    width: 3%;
+    position: absolute;
+    top:0;
+    right: -2VW;
+}
+.menu-article ul{
+list-style-type: none;
 }
 .menu-article i{
     font-size: 25px;
     padding:0 10px 15px ;
-    color: var(--corail);
+    color: #FFF;
     text-align: center;
 }
 /* ----------------------------***--------**---menu photo---***-------****------- */
@@ -445,7 +514,7 @@ text-align: right;
 /* les ul de 2nd et 3eme niveaux */
 .menu-photo ul { 
     position: absolute;
-    top: 20px;
+    top: 23px;
     right: 0;
 }
 
@@ -459,12 +528,16 @@ text-align: right;
 
     color: rgb(9, 68, 70);
 }
-.menu-photo ul {
+/* .menu-photo ul {
+    display: none;
+} */
+/* .checked:checked ~ .chec {
+    display: block;
+} */
+.d-none{
     display: none;
 }
-.checked:checked ~ .chec {
-    display: block;
-}
+
 .menu-photo li:hover > ul {
     display: block;
 }
@@ -482,35 +555,57 @@ text-align: right;
 .trait-nom-baby:hover{
     color: coral;
 }
-.trait-baby {
-    width: 100px;
-    margin-left: auto;
-    padding-right: 20px;
-    background-color: cadetblue;
-    z-index: 50;
+.trait-nom-baby {
+    cursor: pointer;
+}
+.menu-baby  {
+    padding: 10px;
+}
+.trait-baby { /*nav*/
+    /* padding: 0 8px; */
+    width: 105px;
+    /* margin-left: auto; */
+    background-color: #FFF;
+    /* z-index: 50; */
+    cursor: pointer;
+    color: var(--corail);
+    border-radius: 3px;
+
 }
 .trait-baby ul {
-    list-style-type: none;
-    /* width: 190px; */
+    /* list-style-type: none; */
+    padding:  4px 5px 3px;
 }
+
 .trait-baby li{  
     position: relative;
-    width: 105px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* width: 105px; */
+    /* padding: 8px; */
 }
 
 /* les ul de 2nd et 3eme niveaux */
 .trait-baby ul ul{ 
     position: absolute;
+    /* padding: 8px; */
+    background-color: #FFF;
+    color: var(--corail);
+    border-radius: 3px;
+    min-width: 105px;
+    left: -6px;
+    top: 40px;
 }
 /* les ul de 3eme niveaux */
 .trait-baby ul ul ul {
-    top:0;
-    left: -105px;
+    top:-4px;
+    left: 195px;
+    min-width: 500px;
     /* background-color: blueviolet; */
 }
 .trait-baby a {
     display: block;
-    padding: 0 5px 0 5px;
     text-decoration: none;
     color: cadetblue;
 }
@@ -518,16 +613,23 @@ text-align: right;
 
     color: rgb(9, 68, 70);
 }
-.trait-baby ul ul {
+/* .trait-baby ul ul {
     display: none;
-}
+} */
 
-.trait-baby li:hover > ul {
+/* .trait-baby li:hover > ul {
     display: block;
-}
+} */
 
 .trait-nom-baby:hover{
     color: coral;
+}
+.trait-nom-baby {
+    color: coral;
+    padding : 0 8px;
+}
+.trait-nom-baby i{
+    margin-left: 8px;
 }
 
 
@@ -600,10 +702,7 @@ form a {
 .btn-inscription {
     text-align: center;
     background-color: #FED9B7 ;
-    background-image: url(../images/plumevertbleu.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+
     border-radius: 10px;
   
     width: 170px;
@@ -622,8 +721,9 @@ form a {
 
 /* *****************************formulaire ajouter souvenir*******************************u */
 .ajouter-un-souvenir{
-    background-image: url(../images/attrape-reve.jpg);
+    background-image: url(../images/pencil.jpg);
     background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover;
     background-position: top;
 
@@ -697,7 +797,7 @@ form a {
 
 
 .spnaissance {
-    color: var(--saumon);
+    color: #BA7981;
     font-size: 32px;
 
 }

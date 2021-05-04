@@ -309,11 +309,28 @@ $route[] = [
 	"logged"			=> true, 
 	"droits"			=> 1
 ];
+//--------------------------------------------------Service Commentaire
 $route[] = [
 	"url"					=> PTH."ajouter-commentaire-souvenir-([0-9]+)-([0-9]+)", 
 	"namespace"		=> "ORM", 
 	"module"			=> "Commentaire", 
 	"action"			=> "AjouterCommentaire",  
+	"logged"			=> true, 
+	"droits"			=> 1
+];
+$route[] = [
+	"url"					=> PTH."supprimer-commentaire-([0-9]+)-([0-9]+)", 
+	"namespace"		=> "ORM", 
+	"module"			=> "Commentaire", 
+	"action"			=> "SupprimerCommentaire",  
+	"logged"			=> true, 
+	"droits"			=> 1
+];
+$route[] = [
+	"url"					=> PTH."editer-commentaire-([0-9]+)-([0-9]+)", 
+	"namespace"		=> "ORM", 
+	"module"			=> "Commentaire", 
+	"action"			=> "EditerCommentaire",  
 	"logged"			=> true, 
 	"droits"			=> 1
 ];
@@ -384,10 +401,71 @@ $route[] = [
 	"logged"			=> true, 
 	"droits"			=> 1
 ];
+$route[] = [
+    "url"					=> PTH."demande-ami", 
+	"namespace"		=> "ORM", 
+	"module"			=> "Amis", 
+	"action"			=> "DemandeAmi",  
+	"logged"			=> true, 
+	"droits"			=> 1
+];
+$route[] = [
+    "url"					=> PTH."voir-tribu-amis-([0-9]+)", 
+	"namespace"		=> "ORM", 
+	"module"			=> "Amis", 
+	"action"			=> "VoirTribuAmis",  
+	"logged"			=> true, 
+	"droits"			=> 1
+];
 
-
-
-
+$route[] = [
+	"url"					=> PTH."ami-afficher-souvenirs-([0-9]+)", 
+	"namespace"		=> "ORM", 
+	"module"			=> "Article", 
+	"action"			=> "AmisAfficherSouvenirsBaby",  
+	"logged"			=> true, 
+	"droits"			=> 1
+];
+$route[] = [
+	"url"					=> PTH."ami-afficher-naissance-([0-9]+)", 
+	"namespace"		=> "ORM", 
+	"module"			=> "Baby", 
+	"action"			=> "AmisAfficherNaissanceBaby",  
+	"logged"			=> true, 
+	"droits"			=> 1
+];
+$route[] = [
+	"url"					=> PTH."ami-afficher-timeline-([0-9]+)", 
+	"namespace"		=> "ORM", 
+	"module"			=> "Timeline", 
+	"action"			=> "AmisAfficherTimelineBaby",  
+	"logged"			=> true, 
+	"droits"			=> 1
+];
+$route[] = [
+	"url"					=> PTH."ami-ajouter-commentaire-souvenir-([0-9]+)-([0-9]+)", 
+	"namespace"		=> "ORM", 
+	"module"			=> "Commentaire", 
+	"action"			=> "AmisAjouterCommentaire",  
+	"logged"			=> true, 
+	"droits"			=> 1
+];
+$route[] = [
+	"url"					=> PTH."ami-supprimer-commentaire-([0-9]+)-([0-9]+)", 
+	"namespace"		=> "ORM", 
+	"module"			=> "Commentaire", 
+	"action"			=> "AmisSupprimerCommentaire",  
+	"logged"			=> true, 
+	"droits"			=> 1
+];
+$route[] = [
+	"url"					=> PTH."ami-editer-commentaire-([0-9]+)-([0-9]+)", 
+	"namespace"		=> "ORM", 
+	"module"			=> "Commentaire", 
+	"action"			=> "AmisEditerCommentaire",  
+	"logged"			=> true, 
+	"droits"			=> 1
+];
 
 
 return $route;

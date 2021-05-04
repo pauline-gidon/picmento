@@ -49,7 +49,7 @@ $(function(){
             $('.messageAideMdp li:nth-child(4)').removeClass('barre');
         }
         
-        if(saisie.match(/(?=.*\W)/)){//Expression régulière pour savoir si il y a un chiffre
+        if(saisie.match(/(?=.*\W)/)){//Expression régulière pour savoir si il y a un caractère special
             $('.messageAideMdp li:nth-child(5)').addClass('barre');
 
         }else{

@@ -50,9 +50,13 @@ class EditerBaby extends Controller {
                     
                         if($manager->updateProfilBaby($baby)){
                             
-                            $flash->setFlash("Le profil de ".$nom_baby." a bien été modifié <a href=\"afficher-tribu\" title=\"Retour Tribu\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
+                            $flash->setFlash("Le profil de ".$nom_baby." a bien été modifié !");
+                            header("location: afficher-tribu");
+                            exit();
                         }else{
-                            $flash->setFlash("Vous n'avez pas fait de modification <a href=\"afficher-tribu\" title=\"Retour Tribu\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
+                            $flash->setFlash("Vous n'avez pas fait de modification !");
+                            header("location: afficher-tribu");
+                            exit();
                         }                       
                 }
                 
@@ -64,10 +68,10 @@ class EditerBaby extends Controller {
             exit();
         }
         
-        return $build;
-        $cx->close();
-		}
-	}
+    $cx->close();
+    return $build;
+    }
+}
 
 
 		

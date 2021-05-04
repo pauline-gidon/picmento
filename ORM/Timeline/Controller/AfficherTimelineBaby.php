@@ -37,7 +37,6 @@ use Navbaby;
 
                     $general[] = $baby;
         
-                    // var_dump($baby);die();
         
         
                     $managerT = new ManagerTimeline($cx);
@@ -56,7 +55,5 @@ use Navbaby;
                 header("location: ".DOMAINE."errors/404.php");
                 die();
             }
-    
-        }
-	
+    }
 }

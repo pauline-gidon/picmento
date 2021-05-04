@@ -8,11 +8,11 @@ trait Navbaby {
 
         echo "<nav class=\"trait-baby\">
                 <ul>
-                    <li><i class=\"fas fa-caret-down\"></i> Enfant
-                        <ul class=\"nv2\">";
+                    <li class=\"menu-baby\">Enfant <i class=\"fas fa-caret-down\"></i> 
+                        <ul class=\"nv2 d-none\">";
         foreach($babys as $baby) {
-            echo "<li class=\"trait-nom-baby\"><i class=\"fas fa-caret-left\"></i> ".$baby->getNomBaby()."
-                    <ul class=\"nv3\">
+            echo "<li class=\"trait-nom-baby\">".$baby->getNomBaby()." <i class=\"fas fa-caret-right\"></i>
+                    <ul class=\"nv3 d-none fc fw\">
                         <li><a href=\"afficher-souvenirs-".$baby->getIdBaby()."\">Souvenir</a></li>
                         <li><a href=\"afficher-timeline-".$baby->getIdBaby()."\">Timeline</a></li>
                         <li><a href=\"afficher-naissance-".$baby->getIdBaby()."\">Naissance</a></li>

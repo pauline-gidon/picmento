@@ -48,7 +48,7 @@ class NewActivation extends Controller {
 							"
 							<h1>Création de compte</h1>
 							<p>
-							<img src=\"http://picmento.fr/templates/front/images/logo-picmento.png\" 
+							<img src=\"https://picmento.fr/templates/front/images/logo-picmento.png\" 
 							alt=\"Logo picmento\">
 							</p>
 							<p>Voici votre nouveau mail d'activation.</p>
@@ -56,9 +56,9 @@ class NewActivation extends Controller {
 							veuillez cliquer sur ce lien :</p>
 							<p>
 							<a 
-							href=\"http://picmento.fr/activation-".$token."\" 
+							href=\"https://picmento.fr/activation-".$token."\" 
 							title=\"Activer le compte\">
-							http://picmento.fr/activation-".$token."
+							https://picmento.fr/activation-".$token."
 							</a>
 							</p>
 							"

@@ -20,7 +20,7 @@ class AfficherAmis extends Controller {
 
 	function getResult(){
 
-		$this->setLayout("Back");
+		$this->setLayout("back");
 		$this->setTitle("Mes amis");
 		$this->setView("ORM/Amis/View/amis.php");
 
@@ -31,13 +31,11 @@ class AfficherAmis extends Controller {
         $managerA = new ManagerAmis($cx);
         $managerU = new ManagerUser($cx);
         $amis = $managerA->fullAmisActif();
-        //si elle sont pas null je parcour le tableau d'amis
         $moi = $_SESSION["auth"]["id"];
-        // var_dump($moi);die();
         if(!is_null($amis)){
             $user_amis = [];
+            //si elle sont pas null je parcour le tableau d'amis
             foreach($amis as $ami){
-                // var_dump($ami);
                 if($ami->getUserIdExpediteur() !== $moi){
                         array_push($user_amis,$managerU->oneUserById($ami->getUserIdExpediteur())); 
                 }else{
@@ -47,13 +45,12 @@ class AfficherAmis extends Controller {
                 
                 
             }            
-            // var_dump($user_amis);die();
             
+            $cx->close();
             return $user_amis;
         }else{
-            $flash->setFlash("Vous n'avez pas encore d'amis, lancez vous faite des demandes !");
+            $flash->setFlash("Vous n'avez pas encore d'amis, lancez-vous faite des demandes !");
             
         }
-        $cx->close();
     }
 }

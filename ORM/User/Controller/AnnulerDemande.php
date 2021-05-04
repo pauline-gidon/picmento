@@ -44,9 +44,9 @@ class AnnulerDemande extends Controller {
                 $annule = $http->getDataPost('annule');
                 if($annule == 1) {
                     if($managerAmis->deleteAmisByIdTribuAndIdDestinatatire($id_tribu,$id_user_dest)){
-                        $flash->setFlash("La demande a bien été annulée, vous pouvez renvoyer une nouvelle demande <a href=\"associer-parent-tribu-".$id_tribu."\" title=\"Nouvelle demande\" class=\"flash-retour\"><i class=\"fas fa-share-square\"></i> Faire une nouvelle demande</a>");
-    
-                        
+                        $flash->setFlash("La demande a bien été annulée, vous pouvez renvoyer une nouvelle demande !");
+                        header("location: associer-parent-tribu-".$id_tribu."");
+                        exit();
                     }
                 }else{
                     $flash->setFlash("l'annulation n'a pas été effectuée ! <a href=\"afficher-tribu\" title=\"Retour Tribu\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
@@ -56,8 +56,7 @@ class AnnulerDemande extends Controller {
             return $general;
         }else{
             header("location: afficher-tribu");
+            exit();
         }
-        
 	}
-
 }

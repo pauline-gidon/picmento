@@ -3,8 +3,10 @@ namespace Vendors\FormBuilded;
 use OCFram\HTTPRequest;
 use Vendors\FormBuilder\Form;
 use Vendors\FormBuilder\TextArea;
+use Vendors\FormBuilder\InputDate;
 use Vendors\FormBuilder\InputFile;
 use Vendors\FormBuilder\InputText;
+use Vendors\FormBuilder\InputFile2;
 use Vendors\FormBuilder\InputRadio;
 use Vendors\FormBuilder\InputSubmit;
 use Vendors\Validator\DateValidator;
@@ -18,7 +20,7 @@ class FormSouvenir extends Form {
 		$http = new HTTPRequest();
 
 		$this->add(new InputText([
-			"label" 				=> "Le titre : ",
+			"label" 				=> "Le titre",
 			"name" 					=> "titre_article",
 			"cssLabel" 				=> "consigne",
 			"cssChamp" 				=> "champ",
@@ -29,7 +31,7 @@ class FormSouvenir extends Form {
 		]));
 
 		$this->add(new TextArea([
-			"label" 			=> "Description du souvenir : ",
+			"label" 			=> "Description du souvenir",
 			"name"				=> "description_article",
 			"cssLabel" 			=> "consigne",
             "security"          => 2,
@@ -40,41 +42,43 @@ class FormSouvenir extends Form {
 			]
 		]));
 
-		$this->add(new InputText([
-			"label" 		=> "Date du souvenir : ",
+		$this->add(new InputDate([
+			"label" 		=> "Date du souvenir",
 			"name" 			=> "date_article",
 			"cssLabel" 		=> "consigne",
 			"cssChamp" 		=> "champ",
 			"validators"	=> [
 				new DateValidator(
-					"Choisissez une date valide"
-				)
+					"Choisissez une date inférieur ou égale à aujourd'hui"
+                ),
+				new VideValidator("Date obligatoire")
+
 			],
 			"getterEntity" => "getDateArticle"
 		]));
 
         $this->add(new InputFile([
-			"label" 		=> "Votre 1er photo : ",
+			"label" 		=> "Votre 1er photo",
 			"name" 			=> "photo1",
 			"cssLabel" 		=> "consigne",
 			"cssChamp" 		=> "champ"
 		]));
         $this->add(new InputFile([
-			"label" 		=> "Votre 2ème photo : ",
+			"label" 		=> "Votre 2ème photo",
 			"name" 			=> "photo2",
 			"cssLabel" 		=> "consigne",
 			"cssChamp" 		=> "champ"
 		]));
 
         $this->add(new InputFile([
-			"label" 		=> "Votre 3ème photo : ",
+			"label" 		=> "Votre 3ème photo",
 			"name" 			=> "photo3",
 			"cssLabel" 		=> "consigne",
 			"cssChamp" 		=> "champ"
 		]));
 
 		$this->add(new InputRadio([
-			"label" 		=> "Privé (visible uniquement pour moi ",
+			"label" 		=> "Privé (visible uniquement par le(s) parent(s) )",
 			"value" 		=> 0,
 			"name" 			=> "actif_article",
 			"cssLabel" 		=> "consigne",

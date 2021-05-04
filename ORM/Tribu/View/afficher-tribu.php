@@ -19,6 +19,7 @@ if(isset($result)){
             if(!is_null($obj->liste_id)){
                 // <a class=\"t-n-baby\"href=\"toto?id=".$ids[$i]."\"><img src=\"".DOMAINE."medias/photo-baby/".$photos[$i]."\" alt=\"Photo de ".$noms[$i]."\"></a>
                 //             <a class=\"t-n-baby\"href=\"toto?id=".$ids[$i]."\">".$noms[$i]."</a>
+                //         <p><a href=\"ajouter-souvenir-".$ids[$i]."\" title=\"Ajouter un souvenir à ".$noms[$i]."\">Ajouter un souvenir</a></p>
                 echo "<section class=\"baby\">
                          <div class=\"photo-carre-tribu\">
                             <div class=\"cassbonbon\">
@@ -27,15 +28,15 @@ if(isset($result)){
                                 </div>
                                 
                                     <div data-id=\"m-".$ids[$i]."\" class=\"modale\">
-                                        <i class=\"close fas fa-times-circle\"></i>
                                         <h3>".$noms[$i]."</h3>
                                         <p><a href=\"afficher-souvenirs-".$ids[$i]."\" title=\"Voir les souvenirs de ".$noms[$i]."\">Souvenirs</a></p>
                                         <p><a href=\"afficher-naissance-".$ids[$i]."\" title=\"Naissance de ".$noms[$i]."\">Naissance</a></p>
                                         <p><a href=\"afficher-timeline-".$ids[$i]."\" title=\"Afficher timeline de ".$noms[$i]."\">Timeline</a></p>
-                                        <p><a href=\"ajouter-souvenir-".$ids[$i]."\" title=\"Ajouter un souvenir à ".$noms[$i]."\">Ajouter un souvenir</a></p>
-                                        <p><a href=\"modifier-baby-".$ids[$i]."\" title=\"Modifier le profil de ".$noms[$i]."\">Modifier le profil</a></p>
-                                        <p><a href=\"modifier-photo-baby-".$ids[$i]."\" title=\"Modifier la photo de ".$noms[$i]."\">Modifier sa photo</a></p>
-                                        <p><a href=\"supprimer-baby-".$ids[$i]."\" title=\"Supprimer le profil de ".$noms[$i]."\"class=\"gogo\" data-gogo=\"".$noms[$i]."\">Supprimer le profil</a></p>
+                                        <p class=\"double-border-bottom\"><a href=\"afficher-diaporama-".$ids[$i]."\" title=\"Afficher diaporama de ".$noms[$i]."\">Diaporama</a></p>
+                               
+                                        <p class=\"fc\"><a href=\"modifier-baby-".$ids[$i]."\" title=\"Modifier le profil de ".$noms[$i]."\"><i class=\"fas fa-user-edit\"></i></a>
+                                        <a href=\"modifier-photo-baby-".$ids[$i]."\" title=\"Modifier la photo de ".$noms[$i]."\"><i class=\"fas fa-camera\"></i></a>
+                                        <a href=\"supprimer-baby-".$ids[$i]."\" title=\"Supprimer le profil de ".$noms[$i]."\"class=\"gogo\" data-gogo=\"".$noms[$i]."\"><i class=\"fas fa-trash\"></i></a></p>
                                     </div> 
                             <h2 class=\"id-baby nom-baby\" data-id=\"".$ids[$i]."\">".$noms[$i]."</h2>
                         </div>

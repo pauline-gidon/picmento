@@ -163,7 +163,30 @@ class ManagerBaby extends Manager {
     }
 
 
+    //----------------------------------------------------------
+	//Tous les baby de cet user en bdd
+	//----------------------------------------------------------
+    function allBabyAmis($user_id){
+            if(is_numeric($user_id)){
 
+                $req = "SELECT * FROM baby
+                  INNER JOIN tribu
+                       ON baby.tribu_id_tribu = tribu.id_tribu
+                          WHERE tribu.user_id_parent1 = $user_id
+                          OR tribu.user_id_parent2 = $user_id
+                          ORDER BY baby.id_baby";
+                
+                $query = $this->db->query($req);
+                if($query->num_rows > 0){
+                    while($row = $query->fetch_array()){
+                        $babys[] = new Baby($row);
+                        }
+                        return $babys;
+                    }else{
+                        return null;
+                    }      
+            }
+        }
 
 
 }

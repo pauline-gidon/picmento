@@ -35,11 +35,13 @@ class AjouterCommentaire extends Controller {
         $tribu = $managerT->oneTribuByIdArticle($id_article,$id_baby);
         if(!is_null($tribu)){
             //je recupère parent 1 et parent 2 et je les compare a l'auth qui est connecter
-            if($tribu->getUserIdParent1() == $_SESSION["auth"]["id"] || $tribu->getUserIdParent2() == $_SESSION["auth"]["id"]){
+            $id_parent1 = $tribu->getUserIdParent1();
+            $id_parent2 = $tribu->getUserIdParent2();
+            $user = $managerU->verifUserAmisUserConnecter($id_parent1, $id_parent2);
+            if(!is_null($user) || $tribu->getUserIdParent1() == $_SESSION["auth"]["id"] || $tribu->getUserIdParent2() == $_SESSION["auth"]["id"]){
                 $managerA = new ManagerArticle($cx);
                 $souvenir = $managerA->oneArticleById($id_article);
         
-                // var_dump($article);die;
                 
                 if(!is_null($souvenir)){
                     $id_article = $souvenir->getIdArticle();
@@ -55,14 +57,14 @@ class AjouterCommentaire extends Controller {
                             
                             ]);
                             
-                            // var_dump($id_article);die();
                         $managerC = new ManagerCommentaire($cx);
-                        if($managerC->insertNewCommentaire($new_commentaire,$id_article)){
+                        if($managerC->insertNewCommentaire($new_commentaire,$id_article) > 0){
                             $flash->setFlash("Votre commentaire a bien été ajouter");
                         }else{
                             $flash->setFlash("Impossible d'ajouter votre commentaire");
                         }
                         header("location: afficher-souvenirs-".$id_baby."");
+                        exit();
     
     
         
@@ -70,22 +72,19 @@ class AjouterCommentaire extends Controller {
         
                     }
                 }
-
+                $cx->close();
                 return $build;
             }else{
                 header("location: ".DOMAINE."errors/404.php");
                 exit();
             }
-        
-     
 
         }else{
             header("location: ".DOMAINE."errors/404.php");
             exit();
         }
-            
-        }
     }
+}
 
     
                 

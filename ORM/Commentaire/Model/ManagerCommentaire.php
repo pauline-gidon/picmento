@@ -39,6 +39,18 @@ class ManagerCommentaire extends Manager {
    
         }
     }
+    //----------------------------------------------------------
+	//Select commentaire par son id
+	//----------------------------------------------------------
+    function oneCommentaireById($id_com){
+        if(is_numeric($id_com)){
+            $req = "SELECT * FROM commentaire WHERE id_commentaire = $id_com";
+            $query = $this->db->query($req);
+
+            return ($query->num_rows == 1)?new Commentaire($query->fetch_array()):NULL;
+   
+        }
+    }
 
     //----------------------------------------------------------
 	//insert Commentaire
@@ -49,7 +61,7 @@ class ManagerCommentaire extends Manager {
         $article_id_article = $this->db->real_escape_string($id_article);
     
         $req = "
-        INSERT INTO Commentaire VALUES(
+        INSERT INTO commentaire VALUES(
             NULL,
             '$description_commentaire',
             '$user_id_user',
@@ -59,6 +71,21 @@ class ManagerCommentaire extends Manager {
         $query = $this->db->query($req);
         return $this->db->insert_id;
     }
+
+    //----------------------------------------------------------
+	//update Commentaire
+	//----------------------------------------------------------
+    function updateCommentaire(Commentaire $obj){
+        $description_commentaire = $this->db->real_escape_string($obj->getDescriptionCommentaire());
+   
+        $req = "UPDATE commentaire SET 
+        description_commentaire		    = '$description_commentaire'
+        WHERE id_commentaire = ".$obj->getIdCommentaire()
+        ;
+        $query = $this->db->query($req);
+        return ($this->db->affected_rows == 1)?true:false;
+    }
+
 
 
 	

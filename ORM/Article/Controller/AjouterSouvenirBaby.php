@@ -52,7 +52,6 @@ class AjouterSouvenirBaby extends Controller {
                         "date_article" 	=> $http->getDataPost("date_article"),
                         "actif_article" 	=> $http->getDataPost("actif_article")
                     ]);
-                    // var_dump($new_souvenir);die();
             
                     $manager = new ManagerArticle($cx);
                     
@@ -63,7 +62,6 @@ class AjouterSouvenirBaby extends Controller {
         
                     //1er photo
                     $file		= $http->getDataFiles("photo1");
-                    // var_dump($file);die();
                     $destination = "medias/souvenir/";
                     $uploader = new Uploader($file,$destination);
                     $nom_file = $uploader->upload();
@@ -80,7 +78,6 @@ class AjouterSouvenirBaby extends Controller {
         
                     //2eme photo
                     $file2		= $http->getDataFiles("photo2");
-                    // var_dump($file);die();
                     $destination = "medias/souvenir/";
                     $uploader = new Uploader($file2,$destination);
                     $nom_file2 = $uploader->upload();
@@ -97,7 +94,6 @@ class AjouterSouvenirBaby extends Controller {
         
                     //3eme photo
                     $file3		= $http->getDataFiles("photo3");
-                    // var_dump($file);die();
                     $destination = "medias/souvenir/";
                     $uploader = new Uploader($file3,$destination);
                     $nom_file3 = $uploader->upload();
@@ -114,9 +110,11 @@ class AjouterSouvenirBaby extends Controller {
         
                     if($manager->insertArticleHasbaby($id_baby,$new_id_article)){
                         
-                        $flash->setFlash("Votre souvenir a bien été ajouté ! <a href=\"afficher-souvenirs-".$id_baby."\" title=\"Retour aux souvenirs\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
+                        $flash->setFlash("Votre souvenir a bien été ajouté !");
+                        header("location: afficher-souvenirs-".$id_baby."");
+                        exit();
                     }else{
-                        $flash->setFlash("Impossible d'ajouter un souvenir à ".$nom_baby." veuillez réesayer ou contacter l'équipe <span class=\"flash-logo\">Picmento</span> <a href=\"afficher-souvenirs-".$id_baby."\" title=\"Retour aux souvenirs\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
+                        $flash->setFlash("Impossible d'ajouter un souvenir à ".$nom_baby." veuillez réesayer ou contacter l'équipe <span class=\"flash-logo\">Picmento</span>");
                     }
         
                         

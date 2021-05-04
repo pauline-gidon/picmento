@@ -27,8 +27,6 @@ class SupprimerPhoto extends Controller {
         $http = new HTTPRequest();
 		$id_photo = $http->getDataGet("id");
         $id_baby = $http->getDataGet("idbaby");
-        // var_dump($id_photo);
-        // var_dump($id_baby); die();
 		$cx			= new Connexion();
         $managerU = new ManagerUser($cx);
         if(($managerU->verifUserMedias($id_photo))&&($managerU->verifUserBaby($id_baby))){
@@ -45,7 +43,9 @@ class SupprimerPhoto extends Controller {
                     $destination = "medias/souvenir/";
                     unlink($destination.$photo->getNomMedias());
     
-                    $flash->setFlash("La photo a bien été supprimée <a href=\"afficher-souvenirs-".$id_baby."\" title=\"Continuer\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Continuer</a>");
+                    $flash->setFlash("La photo a bien été supprimée !");
+                    header("location: afficher-souvenirs-".$id_baby."");
+                    exit();
                 }
             }
             

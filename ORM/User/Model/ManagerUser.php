@@ -13,7 +13,6 @@ class ManagerUser extends Manager {
 
 		$req 		= "SELECT * FROM user WHERE email_user = '$email' ";
 		$query 	= $this->db->query($req);
-
 		//return ($query->num_rows == 1)? true : false;
 		return ($query->num_rows == 1)? new User($query->fetch_array()) : null;
 	}
@@ -328,7 +327,6 @@ class ManagerUser extends Manager {
         	    user_id_user  = $id 
                 OR user_id_user1  = $id 
         ";
-        var_dump($req);
 		$query = $this->db->query($req);
         if($query->num_rows > 0){
             while($row = $query->fetch_array()){
@@ -347,21 +345,92 @@ class ManagerUser extends Manager {
         $user_co = $_SESSION["auth"]["id"];
         if(is_numeric($id_baby)){
 
+            $req = "SELECT * tribu
+            INNER JOIN Baby
+            ON tribu.id_tribu = baby.tribu_id_tribu
+            WHERE tribu.user_id_parent1 = $user_co OR tribu.user_id_parent2 = $user_co
+            AND  baby.id_baby = $id_baby
+        ";
+        $query = $this->db->query($req);
+        return ($query->num_rows > 0)?TRUE:FALSE;
         }
     
-        $req = "SELECT * tribu
-        INNER JOIN Baby
-        ON tribu.id_tribu = baby.tribu_id_tribu
-        WHERE tribu.user_id_parent1 = $user_co OR tribu.user_id_parent2 = $user_co
-        AND  baby.id_baby = $id_baby
-    ";
-    var_dump($req);
-    $query = $this->db->query($req);
-    return ($query->num_rows > 0)?TRUE:FALSE;
+    }
 
+    //----------------------------------------------------------
+	//Verif user has user pour la visite d'une tribu amis
+	//----------------------------------------------------------
+    function verifUserTribuAmis($id_user){
+        $user_co = $_SESSION["auth"]["id"];
+        if(is_numeric($id_user)){
 
+            $req = "SELECT * FROM user_has_user
+            WHERE user_id_user = $id_user OR user_id_user = $id_user
+            AND user_id_user1 = $user_co OR user_id_user1 = $id_user
+        ";
+        $query = $this->db->query($req);
+        return ($query->num_rows > 0)?TRUE:FALSE;
+        }
 
     }
+    //----------------------------------------------------------
+	//Verif user Pour voir les baby amis
+	//----------------------------------------------------------
+    function verifUserAmisUserConnecter($id_parent1, $id_parent2){
+        $user_co = $_SESSION["auth"]["id"];
+        if((is_numeric($id_parent1))&&(is_numeric($id_parent2))){
+
+            $req = "SELECT * FROM user_has_user
+            INNER JOIN user
+            ON user.id_user = user_has_user.user_id_user OR user.id_user = user_has_user.user_id_user1
+            WHERE user_id_user = $id_parent1 OR user_id_user = $id_parent2 OR user_id_user = $user_co
+            AND user_id_user1 = $id_parent1 OR user_id_user1 = $id_parent2 OR user_id_user= $user_co
+        ";
+        $query = $this->db->query($req);
+        if($query->num_rows > 0){
+            while($row = $query->fetch_array()){
+                $objet = new User($row);
+                }
+            return $objet;
+        }else{
+            return null;
+        }
+    }
+
+    }
+    //----------------------------------------------------------
+	//le user est déja crée grace a une invitation, quand il crée son compt je ne fait pas un insert mais un update
+	//----------------------------------------------------------
+
+
+	function updateProfilCreation(User $user){
+		$nom_user		= $this->db->real_escape_string($user->getNomUser());
+		$prenom_user	= $this->db->real_escape_string($user->getPrenomUser());
+		$email_user		= $this->db->real_escape_string($user->getEmailUser());
+		$pass_user	= $this->db->real_escape_string($user->getPassUser());
+		$actif_user	= $this->db->real_escape_string($user->getActifUser());
+		$statut_user	= $this->db->real_escape_string($user->getStatutUser());
+		$rgpd_user	= $this->db->real_escape_string($user->getRgpdUser());
+		$date_rgpd_user	= $this->db->real_escape_string($user->getDateRgpdUser());
+		$token_user	= $this->db->real_escape_string($user->getTokenUser());
+		$validity_token_user	= $this->db->real_escape_string($user->getValidityTokenUser());
+        $pass_userOK = hash("whirlpool",$pass_user);
+		
+		$req = "UPDATE user SET 
+				nom_user			= '$nom_user',
+				prenom_user		= '$prenom_user',
+				pass_user		= '$pass_userOK',
+				actif_user		= '$actif_user', 
+				statut_user		= '$statut_user', 
+				rgpd_user		= '$rgpd_user',
+				date_rgpd_user		= '$date_rgpd_user',
+				token_user		= '$token_user',
+				validity_token_user		= '$validity_token_user' 
+			WHERE email_user = '$email_user'";
+		$query = $this->db->query($req);
+		return ($this->db->affected_rows == 1)?TRUE:FALSE;
+	}
+    
 
 //Fermeture ManagerUser
 }

@@ -265,7 +265,6 @@ class ManagerArticle extends Manager {
 
             $req = "DELETE FROM article WHERE id_article = $id_article";
             $query = $this->db->query($req);
-
             return ($this->db->affected_rows == 1)?true:false;
 
         }
@@ -400,8 +399,69 @@ class ManagerArticle extends Manager {
 
         }
     }
+    //----------------------------------------------------------
+	//POUR  LES AMIS Selectionner tous les article ACTIF du baby avec ses medias si il y en as et le user qui a crée le souvenir
+	//----------------------------------------------------------
+    function fullArticleActifWithMedias($id_baby){
+        if(is_numeric($id_baby)){
+            
+            $req = "SELECT 
+            article.id_article,
+            article.titre_article,
+            article.description_article,
+            article.date_article,
+            article.actif_article,
+            article.user_id_user,
+            user.nom_user,
+            user.prenom_user,
+            user.pseudo_user,
+            GROUP_CONCAT(medias.id_medias SEPARATOR '/') AS liste_id,
+            GROUP_CONCAT(medias.nom_medias SEPARATOR '/') AS liste_photo
+            FROM article
+            LEFT JOIN article_has_medias
+            ON article_has_medias.article_id_article = id_article
+            LEFT JOIN medias
+            ON medias.id_medias = medias_id_medias
+            INNER JOIN baby_has_article
+            ON baby_has_article.article_id_article = id_article
+            INNER JOIN user
+            ON article.user_id_user = user.id_user
+            WHERE baby_id_baby = $id_baby
+            AND article.actif_article = 1
+            GROUP BY article.id_article
+            ORDER BY article.date_article DESC
+                   ";
 
 
+            $query = $this->db->query($req);     
+            if($query->num_rows > 0){
+                while($row = $query->fetch_array()){
+                $articles[] = new Article($row);
+                }
+                return $articles;
+            }else{
+                return null;
+            }      
+   
+        }
+    }
+
+
+    //----------------------------------------------------------
+	//un article avec ce baby? pour verifier la modification du commentaire
+	//----------------------------------------------------------
+    function oneArticleByIds($id_article, $id_baby){
+        if((is_numeric($id_article)) && (is_numeric($id_baby))){
+            $req = "SELECT * FROM baby_has_article WHERE article_id_article  = $id_article and baby_id_baby = $id_baby";
+            $query = $this->db->query($req);
+            if($query->num_rows == 1){
+                return true;
+            }else{
+                return false;
+            }
+   
+        }
+    }
 
 
 

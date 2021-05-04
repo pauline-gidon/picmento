@@ -1,15 +1,16 @@
 <?php
 namespace Vendors\FormBuilded;
+use OCFram\HTTPRequest;
 use Vendors\FormBuilder\Form;
-use Vendors\FormBuilder\InputSubmit;
+use Vendors\FormBuilder\InputDate;
+
 use Vendors\FormBuilder\InputText;
+use Vendors\FormBuilder\InputSubmit;
+use Vendors\Validator\DateValidator;
+use Vendors\Validator\TimeValidator;
 
 use Vendors\Validator\VideValidator;
-use Vendors\Validator\TimeValidator;
-use Vendors\Validator\DateValidator;
 use Vendors\Validator\NumberValidator;
-
-use OCFram\HTTPRequest;
 
 class FormBaby extends Form {
     
@@ -18,7 +19,7 @@ class FormBaby extends Form {
         
         
 		$this->add(new InputText([
-            "label" 			=> "Nom d'enfant : ",
+            "label" 			=> "Nom d'enfant",
 			"name" 				=> "nom_baby",
 			"cssLabel" 			=> "consigne",
 			"cssChamp" 			=> "champ",
@@ -30,35 +31,37 @@ class FormBaby extends Form {
 
             
 
-        $this->add(new InputText([
-            "label" 				=> "Date de naissance : ",
+        $this->add(new InputDate([
+            "label" 				=> "Date de naissance",
             "name" 					=> "date_naissance_baby",
             "placeholder"       	=> "2019-05-18",
             "cssLabel" 		    	=> "consigne",
             "cssChamp" 		    	=> "champ",
             "getterEntity"          => "getDateNaissanceBaby",
             "validators" 	        => [
-                new DateValidator("La date de naissance est obligatoire")
+                new DateValidator("Choisissez une date valide"),
+                new VideValidator("La date de naissance est obligatoire")
                 
                 ]
                 ]));
                     
                     
         $this->add(new InputText([
-            "label" 			=> "Heure de naissance : ",
+            "label" 			=> "Heure de naissance",
             "name" 				=> "heure_naissance_baby",
-            "placeholder"   	=> "15:23:00",
+            "placeholder"   	=> "23:23:00",
             "cssLabel" 			=> "consigne",
             "cssChamp" 			=> "champ",
             "validators" 		=> [
-                new TimeValidator("L'heure de naissance est obligatoire")
+                new TimeValidator("L'heure de naissance doit être valide"),
+                new VideValidator("L'heure de naissance est obligatoire")
             ],
                 "getterEntity"      => "getHeureNaissanceBaby"
                 ]));
 
 
         $this->add(new InputText([
-            "label" 			=> "Lieu de naissance : ",
+            "label" 			=> "Lieu de naissance",
             "name" 				=> "lieu_naissance_baby",
             "cssLabel" 			=> "consigne",
             "cssChamp" 			=> "champ",
@@ -70,7 +73,7 @@ class FormBaby extends Form {
 
 
         $this->add(new InputText([
-            "label" 			=> "Poids de naissance : ",
+            "label" 			=> "Poids de naissance (kg)",
             "name" 				=> "poids_naissance_baby",
             "placeholder"       	=> "3.130",
             "cssLabel" 			=> "consigne",
@@ -84,7 +87,7 @@ class FormBaby extends Form {
 
 
         $this->add(new InputText([
-            "label" 			=> "Taille de naissance : ",
+            "label" 			=> "Taille de naissance (cm)",
             "name" 				=> "taille_naissance_baby",
             "placeholder"       	=> "50",
             "cssLabel" 			=> "consigne",

@@ -5,6 +5,7 @@ if(isset($result)){
     
     $mois = $date->format("m");
     $jour = $date->format("d");
+    $year = $date->format("Y");
     $tableauDeMois= [
         'Janvier'=> '01',
         'Février'=> '02',
@@ -26,13 +27,12 @@ if(isset($result)){
     $heure = new DateTime($result->getHeureNaissanceBaby());
     $heure = str_replace(':','H',$heure->format("H:i"));
 
-    // var_dump($heure);die();
     // <img src=\"".DOMAINE."medias/photo-baby/".$result->getPhotoBaby()."\" alt=\"photo de ".$result->getNomBaby()."\">
   
     echo    "<section class=\"fc jc-c ai-c\">
                 <div>
-                    <p> La naissance de <span class=\"spnaissance\">".$result->getNomBaby()."</span> est arrivée le <span class=\"spnaissance\">".$jour." ".$mois."</span>, dans la ville de&nbsp;<span class=\"spnaissance\">".$result->getLieuNaissanceBaby()."</span>.</p>
-                    <p>C'était <span class=\"spnaissance\">".$heure."</span>, son poids était de <span class=\"spnaissance\">".$poids."</span> et sa taille de ".$result->getTailleNaissanceBaby()."&nbsp;Cm.</p>
+                    <p> La naissance de <span class=\"spnaissance\">".$result->getNomBaby()."</span> est arrivée le <span class=\"spnaissance\">".$jour." ".$mois."</span>, en <span class=\"spnaissance\">".$year."</span> dans la ville de&nbsp;<span class=\"spnaissance\">".$result->getLieuNaissanceBaby()."</span>.</p>
+                    <p>C'était <span class=\"spnaissance\">".$heure."</span>, son poids était de <span class=\"spnaissance\">".$poids."</span> et sa taille de <span class=\"spnaissance\">".$result->getTailleNaissanceBaby()."&nbsp;Cm</span>.</p>
                 </div>
     
     

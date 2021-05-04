@@ -4,12 +4,11 @@ $flash = new FLash();
 echo $flash->getFlash();
 // echo $flash->getFlash();
 //$general[0]= baby
-echo "<h2 class\"prenom-title\">".$result["baby"]->getNomBaby()."</h2>
+echo "<h2 class\"prenom-title\">de ".$result["baby"]->getNomBaby()."</h2>
       <p class=\"add-souvenir\"><a href=\"ajouter-souvenir-".$result["baby"]->getIdBaby()."\" title=\"Ajouter un souvenir à ".$result["baby"]->getNomBaby()." \">
-        <i class=\"ico icofont-memorial\"></i> Ajouter un souvenir
+        <i class=\"ico icofont-memorial\"></i> Ajouter
         </a></p>";
 
-        // var_dump($result);
 if(isset($result["articles"])){
     echo "<section class=\"fc fw wrap\">";
     foreach($result["articles"] as $article){
@@ -39,7 +38,7 @@ if(isset($result["articles"])){
                 echo "<article class=\"article-baby\">
                         <h1 class=\"title\">".$obj->getTitreArticle()."</h1>
                         <p class=\"description\">".$obj->getDescriptionArticle()."</p>
-                    <div class=\"ruban-date\"><p>".$jour."</p><p>".$mois."</p></div>";
+                    <p class=\"ruban-date solide\"><span>".$jour."</span><br>".$mois."</p>";
                     if(!is_null($obj->liste_photo)){
                         $photos = explode("/",$obj->liste_photo);
                         $ids = explode("/",$obj->liste_id);
@@ -50,9 +49,9 @@ if(isset($result["articles"])){
                                 <img src=\"".DOMAINE."medias/souvenir/".$photos[$i]."\" alt=\"Photo de ".$obj->getTitreArticle()."\">
                                 <ul class=\"menu-photo\">
                                     <li class=\"checked\"><i class=\"fas fa-chevron-down\"></i>
-                                        <ul class=\"chec\">
-                                        <li><a href=\"editer-souvenir-photo-".$ids[$i]."-".$result["baby"]->getIdBaby()."\" title=\"Modifier la photo\"><i class=\"fas fa-pen-square\"></i></a></li>
-                                        <li><a href=\"supprimer-souvenir-photo-".$ids[$i]."-".$result["baby"]->getIdBaby()."\" title=\"Supprimer la photo\" class=\"gogo\" data-gogo=\"la photo\"><i class=\"fas fa-trash\"></i></a></li>
+                                        <ul class=\"chec d-none\">
+                                            <li><a href=\"editer-souvenir-photo-".$ids[$i]."-".$result["baby"]->getIdBaby()."\" title=\"Modifier la photo\"><i class=\"fas fa-pen-square\"></i></a></li>
+                                            <li><a href=\"supprimer-souvenir-photo-".$ids[$i]."-".$result["baby"]->getIdBaby()."\" title=\"Supprimer la photo\" class=\"gogo\" data-gogo=\"la photo\"><i class=\"fas fa-trash\"></i></a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -67,58 +66,73 @@ if(isset($result["articles"])){
                     }else{
                         $vi = "<i class=\"fas fa-eye-slash\"></i>";
                     }
-                    echo "<p>".$year."</p>
-                    <div>";
-                    
+                    echo "<p class=\"year\">souvenir de ".$year."</p>";
                     foreach ($article["commentaires"] as $commentaire) {
-                        // var_dump($commentaire);
-                        if(!is_null($commentaire->pseudo_user)){
-                            $nom = $commentaire->pseudo_user;
-                        }else{
-                            $nom = $commentaire->prenom_user." ".$commentaire->nom_user;
-                        }
-                        echo"<p>Ecrit par : ".$nom."</p>
-                            <p>".$commentaire->getDescriptionCommentaire()."</p>";
+                        $idAuteur = $commentaire->id_user;
+                        
+                        echo"<div class=\"commentaires\">
+                                <p class=\"auteur-com\">Ecrit par : ".$commentaire->pseudo_user."";
+                                if((is_null($commentaire->pseudo_user))||(empty($commentaire->pseudo_user))) {
+                                    echo"".$commentaire->prenom_user."";
+                                    
+                                }else{
+                                    echo"".$commentaire->pseudo_user."";
+                                }
+                        
+                        
+                                    echo"</p>
+                                        <p class=\"text-com\">".$commentaire->getDescriptionCommentaire()."</p>
+                                        <p class=\"gestion-com\">";
+                                    if($idAuteur == $_SESSION["auth"]["id"]){
+                                            echo "<a href=\"editer-commentaire-".$commentaire->getIdCommentaire()."-".$result["baby"]->getIdBaby()."\" title=\"Modifier le commentaire\">
+                                            <i class=\"fas fa-pen-square\"></i>
+                                            </a>";
+                                        }
+                                    
+                                            echo"<a href=\"supprimer-commentaire-".$commentaire->getIdCommentaire()."-".$result["baby"]->getIdBaby()."\" title=\"Supprimer le commentaire\" class=\"gogo\" data-gogo=\"le commentaire\">
+                                            <i class=\"fas fa-trash\"></i>
+                                            </a>
+                                        </p>
+                                    </div>";
                     } 
-
-                echo"</div>
-                </article>
+                echo"
                 
-            <div class=\"menu-article\">
-            <ul>
-                <li>
-                    <a href=\"editer-souvenir-".$obj->getIdArticle()."\" title=\"Modifier l'article : ".$obj->getTitreArticle()." \">
-                    <i class=\"fas fa-edit\"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href=\"ajouter-une-photo-".$obj->getIdArticle()."\" title=\"Ajouter une photo\">
-                    <i class=\"fas fa-camera\"></i> 
-                    </a>
-                </li>
+                        <div class=\"menu-article\">
+                        <ul>
+                            <li>
+                                <a href=\"editer-souvenir-".$obj->getIdArticle()."\" title=\"Modifier l'article : ".$obj->getTitreArticle()." \">
+                                <i class=\"fas fa-edit\"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href=\"ajouter-une-photo-".$obj->getIdArticle()."\" title=\"Ajouter une photo\">
+                                <i class=\"fas fa-camera\"></i> 
+                                </a>
+                            </li>
 
-                <li>
-                    <a href=\"ajouter-commentaire-souvenir-".$obj->getIdArticle()."-".$result["baby"]->getIdBaby()."\" title=\"Ajouter un commentaire\">
-                    <i class=\"ico icofont-comment\"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href=\"visible-souvenir-".$obj->getIdArticle()."-".$result["baby"]->getIdBaby()."\" title=\"Visible/Invisible\">
-                    ".$vi."
-                    </a>
-                </li>
-                <li>
-                    <a href=\"supprimer-souvenir-".$obj->getIdArticle()."-".$result["baby"]->getIdBaby()."\" title=\"Supprimer l'article\" class=\"gogo\" data-gogo=\"".$obj->getTitreArticle()."\">
-                            <i class=\"fas fa-trash\"></i>
-                    </a>
-                </li>
+                            <li>
+                                <a href=\"ajouter-commentaire-souvenir-".$obj->getIdArticle()."-".$result["baby"]->getIdBaby()."\" title=\"Ajouter un commentaire\">
+                                <i class=\"ico icofont-comment\"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href=\"visible-souvenir-".$obj->getIdArticle()."-".$result["baby"]->getIdBaby()."\" title=\"Privé/Public\">
+                                ".$vi."
+                                </a>
+                            </li>
+                            <li>
+                                <a href=\"supprimer-souvenir-".$obj->getIdArticle()."-".$result["baby"]->getIdBaby()."\" title=\"Supprimer le souvenir\" class=\"gogo\" data-gogo=\"".$obj->getTitreArticle()."\">
+                                        <i class=\"fas fa-trash\"></i>
+                                </a>
+                            </li>
 
-            </ul>
-        </div>";
+                        </ul>
+                    </div></article>";
             
         
         }
         echo "</section>";
 }
 ?>
-<script type="text/javascript" src="templates/back/js/confirmation.js"></script>
+<script src="templates/back/js/confirmation.js" defer></script>
+<script src="templates/back/js/menuPhoto.js" defer></script>

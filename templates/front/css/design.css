@@ -33,7 +33,9 @@ body {
     /* color: rgb(255, 255, 255); */
 
 }
-
+.content{
+    min-height: 75vh;
+}
 .sauvegarde-de-souvenirs-en-ligne header{
     width: 100%;
     box-shadow: none;
@@ -93,8 +95,9 @@ header nav li {
 
 
 .feedback {
-    background-color: #5a5a5aa4;
-    color: #F07167;
+    padding: 10px;
+    background-color: #614846;
+    color: #CCC;
     width:100%;
     height: 90px;
 }

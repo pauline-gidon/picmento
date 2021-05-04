@@ -54,7 +54,7 @@ function deleteAmisByIdTribu($id_tribu){
 //-------------------------------------------------------------------------------------------------
 // insert invitation association tribu avec le 2eme parent
 //-------------------------------------------------------------------------------------------------
-	function insertAmis(Amis $amis){
+	function insertAmisTribu(Amis $amis){
         $user_id_expediteur   = $this->db->real_escape_string($amis->getUserIdExpediteur());
         $user_id_destinataire   = $this->db->real_escape_string($amis->getUserIdDestinataire());
         $tribu_id_tribu   = $this->db->real_escape_string($amis->getTribuIdTribu());
@@ -119,7 +119,6 @@ function deleteAmisByIdTribu($id_tribu){
             AND acceptation_amis = 1
             AND user_id_expediteur = $id
             OR user_id_destinataire = $id";
-            // var_dump($req);die();
             $query = $this->db->query($req);     
 
             if($query->num_rows > 0){
@@ -133,6 +132,30 @@ function deleteAmisByIdTribu($id_tribu){
 		}
 
     }
+//-------------------------------------------------------------------------------------------------
+// insert invitation association tribu avec le 2eme parent
+//-------------------------------------------------------------------------------------------------
+function insertAmis(Amis $amis){
+    $user_id_expediteur   = $this->db->real_escape_string($amis->getUserIdExpediteur());
+    $user_id_destinataire   = $this->db->real_escape_string($amis->getUserIdDestinataire());
+    $validity_token_tribu   = $this->db->real_escape_string($amis->getValidityTokenTribu());
+    $token_tribu   = $this->db->real_escape_string($amis->getTokenTribu());
+   
+    $req = "INSERT INTO amis VALUES(
+        NULL,
+        NULL,
+        NULL,
+        '$user_id_expediteur',
+        '$user_id_destinataire',
+        NULL,
+        '$validity_token_tribu',
+        '$token_tribu'
+    )";
+    $query = $this->db->query($req);
+
+    return $this->db->insert_id;
+
+}
 
 
 

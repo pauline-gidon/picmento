@@ -21,8 +21,8 @@ class AcceptationAmis extends Controller {
 	function getResult(){
 
 		$this->setLayout("front");
-		$this->setTitle("Demande d'association à une tribu");
-		$this->setView("ORM/Amis/View/form-demande.php");
+		$this->setTitle("Une demande pour vous");
+		$this->setView("ORM/Amis/View/form-demande-ami.php");
         if(isset($_SESSION["auth"])){
             session_destroy();
         }
@@ -46,7 +46,7 @@ class AcceptationAmis extends Controller {
                     $id_exp = $amis->getUserIdExpediteur();
                     $id_dest = $amis->getUserIdDestinataire();
             
-                    // je fait une requete pour avoir son profil utilisateur pour de l'affichage dynamique
+                    // je fait une requete pour avoir son profil utilisateur pour de l'affichage dynamique et savoir si son compt est actif
                     $managerUser = new ManagerUser($cx);
                     $user_exp = $managerUser->oneUserById($id_exp);
                     $general [] = $user_exp;
@@ -79,16 +79,20 @@ class AcceptationAmis extends Controller {
                             $user_dest = $managerUser->oneUserById($id_dest);
                             $nom_user = $user_dest->getNomUser();
                                 if(is_null($nom_user)){
-                                    $flash->setFlash("La demande a bien été acceptée vous pouvez crée votre compte et y retrouver votre tribu ! <a href=\"inscription\" title=\"Inscription\" class=\"flash-retour\"><i class=\"fas fa-sign-in-alt\"></i> Inscription</a>");
+                                    $flash->setFlash("La demande a bien été validée vous pouvez crée votre compte !");
+                                    header("location: inscription");
+                                    exit();
                                 }else{
-                                    $flash->setFlash("La demande a bien été acceptée vous pouvez vous connecter et retrouver votre tribu ! <a href=\"connexion\" title=\"Connexion\" class=\"flash-retour\"><i class=\"fas fa-sign-in-alt\"></i> Connexion</a>");
+                                    $flash->setFlash("La demande a bien été acceptée vous pouvez vous connecter ! ");
+                                    header("location: connexion");
+                                    exit();
                                 }
                                 $automailer = new AutoMailer(
                                     $user_exp->getEmailUser(),
                                     "".$user_dest->getEmailUser()." a accepter votre invitation",
                                     "
-                                    <h1>Ajout d'un deuxième parent</h1>
-                                    <p>".$user_dest->getEmailUser()." a accepter d'être identifié comme deuxième parent.</p>
+                                    <h1>Acceptation de la demande</h1>
+                                    <p>".$user_dest->getEmailUser()." a accepter votre demande.</p>
                                     "
                                      );
                    
@@ -104,10 +108,10 @@ class AcceptationAmis extends Controller {
                             "".$user_dest->getEmailUser()." a refusé votre invitation",
                             "
                             <h1>Ajout d'un deuxième parent</h1>
-                            <p>".$user_dest->getEmailUser()." a refusé d'être identifié comme deuxième parent.</p>
+                            <p>".$user_dest->getEmailUser()." a refusé votre demande.</p>
                             "
                              );
-                        header("location: index.php");
+                            header("location: index.php");
                         
                          }
                         if($automailer->sendMail()){
@@ -126,12 +130,10 @@ class AcceptationAmis extends Controller {
                     $cx->close();
                     return $general;
                 }else{
-                    
                     $flash->setFlash("Vous avez déjà repondu à la demande.");
             }
-                
-    
-                //fermeture du if submit go 
+              
+                    //fermeture du if submit go 
 
             }else{
                 header("location: ".DOMAINE."errors/404.php");

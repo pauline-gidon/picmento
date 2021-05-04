@@ -55,9 +55,6 @@ class ConnecterCompte extends Controller {
 
 			$cx->close();
 		}
-
-
 		return $build;
 	}
-
 }

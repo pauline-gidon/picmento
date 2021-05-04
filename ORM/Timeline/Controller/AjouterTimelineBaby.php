@@ -51,11 +51,12 @@ class AjouterTimelineBaby extends Controller {
                     $managerT = new ManagerTimeline($cx);
     
                     if($managerT->insertNewTimeline($timeline)){
-                        $flash->setFlash("La photo a bien été ajoutée à la timeline");
+                        $flash->setFlash("La photo a bien été ajoutée à la timeline !");
                     }else{
-                        $flash->setFlash("Impossible d'ajouter la photo à la timeline, réesayez ou contactez l'équipe picmento");
+                        $flash->setFlash("Impossible d'ajouter la photo à la timeline. Veuillez réesayer ou contacter l'équipe <span class=\"flash-logo\">Picmento</span> ");
                     }
                     header("location: afficher-timeline-".$id_baby."");
+                    exit();
     
                 }
             }else{
@@ -63,7 +64,7 @@ class AjouterTimelineBaby extends Controller {
                 die();
             }
 
-
+            $cx->close();
             return $build;
         }
 	

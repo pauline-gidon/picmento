@@ -50,20 +50,13 @@ class SupprimerSouvenir extends Controller {
             }
             if($managerA->deleteArticleHasBaby($id_article,$id_baby)){
                 if($managerA->deleteArticleByIds($id_article)){
-                    $flash->setFlash("L'article a bien été modifié supprimer");
-                    
-                }
-                
-                
+                    $flash->setFlash("L'article a bien été supprimer");
+                }   
             }
-            
-            
-            
         }
+        $cx->close();
         header("location: afficher-souvenirs-".$id_baby."");
-
-
-
+        exit();
     }
 }
 

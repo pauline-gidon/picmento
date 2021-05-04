@@ -24,7 +24,7 @@ class AutoMailer {
 		$entetes 	.=	"Content-Transfert-Encoding: 8bit\r\n";
 		$entetes 	.=	"Object:".$this->objet;
 
-		return (@mail($this->destinataire,$this->objet,$this->message,$entetes));
+		return (mail($this->destinataire,$this->objet,$this->message,$entetes));
 
 	}
 }
