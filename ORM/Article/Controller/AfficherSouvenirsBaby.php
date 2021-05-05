@@ -24,6 +24,8 @@ class AfficherSouvenirsBaby extends Controller {
 		
 		$http 				= new HTTPRequest();
 		$id_baby 	= $http->getDataGet("id");
+        $_SESSION["idBaby"] = $id_baby;
+      
 		$cx			= new Connexion();
 		$managerU = new ManagerUser($cx);
         if($managerU->verifUserBaby($id_baby)){

@@ -26,19 +26,19 @@ class FormBabyTribu extends Form {
         
         
 		$this->add(new InputText([
-            "label" 			=> "Nom d'enfant&nbsp;: ",
+            "label" 			=> "Nom d'enfant",
 			"name" 				=> "nom_baby",
 			"cssLabel" 			=> "consigne",
 			"cssChamp" 			=> "champ",
 			"getterEntity"      => "getNomBaby",
 			"validators" 		=> [
-                new VideValidator("Nom Enfant obligatoire")
-                ]
-                ]));
+        new VideValidator("Nom Enfant obligatoire")
+        ]
+        ]));
                 
 
         $this->add(new InputFile([
-            "label" 		    => "Choisissez sa photo&nbsp;: ",
+            "label" 		    => "Choisissez sa photo",
             "name" 			    => "photo_baby",
             "cssLabel" 			=> "consigne",
             "cssChamp" 			=> "champ",
@@ -56,69 +56,67 @@ class FormBabyTribu extends Form {
             "Upload impossible",
             $http->getDataFiles("photo_baby","error")
             )
-        ],
-        "getterEntity"      => ""
-
+        ]
  
         ]));
             
 
         $this->add(new InputDate([
-            "label" 				=> "Date de naissance&nbsp;: ",
+            "label" 				=> "Date de naissance",
             "name" 					=> "date_naissance_baby",
             "placeholder"       	=> "2019-05-18",
             "cssLabel" 		    	=> "consigne",
             "cssChamp" 		    	=> "champ",
             "getterEntity"          => "getDateNaissanceBaby",
             "validators" 	        => [
-                new DateValidator("La date de naissance est obligatoire et doit être inférieur ou egale à aujourd'hui")
-                
-                ]
-                ]));
+        new DateValidator("La date de naissance est obligatoire et doit être inférieur ou egale à aujourd'hui")
+        
+        ]
+        ]));
                     
                     
         $this->add(new InputText([
-            "label" 			=> "Heure de naissance&nbsp;: ",
+            "label" 			=> "Heure de naissance",
             "name" 				=> "heure_naissance_baby",
             "placeholder"   	=> "15:23:00",
             "cssLabel" 			=> "consigne",
             "cssChamp" 			=> "champ",
             "validators" 		=> [
-                new TimeValidator("L'heure de naissance est obligatoire")
-            ],
-                "getterEntity"      => "getHeureNaissanceBaby"
-                ]));
+        new TimeValidator("L'heure de naissance est obligatoire")
+        ],
+        "getterEntity"      => "getHeureNaissanceBaby"
+        ]));
 
 
         $this->add(new InputText([
-            "label" 			=> "Lieu de naissance&nbsp;: ",
+            "label" 			=> "Lieu de naissance",
             "name" 				=> "lieu_naissance_baby",
             "cssLabel" 			=> "consigne",
             "cssChamp" 			=> "champ",
             "validators" 		=> [
-                new VideValidator("Le lieu de naissance est obligatoire")
+        new VideValidator("Le lieu de naissance est obligatoire")
             ],
             "getterEntity"      => "getLieuNaissanceBaby"
-                ]));
+        ]));
 
 
         $this->add(new InputText([
-            "label" 			=> "Poids de naissance \"kg\"&nbsp;: ",
+            "label" 			=> "Poids de naissance (kg)",
             "name" 				=> "poids_naissance_baby",
             "placeholder"       	=> "3.130",
             "cssLabel" 			=> "consigne",
             "cssChamp" 			=> "champ",
             "validators" 		=> [
-                new PoidsValidator("Le poids ne doit pas être négatif et cohérant avec un poids de naissance"),
-                new VideValidator("Le poids de naissance est obligatoire"),
-                new NumberValidator("Le poids doit être numérique")
+        new PoidsValidator("Le poids ne doit pas être négatif et cohérant avec un poids de naissance"),
+        new VideValidator("Le poids de naissance est obligatoire"),
+        new NumberValidator("Le poids doit être numérique")
             ],
                 "getterEntity"      => "getPoidsNaissanceBaby"
-                ]));
+        ]));
 
 
         $this->add(new InputText([
-            "label" 			=> "Taille de naissance \"cm\"&nbsp;: ",
+            "label" 			=> "Taille de naissance ( cm )",
             "name" 				=> "taille_naissance_baby",
             "placeholder"       	=> "50",
             "cssLabel" 			=> "consigne",

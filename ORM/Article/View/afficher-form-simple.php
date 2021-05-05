@@ -8,8 +8,9 @@ if(isset($result)){
     
 
 }
+
 ?>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$(function(){
 		$('.flatpickr').flatpickr({
 			dateFormat: 'Y-m-d',
@@ -22,4 +23,4 @@ if(isset($result)){
 			time_24hr: true
 		});
 	});
-</script>
+</script> -->

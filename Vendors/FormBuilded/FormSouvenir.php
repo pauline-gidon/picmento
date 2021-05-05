@@ -18,7 +18,7 @@ class FormSouvenir extends Form {
 
 	function buildForm(){
 		$http = new HTTPRequest();
-
+       
 		$this->add(new InputText([
 			"label" 				=> "Le titre",
 			"name" 					=> "titre_article",
@@ -57,38 +57,21 @@ class FormSouvenir extends Form {
 			"getterEntity" => "getDateArticle"
 		]));
 
-        $this->add(new InputFile([
-			"label" 		=> "Votre 1er photo",
-			"name" 			=> "photo1",
-			"cssLabel" 		=> "consigne",
-			"cssChamp" 		=> "champ"
-		]));
-        $this->add(new InputFile([
-			"label" 		=> "Votre 2ème photo",
-			"name" 			=> "photo2",
-			"cssLabel" 		=> "consigne",
-			"cssChamp" 		=> "champ"
-		]));
 
-        $this->add(new InputFile([
-			"label" 		=> "Votre 3ème photo",
-			"name" 			=> "photo3",
-			"cssLabel" 		=> "consigne",
-			"cssChamp" 		=> "champ"
-		]));
 
+        $this->add(new InputRadio([
+            // "checked"		=>TRUE,
+            "label" 		=> "Public",
+            "value"			=> 1,
+            "name" 			=> "actif_article",
+            "cssLabel" 		=> "consigne",
+            "cssChamp" 		=> "champ",
+            "getterEntity" 	=> "getActifArticle",
+            "selected"      => TRUE
+        ]));
 		$this->add(new InputRadio([
 			"label" 		=> "Privé (visible uniquement par le(s) parent(s) )",
 			"value" 		=> 0,
-			"name" 			=> "actif_article",
-			"cssLabel" 		=> "consigne",
-			"cssChamp" 		=> "champ",
-			"getterEntity" 	=> "getActifArticle"
-		]));
-		$this->add(new InputRadio([
-			// "checked"		=>TRUE,
-			"label" 		=> "Public",
-			"value"			=> 1,
 			"name" 			=> "actif_article",
 			"cssLabel" 		=> "consigne",
 			"cssChamp" 		=> "champ",
@@ -100,6 +83,12 @@ class FormSouvenir extends Form {
 		"name" 					=> "souvenir",
 		"cssChamp" 				=> "btn",
 		"value" 				=> "Enregistrer"
+		]));
+
+		$this->add(new InputSubmit([
+		"name" 					=> "addPhoto",
+		"cssChamp" 				=> "btn",
+		"value" 				=> "Ajouter une photo"
 		]));
 
 

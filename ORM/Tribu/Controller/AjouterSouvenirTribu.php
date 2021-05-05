@@ -70,52 +70,52 @@ class AjouterSouvenirTribu extends Controller {
                 $new_id_article = $managerA->insertArticle($new_souvenir);
                 $managerM = new ManagerMedias($cx);
                 //*********************************************************1er photo
-                $file		= $http->getDataFiles("photo1");
-                $destination = "medias/souvenir/";
-                $uploader = new Uploader($file,$destination);
-                $nom_file = $uploader->upload();
+                // $file		= $http->getDataFiles("photo1");
+                // $destination = "medias/souvenir/";
+                // $uploader = new Uploader($file,$destination);
+                // $nom_file = $uploader->upload();
                 
-                if(!is_null($nom_file)){
-                    //Avec redimensionnement si nécessaire
-                    $uploader->imageSizing(400);
-                    $new_medias = new Medias([
-                        "nom_medias" 	=> $nom_file
-                        ]);
-                    $new_id_medias = $managerM->insertMedias($new_medias);
-                    $managerM->insertMediasHasArticle($new_id_article,$new_id_medias);
-                }
+                // if(!is_null($nom_file)){
+                //     //Avec redimensionnement si nécessaire
+                //     $uploader->imageSizing(400);
+                //     $new_medias = new Medias([
+                //         "nom_medias" 	=> $nom_file
+                //         ]);
+                //     $new_id_medias = $managerM->insertMedias($new_medias);
+                //     $managerM->insertMediasHasArticle($new_id_article,$new_id_medias);
+                // }
     
                 //*****************************************************2eme photo
-                $file2		= $http->getDataFiles("photo2");
-                $destination = "medias/souvenir/";
-                $uploader = new Uploader($file2,$destination);
-                $nom_file2 = $uploader->upload();
+                // $file2		= $http->getDataFiles("photo2");
+                // $destination = "medias/souvenir/";
+                // $uploader = new Uploader($file2,$destination);
+                // $nom_file2 = $uploader->upload();
                 
-                if(!is_null($nom_file2)){
-                    //Avec redimensionnement si nécessaire
-                    $uploader->imageSizing(400);
-                    $new_medias2 = new Medias([
-                        "nom_medias" 	=> $nom_file2
-                        ]);
-                        $new_id_medias2 = $managerM->insertMedias($new_medias2);
-                        $managerM->insertMediasHasArticle($new_id_article,$new_id_medias2);
-                }
+                // if(!is_null($nom_file2)){
+                //     //Avec redimensionnement si nécessaire
+                //     $uploader->imageSizing(400);
+                //     $new_medias2 = new Medias([
+                //         "nom_medias" 	=> $nom_file2
+                //         ]);
+                //         $new_id_medias2 = $managerM->insertMedias($new_medias2);
+                //         $managerM->insertMediasHasArticle($new_id_article,$new_id_medias2);
+                // }
     
                 //*****************************************************3eme photo
-                $file3		= $http->getDataFiles("photo3");
-                $destination = "medias/souvenir/";
-                $uploader = new Uploader($file3,$destination);
-                $nom_file3 = $uploader->upload();
+                // $file3		= $http->getDataFiles("photo3");
+                // $destination = "medias/souvenir/";
+                // $uploader = new Uploader($file3,$destination);
+                // $nom_file3 = $uploader->upload();
                 
-                if(!is_null($nom_file3)){
-                    //Avec redimensionnement si nécessaire
-                    $uploader->imageSizing(400);
-                    $new_medias3 = new Medias([
-                        "nom_medias" 	=> $nom_file3
-                        ]);
-                    $new_id_medias3 = $managerM->insertMedias($new_medias3);
-                    $new3 = $managerM->insertMediasHasArticle($new_id_article,$new_id_medias3);
-                }
+                // if(!is_null($nom_file3)){
+                //     //Avec redimensionnement si nécessaire
+                //     $uploader->imageSizing(400);
+                //     $new_medias3 = new Medias([
+                //         "nom_medias" 	=> $nom_file3
+                //         ]);
+                //     $new_id_medias3 = $managerM->insertMedias($new_medias3);
+                //     $new3 = $managerM->insertMediasHasArticle($new_id_article,$new_id_medias3);
+                // }
                 foreach($id_babys as $id_baby){
                     $insertion= $managerA->insertArticleHasbaby($id_baby,$new_id_article);
     

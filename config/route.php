@@ -270,10 +270,18 @@ $route[] = [
 	"droits"			=> 1
 ];
 $route[] = [
-	"url"					=> PTH."ajouter-une-photo-([0-9]+)", 
+	"url"					=> PTH."ajouter-photo-([0-9]+)", 
 	"namespace"		=> "ORM", 
 	"module"			=> "Article", 
 	"action"			=> "AjouterPhoto",  
+	"logged"			=> true, 
+	"droits"			=> 1
+];
+$route[] = [
+	"url"					=> PTH."ajouter-photos-souvenir-([0-9]+)", 
+	"namespace"		=> "ORM", 
+	"module"			=> "Article", 
+	"action"			=> "AjouterPhotosSouvenir",  
 	"logged"			=> true, 
 	"droits"			=> 1
 ];

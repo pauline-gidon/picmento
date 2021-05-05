@@ -33,8 +33,8 @@ POINTS DE RUPTURE UTILES AU PROJET
 }
 
 @media screen and (max-width: 965px){
-    h1{
-        padding-top: 140px;
+    h1 {
+        z-index: 0;
     }
 	.wrap {
 		width: 90%;
@@ -45,28 +45,7 @@ POINTS DE RUPTURE UTILES AU PROJET
 	#logo {
 		left: 6%;
 	}
-	header nav {
-		width: 100%;
-	}
-	nav ul {
-		width: 100%;
-	}
-
-	nav ul li {
-		width: 100%;
-		text-align: right;
-		padding: 10px 0 10px 0 ;
-	}
-	nav ul li :hover {
-		width: 100%;
-        background-color: transparent;
-        color: #FFF;
-		/* text-decoration: underline 2px #FFF; */
-	}
-	nav ul li a {
-		padding: 0 0 0 0;
-	}
-	header {
+    header {
 		width: 100%;
 		height: 70px;
 		/* position: fixed;
@@ -75,11 +54,35 @@ POINTS DE RUPTURE UTILES AU PROJET
 		z-index: 50; */
         background-color: #f8dec5ce;
 	}
-	
-	nav li:last-child {
-		border: none;
+	header nav {
+		width: 100%;
+        display: none;
+		padding-top: 70px;
+        z-index: 50;
 	}
-	
+	nav ul {
+        justify-content: end;
+	}
+
+	nav ul li {
+        width: 110px;
+		text-align: right;
+		padding: 10px 0 10px 0 ;
+        margin-left: 0;
+        margin-right: 25px;
+	}
+
+	nav ul li :hover {
+        background-color: transparent;
+        color: #FFF;
+		/* text-decoration: underline 2px #FFF; */
+	}
+	nav ul li a {
+		padding: 0 0 0 0;
+        display: block;
+	}
+
+
 
 	#burger {
 		position: absolute;
@@ -94,7 +97,7 @@ POINTS DE RUPTURE UTILES AU PROJET
 	}
 	#burger + label {
 		display: block;
-		padding: 5px 0 10px 50px;
+		padding: 5px 0 7px 50px;
 		background-image: url(/picmento/site/templates/front/images/burgerSprite.png);
 		background-repeat: no-repeat;
 		background-size: 40px;
@@ -111,43 +114,72 @@ POINTS DE RUPTURE UTILES AU PROJET
 	#burger:checked + label {
 		background-position: left bottom;
 	}
-	header nav {
-		display: none;
-		padding-top: 70px;
-	}
+
 	#burger:checked ~ nav {
 		display: block;
-        background-color: #f8dec5ce;
+        background-color: #f8dec5;
 		box-shadow: 0  0px 10px #ffffff;
 
 	}
-	#burger:checked ~ body {
-    padding-top: 150px;
 
-	}
 	
 
 }
 @media only screen and (max-width: 768px) {
     /* tablettes et ordinateurs */
-    
-    
+    nav ul li {
+        width: 110px;
+    }
+    form {
+        width: 92%;
+        padding: 35px;
+        margin: 0 auto;
+        margin-bottom: 0px;
+    }
+    .inscription form{
+        width: 92%;
+
+    }
+    form p {
+        padding: 10px 0;
+    }
+    .inscription #zone-form .visu-mdp {
+        right: -25px;
+        top: 50px;
+    }
 	
 }	
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 664px) {
     /* tablettes et ordinateurs */
-footer #pipe{
-    display: none;
-}
+    footer #pipe{
+        display: none;
+    }
+    footer span {
+        display: none;
+    }
+    footer p  {
+        text-align: center;
+    }
+    footer p a {
+        width: 100%;
+    }
 }	
 @media only screen and (max-width: 568px) {
 	/* tablettes et ordinateurs */
-    .authentification h1 {
+    .connexion h1 {
         font-size: 28px;
     }
 
+
+    
+
 	
 }	
+@media only screen and (max-width: 405px) {
+	/* tablettes et ordinateurs */
+h1 {
+    /* display: none; */
+}
 @media only screen and (max-width: 378px) {
 	/* tablettes et ordinateurs */
 footer span {

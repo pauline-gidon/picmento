@@ -20,13 +20,14 @@ class AjouterSouvenirBaby extends Controller {
 
 	function getResult() {
 		$this->setLayout("back");
-		$this->setTitle("Ajouter un souvenir");
+		$this->setTitle("Ajouter un souvenir à");
 		$this->setView("ORM/Article/View/afficher-form.php");
 
         $http = new HTTPRequest();
 		$id_baby = $http->getDataGet("id");
 		$cx			= new Connexion();
         $managerU = new ManagerUser($cx);
+      
         if($managerU->verifUserBaby($id_baby)){
 
 
@@ -43,9 +44,11 @@ class AjouterSouvenirBaby extends Controller {
                 $form 		= new FormSouvenir();
                 $build 		= $form->buildForm();
                 $general [] = $build;
-                if(($form->isSubmit("souvenir"))&&($form->isValid())){
+                if((($form->isSubmit("souvenir")) || ($form->isSubmit("addPhoto"))) && ($form->isValid())){
                     $flash = new Flash();
-                    
+  
+
+
                     $new_souvenir = new Article([
                         "titre_article" 	=> $http->getDataPost("titre_article"),
                         "description_article" 	=> $http->getDataPost("description_article",1),
@@ -55,69 +58,24 @@ class AjouterSouvenirBaby extends Controller {
             
                     $manager = new ManagerArticle($cx);
                     
-                    
                     $new_id_article = $manager->insertArticle($new_souvenir);
-        
-                    $managerM = new ManagerMedias($cx);
-        
-                    //1er photo
-                    $file		= $http->getDataFiles("photo1");
-                    $destination = "medias/souvenir/";
-                    $uploader = new Uploader($file,$destination);
-                    $nom_file = $uploader->upload();
-                    
-                    if(!is_null($nom_file)){
-                        //Avec redimensionnement si nécessaire
-                        $uploader->imageSizing(400);
-                        $new_medias = new Medias([
-                            "nom_medias" 	=> $nom_file
-                            ]);
-                            $new_id_medias = $managerM->insertMedias($new_medias);
-                            $managerM->insertMediasHasArticle($new_id_article,$new_id_medias);
-                    }
-        
-                    //2eme photo
-                    $file2		= $http->getDataFiles("photo2");
-                    $destination = "medias/souvenir/";
-                    $uploader = new Uploader($file2,$destination);
-                    $nom_file2 = $uploader->upload();
-                    
-                    if(!is_null($nom_file2)){
-                        //Avec redimensionnement si nécessaire
-                        $uploader->imageSizing(400);
-                        $new_medias2 = new Medias([
-                            "nom_medias" 	=> $nom_file2
-                            ]);
-                            $new_id_medias2 = $managerM->insertMedias($new_medias2);
-                            $managerM->insertMediasHasArticle($new_id_article,$new_id_medias2);
-                    }
-        
-                    //3eme photo
-                    $file3		= $http->getDataFiles("photo3");
-                    $destination = "medias/souvenir/";
-                    $uploader = new Uploader($file3,$destination);
-                    $nom_file3 = $uploader->upload();
-                    
-                    if(!is_null($nom_file3)){
-                        //Avec redimensionnement si nécessaire
-                        $uploader->imageSizing(400);
-                        $new_medias3 = new Medias([
-                            "nom_medias" 	=> $nom_file3
-                        ]);
-                        $new_id_medias3 = $managerM->insertMedias($new_medias3);
-                        $managerM->insertMediasHasArticle($new_id_article,$new_id_medias3);
-                    }
+
+                    // $managerM = new ManagerMedias($cx);
         
                     if($manager->insertArticleHasbaby($id_baby,$new_id_article)){
-                        
+
+                        if(($form->isSubmit("addPhoto")) && ($form->isValid())){
+                            $flash->setFlash("Votre souvenir a bien été créé. Ajouter vos photos !");
+
+                            header("location: ajouter-photos-souvenir-".$new_id_article."");
+                            exit();
+                        }
                         $flash->setFlash("Votre souvenir a bien été ajouté !");
                         header("location: afficher-souvenirs-".$id_baby."");
                         exit();
                     }else{
                         $flash->setFlash("Impossible d'ajouter un souvenir à ".$nom_baby." veuillez réesayer ou contacter l'équipe <span class=\"flash-logo\">Picmento</span>");
-                    }
-        
-                        
+                    }                   
                 }
             }
         }else{
@@ -126,9 +84,8 @@ class AjouterSouvenirBaby extends Controller {
         }
         $cx->close();
         return $general;
-		}
-	}
-
+    }
+}
 
 		
 

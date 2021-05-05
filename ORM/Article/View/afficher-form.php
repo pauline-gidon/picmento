@@ -1,16 +1,17 @@
 <?php
 use Vendors\Flash\Flash;
 $flash = new Flash();
-echo $flash->getFlash();
 
 if(isset($result)){
-	echo "<h2 class=\"prenom-title\">".$result[0]->getNomBaby()."</h2>
-        <div id=\"zone-form\" class=\"wrap content\">".$result[1]->getForm()."</div>";
+    echo "<h2 class=\"prenom-title\">".$result[0]->getNomBaby()."</h2>
+    <div id=\"zone-form\" class=\"wrap content\">".$result[1]->getForm()."</div>";
+    echo $flash->getFlash();
     
 
 }
+
 ?>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$(function(){
 		$('.flatpickr').flatpickr({
 			dateFormat: 'Y-m-d',
@@ -23,4 +24,4 @@ if(isset($result)){
 			time_24hr: true
 		});
 	});
-</script>
+</script> -->

@@ -6,7 +6,9 @@ POINTS DE RUPTURE UTILES AU PROJET
 }
 
 @media screen and (max-width: 1260px){
-
+    .baby {
+        width: 20vw;
+    }
 
 	
 }
@@ -98,19 +100,67 @@ POINTS DE RUPTURE UTILES AU PROJET
 		box-shadow: 0  0px 10px #FFFCF8;
 
 	}
+
+    /* ----------------------------tribu------------------------------- */
+    .baby {
+        width: 25vw;
+    }
 	
 
 }
 @media only screen and (max-width: 700px) {
+	/* tablette */
+
 	.souv-carre {
         width: 70%;
+    }
+    .baby {
+        width: 32vw;
+    }
+    .wrap {
+        width: 98%;
+    }
+    .tribubaby .colG {
+        width: 100%;
+    }
+    .tribubaby .nav-tribu {
+        right: 26px;
+        top: -7px;
+    }
+    .tribubaby .nav-tribu ul{
+        display:  flex;
+        flex-wrap: wrap;
+        /* right: 150px; */
+    }
+    .tribubaby .nav-tribu ul li{
+        background-color: rgba(255, 255, 255, 0.534);
+        width: 50px;
+        height: 50px;
+        margin: 0 2px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .colG > h2 {
+        padding: 40px 25px 25px;
+        
+    }
+    body {
+    
+        padding-top: 45px;
     }
 
 	
 }	
 
-@media only screen and (max-width: 68px) {
-	/* tablettes et ordinateurs */
-
+@media only screen and (max-width: 600px) {
+	/* SMARTPHONES */
+    .toutes-mes-tribus h1 {
+        font-size: 35px;
+    }
+    .baby {
+        width: 55vw;
+    }
 	
 }	

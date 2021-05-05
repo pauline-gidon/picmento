@@ -41,13 +41,11 @@ if(!defined('DOMAINE')) die();
         <a id="logo" href="<?php echo DOMAINE; ?>" title="Logo Souvenir">Picmento
         </a>
         <nav>
-            <ul class="fc wrap fw ai-c">
-                <li  class="mla">
-                    <a href="<?php echo DOMAINE; ?>contact" title="Contact Picmento">Contact</a>
-                </li>
+            <ul class="fc fw ai-c">
+                
 				<?php if(!isset($_SESSION["auth"])): ?>
 					
-				<li>
+				<li class="mla">
 					<a href="<?php echo DOMAINE; ?>inscription" title="Inscription Picmento">
 						Inscription
 					</a>
@@ -65,9 +63,10 @@ if(!defined('DOMAINE')) die();
                                header("location: afficher-tribu");
                                 }  ?>
 
-				<li>
+				<li class="mla">
 					<a href="<?php echo DOMAINE; ?>deconnexion" title="Déconnexion">
-						Déconnexion
+                    <i class="fas fa-sign-out-alt"></i>
+                    Déconnexion
 					</a>
 				</li>
 			<?php endif; ?>
@@ -84,6 +83,9 @@ if(!defined('DOMAINE')) die();
 		<footer id="bottom">
 		
 			<p class="fc fw jc-c ai-c">
+            
+                    <a href="<?php echo DOMAINE; ?>contact" title="Contact Picmento">Contact</a>
+                    <span>|</span> 
 				<a href="<?php echo DOMAINE; ?>mentions-legales" title="Mentions légales">
 					Mentions légales
 				</a> 

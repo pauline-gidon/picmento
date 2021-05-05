@@ -43,13 +43,13 @@
 			<?php if(!isset($_SESSION["auth"])): ?>
 				
 			<li>
-				<a href="<?php echo DOMAINE; ?>inscription" title="Inscription WOW">
+				<a href="<?php echo DOMAINE; ?>inscription" title="Inscription picmento">
 					Inscription
 				</a>
 			</li>
 
 			<li>
-				<a href="<?php echo DOMAINE; ?>connexion" title="Connexion WOW">
+				<a href="<?php echo DOMAINE; ?>connexion" title="Connexion picmento">
 					Connexion
 				</a>
 			</li>
@@ -75,7 +75,7 @@
 
 			<li>
 				<a href="<?php echo DOMAINE; ?>deconnexion" title="Déconnexion">
-					Déconnexion
+                <i class="fas fa-sign-out-alt"></i>&nbsp;Déconnexion
 				</a>
 			</li>
 		</ul>

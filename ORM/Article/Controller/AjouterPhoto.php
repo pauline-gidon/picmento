@@ -28,9 +28,11 @@ class AjouterPhoto extends Controller {
 		
 		$cx			= new Connexion();
         $managerU = new ManagerUser($cx);
+        //je verifie si l'utilisateur a les doit sur cet article
         if($managerU->verifUserArticle($id)){
 
             $manager = new ManagerArticle($cx);
+            //je recupère l'article par son id
             $article = $manager->oneArticleById($id);
             if(!is_null($article)){
             $id_article = $article->getIdArticle();

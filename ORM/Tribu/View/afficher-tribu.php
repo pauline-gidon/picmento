@@ -5,7 +5,7 @@ echo $flash->getFlash();
 if(isset($result)){
 
     foreach($result as $obj) {
-        echo "<div class=\"tribubaby fc wrap jc-sb\">
+        echo "<div class=\"tribubaby fc fw wrap\">
         <div class=\"colG\">";
         $ids = explode("/",$obj->liste_id);
         $noms = explode("/",$obj->liste_nom);

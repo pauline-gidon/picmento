@@ -49,7 +49,7 @@ body {
     /* min-height: 10vh;
     background-image: url(../images/); */
 }
-.contact header, .inscription header, .authentification header{
+.contact header, .inscription header, .connexion header{
     width: 100%;
     box-shadow: none;
     /* background-color: rgba(167, 159, 157, 0.829); */
@@ -64,7 +64,9 @@ body {
 .mla {
 	margin-left: auto;
 }
-
+header nav {
+    width: 90%;
+}
 header nav a {
     display: block;
     /* color: #F07167; */
@@ -85,7 +87,7 @@ header nav li {
  h1 {
      font-size: 30px;
     text-align: center;
-    padding: 70px;
+    margin: 60px 0;
     /* letter-spacing: 1px; */
 }
 
@@ -128,20 +130,6 @@ header nav li {
     margin-bottom: 10px;
 }
 
-
- header nav{
-    /* background-color: rgb(233, 202, 197);
-    box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.37); */
-
-    /* border: 1px solid rgba( 255, 255, 255, 0.18 );
-    backdrop-filter: blur(10px); */
-    /* -webkit-backdrop-filter: blur(10px); */
-    
-}
- header nav a{
-    color: #614846;
-    
-}
  #logo{
     color: rgb(177, 98, 98);
     
@@ -231,7 +219,7 @@ header nav li {
     background-image: url(../images/livre-boule-bleu.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: bottom;
+    background-position: bottom 0 left 0;
 }
 .inscription h1 {
 color: #FFF;
@@ -243,7 +231,7 @@ color: #FFF;
     position: relative;
 }
 
-.inscription #zone-form:before {
+/* .inscription #zone-form:before {
     content: '';
     background-image: url(../images/livre-boule-bleu.jpg);
     background-repeat: no-repeat;
@@ -261,12 +249,10 @@ color: #FFF;
     left: 0;
     right: 0;    
     z-index: -1;
-}
+} */
 .inscription form {
     background: rgba(255, 255, 255, 0.432);
-    /* box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); */
     border-radius: 10px;
-    /* border: 1px solid rgba( 255, 255, 255, 0.18 ); */
     margin-left: 0 auto;
     margin-bottom: 50px;
 }
@@ -279,10 +265,11 @@ color: #FFF;
 .inscription #zone-form p{
     width: 930px;
 }
-.inscription #zone-form  .consigne{
-    color:black;
+.inscription #zone-form .consigne, .inscription #zone-form label {
+    color:rgb(31, 30, 30);
 }
-.inscription  .champ {
+
+.inscription .champ {
     background-color: rgba(255, 255, 255,0.84);
 }
 .inscription footer {
@@ -296,49 +283,50 @@ form ::placeholder {
     text-decoration: line-through;
 }
 /* ----------------------------------------------------page connexion---------------------------------- */
-.authentification {
+.connexion {
     background-image: url(../images/baby.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
     background-position: bottom;
 }
-.authentification header {
+.connexion header {
     /* background-color: #926a45ce; */
     box-shadow: none;
 }
-.authentification header nav a {
-    color: #F07167;
-    /* color: #413d3c; */
-}
+
 .visu-mdp{
     right: 100px;
     top: 30px;
 }
 
-.authentification h1 {
+.connexion h1 {
     color: rgb(255, 255, 255);
     text-shadow: 1px 1px 3px rgba(100, 100, 100, 0.472);
     mix-blend-mode: overlay;
 }
-.authentification .consigne {
+.connexion .consigne {
     color: #54585f;
 }
-.authentification ::placeholder {
+.connexion ::placeholder {
     letter-spacing: 0.5px;
 }
-.authentification .champ {
+.connexion .champ {
     background-color: rgba(255, 255, 255, 0.692);
 }
-.authentification #zone-form form{
+.connexion #zone-form form{
     background: rgba( 255, 255, 255, 0.40 );
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     margin-bottom: 106px;
 }
-.authentification #zone-form #passe-oublie{
+.connexion #zone-form #passe-oublie{
     text-decoration: underline #8994a6;
+}
+.connexion #zone-form #passe-oublie:hover{
+    color: #4f6ea0;
+    text-decoration: underline #4f6ea0;
 }
 #connexion, #inscription, #go {
     background-color: rgba(255, 255, 255, 0.692);
@@ -363,8 +351,16 @@ form ::placeholder {
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     margin-bottom: 106px;
 }
+.contact form .consigne{
+ color: var(--beige-claire)
+}
 .contact .champ {
     background-color: rgba(255, 255, 255, 0.856);
+    color: #555454;
+}
+#go{
+    /* background-color: rgba(255, 255, 255, 0.856); */
+    color: #383232;
 }
 
 
@@ -442,7 +438,7 @@ form ul {
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     backdrop-filter: blur( 9.0px );
     -webkit-backdrop-filter: blur( 9.0px );
-    border-radius: 10px;
+    /* border-radius: 10px; */
     border: 1px solid rgba( 255, 255, 255, 0.18 );}
 .btn:hover {
     color: #707070;

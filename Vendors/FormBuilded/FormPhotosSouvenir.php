@@ -8,7 +8,7 @@ use Vendors\Validator\UploadCodeValidator;
 use Vendors\Validator\UploadTypeValidator;
 use Vendors\Validator\UploadMaxSizeValidator;
 
-class FormPhoto extends Form {
+class FormPhotosSouvenir extends Form {
     
     function buildForm(){
 		$http = new HTTPRequest();
@@ -39,9 +39,15 @@ class FormPhoto extends Form {
                     
 
 		$this->add(new InputSubmit([
-			"name" 			=> "addPhoto",
+			"name" 			=> "go",
 			"cssChamp" 		=> "btn",
 			"value" 		=> "Enregistrer"
+		]));
+
+		$this->add(new InputSubmit([
+			"name" 			=> "addPhoto",
+			"cssChamp" 		=> "btn",
+			"value" 		=> "Ajouter une autre photo"
 		]));
 
 

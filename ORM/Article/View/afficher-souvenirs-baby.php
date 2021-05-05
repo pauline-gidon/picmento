@@ -105,7 +105,7 @@ if(isset($result["articles"])){
                                 </a>
                             </li>
                             <li>
-                                <a href=\"ajouter-une-photo-".$obj->getIdArticle()."\" title=\"Ajouter une photo\">
+                                <a href=\"ajouter-photo-".$obj->getIdArticle()."\" title=\"Ajouter une photo\">
                                 <i class=\"fas fa-camera\"></i> 
                                 </a>
                             </li>

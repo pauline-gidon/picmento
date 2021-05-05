@@ -55,8 +55,6 @@ $(function(){
         }else{
             $('.messageAideMdp li:nth-child(5)').removeClass('barre');
         }
-
+        
     });
-
-
 });

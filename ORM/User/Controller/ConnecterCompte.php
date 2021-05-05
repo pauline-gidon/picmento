@@ -14,7 +14,7 @@ class ConnecterCompte extends Controller {
 
 	function getResult() {
 		$this->setLayout("front");
-		$this->setTitle("Authentification");
+		$this->setTitle("Connexion");
 		$this->setView("ORM/User/View/afficher-form.php");
 
 		$form = new FormConnexion();
