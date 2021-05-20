@@ -18,8 +18,7 @@ POINTS DE RUPTURE UTILES AU PROJET
         width: 100%;
     }
     .inscription #zone-form .visu-mdp{
-        right: -25px;
-        top: 59px;
+        right: 10px;
     }
     .inscription form {
         width: 100%;
@@ -58,6 +57,7 @@ POINTS DE RUPTURE UTILES AU PROJET
 		width: 100%;
         display: none;
 		padding-top: 70px;
+        background-color: #fed9b7de;
         z-index: 50;
 	}
 	nav ul {
@@ -121,6 +121,10 @@ POINTS DE RUPTURE UTILES AU PROJET
 		box-shadow: 0  0px 10px #ffffff;
 
 	}
+    form {
+        padding: 20px;
+    
+    }
 
 	
 
@@ -130,27 +134,7 @@ POINTS DE RUPTURE UTILES AU PROJET
     nav ul li {
         width: 110px;
     }
-    form {
-        width: 92%;
-        padding: 35px;
-        margin: 0 auto;
-        margin-bottom: 0px;
-    }
-    .inscription form{
-        width: 92%;
 
-    }
-    form p {
-        padding: 10px 0;
-    }
-    .inscription #zone-form .visu-mdp {
-        right: -25px;
-        top: 50px;
-    }
-	
-}	
-@media only screen and (max-width: 664px) {
-    /* tablettes et ordinateurs */
     footer #pipe{
         display: none;
     }
@@ -163,6 +147,11 @@ POINTS DE RUPTURE UTILES AU PROJET
     footer p a {
         width: 100%;
     }
+	
+}	
+@media only screen and (max-width: 664px) {
+    /* tablettes et ordinateurs */
+
 }	
 @media only screen and (max-width: 568px) {
 	/* tablettes et ordinateurs */
@@ -177,9 +166,10 @@ POINTS DE RUPTURE UTILES AU PROJET
 }	
 @media only screen and (max-width: 405px) {
 	/* tablettes et ordinateurs */
-h1 {
-    /* display: none; */
 }
+
+
+
 @media only screen and (max-width: 378px) {
 	/* tablettes et ordinateurs */
 footer span {

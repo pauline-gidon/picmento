@@ -29,7 +29,8 @@ class SupprimerPhoto extends Controller {
         $id_baby = $http->getDataGet("idbaby");
 		$cx			= new Connexion();
         $managerU = new ManagerUser($cx);
-        if(($managerU->verifUserMedias($id_photo))&&($managerU->verifUserBaby($id_baby))){
+        $id_user = $_SESSION["auth"]["id"];
+        if(($managerU->verifUserMedias($id_photo))&&($managerU->verifUserBaby($id_baby, $id_user))){
             $flash = new Flash();
 
 

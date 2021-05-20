@@ -25,11 +25,14 @@ use Navbaby;
             $flash 			= new Flash();
             $cx = new Connexion();
             $manager = new ManagerBaby($cx);
-            $babys=  $manager->allBabyHasUser();
+            $id_user = $_SESSION["auth"]["id"];
+            $babys=  $manager->allBabyHasUser($id_user);
             $this->navConstruction($babys);
 
             $managerU = new ManagerUser($cx);
-            if($managerU->verifUserBaby($id_baby)){
+            $id_user = $_SESSION["auth"]["id"];
+
+            if($managerU->verifUserBaby($id_baby, $id_user)){
                 
                 $managerB = new ManagerBaby($cx);
                 $baby = $managerB->oneBabyById($id_baby);

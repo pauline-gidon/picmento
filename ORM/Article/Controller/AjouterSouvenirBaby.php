@@ -22,13 +22,15 @@ class AjouterSouvenirBaby extends Controller {
 		$this->setLayout("back");
 		$this->setTitle("Ajouter un souvenir à");
 		$this->setView("ORM/Article/View/afficher-form.php");
+        $flash = new Flash();
 
         $http = new HTTPRequest();
 		$id_baby = $http->getDataGet("id");
 		$cx			= new Connexion();
         $managerU = new ManagerUser($cx);
+        $id_user = $_SESSION["auth"]["id"];
       
-        if($managerU->verifUserBaby($id_baby)){
+        if($managerU->verifUserBaby($id_baby, $id_user)){
 
 
             $manager	= new ManagerBaby($cx);
@@ -45,15 +47,16 @@ class AjouterSouvenirBaby extends Controller {
                 $build 		= $form->buildForm();
                 $general [] = $build;
                 if((($form->isSubmit("souvenir")) || ($form->isSubmit("addPhoto"))) && ($form->isValid())){
-                    $flash = new Flash();
   
 
 
                     $new_souvenir = new Article([
-                        "titre_article" 	=> $http->getDataPost("titre_article"),
-                        "description_article" 	=> $http->getDataPost("description_article",1),
+                        "titre_article" 	=> ucfirst($http->getDataPost("titre_article")),
+                        "description_article" 	=> ucfirst($http->getDataPost("description_article",1)),
                         "date_article" 	=> $http->getDataPost("date_article"),
-                        "actif_article" 	=> $http->getDataPost("actif_article")
+                        "actif_article" 	=> $http->getDataPost("actif_article"),
+                        "validation_article" => 1
+        
                     ]);
             
                     $manager = new ManagerArticle($cx);

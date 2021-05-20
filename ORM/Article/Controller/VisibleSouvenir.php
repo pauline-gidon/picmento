@@ -41,7 +41,7 @@ class VisibleSouvenir extends Controller {
             }else{
                 $flash->setFlash("Votre souvenir \"".$titre."\" est devenue public !");
             }
-            header("location: afficher-souvenirs-".$id_baby."");
+            header("location: afficher-souvenirs-".$id_baby."#ancre-".$article->getIdArticle()."");
             exit();
         }
 	}

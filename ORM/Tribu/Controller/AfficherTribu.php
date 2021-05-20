@@ -25,8 +25,8 @@ class AfficherTribu extends Controller {
 		
 		return $tribus;
 
-		}
-	}
+    }
+}
 
 
 		

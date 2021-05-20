@@ -36,12 +36,15 @@ class FormBabyTribu extends Form {
         ]
         ]));
                 
-
+        if(isset($_FILES["photo_baby"])){
+                $tmp = $_FILES["photo_baby"]["tmp_name"];
+        }
         $this->add(new InputFile([
             "label" 		    => "Choisissez sa photo",
             "name" 			    => "photo_baby",
             "cssLabel" 			=> "consigne",
             "cssChamp" 			=> "champ",
+            "value"             => "toto",
             "validators" 	    => [
         new UploadTypeValidator(
             "Veuillez choisir un format jpg ou png",
@@ -89,7 +92,7 @@ class FormBabyTribu extends Form {
 
 
         $this->add(new InputText([
-            "label" 			=> "Lieu de naissance",
+            "label" 			=> "Ville de naissance",
             "name" 				=> "lieu_naissance_baby",
             "cssLabel" 			=> "consigne",
             "cssChamp" 			=> "champ",

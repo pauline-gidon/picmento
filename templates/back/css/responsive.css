@@ -9,7 +9,13 @@ POINTS DE RUPTURE UTILES AU PROJET
     .baby {
         width: 20vw;
     }
-
+    .consigne {
+        width: 100%;
+    }
+    .champ {
+        width: 100%;
+        left:0;
+    }
 	
 }
 
@@ -26,6 +32,8 @@ POINTS DE RUPTURE UTILES AU PROJET
 	}
 	header nav {
 		width: 100%;
+    border-bottom: thick double var(--corail);
+
 	}
 	nav ul {
 		width: 100%;
@@ -51,7 +59,6 @@ POINTS DE RUPTURE UTILES AU PROJET
 		top: 0;
 		left: 0;
 		background-color: #FFFCF8;
-		box-shadow: 0  1px 10px #F07167;
 		z-index: 50;
 	}
 	
@@ -108,24 +115,43 @@ POINTS DE RUPTURE UTILES AU PROJET
 	
 
 }
+@media only screen and (max-width: 768px) {
+    /* tablettes et ordinateurs */
+
+
+    footer #pipe{
+        display: none;
+    }
+    footer span {
+        display: none;
+    }
+    footer p  {
+        text-align: center;
+    }
+    footer p a {
+        width: 100%;
+    }
+	
+}	
+
 @media only screen and (max-width: 700px) {
 	/* tablette */
 
-	.souv-carre {
+	/* .souv-carre {
         width: 70%;
-    }
-    .baby {
-        width: 32vw;
-    }
-    .wrap {
+    } */
+    /* .baby {
+        width: 100%;
+    } */
+    /* .wrap {
         width: 98%;
-    }
+    } */
     .tribubaby .colG {
         width: 100%;
     }
     .tribubaby .nav-tribu {
         right: 26px;
-        top: -7px;
+        top: -26px;
     }
     .tribubaby .nav-tribu ul{
         display:  flex;
@@ -146,9 +172,8 @@ POINTS DE RUPTURE UTILES AU PROJET
         padding: 40px 25px 25px;
         
     }
-    body {
-    
-        padding-top: 45px;
+    .cassbonbon{
+        width: 100%;
     }
 
 	
@@ -160,7 +185,15 @@ POINTS DE RUPTURE UTILES AU PROJET
         font-size: 35px;
     }
     .baby {
-        width: 55vw;
+        width: 50%;
     }
+	
+}	
+@media only screen and (max-width: 405px) {
+	/* SMARTPHONES */
+   
+    /* .baby {
+        width: 30;
+    } */
 	
 }	

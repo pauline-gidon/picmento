@@ -12,8 +12,10 @@ use ORM\Amis\Model\ManagerAmis;
 use ORM\User\Model\ManagerUser;
 use ORM\Tribu\Model\ManagerTribu;
 use Vendors\AutoMailer\AutoMailer;
-use Vendors\FormBuilded\FormAssociation;
 use Vendors\FormBuilded\FormDemande;
+use ORM\Article\Model\ManagerArticle;
+use ORM\Message\Model\ManagerMessage;
+use Vendors\FormBuilded\FormAssociation;
 
 
 class AfficherAmis extends Controller {
@@ -33,24 +35,51 @@ class AfficherAmis extends Controller {
         $amis = $managerA->fullAmisActif();
         $moi = $_SESSION["auth"]["id"];
         if(!is_null($amis)){
-            $user_amis = [];
+           $general["user-amis"] = [];
             //si elle sont pas null je parcour le tableau d'amis
             foreach($amis as $ami){
                 if($ami->getUserIdExpediteur() !== $moi){
-                        array_push($user_amis,$managerU->oneUserById($ami->getUserIdExpediteur())); 
+                        array_push($general["user-amis"],$managerU->oneUserById($ami->getUserIdExpediteur())); 
                 }else{
-                        array_push($user_amis,$managerU->oneUserById($ami->getUserIdDestinataire())); 
+                        array_push($general["user-amis"],$managerU->oneUserById($ami->getUserIdDestinataire())); 
                 }
                 
                 
                 
             }            
             
-            $cx->close();
-            return $user_amis;
+
+
         }else{
             $flash->setFlash("Vous n'avez pas encore d'amis, lancez-vous faite des demandes !");
             
         }
+        $managerA = new ManagerArticle($cx);
+        // je vais recupéré les proposition de souvenirs qui sont en validation zero
+        $souvenirs = $managerA->fullArticlesValidationZero();
+        if(!is_null($souvenirs)){
+            //je compte le nombre de resultat
+            $numsouvenir = count($souvenirs);
+            $general["souvenirs"]["objs"] = $souvenirs;
+            $general["souvenirs"]["nb"] = $numsouvenir;
+        }else{
+            $general["souvenirs"]["nb"] = 0;
+        }
+        
+        $managerM = new ManagerMessage($cx);
+		
+		$messages = $managerM->fullMessagesNonLu();
+        if(!is_null($messages)){
+            //je compte le nombre de messace recu pas lu
+
+            $nummessage = count($messages);
+            $general["message"]["objs"] = $messages;
+            $general["messages"]["nb"] = $nummessage;
+
+        }else{
+            $general["messages"]["nb"] = 0;
+        }
+        $cx->close();
+        return $general;
     }
 }

@@ -1,16 +1,19 @@
 <?php
 use Vendors\Flash\Flash;
 $flash = new FLash();
-echo $flash->getFlash();
 // echo $flash->getFlash();
 //$general[0]= baby
-echo "<h2 class\"prenom-title\">de ".$result["baby"]->getNomBaby()."</h2>
-      <p class=\"add-souvenir\"><a href=\"ajouter-souvenir-".$result["baby"]->getIdBaby()."\" title=\"Ajouter un souvenir à ".$result["baby"]->getNomBaby()." \">
+if(isset($result["baby"])){
+    echo "<h2 class\"prenom-title\">de ".$result["baby"]->getNomBaby()."</h2>";
+    echo $flash->getFlash();
+    echo "<p class=\"add-souvenir\"><a href=\"ajouter-souvenir-".$result["baby"]->getIdBaby()."\" title=\"Ajouter un souvenir à ".$result["baby"]->getNomBaby()." \">
         <i class=\"ico icofont-memorial\"></i> Ajouter
         </a></p>";
+}
+
 
 if(isset($result["articles"])){
-    echo "<section class=\"fc fw wrap\">";
+    echo "<section id=\"top\" class=\"fc fw wrap\">";
     foreach($result["articles"] as $article){
         $obj = $article["souvenir"];
         
@@ -35,9 +38,9 @@ if(isset($result["articles"])){
                 ];
 
                 $mois = array_search($mois,$tableauDeMois);
-                echo "<article class=\"article-baby\">
+                echo "<article id=\"ancre-".$obj->getIdArticle()."\" class=\"article-baby\">
                         <h1 class=\"title\">".$obj->getTitreArticle()."</h1>
-                        <p class=\"description\">".$obj->getDescriptionArticle()."</p>
+                        <p class=\"description\">".ucfirst($obj->getDescriptionArticle())."</p>
                     <p class=\"ruban-date solide\"><span>".$jour."</span><br>".$mois."</p>";
                     if(!is_null($obj->liste_photo)){
                         $photos = explode("/",$obj->liste_photo);
@@ -66,35 +69,54 @@ if(isset($result["articles"])){
                     }else{
                         $vi = "<i class=\"fas fa-eye-slash\"></i>";
                     }
-                    echo "<p class=\"year\">souvenir de ".$year."</p>";
-                    foreach ($article["commentaires"] as $commentaire) {
-                        $idAuteur = $commentaire->id_user;
-                        
-                        echo"<div class=\"commentaires\">
-                                <p class=\"auteur-com\">Ecrit par : ".$commentaire->pseudo_user."";
-                                if((is_null($commentaire->pseudo_user))||(empty($commentaire->pseudo_user))) {
-                                    echo"".$commentaire->prenom_user."";
-                                    
-                                }else{
-                                    echo"".$commentaire->pseudo_user."";
-                                }
-                        
-                        
-                                    echo"</p>
-                                        <p class=\"text-com\">".$commentaire->getDescriptionCommentaire()."</p>
-                                        <p class=\"gestion-com\">";
-                                    if($idAuteur == $_SESSION["auth"]["id"]){
-                                            echo "<a href=\"editer-commentaire-".$commentaire->getIdCommentaire()."-".$result["baby"]->getIdBaby()."\" title=\"Modifier le commentaire\">
-                                            <i class=\"fas fa-pen-square\"></i>
-                                            </a>";
-                                        }
-                                    
-                                            echo"<a href=\"supprimer-commentaire-".$commentaire->getIdCommentaire()."-".$result["baby"]->getIdBaby()."\" title=\"Supprimer le commentaire\" class=\"gogo\" data-gogo=\"le commentaire\">
-                                            <i class=\"fas fa-trash\"></i>
-                                            </a>
-                                        </p>
-                                    </div>";
-                    } 
+                  
+                    echo "<p class=\"year\">souvenir ";
+                    if($article["commun"][0] == 1){
+                        echo "commun ";
+                    }
+                    echo" de ".$year."</p>";
+                    if(!empty($article["commentaires"])){
+                        echo"<section class=\"commentaires-users\">";
+                        foreach ($article["commentaires"] as $commentaire) {
+                            $idAuteur = $commentaire->id_user;
+                            //avatar de la personne
+                            if(is_null($commentaire->avatar_user)){
+                                $avatar = "avatar-picmento.png";
+                            }else{
+                                $avatar = $commentaire->avatar_user;
+                            }
+                            //nom de la personne
+                            if((is_null($commentaire->pseudo_user))||(empty($commentaire->pseudo_user))) {
+                                $nom = $commentaire->prenom_user;
+                                
+                            }else{
+                                $nom = $commentaire->pseudo_user;
+                            }
+
+                            // var_dump($article);
+                            echo"<div class=\"commentaires\">
+                                    <div class=\"fc\">
+                                        <div class=\"avatar-rond\">
+                                            <img src=\"".DOMAINE."medias/avatar/".$avatar."\" alt=\"Photo de ".$nom."\">
+                                        </div>
+                                       <p class=\"auteur-com\">".ucfirst($nom)."</p>
+                                    </div>
+                                    <p class=\"text-com\">".$commentaire->getDescriptionCommentaire()."</p>
+                                    <p class=\"gestion-com\">";
+                                        if($idAuteur == $_SESSION["auth"]["id"]){
+                                                echo "<a href=\"editer-commentaire-".$commentaire->getIdCommentaire()."-".$result["baby"]->getIdBaby()."\" title=\"Modifier le commentaire\">
+                                                <i class=\"fas fa-pen-square\"></i>
+                                                </a>";
+                                            }                                        
+                                                echo"<a href=\"supprimer-commentaire-".$commentaire->getIdCommentaire()."-".$result["baby"]->getIdBaby()."\" title=\"Supprimer le commentaire\" class=\"gogo\" data-gogo=\"le commentaire\">
+                                                <i class=\"fas fa-trash\"></i>
+                                                </a>
+                                     </p>
+                                </div>";
+                        } 
+                        echo"</section>";
+                    }
+      
                 echo"
                 
                         <div class=\"menu-article\">
@@ -131,8 +153,13 @@ if(isset($result["articles"])){
             
         
         }
-        echo "</section>";
+        echo "</section>
+        <a href=\"#top\" title=\"Retour en haut de page\" class=\"btn-top\">
+                <i class=\"fas fa-angle-double-up\"></i>
+        </a>";
 }
 ?>
 <script src="templates/back/js/confirmation.js" defer></script>
 <script src="templates/back/js/menuPhoto.js" defer></script>
+<script src="templates/back/js/scrollTop.js" defer></script>
+<script src="templates/back/js/autocomplete.js" defer></script>

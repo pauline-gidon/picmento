@@ -35,7 +35,7 @@ class AjouterTribu extends Controller {
 			$flash = new Flash();
 
 			$new_tribu = new Tribu([
-				'nom_tribu'=>$http->getDataPost("nom_tribu")
+				'nom_tribu'=> ucfirst($http->getDataPost("nom_tribu"))
 				]);
 
 			$manager	= new ManagerTribu($cx);

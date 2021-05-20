@@ -126,6 +126,7 @@ class SupprimerTribu extends Controller {
                 }
                     //Je peux enfin supprimer la tribu
                 if($managerT->deleteTribu($id_tribu)){
+                    
                     $flash->setFlash("Votre tribu a bien été supprimée");
                     header("location: afficher-tribu");
                     exit();

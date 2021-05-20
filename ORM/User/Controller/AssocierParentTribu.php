@@ -56,7 +56,7 @@ class AssocierParentTribu extends Controller {
                 //sinon j'envoie le formulaire
                 $form 	= new FormAssociation();
                 $build 	= $form->buildForm();
-    
+                $flash->setFlash("<i class=\"fas fa-exclamation-triangle\"></i> Vous ne pourrez pas changer de parent si l'invitation envoyé est accepter !! ¯\_(ツ)_/¯");
                 if(($form->isSubmit("go"))&&($form->isValid())){
                     $emailDest = $http->getDataPost("email_user");
                     $new_user = new User([

@@ -26,7 +26,9 @@ class EditerPhotoBaby extends Controller {
         $managerU = new ManagerUser($cx);
         $http = new HTTPRequest();
         $id = $http->getDataGet("id");
-        if($managerU->verifUserBaby($id)){
+        $id_user = $_SESSION["auth"]["id"];
+
+        if($managerU->verifUserBaby($id, $id_user)){
 
             
             $manager	= new ManagerBaby($cx);

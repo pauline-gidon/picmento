@@ -16,6 +16,7 @@ use ORM\Tribu\Model\ManagerTribu;
 use ORM\Medias\Model\ManagerMedias;
 use ORM\Article\Model\ManagerArticle;
 use Vendors\FormBuilded\FormSouvenir;
+use Vendors\FormBuilded\FormSouvenirTribu;
 // use Vendors\FormBuilded\FormTribu;
 
 class AjouterSouvenirTribu extends Controller {
@@ -53,74 +54,37 @@ class AjouterSouvenirTribu extends Controller {
             // je met la tribu dans un tableau general pour la personalisation du formulaire
             $general[] = $tribu;
     
-            $form 		= new FormSouvenir('post',$_FILES);
-            $build 		= $form->buildForm();
+            $form 		= new FormSouvenirTribu();
+            $build 		= $form->buildForm($babys);
             
             $general[]= $build;
-            if(($form->isSubmit("souvenir"))&&($form->isValid())){
+            if(($form->isSubmit("souvenir")) || ($form->isSubmit("addPhoto")) &&($form->isValid())){
                 
                 $new_souvenir = new Article([
-                    "titre_article" 	=> $http->getDataPost("titre_article"),
-                    "description_article" 	=> $http->getDataPost("description_article"),
+                    "titre_article" 	=> ucfirst($http->getDataPost("titre_article")),
+                    "description_article" 	=> ucfirst($http->getDataPost("description_article")),
                     "date_article" 	=> $http->getDataPost("date_article"),
-                    "actif_article" 	=> $http->getDataPost("actif_article")
+                    "actif_article" 	=> $http->getDataPost("actif_article"),
+                    "validation_article" => 1
+
                 ]);
-        
+                // je recupère les baby selectioner pour l'ajout souvenir tribu
+                $pattern = "/^baby[0-9]+$/";
+			    $values = $http->getDataMultipleChoice($pattern);
+                // j'ajout d'habord l'article et recupère son id
                 $managerA = new ManagerArticle($cx);
                 $new_id_article = $managerA->insertArticle($new_souvenir);
-                $managerM = new ManagerMedias($cx);
-                //*********************************************************1er photo
-                // $file		= $http->getDataFiles("photo1");
-                // $destination = "medias/souvenir/";
-                // $uploader = new Uploader($file,$destination);
-                // $nom_file = $uploader->upload();
-                
-                // if(!is_null($nom_file)){
-                //     //Avec redimensionnement si nécessaire
-                //     $uploader->imageSizing(400);
-                //     $new_medias = new Medias([
-                //         "nom_medias" 	=> $nom_file
-                //         ]);
-                //     $new_id_medias = $managerM->insertMedias($new_medias);
-                //     $managerM->insertMediasHasArticle($new_id_article,$new_id_medias);
-                // }
-    
-                //*****************************************************2eme photo
-                // $file2		= $http->getDataFiles("photo2");
-                // $destination = "medias/souvenir/";
-                // $uploader = new Uploader($file2,$destination);
-                // $nom_file2 = $uploader->upload();
-                
-                // if(!is_null($nom_file2)){
-                //     //Avec redimensionnement si nécessaire
-                //     $uploader->imageSizing(400);
-                //     $new_medias2 = new Medias([
-                //         "nom_medias" 	=> $nom_file2
-                //         ]);
-                //         $new_id_medias2 = $managerM->insertMedias($new_medias2);
-                //         $managerM->insertMediasHasArticle($new_id_article,$new_id_medias2);
-                // }
-    
-                //*****************************************************3eme photo
-                // $file3		= $http->getDataFiles("photo3");
-                // $destination = "medias/souvenir/";
-                // $uploader = new Uploader($file3,$destination);
-                // $nom_file3 = $uploader->upload();
-                
-                // if(!is_null($nom_file3)){
-                //     //Avec redimensionnement si nécessaire
-                //     $uploader->imageSizing(400);
-                //     $new_medias3 = new Medias([
-                //         "nom_medias" 	=> $nom_file3
-                //         ]);
-                //     $new_id_medias3 = $managerM->insertMedias($new_medias3);
-                //     $new3 = $managerM->insertMediasHasArticle($new_id_article,$new_id_medias3);
-                // }
-                foreach($id_babys as $id_baby){
-                    $insertion= $managerA->insertArticleHasbaby($id_baby,$new_id_article);
-    
-                   if($insertion){
-                    
+                if($new_id_article > 0) {
+                    //Insertion dans la table baby_has_article
+                    if(!empty($values)){
+                        foreach ($values as $id_baby) {
+                            $managerA->insertArticleHasbaby($id_baby, $new_id_article);
+                        }
+                        if(($form->isSubmit("addPhoto")) && ($form->isValid())){
+                            $flash->setFlash("Votre souvenir a bien été ajouté à la tribu. Ajouter lui des photos !");
+                            header("location: tribu-ajouter-photos-souvenir-".$new_id_article."");
+                            exit();
+                        }               
                         $flash->setFlash("Votre souvenir a bien été ajouté à la tribu !");
                     }else{
                         $flash->setFlash("Impossible d'ajouter un souvenir à la tribu. Veuillez réesayer ou contacter l'équipe <span class=\"flash-logo\">Picmento</span> !");

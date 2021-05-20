@@ -10,6 +10,7 @@ class Article {
 	private $date_article;
 	private $actif_article;
 	private $user_id_user;
+	private $validation_article;
 
 
 	function __construct(Array $datas){
@@ -35,6 +36,9 @@ class Article {
 	function getUserIdUser(){
 		return $this->user_id_user;
 	}
+	function getValidationArticle(){
+		return $this->validation_article;
+	}
 	
 
 
@@ -54,6 +58,9 @@ class Article {
 	}
 	function setUserIdUser($val){
 		$this->user_id_user = $val;
+	}
+	function setValidationArticle($val){
+		$this->validation_article = $val;
 	}
 
 

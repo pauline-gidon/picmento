@@ -35,7 +35,7 @@
 <header>
 	<input type="checkbox" id="burger">
 	<label for="burger">Menu</label>
-	<a id="logo" href="<?php echo DOMAINE; ?>afficher-tribu" title="Logo Souvenir">Picmento
+	<a id="logo" href="<?php echo DOMAINE; ?>afficher-tribu" title="Retour tribu">Picmento
 	</a>
 	<nav>
 		<ul class="fc wrap fw">
@@ -96,21 +96,24 @@
 
 
 <footer id="bottom">
-	<div>
-		<p class="fc fw jc-c ai-c">
-			<a href="<?php echo DOMAINE; ?>mentions-legales" title="Mentions légales">
-				Mentions légales
-			</a> 
-			| 
-			<a href="<?php echo DOMAINE; ?>politique-confidentialite" title="Politique de confidentialité">
-				Politique de confidentialité
-			</a> 
-			| 
-			<a href="<?php echo DOMAINE; ?>cgu" title="Conditions Générales d'Utilisation">
-				Conditions Générales d'Utilisation
-			</a>
-		</p>
-	</div>
+		
+        <p class="fc fw jc-c ai-c">
+        
+            <a href="<?php echo DOMAINE; ?>contact" title="Contact Picmento">Contact</a>
+            <span>|</span> 
+            <a href="<?php echo DOMAINE; ?>mentions-legales" title="Mentions légales">
+                Mentions légales
+            </a> 
+            <span>|</span> 
+            <a href="<?php echo DOMAINE; ?>politique-confidentialite" title="Politique de confidentialité">
+                Politique de confidentialité
+            </a> 
+            <span id="pipe">|</span> 
+            <a href="<?php echo DOMAINE; ?>cgu" title="Conditions Générales d'Utilisation">
+                Conditions Générales d'Utilisation
+            </a>
+        </p>
+
 </footer>
 
 </body>

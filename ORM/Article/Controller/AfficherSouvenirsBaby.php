@@ -10,12 +10,14 @@ use ORM\Baby\Model\ManagerBaby;
 
 use Vendors\Flash\Flash;
 use OCFram\Navbaby;
+use Vendors\Recherche;
 use ORM\Commentaire\Model\ManagerCommentaire;
 use ORM\User\Model\ManagerUser;
 
 class AfficherSouvenirsBaby extends Controller {
 
 	use Navbaby;
+    use Recherche;
 
 	function getResult() {
         $this->setLayout("back");
@@ -28,14 +30,17 @@ class AfficherSouvenirsBaby extends Controller {
       
 		$cx			= new Connexion();
 		$managerU = new ManagerUser($cx);
-        if($managerU->verifUserBaby($id_baby)){
+        $id_user = $_SESSION["auth"]["id"];
+        $this->Rechercher();
+        if($managerU->verifUserBaby($id_baby, $id_user)){
 
             $manager1	= new ManagerBaby($cx);
-            $babys=  $manager1->allBabyHasUser();
+            $id_user = $_SESSION["auth"]["id"];
+            $babys=  $manager1->allBabyHasUser($id_user);
             $this->navConstruction($babys);
             $baby = $manager1->oneBabyById($id_baby);
-            $general["baby"] =  $baby;
             if(!is_null($baby)){
+                $general["baby"] = $baby;
 
                 $nom = $baby->getNomBaby();
                 
@@ -58,9 +63,18 @@ class AfficherSouvenirsBaby extends Controller {
                     foreach($articles as $article){
                         $wrapArticle = [ 
                             "souvenir" => $article,
-                            "commentaires" => [], 
+                            "commentaires" => [],
+                            "commun" =>[],
                         ];
                         $id_article = $article->getIdArticle();
+                        //je verifie si cette article est lié a un souvenir communs
+                        $babys = $manager->fullArticleHasBaby($id_article);
+                        //si c'est le cas je crée un resulat pour un affichage personalisé
+                        $resultcount = 0;
+                        if(count($babys) > 1){
+                            $resultcount ++;
+                        }
+                        array_push($wrapArticle["commun"], $resultcount);
                         $coms = $manager->oneArticleWithCommentaireByIdArticle($id_article);
                         if(!is_null($coms)){
                             foreach($coms as $com){

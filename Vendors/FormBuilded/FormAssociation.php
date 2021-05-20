@@ -15,7 +15,7 @@ class FormAssociation extends Form {
 			"name" 			=> "email_user",
 			"cssLabel" 			=> "consigne",
 			"cssChamp" 			=> "champ",
-			"placeholder" 	=> "Vous ne pourrez pas changer de parent si l'invitation envoyé est accepter !!",
+			"placeholder" 	=> "Bernard@gmail.com",
 			"validators" 	=> [
 				new EmailValidator("Adresse mail valide obligatoire")
 			]

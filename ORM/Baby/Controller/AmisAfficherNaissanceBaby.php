@@ -21,35 +21,36 @@ class AmisAfficherNaissanceBaby extends Controller {
         function getResult() {	
             $this->setLayout("back");
             $this->setTitle("Naissance");
-            $this->setView("ORM/Baby/View/afficher-naissance-baby.php");
+            $this->setView("ORM/Baby/View/ami-afficher-naissance-baby.php");
             $http = new HTTPRequest();
             $id_baby = $http->getDataGet("id");
             $cx			= new Connexion();
-            $managerT = new ManagerTribu($cx);
-            //je recupère la tribu de du baby pour recupérer les parents 
-            $tribu = $managerT->oneTribuByIdBaby($id_baby);
-            $id_parent1 = $tribu->getUserIdParent1();
-            $id_parent2 = $tribu->getUserIdParent2();
             $managerU = new ManagerUser($cx);
-            // et verifier si la personne est amis avec l'un des deux parent
-            $user = $managerU->verifUserAmisUserConnecter($id_parent1, $id_parent2);
-            if(!is_null($user)){
+            //une variable de session a été crée à, l'affichage des tribu de mon amis avec id ami $_SESSION["ami"]["id"]
+            //je verifie si la personne connecter et le profil visité son bien amis
+            //je recupère la tribu de du baby pour recupérer les parents 
+    
+            $id_user = $_SESSION["ami"]["id"];
+            if($managerU->verifUserAmis($id_user)){
+                
+                //je verifie si ce baby appartien bien a id du parent
+            if($managerU->verifUserBaby($id_baby, $id_user)){
                 $manager = new ManagerBaby($cx);
                 $baby = $manager->oneBabyById($id_baby);
                 if(!is_null($baby)){
+                    $cx->close();
                     return $baby;
                 }
             }else{
-                $cx->close();
                 header("location: ".DOMAINE."errors/404.php");
                 exit();
             }
 
-
-
-
+        }else{
+            header("location: ".DOMAINE."errors/404.php");
+            exit();
         }
-	
+    }
 }
 
 

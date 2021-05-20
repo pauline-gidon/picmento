@@ -5,6 +5,7 @@ use OCFram\Connexion;
 use OCFram\Controller;
 
 use OCFram\HTTPRequest;
+use ORM\Amis\Model\ManagerAmis;
 // use ORM\Article\Entity\Article;
 use Vendors\Flash\Flash;
 
@@ -26,78 +27,79 @@ class AmisAfficherSouvenirsBaby extends Controller {
 		$http 				= new HTTPRequest();
 		$id_baby 	= $http->getDataGet("id");
 		$cx			= new Connexion();
-		$managerT = new ManagerTribu($cx);
-        //je recupère la tribu de du baby pour recupérer les parents 
-        $tribu = $managerT->oneTribuByIdBaby($id_baby);
-        $id_parent1 = $tribu->getUserIdParent1();
-        $id_parent2 = $tribu->getUserIdParent2();
 		$managerU = new ManagerUser($cx);
-        // et verifier si la personne est amis avec l'un des deux parent
-        $user = $managerU->verifUserAmisUserConnecter($id_parent1, $id_parent2);
-        if(!is_null($user)){
-            $manager1	= new ManagerBaby($cx);
-            // construction nav baby
-            // $babys=  $manager1->allBabyHasUser();
-            // $this->navConstruction($babys);
-            $baby = $manager1->oneBabyById($id_baby);
-            $general["baby"] =  $baby;
-            if(!is_null($baby)){
+        //une variable de session a été crée à, l'affichage des tribu de mon amis avec id ami $_SESSION["ami"]["id"]
+        //je verifie si la personne connecter et le profil visité son bien amis
+        //je recupère la tribu de du baby pour recupérer les parents 
+        $id_user = $_SESSION["ami"]["id"];
+        if($managerU->verifUserAmis($id_user)){
+            //je verifie si ce baby appartien bien a id du parent
+            if($managerU->verifUserBaby($id_baby, $id_user)){
+                   $managerB = new ManagerBaby($cx);
+                    //je vais cherche les info du baby pour affichage personalisé
+                    $baby = $managerB->oneBabyById($id_baby);
+                    $general["baby"] =  $baby;
+                    if(!is_null($baby)){
+                        $manager = new ManagerArticle($cx);
+                        //je recupère les souvenirs du baby
+                        $articles = $manager->fullArticleActifWithMedias($id_baby);
 
-                
-                $manager = new ManagerArticle($cx);
-                
-                $articles = $manager->fullArticleActifWithMedias($id_baby);
-                // $articles = [
-                //     "articles" => $articles
-                // ];
-               // $general[] = $articles;
-                // $articles_c = $manager->fullArticleWithCommentaire($id_baby);
-                // $id_user_com = $articles->get
-                //il faudra que je gère l'affichage des commantire $generale[] = $commentaires
-                if(is_null($articles)){
-                    $flash = new Flash;
-                    $flash->setFlash("Cette enfant n'a pas encore de souvenir à vous raconter !");
-                }else{
-                    // $general[]= $articles;
-                    $general["articles"] = [];
-                    foreach($articles as $article){
-                        $wrapArticle = [ 
-                            "souvenir" => $article,
-                            "commentaires" => [], 
-                        ];
-                        $id_article = $article->getIdArticle();
-                        $coms = $manager->oneArticleWithCommentaireByIdArticle($id_article);
-                        if(!is_null($coms)){
-                            foreach($coms as $com){
-                                array_push($wrapArticle["commentaires"], $com);
+                        if(is_null($articles)){
+                            $flash = new Flash;
+                            $flash->setFlash("Cette enfant n'a pas encore de souvenir à vous raconter !");
+                        }else{
+                            // $general[]= $articles;
+                            $general["articles"] = [];
+                            foreach($articles as $article){
+                                $wrapArticle = [ 
+                                    "souvenir" => $article,
+                                    "commentaires" => [], 
+                                    "commun" =>[],
+                                ];
+                                $id_article = $article->getIdArticle();
+        
+                                $babys = $manager->fullArticleHasBaby($id_article);
+                                $resultcount = 0;
+                                if(count($babys) > 1){
+                                    $resultcount ++;
+                                }
+                                array_push($wrapArticle["commun"], $resultcount);
+                                $coms = $manager->oneArticleWithCommentaireByIdArticle($id_article);
+                                if(!is_null($coms)){
+                                    foreach($coms as $com){
+                                        array_push($wrapArticle["commentaires"], $com);
+                                    }
+                                }
+                                // array_push($tableau,$coms);
+                                
+                                array_push($general["articles"],$wrapArticle);
+                                
+                                // $id_user_com= $article_c->liste_is_user_com;
                             }
+                           //$general[] =$articles;
+                                // array_push($general,$articles); 
+        
+                                
+                            // $general[] = $articles_c;
+        
                         }
-                        // array_push($tableau,$coms);
-                        
-                        array_push($general["articles"],$wrapArticle);
-                        
-                        // $id_user_com= $article_c->liste_is_user_com;
+        
+                        $cx->close();
+                        return $general;
+                    }else{
+                        header("location: ".DOMAINE."errors/404.php");
+                        exit();
                     }
-                   //$general[] =$articles;
-                        // array_push($general,$articles); 
-
-                        
-                    // $general[] = $articles_c;
-
-                }
-
-                $cx->close();
-                return $general;
+    
+              
+            }else{
+                header("location: ".DOMAINE."errors/404.php");
+                exit();
             }
         }else{
             header("location: ".DOMAINE."errors/404.php");
             exit();
         }
-		
-		
-
-		
-			
 	}
 }
 

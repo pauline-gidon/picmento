@@ -5,7 +5,13 @@ echo $flash->getFlash();
 
 if(isset($result)){
 
-	echo "<div id=\"zone-form\" class=\"wrap content\">".$result->getForm()."</div>";
+	echo "<div>
+            <div id=\"zone-form\" class=\"wrap content\">".$result->getForm()."</div>";
+            if(isset($_SESSION["photo"])){
+                var_dump($_FILES["photo_baby"]);
+                echo "<img src=\"".$_SESSION["photo"]."\"/>";
+            }
+        echo"</div>";
 
 }
 ?>

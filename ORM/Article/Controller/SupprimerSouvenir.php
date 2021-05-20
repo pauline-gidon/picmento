@@ -27,6 +27,7 @@ class SupprimerSouvenir extends Controller {
 		$managerA	= new ManagerArticle($cx);
         $article = $managerA->oneArticleById($id_article);
         if(!is_null($article)){
+            //je vais chercher ces medias si il en as
             $medias = $managerA->articleCountMediasById($id_article);
             if(!is_null($medias)){
                 foreach($medias as $media){

@@ -35,7 +35,7 @@ class EditerTribu extends Controller {
         
                 if(($form->isSubmit("nom-tribu"))&&($form->isValid())){
                     $flash = new Flash();
-                    $tribu->setNomTribu($http->getDataPost("nom_tribu"));
+                    $tribu->setNomTribu(ucfirst($http->getDataPost("nom_tribu")));
         
                     if($manager->updateTribu($tribu)){
                         $flash->setFlash("Modification appliquée");

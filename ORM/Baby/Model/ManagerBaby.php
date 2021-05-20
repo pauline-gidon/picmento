@@ -60,15 +60,14 @@ class ManagerBaby extends Manager {
     //----------------------------------------------------------
 	//Tous les baby de cet user en bdd
 	//----------------------------------------------------------
-        function allBabyHasUser(){
-        $user_id = $_SESSION["auth"]["id"];
-            if(is_numeric($user_id)){
+        function allBabyHasUser($id_user){
+            if(is_numeric($id_user)){
 
                 $req = "SELECT * FROM baby
                   INNER JOIN tribu
                        ON baby.tribu_id_tribu = tribu.id_tribu
-                          WHERE tribu.user_id_parent1 = $user_id
-                          OR tribu.user_id_parent2 = $user_id
+                          WHERE tribu.user_id_parent1 = $id_user
+                          OR tribu.user_id_parent2 = $id_user
                           ORDER BY baby.id_baby";
                 
                 $query = $this->db->query($req);
@@ -185,6 +184,21 @@ class ManagerBaby extends Manager {
                     }else{
                         return null;
                     }      
+            }
+        }
+    //----------------------------------------------------------
+	//verification de cet id_baby avec cet id_tribu en bdd
+	//----------------------------------------------------------
+    function oneBabyByIdTribu($id_baby, $id_tribu){
+
+            if((is_numeric($id_baby))&&(is_numeric($id_tribu))){
+
+                $req = "SELECT * FROM baby
+                          WHERE tribu_id_tribu = $id_tribu
+                          OR id_baby = $id_baby";
+                
+                $query = $this->db->query($req);
+                return ($this->db->num_rows == 1)?TRUE:FALSE;
             }
         }
 

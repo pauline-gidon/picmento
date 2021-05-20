@@ -84,8 +84,8 @@ if(!defined('DOMAINE')) die();
 		
 			<p class="fc fw jc-c ai-c">
             
-                    <a href="<?php echo DOMAINE; ?>contact" title="Contact Picmento">Contact</a>
-                    <span>|</span> 
+                <a href="<?php echo DOMAINE; ?>contact" title="Contact Picmento">Contact</a>
+                <span>|</span> 
 				<a href="<?php echo DOMAINE; ?>mentions-legales" title="Mentions légales">
 					Mentions légales
 				</a> 

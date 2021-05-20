@@ -9,20 +9,18 @@
     document.querySelector('body').addEventListener('click',function(e){
         if(!e.target.classList.contains('.trait-nom-baby'))
         document.querySelectorAll('.nv3').forEach(el => {
-            // modale.style.left = '-100vw';
             el.classList.add('d-none');
-            // alert('cc');
         })
 
     })
 
-// faire apparaitre les services lié l'enfant ex timeline...
+// faire apparaitre les services lié à l'enfant ex timeline...
     document.querySelectorAll('.trait-nom-baby').forEach(el => {
         el.addEventListener('click', (e) => {
             document.querySelectorAll('.nv3').forEach(el => {
                 el.classList.add('d-none');
             })
             e.stopPropagation();
-            el.children[1].classList.toggle('d-none');
+            el.children[1].classList.remove('d-none');
         });
     });

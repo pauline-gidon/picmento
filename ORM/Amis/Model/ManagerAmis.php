@@ -157,7 +157,25 @@ function insertAmis(Amis $amis){
 
 }
 
+//-------------------------------------------------------------------------------------------------
+// je verifie si une demande amis existe entre ces deux personne
+//-------------------------------------------------------------------------------------------------
+function oneAmisByUsersIds($id_amis){
+    $id = $_SESSION["auth"]["id"];
+    
+    if((is_numeric($id))&&(is_numeric($id_amis))){
+        $req = "SELECT * FROM amis
+        WHERE actif_amis = 1
+        AND acceptation_amis = 1
+        AND user_id_expediteur = $id AND user_id_destinataire = $id_amis
+        OR user_id_destinataire = $id AND user_id_expediteur = $id_amis";
+        $query = $this->db->query($req);
 
+        return ($query->num_rows == 1)?new Amis($query->fetch_array()):NULL;
+     
+    }
+
+}
 
 
 }

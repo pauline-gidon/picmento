@@ -39,6 +39,7 @@ class AnnulerDemande extends Controller {
     
             $form 	= new FormAnnul();
             $build 	= $form->buildForm();
+            $flash->setFlash("Une demande a déjà été envoyer a \" ".$user->getEmailUser()." \" mais elle n'a pas encore été accepter, voulez-vous annuler cette demande pour en faire une nouvelle ? ");
             $general [] = $build;
             if(($form->isSubmit("annuler"))&&($form->isValid())){
                 $annule = $http->getDataPost('annule');

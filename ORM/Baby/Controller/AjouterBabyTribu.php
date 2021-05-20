@@ -26,6 +26,7 @@ class AjouterBabyTribu extends Controller {
 		
 		$cx			= new Connexion();
 		$manager	= new ManagerTribu($cx);
+        $flash = new Flash();
         // je recupère la tribu par son id
 		$tribu 		= $manager->oneTribuById($id);
 		if(!is_null($tribu)){
@@ -36,9 +37,7 @@ class AjouterBabyTribu extends Controller {
                 $form 		= new FormBabyTribu();
                 $build 		= $form->buildForm();
                 $id_tribu = $tribu->getIdTribu();
-                
                 if(($form->isSubmit("addbaby"))&&($form->isValid())){
-                    $flash = new Flash();
                     
                     //upload de fichier
                     $file 		= $http->getDataFiles("photo_baby");
@@ -51,11 +50,11 @@ class AjouterBabyTribu extends Controller {
                         
                     }
                     $new_baby = new Baby([
-                        "nom_baby" 	=> $http->getDataPost("nom_baby"),
+                        "nom_baby" 	=> ucfirst($http->getDataPost("nom_baby")),
                         "photo_baby" => $nom_file,
                         "date_naissance_baby" 	=> $http->getDataPost("date_naissance_baby"),
                         "heure_naissance_baby" => $http->getDataPost("heure_naissance_baby"),
-                        "lieu_naissance_baby" => $http->getDataPost("lieu_naissance_baby"),
+                        "lieu_naissance_baby" => ucfirst($http->getDataPost("lieu_naissance_baby")),
                         "poids_naissance_baby" 	=> $http->getDataPost("poids_naissance_baby"),
                         "taille_naissance_baby" 	=> $http->getDataPost("taille_naissance_baby"),
                         "tribu_id_tribu"		=> $id_tribu
@@ -75,6 +74,8 @@ class AjouterBabyTribu extends Controller {
         
                         
                 }
+                $_SESSION["photo"] = $_FILES["photo_baby"]["tmp_name"];
+
                 $cx->close();
                 return $build;
 

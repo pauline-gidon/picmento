@@ -54,9 +54,9 @@ class ManagerTribu extends Manager {
             GROUP_CONCAT(baby.nom_baby SEPARATOR '/') AS liste_nom,
             GROUP_CONCAT(baby.photo_baby SEPARATOR '/') AS liste_photo
             FROM tribu LEFT JOIN baby ON baby.tribu_id_tribu = tribu.id_tribu
-         WHERE tribu.user_id_parent1 = $user_id
-         OR tribu.user_id_parent2 = $user_id
-         GROUP BY tribu.id_tribu";
+            WHERE tribu.user_id_parent1 = $user_id
+            OR tribu.user_id_parent2 = $user_id
+            GROUP BY tribu.id_tribu";
 
         $query = $this->db->query($req);
         if($query->num_rows > 0){
@@ -184,6 +184,55 @@ class ManagerTribu extends Manager {
                 return ($query->num_rows == 1)?new Tribu($query->fetch_array()):NULL;
             }
     }
+    //----------------------------------------------------------
+    //la/les tribu avec ses baby(s) dans la bdd 
+    //----------------------------------------------------------
+    
+    function fullTribuWithBabys($id_amis){
+        if(is_numeric($id_amis)){
+            $id = $_SESSION["auth"]["id"];
+            $req = "SELECT 
+                tribu.id_tribu,
+                tribu.nom_tribu,
+                tribu.user_id_parent1,
+                tribu.user_id_parent2,
+                GROUP_CONCAT(baby.id_baby SEPARATOR '/') AS liste_id,
+                GROUP_CONCAT(baby.nom_baby SEPARATOR '/') AS liste_nom,
+                GROUP_CONCAT(baby.photo_baby SEPARATOR '/') AS liste_photo
+                FROM tribu LEFT JOIN baby ON baby.tribu_id_tribu = tribu.id_tribu
+             WHERE tribu.user_id_parent1 = $id_amis
+             OR tribu.user_id_parent2 = $id_amis
+             GROUP BY tribu.id_tribu";
+    
+            $query = $this->db->query($req);
+            if($query->num_rows > 0){
+                while($row = $query->fetch_array()){
+                    $tribus_babys[] = new Tribu($row);
+                }
+                return $tribus_babys;
+            }else{
+                return null;
+            }
+
+        }
+    }
+    //----------------------------------------------------------
+    //une tribu dans la bdd avec ce user amis et cet id tribu
+    //----------------------------------------------------------
+    function oneTribuByIds($id_tribu, $id_ami){
+        if((is_numeric($id_tribu))&&(is_numeric($id_ami))){
+            $req = "SELECT * FROM tribu
+             WHERE id_tribu = $id_tribu
+             AND user_id_parent1 = $id_ami
+             OR id_tribu = $id_tribu
+             AND user_id_parent2 = $id_ami";
+
+            $query = $this->db->query($req);
+            return ($query->num_rows == 1)?new Tribu($query->fetch_array()):NULL;
+
+        }
+    }
+
 
 
     

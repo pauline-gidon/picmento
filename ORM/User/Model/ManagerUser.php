@@ -17,6 +17,18 @@ class ManagerUser extends Manager {
 		return ($query->num_rows == 1)? new User($query->fetch_array()) : null;
 	}
 
+	//----------------------------------------------------------
+	//Un user avec ce pseudo existe-t-il déjà dans la BDD ?
+	//----------------------------------------------------------
+	function pseudoExist($pseudo){
+		$pseudo 	= $this->db->real_escape_string($pseudo);
+
+		$req 		= "SELECT * FROM user WHERE pseudo_user = '$pseudo' ";
+		$query 	= $this->db->query($req);
+		//return ($query->num_rows == 1)? true : false;
+		return ($query->num_rows == 1)? new User($query->fetch_array()) : null;
+	}
+
 
 	//----------------------------------------------------------
 	//Insérer un nouveau User
@@ -85,7 +97,6 @@ class ManagerUser extends Manager {
 			";
 
 			$query 	= $this->db->query($req);
-			return ($query->num_rows > 0)?new User($query->fetch_array()):NULL;
 		}
 	}
 
@@ -252,17 +263,16 @@ class ManagerUser extends Manager {
 	}
 
     //----------------------------------------------------------
-	// Controle de la personne connecter id baby
+	// je verifie si ce baby appartien a la personne connecter par idparent1 ou parent 2 de sa tribu
 	//----------------------------------------------------------
-    function verifUserBaby($id_baby){
-        $user_id = $_SESSION["auth"]["id"];
-        if((is_numeric($user_id)) && (is_numeric($id_baby))){
+    function verifUserBaby($id_baby, $id_user){
+        if((is_numeric($id_user)) && (is_numeric($id_baby))){
            $req= "SELECT * FROM baby
 			INNER JOIN tribu
             ON baby.tribu_id_tribu = tribu.id_tribu
             INNER JOIN user
             ON tribu.user_id_parent1 = user.id_user OR tribu.user_id_parent2 = user.id_user
-            WHERE user.id_user = $user_id
+            WHERE user.id_user = $id_user
             And baby.id_baby = $id_baby";        
 		$query 	= $this->db->query($req);
 		return ($query->num_rows == 1)?TRUE:FALSE;
@@ -360,13 +370,13 @@ class ManagerUser extends Manager {
     //----------------------------------------------------------
 	//Verif user has user pour la visite d'une tribu amis
 	//----------------------------------------------------------
-    function verifUserTribuAmis($id_user){
+    function verifUserAmis($id_ami){
         $user_co = $_SESSION["auth"]["id"];
-        if(is_numeric($id_user)){
+        if(is_numeric($id_ami)){
 
             $req = "SELECT * FROM user_has_user
-            WHERE user_id_user = $id_user OR user_id_user = $id_user
-            AND user_id_user1 = $user_co OR user_id_user1 = $id_user
+            WHERE user_id_user = $id_ami OR user_id_user = $id_ami
+            AND user_id_user1 = $user_co OR user_id_user1 = $id_ami
         ";
         $query = $this->db->query($req);
         return ($query->num_rows > 0)?TRUE:FALSE;
@@ -374,7 +384,7 @@ class ManagerUser extends Manager {
 
     }
     //----------------------------------------------------------
-	//Verif user Pour voir les baby amis
+	//Verif relation user connecter et user visité pour voir les souvenir baby
 	//----------------------------------------------------------
     function verifUserAmisUserConnecter($id_parent1, $id_parent2){
         $user_co = $_SESSION["auth"]["id"];
@@ -384,7 +394,7 @@ class ManagerUser extends Manager {
             INNER JOIN user
             ON user.id_user = user_has_user.user_id_user OR user.id_user = user_has_user.user_id_user1
             WHERE user_id_user = $id_parent1 OR user_id_user = $id_parent2 OR user_id_user = $user_co
-            AND user_id_user1 = $id_parent1 OR user_id_user1 = $id_parent2 OR user_id_user= $user_co
+            AND user_id_user1 = $id_parent1 OR user_id_user1 = $id_parent2 OR user_id_user = $user_co
         ";
         $query = $this->db->query($req);
         if($query->num_rows > 0){

@@ -61,6 +61,7 @@ class ManagerArticle extends Manager {
             article.date_article,
             article.actif_article,
             article.user_id_user,
+            user.avatar_user,
             user.nom_user,
             user.prenom_user,
             user.pseudo_user,
@@ -77,7 +78,7 @@ class ManagerArticle extends Manager {
             ON article.user_id_user = user.id_user
             WHERE baby_id_baby = $id_baby
             GROUP BY article.id_article
-            ORDER BY article.date_article DESC
+            ORDER BY article.date_article DESC,article.id_article DESC
                    ";
 
 
@@ -147,6 +148,7 @@ class ManagerArticle extends Manager {
             article.actif_article,
            
             GROUP_CONCAT(DISTINCT user.id_user SEPARATOR '/') AS liste_id_user,
+            GROUP_CONCAT(DISTINCT user.avatar_user SEPARATOR '/') AS liste_avatar_user,
             GROUP_CONCAT(DISTINCT user.nom_user SEPARATOR '/') AS liste_nom_user,
             GROUP_CONCAT(DISTINCT user.prenom_user SEPARATOR '/') AS liste_prenom_user,
             GROUP_CONCAT(DISTINCT  user.pseudo_user SEPARATOR '/') AS liste_pseudo_user,
@@ -281,6 +283,7 @@ class ManagerArticle extends Manager {
         $date_article = $this->db->real_escape_string($new_article->getDateArticle());
         $actif_article = $this->db->real_escape_string($new_article->getActifArticle());
         $user_id_user = $_SESSION["auth"]["id"];
+        $validation_article = $this->db->real_escape_string($new_article->getValidationArticle());
 
         $req = "
         INSERT INTO article 
@@ -290,7 +293,9 @@ class ManagerArticle extends Manager {
             '$description_article',
             '$date_article',
             '$actif_article',
-            '$user_id_user')";
+            '$user_id_user',
+            $validation_article
+            )";
     $query = $this->db->query($req);
     return $this->db->insert_id;
      
@@ -320,12 +325,14 @@ class ManagerArticle extends Manager {
 		$description_article	= $this->db->real_escape_string($article->getDescriptionArticle());
 		$date_article	= $this->db->real_escape_string($article->getDateArticle());
 		$actif_article	= $this->db->real_escape_string($article->getActifArticle());
+		$validation_article	= $this->db->real_escape_string($article->getValidationArticle());
 
         $req = "UPDATE article SET 
         titre_article			        = '$titre_article',
         description_article		    = '$description_article',
-        date_article		= '$date_article', 
-        actif_article		    = '$actif_article'
+        date_article		= '$date_article',
+        actif_article		    = '$actif_article',
+        validation_article		    = '$validation_article'
 
         WHERE id_article = ".$article->getIdArticle();
         
@@ -338,7 +345,7 @@ class ManagerArticle extends Manager {
 
     }
     //----------------------------------------------------------
-	// quel baby est associé  cet id_article 
+	// quel(s) baby(s) est associé  cet id_article 
 	//----------------------------------------------------------
     function babyWithArticleById($id){
         if(is_numeric($id)){
@@ -350,7 +357,14 @@ class ManagerArticle extends Manager {
                            WHERE article.id_article = $id";
 
             $query = $this->db->query($req);     
-            return ($query->num_rows > 0)?new Baby($query->fetch_array()):NULL;
+            if($query->num_rows > 0){
+                while($row = $query->fetch_array()){
+                $objs[] = new Baby($row);
+                }
+                return $objs;
+            }else{
+                return null;
+            }      
         }
     }
 
@@ -413,6 +427,7 @@ class ManagerArticle extends Manager {
             article.actif_article,
             article.user_id_user,
             user.nom_user,
+            user.avatar_user,
             user.prenom_user,
             user.pseudo_user,
             GROUP_CONCAT(medias.id_medias SEPARATOR '/') AS liste_id,
@@ -462,10 +477,130 @@ class ManagerArticle extends Manager {
    
         }
     }
+    //----------------------------------------------------------
+	//tous les article pas validé avec ces medias
+	//----------------------------------------------------------
+    function fullArticlesValidationZero(){
+        $id_user = $_SESSION["auth"]["id"];
+
+        // $req = "SELECT * FROM article
+        // INNER JOIN baby_has_article
+        // on baby_has_article.article_id_article = article.id_article
+        // INNER JOIN baby
+        // on baby_has_article.baby_id_baby = baby.id_baby
+        // INNER JOIN tribu
+        // ON baby.tribu_id_tribu = tribu.id_tribu
+        // INNER JOIN user
+        // ON tribu.user_id_parent1 = user.id_user
+        // OR tribu.user_id_parent2 = user.id_user
+        // WHERE article.validation_article = 0
+        // AND user.id_user = $id_user
+        // GROUP BY article.id_article";
+
+        $req = "SELECT
+        article.id_article,
+        article.titre_article,
+        article.description_article,
+        article.date_article,
+        article.user_id_user,
+        user.nom_user,
+        user.avatar_user,
+        user.prenom_user,
+        user.pseudo_user,
+        GROUP_CONCAT(DISTINCT medias.id_medias SEPARATOR '/') AS liste_id_photo,
+        GROUP_CONCAT(DISTINCT medias.nom_medias SEPARATOR '/') AS liste_nom_photo,
+        GROUP_CONCAT(DISTINCT baby.id_baby SEPARATOR '/') AS liste_id_baby,
+        GROUP_CONCAT(DISTINCT baby.nom_baby SEPARATOR '/') AS liste_nom_baby,
+        GROUP_CONCAT(DISTINCT baby.photo_baby SEPARATOR '/') AS liste_photo_baby
+        FROM article
+        INNER JOIN baby_has_article
+        on baby_has_article.article_id_article = article.id_article
+        INNER JOIN baby
+        on baby_has_article.baby_id_baby = baby.id_baby
+        INNER JOIN tribu
+        ON baby.tribu_id_tribu = tribu.id_tribu
+        LEFT JOIN article_has_medias
+        ON article_has_medias.article_id_article = id_article
+        LEFT JOIN medias
+        ON medias.id_medias = medias_id_medias
+        INNER JOIN user
+        ON tribu.user_id_parent1 = user.id_user
+        OR tribu.user_id_parent2 = user.id_user
+        WHERE article.validation_article = 0
+        AND user.id_user = $id_user
+        GROUP BY article.id_article
+            ";
+
+        // print_r($req);die();
+        $query = $this->db->query($req);     
+        if($query->num_rows > 0){
+            while($row = $query->fetch_array()){
+            $tableaux [] = new Article($row);
+      
+            }
+            return $tableaux;
+        }else{
+            return null;
+        }      
 
 
+    }
 
-	
+    //----------------------------------------------------------
+	//tous les article pas validé
+	//----------------------------------------------------------
+    function countArticlesValidationZero(){
+        $id_user = $_SESSION["auth"]["id"];
+
+        $req = "SELECT * FROM article
+        INNER JOIN baby_has_article
+        on baby_has_article.article_id_article = article.id_article
+        INNER JOIN baby
+        on baby_has_article.baby_id_baby = baby.id_baby
+        INNER JOIN tribu
+        ON baby.tribu_id_tribu = tribu.id_tribu
+        INNER JOIN user
+        ON tribu.user_id_parent1 = user.id_user
+        OR tribu.user_id_parent2 = user.id_user
+        WHERE article.validation_article = 0
+        AND user.id_user = $id_user
+        GROUP BY article.id_article";
+        $query = $this->db->query($req);     
+        if($query->num_rows > 0){
+            while($row = $query->fetch_array()){
+            $tableau[] = new Article($row);
+            }
+            return $tableau;
+        }else{
+            return null;
+        }      
+
+
+    }
+
+    //----------------------------------------------------------
+	//autocomplete zone recherche
+	//----------------------------------------------------------
+
+	function autocompletion($saisie){
+		$saisie = $this->db->real_escape_string($saisie);
+
+		$req = "SELECT * FROM article 
+			WHERE titre_article LIKE '%$saisie%' 
+			ORDER BY titre_article
+            LIMIT 5
+		";
+		$query = $this->db->query($req);
+		if($query->num_rows > 0){
+			while($row = $query->fetch_array()){
+				$tableau[] = new Article($row);
+			}
+
+			return $tableau;
+		}else{
+			return NULL;
+		}
+	}
 
 
 

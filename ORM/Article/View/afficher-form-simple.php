@@ -9,18 +9,3 @@ if(isset($result)){
 
 }
 
-?>
-<!-- <script type="text/javascript">
-	$(function(){
-		$('.flatpickr').flatpickr({
-			dateFormat: 'Y-m-d',
-			enableTime: true,
-			time_24hr: true
-		});
-		$('.flatpickr2').flatpickr({
-			dateFormat: 'H:i:00',
-			enableTime: true,
-			time_24hr: true
-		});
-	});
-</script> -->

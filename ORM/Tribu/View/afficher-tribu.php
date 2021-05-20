@@ -94,8 +94,8 @@ if(isset($result)){
     
     
 }
-echo "<p class=\"btnaddtribu wrap\">
-<a href=\"ajouter-tribu\" title=\"Ajoutez une nouvelle tribu \"><i class=\"ico icofont-inbox\"></i> Ajouter une nouvelle tribu</a>
+echo "<p class=\"btnaddtribu\">
+<a href=\"ajouter-tribu\" title=\"Ajoutez une tribu \"> Ajouter<br>une tribu <i class=\"ico icofont-inbox\"></i></a>
 </p>";
 ?>
 <script type="text/javascript" src="templates/back/js/confirmation.js"></script>

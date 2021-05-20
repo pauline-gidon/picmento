@@ -25,10 +25,13 @@ class AfficherNaissanceBaby extends Controller {
             $id_baby = $http->getDataGet("id");
             $cx			= new Connexion();
             $managerU = new ManagerUser($cx);
-            if($managerU->verifUserBaby($id_baby)){
+            $id_user = $_SESSION["auth"]["id"];
+
+            if($managerU->verifUserBaby($id_baby, $id_user)){
                 
                 $manager = new ManagerBaby($cx);
-                $babys=  $manager->allBabyHasUser();
+                $id_user = $_SESSION["auth"]["id"];
+                $babys=  $manager->allBabyHasUser($id_user);
                 $this->navConstruction($babys);
                 $baby = $manager->oneBabyById($id_baby);
                 if(!is_null($baby)){

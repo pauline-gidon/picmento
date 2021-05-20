@@ -33,24 +33,20 @@ class EditerSouvenir extends Controller {
                 if(($form->isSubmit("souvenir"))&&($form->isValid())){
                     $flash = new Flash();
                     
-                    $article->setTitreArticle($http->getDataPost("titre_article"));
-                    $article->setDescriptionArticle($http->getDataPost("description_article"));
+                    $article->setTitreArticle(ucfirst($http->getDataPost("titre_article")));
+                    $article->setDescriptionArticle(ucfirst($http->getDataPost("description_article")));
                     $article->setDateArticle($http->getDataPost("date_article"));
-                    $article->setActifArticle($http->getDataPost("actif_article"));
-    
-            
-                    $baby = $manager->babyWithArticleById($id);
-                    $id_baby = $baby->getIdBaby();
+                    
     
                     
                     if($manager->updateArticle($article)){
                             
                         $flash->setFlash("L'article a bien été modifié !");
-                        header("location: afficher-souvenirs-".$id_baby."");
+                        header("location: afficher-souvenirs-".$_SESSION["idBaby"]."");
                         exit();
                     }else{
                         $flash->setFlash("Vous n'avez pas fait de modification !");
-                        header("location: afficher-souvenirs-".$id_baby."");
+                        header("location: afficher-souvenirs-".$_SESSION["idBaby"]."");
                         exit();
                     }
                 }    

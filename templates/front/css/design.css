@@ -38,28 +38,12 @@ body {
 }
 .sauvegarde-de-souvenirs-en-ligne header{
     width: 100%;
-    box-shadow: none;
     background-color: rgb(233, 202, 197);
-    box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.37);
-    
-    /* background-color: #fed9b7de; */
-    
-    /* position: relative; */
-    /* z-index: 50; */
-    /* min-height: 10vh;
-    background-image: url(../images/); */
+
 }
-.contact header, .inscription header, .connexion header{
+.contact header, .inscription header, .connexion header {
     width: 100%;
-    box-shadow: none;
-    /* background-color: rgba(167, 159, 157, 0.829); */
-    
     background-color: #fed9b7de;
-    
-    /* position: relative; */
-    /* z-index: 50; */
-    /* min-height: 10vh;
-    background-image: url(../images/); */
 }
 .mla {
 	margin-left: auto;
@@ -69,7 +53,6 @@ header nav {
 }
 header nav a {
     display: block;
-    /* color: #F07167; */
     color: #614846;
     text-decoration: none;
     padding: 20px 0;
@@ -84,7 +67,7 @@ header nav li {
     width: 17%;
     font-size: 20px;
 }
- h1 {
+h1 {
      font-size: 30px;
     text-align: center;
     margin: 60px 0;
@@ -202,16 +185,82 @@ header nav li {
     color: #FFFCF8;
     
 }
-/* #pagination i::before{
-    content:'';
-    position: absolute;
-    background: radial-gradient(circle closest-side #ffa46b, transparent) ;
+
+
+
+
+/* ----------------------------------------------------------------------------------------------------------------------------- */
+/* ***************************************************************FORMULAIRE*************************************************** */
+/* --------------------------------------------------------------------------------------------------------------------------- */
+
+/* ---------------------------------COMMUN---------------------------------------------- */
+form {
+    width: 100%;
+    padding: 60px;
+    margin: auto;
+    background: rgba( 255, 255, 255, 0.40 );
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur( 15.0px );
+    -webkit-backdrop-filter: blur( 15.0px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    margin-bottom: 106px;
+
+}
+
+form p {
+    padding: 20px 0;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+form a {
+    color: #8994a6;
+}
+form ul {
+    padding-left: 20px;
+}
+
+ .consigne {
+    color: #707070;
+    width: 20%;
+    height: 35px;
+    display: block;
+    
+}
+
+.champ {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    width: 55%;
+    position: relative;
+    left: 150px;
+    background-color: rgba(255, 255, 255, 0.856);
+
+
+}
+.btn {
+    border: none;
+    margin-top: 10px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background: rgba( 254, 217, 183, 0.30 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 9.0px );
+    -webkit-backdrop-filter: blur( 9.0px );
+    /* border-radius: 10px; */
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    color: #3f3d3d;
+}
+.btn:hover {
+    color: #707070;
+    text-decoration: underline #707070;
+}
+/* #go{
+    color: #383232;
 } */
-
-
-
-
-
 
 
 /* ---------------------------------page inscription-------------------------------------- */
@@ -231,25 +280,6 @@ color: #FFF;
     position: relative;
 }
 
-/* .inscription #zone-form:before {
-    content: '';
-    background-image: url(../images/livre-boule-bleu.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: bottom;
-
-    -webkit-filter: blur(5px);
-           -moz-filter: blur(5px);
-            -ms-filter: blur(5px);
-             -o-filter: blur(5px);
-                filter: blur(5px);
-    position: absolute;
-    top: 0;
-    bottom:0;
-    left: 0;
-    right: 0;    
-    z-index: -1;
-} */
 .inscription form {
     background: rgba(255, 255, 255, 0.432);
     border-radius: 10px;
@@ -257,13 +287,12 @@ color: #FFF;
     margin-bottom: 50px;
 }
 
-
-
 .inscription #zone-form  a{
     color: rgb(146, 221, 255) ;
 }
 .inscription #zone-form p{
     width: 930px;
+    position: relative;
 }
 .inscription #zone-form .consigne, .inscription #zone-form label {
     color:rgb(31, 30, 30);
@@ -282,6 +311,40 @@ form ::placeholder {
 .barre {
     text-decoration: line-through;
 }
+.visu-mdp{
+    right: 100px;
+    bottom: 30px;
+}
+.inscription form p:nth-last-child(2) {
+    display: initial;
+}
+.messageAideMdp {
+    margin-bottom: 20px;
+}
+.btn-inscription {
+    text-align: center;
+    background-color: #FED9B7 ;
+    border-radius: 10px;
+    width: 170px;
+    padding: 15px 5px;
+    margin: 60px auto;
+}
+.btn-inscription a {
+    display: block;
+    text-decoration: none;
+    width: 100%;
+    color: #fffcf8;
+    font-weight: 600;
+}
+#rgpd_user{
+    padding: 10px;
+    margin-right: 12px;
+}
+
+/* .inscription [type="checkbox"]{
+    width: 22px;
+	height: 22px;
+} */
 /* ----------------------------------------------------page connexion---------------------------------- */
 .connexion {
     background-image: url(../images/baby.jpg);
@@ -295,10 +358,7 @@ form ::placeholder {
     box-shadow: none;
 }
 
-.visu-mdp{
-    right: 100px;
-    top: 30px;
-}
+
 
 .connexion h1 {
     color: rgb(255, 255, 255);
@@ -321,6 +381,9 @@ form ::placeholder {
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     margin-bottom: 106px;
 }
+.connexion #zone-form form p{
+    position: relative;
+}
 .connexion #zone-form #passe-oublie{
     text-decoration: underline #8994a6;
 }
@@ -342,27 +405,9 @@ form ::placeholder {
 .contact h1 {
     color: #FFF;
 }
-.contact form {
-    background: rgba( 255, 255, 255, 0.40 );
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    backdrop-filter: blur( 15.0px );
-    -webkit-backdrop-filter: blur( 15.0px );
-    border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-    margin-bottom: 106px;
-}
 .contact form .consigne{
  color: var(--beige-claire)
 }
-.contact .champ {
-    background-color: rgba(255, 255, 255, 0.856);
-    color: #555454;
-}
-#go{
-    /* background-color: rgba(255, 255, 255, 0.856); */
-    color: #383232;
-}
-
 
 
 
@@ -388,79 +433,7 @@ form ::placeholder {
 
 
 
-form {
-    width: 100%;
-    padding: 60px;
-    margin: 0 auto;
 
-}
-
-form p {
-    padding: 20px 0;
-    
-}
-form a {
-    color: #8994a6;
-}
-form ul {
-    padding-left: 20px;
-}
-.contenue-form {
-    margin: 0 auto;
-    background-color: #f0ecec;
-    padding: 20px;
-    margin: 50px auto;
-}
- .consigne {
-    color: #707070;
-    width: 20%;
-    height: 30px;
-    display: inline-block;
-    
-}
-
-.champ {
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    /* background: #FFF; */
-    width: 55%;
-    position: relative;
-    left: 150px;
-
-}
-.btn {
-    border: none;
-    margin-top: 10px;
-    padding: 10px 15px;
-    border-radius: 5px;
-    background: rgba( 254, 217, 183, 0.30 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 9.0px );
-    -webkit-backdrop-filter: blur( 9.0px );
-    /* border-radius: 10px; */
-    border: 1px solid rgba( 255, 255, 255, 0.18 );}
-.btn:hover {
-    color: #707070;
-    text-decoration: underline #707070;
-}
-.btn-inscription {
-    text-align: center;
-    background-color: #FED9B7 ;
-    border-radius: 10px;
-    width: 170px;
-    padding: 15px 5px;
-    margin: 60px auto;
-}
-.btn-inscription a {
-    display: block;
-    text-decoration: none;
-    width: 100%;
-    color: #fffcf8;
-    font-weight: 600;
-
-
-}
 
  /* -------------------------------------------footer-------------- */
 
@@ -494,11 +467,15 @@ footer p a:hover {
     color: #FFF;
 }
 
+/* *****************************formulaire generale*******************************u */
 
 .alerte { 
-    color: rgb(138, 31, 31);
-
+    color: rgb(148, 25, 25);
+    width: 100%;
+    display: block;
 }
+
+
 /*
 :nth-child(odd)			impaires
 :nth-child(even)		paires

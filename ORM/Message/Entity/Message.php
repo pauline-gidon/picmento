@@ -9,6 +9,7 @@ class Message {
 	private $date_message;
 	private $user_id_expediteur;
 	private $user_id_destinataire;
+	private $lu_message;
 
 
 	function __construct(Array $datas){
@@ -31,6 +32,9 @@ class Message {
 	function getUserIdDestinataire(){
 		return $this->user_id_destinataire;
 	}
+    function getLuMessage(){
+		return $this->lu_message;
+	}
 
 
 	//SETTERS
@@ -46,6 +50,9 @@ class Message {
 	}
 	function setUserIdDestinataire($val){
 		$this->user_id_destinataire = $val;
+	}
+    function setluMessage($val){
+		$this->lu_message = $val;
 	}
 
 

@@ -11,6 +11,7 @@ class Field {
 	protected $placeholder;
 	protected $cssLabel;
 	protected $cssChamp;
+
 	protected $selected = FALSE;
 
 	protected $validators = [];
@@ -31,6 +32,7 @@ class Field {
 	function setValue($val){
 		$this->value = $val;
 	}
+	
 	//- Récupérer cette value (la saisie) pour la tester par ex.
 	function getValue(){
 		return $this->value;
@@ -51,6 +53,7 @@ class Field {
 	function getGetterEntity(){
 		return $this->getterEntity;
 	}
+
 
 	//UNE METHODE QUI PARCOURE LES VALIDATORS ET AFFECTE LEURS MESSAGES D'ERREURS à $errorMessage
 	function isValid(){

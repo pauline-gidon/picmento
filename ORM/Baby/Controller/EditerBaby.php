@@ -26,7 +26,9 @@ class EditerBaby extends Controller {
 		$id_baby = $http->getDataGet("id");
 		$cx			= new Connexion();
         $managerU = new ManagerUser($cx);
-        if($managerU->verifUserBaby($id_baby)){
+        $id_user = $_SESSION["auth"]["id"];
+
+        if($managerU->verifUserBaby($id_baby, $id_user)){
 
             $manager	= new ManagerBaby($cx);
             $baby 		= $manager->oneBabyById($id_baby);
@@ -41,16 +43,15 @@ class EditerBaby extends Controller {
                     
         
                     
-                    $baby->setNomBaby($http->getDataPost("nom_baby"));
+                    $baby->setNomBaby(ucfirst($http->getDataPost("nom_baby")));
                     $baby->setDateNaissanceBaby($http->getDataPost("date_naissance_baby"));
                     $baby->setHeureNaissanceBaby($http->getDataPost("heure_naissance_baby"));
-                    $baby->setLieuNaissanceBaby($http->getDataPost("lieu_naissance_baby"));
+                    $baby->setLieuNaissanceBaby(ucfirst($http->getDataPost("lieu_naissance_baby")));
                     $baby->setPoidsNaissanceBaby($http->getDataPost("poids_naissance_baby"));
                     $baby->setTailleNaissanceBaby($http->getDataPost("taille_naissance_baby"));
-                    
                         if($manager->updateProfilBaby($baby)){
                             
-                            $flash->setFlash("Le profil de ".$nom_baby." a bien été modifié !");
+                            $flash->setFlash("Le profil de ".$baby->getNomBaby()." a bien été modifié !");
                             header("location: afficher-tribu");
                             exit();
                         }else{

@@ -30,19 +30,11 @@ class AmisAjouterCommentaire extends Controller {
 		$cx			= new Connexion();
         $managerU = new ManagerUser($cx);
         //pour ajouter un commentaire je verifie les relation user
-        //pour sa je vais recupéré la tribu lié a l'article du bébé
-        $managerT = new ManagerTribu($cx);
-        $tribu = $managerT->oneTribuByIdArticle($id_article,$id_baby);
-        if(!is_null($tribu)){
-            //je recupère parent 1 et parent 2 et je les compare a l'auth qui est connecter
-            $id_parent1 = $tribu->getUserIdParent1();
-            $id_parent2 = $tribu->getUserIdParent2();
-            $user = $managerU->verifUserAmisUserConnecter($id_parent1, $id_parent2);
-            if(!is_null($user) || $tribu->getUserIdParent1() == $_SESSION["auth"]["id"] || $tribu->getUserIdParent2() == $_SESSION["auth"]["id"]){
-                $managerA = new ManagerArticle($cx);
-                $souvenir = $managerA->oneArticleById($id_article);
-        
-                
+        if($managerU->verifUserAmis($_SESSION["amis"]["id"])){
+            
+            $managerA = new ManagerArticle($cx);
+             $souvenir = $managerA->oneArticleById($id_article);
+     
                 if(!is_null($souvenir)){
                     $id_article = $souvenir->getIdArticle();
                     $form 		= new FormCommentaire();
@@ -78,13 +70,6 @@ class AmisAjouterCommentaire extends Controller {
                 header("location: ".DOMAINE."errors/404.php");
                 exit();
             }
-        
-     
-
-        }else{
-            header("location: ".DOMAINE."errors/404.php");
-            exit();
-        }
     }
 }
 

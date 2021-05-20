@@ -3,10 +3,7 @@
 		<ul>
 		<fieldset>
 			<legend>Compte personnel</legend>
-			<li>
-				<i class="fas fa-calendar-check"></i>
-				<a href="gerer-amis" title="Mes réservations">Amis</a>
-			</li>
+
 			<li>
 				<i class="fas fa-user"></i>
 				<a href="modifier-profil" title="Actualiser mon profil">Profil</a>
