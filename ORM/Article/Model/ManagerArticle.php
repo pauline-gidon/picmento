@@ -224,8 +224,6 @@ class ManagerArticle extends Manager {
 
     function deleteArticleHasBaby($id_article, $id_baby){
         if((is_numeric($id_article))&&(is_numeric($id_baby))){
-            // $req = "DELETE FROM commentaire WHERE article_id_article = $id";
-            // $query = $this->db->query($req);
 
             $req = "DELETE FROM baby_has_article WHERE article_id_article = $id_article
             AND baby_id_baby = $id_baby";

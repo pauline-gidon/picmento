@@ -280,7 +280,7 @@ class ManagerUser extends Manager {
 
     }
     //----------------------------------------------------------
-	// Controle de la personne connecter id medias
+	// Controle de la personne connecter id medias parent1 ou parent2
 	//----------------------------------------------------------
     function verifUserMedias($id_medias){
         $user_id = $_SESSION["auth"]["id"];

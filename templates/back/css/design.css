@@ -110,11 +110,15 @@ footer p a:hover {
 
 .feedback {
     padding: 10px;
-    background-color: #494343b7;
+    background-color: #494343;
     color: rgb(255, 255, 255);
     width:100%;
     height: 90px;
     margin-bottom: 30px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 75px;
+    z-index: 10;
 }
 .flash-retour{
     color: #FFF;
@@ -487,7 +491,8 @@ fieldset a {
 }
 /* ---------------------------------------Souvenir------------------------------------------ */
 .les-souvenirs {
-    background-image: url(../images/picmento-ciel.jpg);
+    /* background-image: url(../images/plume-paysag1.jpg); */
+    background-image: url(../images/plume-paysage.jpg);
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
@@ -516,12 +521,16 @@ fieldset a {
     padding: 15px 0 15px ; 
 }
 .add-souvenir a {
-    color: #FFF;
+    color: var(--bleu-confé);
     
 }
 .add-souvenir{
     text-align: right;
     margin: 0 15px 20px 0;
+    width: 120px;
+    height: 120px;
+    background-color: var(--beige-claire);
+    border-radius: 5px;
 }
 .article-baby{
     position: relative;
@@ -667,7 +676,7 @@ list-style-type: none;
     justify-content: center;
     font-size: 25px;
     color: var(--beige-claire);
-    
+    z-index: 15;
 }
 .btn-top:hover {
 

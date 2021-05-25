@@ -57,7 +57,9 @@ class AjouterPhoto extends Controller {
                             "nom_medias" 	=> $nom_file
                             ]);
                             $manager1 = new ManagerMedias($cx);
+                            //insertion du medias
                             $new_id_medias = $manager1->insertMedias($new_medias);
+                            //insertion d'une relation medias articles
                             $manager1->insertMediasHasArticle($id_article,$new_id_medias);
                             $flash->setFlash("Votre photo a bien été ajouté !");
                             header("location: afficher-souvenirs-".$_SESSION["idBaby"]."#ancre-".$id_article."");

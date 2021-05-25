@@ -63,6 +63,7 @@ class AjouterPhotosSouvenir extends Controller {
                                 ]);
                                 $manager1 = new ManagerMedias($cx);
                                 $new_id_medias = $manager1->insertMedias($new_medias);
+                                //insertion d'un relation article medias
                                 if($manager1->insertMediasHasArticle($id_article,$new_id_medias)){
 
                                     if(($form->isSubmit("addPhoto")) && ($form->isValid())){

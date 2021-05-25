@@ -27,6 +27,8 @@ class SupprimerPhoto extends Controller {
         $http = new HTTPRequest();
 		$id_photo = $http->getDataGet("id");
         $id_baby = $http->getDataGet("idbaby");
+        $id_article = $http->getDataGet("idsouvenir");
+
 		$cx			= new Connexion();
         $managerU = new ManagerUser($cx);
         $id_user = $_SESSION["auth"]["id"];
@@ -35,21 +37,32 @@ class SupprimerPhoto extends Controller {
 
 
             $managerM = new ManagerMedias($cx);
-            $photo = $managerM->oneMediasById($id_photo);
+            //je verifie la relation de l'article a son medias
+            if($managerM->verifRelationMediaArticle($id_photo, $id_article)){
+                //je verifie la relation de l'article a son baby
+                if($managerM->verifRelationBabyArticle($id_baby, $id_article)){
+                    $photo = $managerM->oneMediasById($id_photo);
     
             
-            if(!is_null($photo)){
-                
-                if($managerM->deleteMediasById($photo->getIdMedias())){
-                    $destination = "medias/souvenir/";
-                    unlink($destination.$photo->getNomMedias());
-    
-                    $flash->setFlash("La photo a bien été supprimée !");
-                    header("location: afficher-souvenirs-".$id_baby."");
+                    if(!is_null($photo)){
+                        
+                        if($managerM->deleteMediasById($photo->getIdMedias())){
+                            $destination = "medias/souvenir/";
+                            unlink($destination.$photo->getNomMedias());
+            
+                            $flash->setFlash("La photo a bien été supprimée !");
+                            header("location: afficher-souvenirs-".$id_baby."#ancre-".$id_article."");
+                            exit();
+                        }
+                    }
+                }else{
+                    header("location: ".DOMAINE."errors/404.php");
                     exit();
                 }
+            }else{
+                header("location: ".DOMAINE."errors/404.php");
+                exit();
             }
-            
         }else{
             header("location: ".DOMAINE."errors/404.php");
             exit();

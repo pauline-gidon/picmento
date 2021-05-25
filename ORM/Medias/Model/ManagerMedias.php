@@ -73,5 +73,45 @@ class ManagerMedias extends Manager {
     }
   
   }
+  //--------------------------------------------------------
+  //verif relation id_media et id_article
+  //--------------------------------------------------------
+  function verifRelationMediaArticle($id_media, $id_article){
+    if((is_numeric($id_media))&&(is_numeric($id_article))){
+
+        $req = "SELECT * FROM article
+        INNER JOIN article_has_medias
+        ON article.id_article = article_has_medias.article_id_article
+        INNER JOIN medias
+        ON medias.id_medias = article_has_medias.medias_id_medias
+        WHERE article.id_article = $id_article
+        AND medias.id_medias =  $id_media
+        ";
+        // var_dump($req);
+        $query = $this->db->query($req);
+        return ($this->db->affected_rows == 1)?TRUE:FALSE;
+    }
+  
+  }
+  //--------------------------------------------------------
+  //verif relation id_baby et id_article
+  //--------------------------------------------------------
+  function verifRelationBabyArticle($id_baby, $id_article){
+    if((is_numeric($id_baby))&&(is_numeric($id_article))){
+
+        $req = "SELECT * FROM article
+        INNER JOIN baby_has_article
+        ON article.id_article = baby_has_article.article_id_article
+        INNER JOIN baby
+        ON baby.id_baby = baby_has_article.baby_id_baby
+        WHERE article.id_article = $id_article
+        AND baby.id_baby =  $id_baby
+        ";
+        // var_dump($req);
+        $query = $this->db->query($req);
+        return ($this->db->affected_rows == 1)?TRUE:FALSE;
+    }
+  
+  }
   
 }

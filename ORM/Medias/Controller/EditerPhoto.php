@@ -1,4 +1,5 @@
 <?php
+
 namespace ORM\Medias\Controller;
 use OCFram\Connexion;
 use OCFram\Controller;
@@ -28,60 +29,76 @@ class EditerPhoto extends Controller {
 		$id_photo = $http->getDataGet("id");
         $id_baby = $http->getDataGet("idbaby");
         $id_article = $http->getDataGet("idsouvenir");
-        var_dump($id_photo); 
-        var_dump($id_baby); 
-        var_dump($id_article); die();
-		$cx			= new Connexion();
+
+        $cx			= new Connexion();
         $managerU = new ManagerUser($cx);
         $id_user = $_SESSION["auth"]["id"];
 
         if(($managerU->verifUserMedias($id_photo))&&($managerU->verifUserBaby($id_baby, $id_user))){
-
+            
 
             $managerM = new ManagerMedias($cx);
-            $photo = $managerM->oneMediasById($id_photo);
+            //je verifie la relation de l'article a son medias
+            if($managerM->verifRelationMediaArticle($id_photo, $id_article)){
+                //je verifie la relation de l'article a son baby
+                if($managerM->verifRelationBabyArticle($id_baby, $id_article)){
+
     
+                    $photo = $managerM->oneMediasById($id_photo);
             
-            if(!is_null($photo)){
-                $form 		= new FormPhoto();
-                $build 		= $form->buildForm();
-            }
-            
-            $flash = new Flash();
-            if(($form->isSubmit("addPhoto"))&&($form->isValid())){
-                //je recupère le nom de la photo qui va etre remplacer
-                $nom_photo = $photo->getNomMedias();
-                //suppression du précédant medias
-                $destination = "medias/souvenir/";
-                unlink($destination.$nom_photo);
-                
-                //upload de fichier
-                $file 		= $http->getDataFiles("photo");
-                $uploader = new Uploader($file,$destination);
-                $nom_file = $uploader->upload();
-
-                if(!is_null($nom_file)){
-                    //Avec redimensionnement si nécessaire
-                    $photo->setNomMedias($nom_file);
-                    $uploader->imageSizing(400);
-
-                    if($managerM->updateMedias($photo)){
-
-                        $flash->setFlash("La photo a bien été modifée");
-                        header("location: afficher-souvenirs-".$id_baby."#ancre-".$id_article."");
-                        exit();
-
+                    
+                    if(!is_null($photo)){
+                        $form 		= new FormPhoto();
+                        $build 		= $form->buildForm();
                     }
-                }
-            }
+                    
+                    $flash = new Flash();
+                    if(($form->isSubmit("addPhoto"))&&($form->isValid())){
+                        //je recupère le nom de la photo qui va etre remplacer
+                        $nom_photo = $photo->getNomMedias();
+                        //suppression du précédant medias
+                        $destination = "medias/souvenir/";
+                        unlink($destination.$nom_photo);
+                        
+                        //upload de fichier
+                        $file 		= $http->getDataFiles("photo");
+                        $uploader = new Uploader($file,$destination);
+                        $nom_file = $uploader->upload();
         
-            $cx->close();
-            return $build;
+                        if(!is_null($nom_file)){
+                            //Avec redimensionnement si nécessaire
+                            $photo->setNomMedias($nom_file);
+                            $uploader->imageSizing(400);
+        
+                            if($managerM->updateMedias($photo)){
+        
+                                $flash->setFlash("La photo a bien été modifée");
+                                header("location: afficher-souvenirs-".$id_baby."#ancre-".$id_article."");
+                                exit();
+        
+                            }
+                        }
+                    }
+                
+                    $cx->close();
+                    return $build;
+                }else{
+                    header("location: ".DOMAINE."errors/404.php");
+                    exit();
+                }
+
+            }else{
+                header("location: ".DOMAINE."errors/404.php");
+                exit();
+            }
 
         }else{
                 header("location: ".DOMAINE."errors/404.php");
                 exit();
         }
+    
+
+
     }
 }
 
