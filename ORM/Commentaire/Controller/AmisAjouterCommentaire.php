@@ -29,8 +29,10 @@ class AmisAjouterCommentaire extends Controller {
 
 		$cx			= new Connexion();
         $managerU = new ManagerUser($cx);
+        
         //pour ajouter un commentaire je verifie les relation user
-        if($managerU->verifUserAmis($_SESSION["amis"]["id"])){
+        if($managerU->verifUserAmis($_SESSION["ami"]["id"])){
+            // var_dump($_SESSION["ami"]["id"]);die();
             
             $managerA = new ManagerArticle($cx);
              $souvenir = $managerA->oneArticleById($id_article);
@@ -56,7 +58,7 @@ class AmisAjouterCommentaire extends Controller {
                             $flash->setFlash("Impossible d'ajouter votre commentaire !");
                         }
 
-                        header("location: ami-afficher-souvenirs-".$id_baby."");
+                        header("location: ami-afficher-souvenirs-".$id_baby."#ancre-".$id_article."");
                         exit();
     
         

@@ -29,7 +29,6 @@ class Repondre extends Controller {
 		$cx 				= new Connexion();
 		$manager 		= new ManagerMessage($cx);
         $message = $manager->oneMessageById($id_message);
-        // var_dump($message);
         if(!is_null($message)){
             if($message->getUserIdDestinataire() == $_SESSION["auth"]["id"]){
                 $form 		= new FormMessage();

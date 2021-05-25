@@ -3,8 +3,7 @@ namespace ORM\Commentaire\Controller;
 use OCFram\Connexion;
 use OCFram\Controller;
 use OCFram\HTTPRequest;
-
-
+use ORM\Article\Entity\Article;
 use Vendors\Flash\Flash;
 use Vendors\File\Uploader;
 use ORM\User\Model\ManagerUser;
@@ -47,22 +46,28 @@ class EditerCommentaire extends Controller {
             if($com->getUserIdUser() == $_SESSION["auth"]["id"]){
                 $form 		= new FormCommentaire("post",$com);
                 $build 		= $form->buildForm();
-
+                // je recupère l'article pour rediriger l'ancre au bon article après modification
+                $article = $managerC->oneArticleByIdCom($id_com);
+                $id_article= $article->getIdArticle();
+                // var_dump($id_baby); die();
+                
                 if(($form->isSubmit("go"))&&($form->isValid())){
                         
                     
                     $com->setDescriptionCommentaire($http->getDataPost("description_commentaire"));
                     if($managerC->updateCommentaire($com)){
 
-                        $flash->setFlash("Le commentaire a vien été modifié !");
+                        $flash->setFlash("Le commentaire a bien été modifié !");
+                        header("location: afficher-souvenirs-".$id_baby."#ancre-".$id_article."");
+                        exit();
 
                     }else{
                         
                         $flash->setFlash("Vous n'avez pas fait de modification !");
+                        header("location: afficher-souvenirs-".$id_baby."#ancre-".$id_article."");
+                        exit();
                         
                     }
-                    header("location: afficher-souvenirs-".$id_baby."");
-                    exit();
                 
                     // header("location: afficher-souvenirs-".$id_baby."");
                     
@@ -71,7 +76,7 @@ class EditerCommentaire extends Controller {
                 return $build;
             }else{
                 $flash->setFlash("Vous n'avez pas les droits pour modifier ce commentaire !");
-                header("location: afficher-souvenirs-".$id_baby."");
+                header("location: afficher-souvenirs-".$id_baby."#ancre-".$id_article."");
                 exit();
             }
 

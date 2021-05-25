@@ -140,10 +140,11 @@ footer p a:hover {
     width: 430px;
 }
 .votre-espace {
-    background-image: url(../images/boite.jpg);
+    background-image: url(../images/espace-perso3.jpg);
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center ;
 
 }
 .votre-espace h1 {
@@ -164,6 +165,13 @@ color: #FFF;
 
 fieldset {
     padding: 15px 0 15px 25px;
+    background: rgba(170, 169, 169, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur( 15.0px );
+    -webkit-backdrop-filter: blur( 15.0px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+
 }
 fieldset a {
     display: inline-block;
@@ -175,25 +183,60 @@ fieldset a {
 /* _____________________________modifier profil */
 
 .modifier-votre-profil {
-    background-image: url(../images/jouet.jpg);
+    background-image: url(../images/espace-perso3.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
 
 }
 /* _____________________________mot de pass */
 
-/* _____________________________avatar */
-.avatar{
-    width: 300px;
-    height: 300px;
+.modifiez-votre-mot-de-passe {
+    background-image: url(../images/espace-perso3.jpg);
+    background-attachment: fixed;
     background-repeat: no-repeat;
-    margin: 0 auto;
+    background-size: cover;
+    background-position: center;
 }
-.votre-avatar 
+/* _____________________________avatar */
+.votre-avatar{
+    background-image: url(../images/espace-perso3.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+}
+.avatar{
+    width: 220px;
+    height: 220px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin: 0 auto;
+    border-radius: 50%;
+
+}
+.votre-avatar form {
+   
+    margin-bottom: 0px;
+    
+}
 .xlg-3{
     width: 30%;
 }
 .xlg-9{
     width: 70%;
+}
+/* _____________________________supprimer compt */
+.supprimer-votre-compte {
+    background-image: url(../images/espace-perso3.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
 }
 
  /* ------------------------------- tribu-------------------------------------- */
@@ -419,7 +462,7 @@ fieldset a {
 
 
 .les-tribu-de-mon-ami{
-    background-image: url(../images/pawel-czerwinski-NJdfP9AlPjc-unsplash.jpg);
+    background-image: url(../images/amis1.jpg);
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
@@ -762,7 +805,7 @@ list-style-type: none;
   }
    
   .wrapper{
-    max-width: 200px;
+    max-width: 250px;
     margin-top: 20px;
     margin-left: auto;
   }
@@ -835,56 +878,184 @@ list-style-type: none;
     align-items: center;
     justify-content: center;
   } */
-  /* 124124+97 +9nb7+hg7,+7gh7,+97hfx97+,nj7xthsjn7w+frt9,+9w79,y */
+  /* -----------------------------------------2eme zone teste hiihi*/
 .zoneRecherche {
     position: relative;
-    width: 200px;
+    width: 320px;
     margin-top: 20px;
     margin-left: auto;
 }
 .zoneRecherche i{
     position: absolute;
-    right: 7px;
-    top: 9px;
+    right: 2px;
+    top: 0px;
     color: rgb(107, 106, 106);
+    background-color: var(--beige-claire);
+    padding: 9px;
+    cursor: pointer;
 }
 .champRecherche {
     border: none;
     padding: 10px 29px 10px 15px;
-    border-radius: 5px;
-    width: 200px;
+    border-radius: 5px 0 0 5px;
+    width: 220px;
     background-color: rgb(255, 255, 255);
     color: var(--corail);
 }
 .result {
     color: var(--beige-claire);
 }
-
+#sources{
+    display: block;
+    border-radius: 0 5px 5px 0;
+    border: none;
+}
+/* -///-//-/-/---//---/-/-/-//--/-/-/-/-/-/-/-/--/-/--/teste cusom select recherche */
+/* .center {
+    position: absolute;
+    display: inline-block;
+    top: 150%; left: 50%;
+    transform: translate(-50%, -50%);
+  } */
+  
+  /** Custom Select **/
+  /* .custom-select-wrapper {
+    position: relative;
+    display: inline-block;
+    user-select: none;
+  }
+    .custom-select-wrapper select {
+      display: none;
+    }
+    .custom-select {
+      position: relative;
+      display: inline-block;
+    }
+      .custom-select-trigger {
+        position: relative;
+        display: block;
+        width: 130px;
+        padding: 12px 40px 12px 12px;
+        font-size: 18px;
+        color: #fff;
+        background: var(--corail);
+        border-radius: 4px;
+        cursor: pointer;
+      }
+        .custom-select-trigger:after {
+          position: absolute;
+          display: block;
+          content: '';
+          width: 10px; height: 10px;
+          top: 50%; right: 25px;
+          margin-top: -3px;
+          border-bottom: 1px solid #fff;
+          border-right: 1px solid #fff;
+          transform: rotate(45deg) translateY(-50%);
+          transition: all .4s ease-in-out;
+          transform-origin: 50% 0;
+        }
+        .custom-select.opened .custom-select-trigger:after {
+          margin-top: 3px;
+          transform: rotate(-135deg) translateY(-50%);
+        }
+    .custom-options {
+      position: absolute;
+      display: block;
+      top: 100%; left: 0; right: 0;
+      min-width: 100%;
+      margin: 15px 0;
+      border: 1px solid #b5b5b5;
+      border-radius: 4px;
+      box-sizing: border-box;
+      box-shadow: 0 2px 1px rgba(0,0,0,.07);
+      background: #fff;
+      transition: all .4s ease-in-out;
+      
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(-15px);
+    }
+    .custom-select.opened .custom-options {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all;
+      transform: translateY(0);
+    }
+      .custom-options:before {
+        position: absolute;
+        display: block;
+        content: '';
+        bottom: 100%; right: 25px;
+        width: 7px; height: 7px;
+        margin-bottom: -4px;
+        border-top: 1px solid #b5b5b5;
+        border-left: 1px solid #b5b5b5;
+        background: #fff;
+        transform: rotate(45deg);
+        transition: all .4s ease-in-out;
+      }
+      .option-hover:before {
+        background: #f9f9f9;
+      }
+      .custom-option {
+        position: relative;
+        display: block;
+        padding: 7px 22px;
+        border-bottom: 1px solid #b5b5b5;
+        font-size: 18px;
+        font-weight: 600;
+        color: #b5b5b5;
+        cursor: pointer;
+        transition: all .4s ease-in-out;
+      }
+      .custom-option:first-of-type {
+        border-radius: 5px 5px 0 0;
+      }
+      .custom-option:last-of-type {
+        border-bottom: 0;
+        border-radius: 0 0 5px 5px;
+      }
+      .custom-option:hover,
+      .custom-option.selection {
+        background: #f9f9f9;
+      }
+ */
 
 /* ------------------------Amis--------------------------------------------------------- */
+.mes-amis h1{
+    color: black;
+
+}
 .btnAddAmis{
+    text-align: center;
     margin-left: auto;
     margin-right: 20px;
-    width: 130px;
     padding: 12px;
-    border-radius: 5px;
-    text-align: center;
     background: var(--corail);
+    border-radius: 5px;
+    width: 120px;
+
 }
 .btnAddAmis a, .btnAddAmis i {
     color: var(--beige-claire);
     display: block;
+}
+.btnAddAmis i{
+
+font-size: 25px;
 }
 .messagerie-global {
     width: 100%;
     margin: 0 auto;
 }
 .mes-amis {
-    background-image: url(../images/test.jpg);
+    background-image: url(../images/ami5.jpg);
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
+    background-position: left;
     min-height: 90vh;
 }
 
@@ -932,12 +1103,18 @@ list-style-type: none;
     width: 200px;
     text-align: center;
     position: relative;
-    /* background-color: rgba(245, 57, 57, 0.37); */
-    background-color: #fed9b771;
-    box-shadow: 0 8px 32px 0 rgba(182, 182, 182, 0.37);
+    /* background-color: #fed9b7;
+    box-shadow: 0 8px 32px 0 rgba(182, 182, 182, 0.37); */
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur( 15.0px );
+    -webkit-backdrop-filter: blur( 15.0px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+
 }
 .card-msg a{
-    color: var(--corail);
+    color: var(--beige-claire);
     display: block;
 }
 .card-msg span{

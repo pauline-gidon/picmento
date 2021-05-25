@@ -64,7 +64,7 @@ class FormProfil extends Form {
 			"name"	 => "pass_user",
 			"id"	 => "pass_user",
 			"cssLabel" 			=> "consigne",
-			"cssChamp" 			=> "champ",
+			"cssChamp" 			=> "champ aide-mdp",
 			"validators" => [
 				new VideValidator("Pour autoriser la modification de votre profil, renseignez votre mot de passe")
 			]

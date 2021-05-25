@@ -35,21 +35,25 @@ POINTS DE RUPTURE UTILES AU PROJET
     border-bottom: thick double var(--corail);
 
 	}
-	nav ul {
+	header nav ul {
 		width: 100%;
 	}
 
-	nav ul li {
+	header nav ul li {
 		width: 100%;
 		text-align: right;
 		padding: 10px 0 10px 0 ;
 	}
-	nav ul li :hover {
+    /* .votre-espace nav ul li {
+        text-align: left;
+        
+    } */
+	header nav ul li :hover {
 		width: 100%;
 		background-color: #FFFCF8;
 		text-decoration: underline 2px #FFF;
 	}
-	nav ul li a {
+	header nav ul li a {
 		padding: 0 0 0 0;
 	}
 	header {

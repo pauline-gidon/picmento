@@ -25,6 +25,7 @@ class EditerSouvenir extends Controller {
         if($managerU->verifUserArticle($id)){
             $manager	= new ManagerArticle($cx);
             $article = $manager->oneArticleById($id);
+            $id_article = $article->getIdArticle();
 
             if(!is_null($article)){
                 $form 		= new FormEditeSouvenir("post",$article);
@@ -42,11 +43,11 @@ class EditerSouvenir extends Controller {
                     if($manager->updateArticle($article)){
                             
                         $flash->setFlash("L'article a bien été modifié !");
-                        header("location: afficher-souvenirs-".$_SESSION["idBaby"]."");
+                        header("location: afficher-souvenirs-".$_SESSION["idBaby"]."#ancre-".$id_article."");
                         exit();
                     }else{
                         $flash->setFlash("Vous n'avez pas fait de modification !");
-                        header("location: afficher-souvenirs-".$_SESSION["idBaby"]."");
+                        header("location: afficher-souvenirs-".$_SESSION["idBaby"]."#ancre-".$id_article."");
                         exit();
                     }
                 }    

@@ -53,7 +53,7 @@ if(isset($result["articles"])){
                                 <ul class=\"menu-photo\">
                                     <li class=\"checked\"><i class=\"fas fa-chevron-down\"></i>
                                         <ul class=\"chec d-none\">
-                                            <li><a href=\"editer-souvenir-photo-".$ids[$i]."-".$result["baby"]->getIdBaby()."\" title=\"Modifier la photo\"><i class=\"fas fa-pen-square\"></i></a></li>
+                                            <li><a href=\"editer-souvenir-photo-".$ids[$i]."-".$result["baby"]->getIdBaby()."-".$obj->getIdArticle()."\" title=\"Modifier la photo\"><i class=\"fas fa-pen-square\"></i></a></li>
                                             <li><a href=\"supprimer-souvenir-photo-".$ids[$i]."-".$result["baby"]->getIdBaby()."\" title=\"Supprimer la photo\" class=\"gogo\" data-gogo=\"la photo\"><i class=\"fas fa-trash\"></i></a></li>
                                         </ul>
                                     </li>
@@ -162,4 +162,6 @@ if(isset($result["articles"])){
 <script src="templates/back/js/confirmation.js" defer></script>
 <script src="templates/back/js/menuPhoto.js" defer></script>
 <script src="templates/back/js/scrollTop.js" defer></script>
+<!-- zone recherche -->
 <script src="templates/back/js/autocomplete.js" defer></script>
+<script src="templates/back/js/customSelect.js" defer></script>

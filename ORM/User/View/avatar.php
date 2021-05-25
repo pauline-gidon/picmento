@@ -8,11 +8,11 @@ echo $flash->getFlash();
 <!-- <h2>Avatar</h2> -->
 
 
-<div class="fc">
+<div class="fc fw ai-c jc-c">
 	<div class="xlg-3">
 		<?php
 		if(empty($_SESSION["auth"]["avatar"])){
-			echo "<div class=\"avatar\"><i class=\"fas fa-user\"></i></div>";
+			echo "<div class=\"avatar\" style=\"background-image: url(medias/avatar/avatar-picmento.png)\"></div>";
 
 		}else{
 			echo "
@@ -22,8 +22,8 @@ echo $flash->getFlash();
 		}
 		?>
 	</div>
-
-
+    
+ 
 	<div class="xlg-9">
 		<?php
 		if(isset($result)){

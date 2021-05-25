@@ -27,6 +27,10 @@ class EditerPhoto extends Controller {
         $http = new HTTPRequest();
 		$id_photo = $http->getDataGet("id");
         $id_baby = $http->getDataGet("idbaby");
+        $id_article = $http->getDataGet("idsouvenir");
+        var_dump($id_photo); 
+        var_dump($id_baby); 
+        var_dump($id_article); die();
 		$cx			= new Connexion();
         $managerU = new ManagerUser($cx);
         $id_user = $_SESSION["auth"]["id"];
@@ -64,7 +68,7 @@ class EditerPhoto extends Controller {
                     if($managerM->updateMedias($photo)){
 
                         $flash->setFlash("La photo a bien été modifée");
-                        header("location: afficher-souvenirs-".$id_baby."");
+                        header("location: afficher-souvenirs-".$id_baby."#ancre-".$id_article."");
                         exit();
 
                     }

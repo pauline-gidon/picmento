@@ -6,6 +6,7 @@ use OCFram\HTTPRequest;
 use Vendors\FormBuilder\Form;
 use Vendors\FormBuilder\InputDate;
 use Vendors\FormBuilder\InputFile;
+use Vendors\FormBuilder\InputFile2;
 
 use Vendors\FormBuilder\InputText;
 use Vendors\FormBuilder\InputSubmit;
@@ -36,33 +37,22 @@ class FormBabyTribu extends Form {
         ]
         ]));
                 
-        if(isset($_FILES["photo_baby"])){
-                $tmp = $_FILES["photo_baby"]["tmp_name"];
+        if(!empty($_FILES["photo_baby"]) && isset($_SESSION["photo"])){
+                // $tmp = $_FILES["photo_baby"]["tmp_name"];
+                $this->add(new Inputfile2([
+                    "label" 		    => "Photo enregistrée ✔️",
+                    "name" 			    => "photo_baby",
+                    "cssLabel" 			=> "consigne",
+                    "cssChamp" 			=> "champ"
+                ]));
+        }else{
+            $this->add(new InputFile([
+                "label" 		    => "Choisissez sa photo",
+                "cssLabel" 			=> "consigne",
+                "cssChamp" 			=> "champ"
+            ]));
         }
-        $this->add(new InputFile([
-            "label" 		    => "Choisissez sa photo",
-            "name" 			    => "photo_baby",
-            "cssLabel" 			=> "consigne",
-            "cssChamp" 			=> "champ",
-            "value"             => "toto",
-            "validators" 	    => [
-        new UploadTypeValidator(
-            "Veuillez choisir un format jpg ou png",
-            $http->getDataFiles("photo_baby","type"),
-            ["image/jpeg","image/png"]
-        ),
-        new UploadMaxSizeValidator(
-            "Sélectionnez un fichier inférieur à 2 Mo",
-            $http->getDataFiles("photo_baby","size")
-        ),
-        new UploadCodeValidator(
-            "Upload impossible",
-            $http->getDataFiles("photo_baby","error")
-            )
-        ]
- 
-        ]));
-            
+
 
         $this->add(new InputDate([
             "label" 				=> "Date de naissance",

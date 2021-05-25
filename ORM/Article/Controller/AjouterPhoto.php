@@ -60,7 +60,7 @@ class AjouterPhoto extends Controller {
                             $new_id_medias = $manager1->insertMedias($new_medias);
                             $manager1->insertMediasHasArticle($id_article,$new_id_medias);
                             $flash->setFlash("Votre photo a bien été ajouté !");
-                            header("location: afficher-souvenirs-".$_SESSION["idBaby"]."");
+                            header("location: afficher-souvenirs-".$_SESSION["idBaby"]."#ancre-".$id_article."");
                             exit();
 
                         }
@@ -71,7 +71,7 @@ class AjouterPhoto extends Controller {
                     }else{
                         $flash = new Flash();
                         $flash->setFlash("Votre souvenir a atteint le nombre maximal de photos. Pour ajouter cette photo, veuillez modifier ou supprimer une autre photo !");
-                        header("location: afficher-souvenirs-".$_SESSION["idBaby"]."");
+                        header("location: afficher-souvenirs-".$_SESSION["idBaby"]."#ancre-".$id_article."");
                         exit();
                     }
                 }

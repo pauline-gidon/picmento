@@ -93,7 +93,7 @@ if(isset($result["articles"])){
                                             <p class=\"text-com\">".$commentaire->getDescriptionCommentaire()."</p>
                                             <p class=\"gestion-com\">";
                                         if($idAuteur == $_SESSION["auth"]["id"]){
-                                            echo "<a href=\"editer-commentaire-".$commentaire->getIdCommentaire()."-".$result["baby"]->getIdBaby()."\" title=\"Modifier le commentaire\">
+                                            echo "<a href=\"ami-editer-commentaire-".$commentaire->getIdCommentaire()."-".$result["baby"]->getIdBaby()."\" title=\"Modifier le commentaire\">
                                                     <i class=\"fas fa-pen-square\"></i>
                                                 </a>
                                                 <a href=\"supprimer-commentaire-".$commentaire->getIdCommentaire()."-".$result["baby"]->getIdBaby()."\" title=\"Supprimer le commentaire\" class=\"gogo\" data-gogo=\"le commentaire\">

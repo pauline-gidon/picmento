@@ -28,7 +28,7 @@ class FormConnexion extends Form {
 			"label" 				=> "Votre&nbsp;mot&nbsp;de&nbsp;passe ",
 			"name" 					=> "pass_user",
 			"cssLabel" 			=> "consigne",
-			"cssChamp" 			=> "champ ",
+			"cssChamp" 			=> "champ aide-mdp",
 			"validators" 		=> [
 				new VideValidator("Mot de passe obligatoire")
 			]

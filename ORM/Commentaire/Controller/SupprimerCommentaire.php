@@ -33,7 +33,10 @@ class SupprimerCommentaire extends Controller {
         $managerC = new ManagerCommentaire($cx);
         $com = $managerC->oneCommentaireById($id_com);
         $flash = new Flash();
-
+        // je recupère l'article pour rediriger l'ancre au bon article après suppression
+        $article = $managerC->oneArticleByIdCom($id_com);
+        $id_article= $article->getIdArticle();
+        
         if(!is_null($com)){
             $managerT = new ManagerTribu($cx);
             //il faut que je recupère la tribu pour verifier si la personne qui veut supprimer ce commentaire a les droit
@@ -51,7 +54,7 @@ class SupprimerCommentaire extends Controller {
             }
             
             $cx->close();
-            header("location: afficher-souvenirs-".$id_baby."");
+            header("location: afficher-souvenirs-".$id_baby."#ancre-".$id_article."");
             exit();
 
         }

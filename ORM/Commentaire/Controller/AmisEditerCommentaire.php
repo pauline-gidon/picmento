@@ -29,11 +29,13 @@ class AmisEditerCommentaire extends Controller {
 
         $flash = new Flash();
 		$cx			= new Connexion();
-        //pour la Modification du commentaire je verifie si c'est la persione qui a ecri le commentaire 
+        //pour la Modification du commentaire je verifie si c'est la personne qui a ecri le commentaire 
         //pour sa je vais recupéré le commentaire
         $managerC = new ManagerCommentaire($cx);
         $com = $managerC->oneCommentaireById($id_com);
-
+        // je recupère l'article pour rediriger l'ancre au bon article après modification
+        $article = $managerC->oneArticleByIdCom($id_com);
+        $id_article= $article->getIdArticle();
         if(!is_null($com)){
             // $managerT = new ManagerTribu($cx);
             //je recupère l'id_user du commentaire et verifier si c'est bien l'auth connecter
@@ -53,7 +55,7 @@ class AmisEditerCommentaire extends Controller {
                         $flash->setFlash("Vous n'avez pas fait de modification !");
                         
                     }
-                    header("location: ami-afficher-souvenirs-".$id_baby."");
+                    header("location: ami-afficher-souvenirs-".$id_baby."#ancre-".$id_article."");
                     exit();
                 
                     
@@ -62,7 +64,7 @@ class AmisEditerCommentaire extends Controller {
                 return $build;
             }else{
                 $flash->setFlash("Vous n'avez pas les droits pour modifier ce commentaire !");
-                header("location: ami-afficher-souvenirs-".$id_baby."");
+                header("location: ami-afficher-souvenirs-".$id_baby."#ancre-".$id_article."");
                 exit();
             }
             

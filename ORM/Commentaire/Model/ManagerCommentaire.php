@@ -1,6 +1,7 @@
 <?php
 namespace ORM\Commentaire\Model;
 use OCFram\Manager;
+use ORM\Article\Entity\Article;
 use ORM\Commentaire\Entity\Commentaire;
 
 class ManagerCommentaire extends Manager {
@@ -86,6 +87,21 @@ class ManagerCommentaire extends Manager {
         return ($this->db->affected_rows == 1)?true:false;
     }
 
+    //----------------------------------------------------------
+	//ce commentaire appartien a quel article ? id com
+	//----------------------------------------------------------
+    function oneArticleByIdCom($id_com){
+        if(is_numeric($id_com)){
+            $req = "SELECT * FROM article
+            INNER JOIN commentaire
+            on article.id_article = commentaire.article_id_article
+            WHERE commentaire.id_commentaire =  $id_com";
+            $query = $this->db->query($req);
+
+            return ($query->num_rows > 0)?new Article($query->fetch_array()):NULL;
+   
+        }
+    }
 
 
 	

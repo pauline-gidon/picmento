@@ -26,7 +26,6 @@ echo $flash->getFlash();
 
 
 if(isset($result)){
-    // var_dump($result);die();
     foreach($result as $obj) {
         if(($obj->getUserIdParent1() != $_SESSION["auth"]["id"]) && ($obj->getUserIdParent2() != $_SESSION["auth"]["id"])){
           

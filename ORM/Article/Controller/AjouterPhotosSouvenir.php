@@ -39,8 +39,8 @@ class AjouterPhotosSouvenir extends Controller {
             if(!is_null($article)){
                 $id_article = $article->getIdArticle();
                 $titre_article = $article->getTitreArticle();
-                $baby = $manager->babyWithArticleById($id);
-                $id_baby = $baby->getIdBaby();
+                // $baby = $manager->babyWithArticleById($id);
+                // $id_baby = $baby->getIdBaby();
                 
                 if($manager->articleCountMedias($id_article)){
                     $managerM = new ManagerMedias($cx);
@@ -71,7 +71,7 @@ class AjouterPhotosSouvenir extends Controller {
                                         exit();
                                     }
                                     $flash->setFlash("Votre photo a bien été ajouté !");
-                                    header("location: afficher-souvenirs-".$_SESSION["idBaby"]."");
+                                    header("location: afficher-souvenirs-".$_SESSION["idBaby"]."#ancre-".$id_article."");
                                     exit();
                                 };
                                
@@ -83,7 +83,7 @@ class AjouterPhotosSouvenir extends Controller {
                     
                 }else{ //1er compatage medias
                     $flash->setFlash("Votre souvenir \"".$titre_article."\" a atteint le nombre maximal de photos. Pour ajouter cette photo, veuillez modifier ou supprimer une autre photo !");
-                    header("location: afficher-souvenirs-".$_SESSION["idBaby"]."");
+                    header("location: afficher-souvenirs-".$_SESSION["idBaby"]."#ancre-".$id_article."");
                     exit();
                 }
             } //if !is_null($article))

@@ -3,7 +3,7 @@ use Vendors\Flash\Flash;
 $flash = new Flash();
 echo $flash->getFlash();
 
-echo "<p class=\"btnAddAmis\"><a href=\"demande-ami\" title=\"Demande d'ami\"><i class=\"fas fa-user-plus\"></i> Ajouter un<br> ami</a></p>";
+echo "<p class=\"btnAddAmis\"><a href=\"demande-ami\" title=\"Demande d'ami\"> Ajouter <br>un ami<i class=\"fas fa-user-plus\"></i></a></p>";
 if(isset($result)){
 // var_dump($result);
 echo "<section class=\"fc fw \">

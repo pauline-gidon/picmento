@@ -33,7 +33,10 @@ class AmisSupprimerCommentaire extends Controller {
         $managerC = new ManagerCommentaire($cx);
         $com = $managerC->oneCommentaireById($id_com);
         $flash = new Flash();
-
+        // je recupère l'article pour rediriger l'ancre au bon article après modification
+        $article = $managerC->oneArticleByIdCom($id_com);
+        $id_article= $article->getIdArticle();
+        
         if(!is_null($com)){
             $managerT = new ManagerTribu($cx);
             //il faut que je recupère la tribu pour verifier si la personne qui veut supprimer ce commentaire a les droit
@@ -50,7 +53,7 @@ class AmisSupprimerCommentaire extends Controller {
                 $flash->setFlash("Vous n'avez pas les droits pour supprimer ce commentaire !");
             }
             $cx->close();
-            header("location: ami-afficher-souvenirs-".$id_baby."");
+            header("location: ami-afficher-souvenirs-".$id_baby."#ancre-".$id_article."");
             exit();
 
         }

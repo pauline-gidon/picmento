@@ -16,7 +16,8 @@ class Autocomplete extends Controller {
 	function getResult(){
 		$http 			= new HTTPRequest();
 		$saisie 		= urldecode($http->getDataPost("s",1));
-
+		// $saisie 		= json_decode($http->getDataPost("s",1));
+        // $saisie         = json_decode($saisie);
 		$cx 				= new Connexion();
 		$manager 		= new ManagerArticle($cx);
         if(!empty($saisie)){
@@ -26,6 +27,7 @@ class Autocomplete extends Controller {
             if(!is_null($articles)){
                 foreach($articles as $obj) {
                     $tableau[] = [
+                        
                         "id"			=> intval($obj->getIdArticle()),
                         "title" 	=> $obj->getTitreArticle()
                     ];
@@ -39,3 +41,4 @@ class Autocomplete extends Controller {
 
 	}
 }
+

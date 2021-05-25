@@ -14,8 +14,7 @@ class InputFile2 extends Field {
 		$widget .= isset($this->label)?">".$this->label."</label>":NULL;
 
 
-		$widget .= "<input type=\"hidden\"name=\"MAX_FILE_SIZE\" value=\"2000000\"/>";
-		$widget .= "<input type=\"file\"";
+		$widget .= "<input type=\"file\" disabled=\"disabled\"";
 
 		$widget .= isset($this->name)?" name=\"".$this->name."\"":NULL;
 		$widget .= " id=\"$id\"";

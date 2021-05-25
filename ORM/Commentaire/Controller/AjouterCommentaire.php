@@ -63,7 +63,7 @@ class AjouterCommentaire extends Controller {
                         }else{
                             $flash->setFlash("Impossible d'ajouter votre commentaire");
                         }
-                        header("location: afficher-souvenirs-".$id_baby."");
+                        header("location: afficher-souvenirs-".$id_baby."#ancre-".$id_article."");
                         exit();
     
     
