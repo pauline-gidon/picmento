@@ -35,23 +35,30 @@ class AfficherAmis extends Controller {
         $amis = $managerA->fullAmisActif();
         $moi = $_SESSION["auth"]["id"];
         if(!is_null($amis)){
-           $general["user-amis"] = [];
+           $general["user"] = [];
             //si elle sont pas null je parcour le tableau d'amis
             foreach($amis as $ami){
+                
                 if($ami->getUserIdExpediteur() !== $moi){
-                        array_push($general["user-amis"],$managerU->oneUserById($ami->getUserIdExpediteur())); 
-                }else{
-                        array_push($general["user-amis"],$managerU->oneUserById($ami->getUserIdDestinataire())); 
-                }
-                
-                
-                
+                        //je pushe des ituliisateur avec son id
+                        $user = $managerU->oneUserById($ami->getUserIdExpediteur()); 
+                    }else{
+                        $user = $managerU->oneUserById($ami->getUserIdDestinataire()); 
+                    }
+
+
+                $wrapUser = [ 
+                    "demande_amis" => $ami,
+                    "user-amis" => $user,
+                  
+                ];
+                    array_push($general["user"],$wrapUser);
             }            
             
 
 
         }else{
-            $flash->setFlash("Vous n'avez pas encore d'amis, lancez-vous faite des demandes !");
+            $flash->setFlash("Vous n'avez pas encore d'ami(s), lancez-vous faite des demandes !");
             
         }
         $managerA = new ManagerArticle($cx);

@@ -109,9 +109,9 @@ class SupprimerBaby extends Controller {
                 
                 // si il n'y as pas d'article associé a ce baby je delete le baby directement
                 if($manager->deleteBabyById($id_baby)){
-                    $flash->setFlash("Suppression effectuée");
+                    $flash->setFlash("Suppression effectuée !");
                 }else{
-                    $flash->setFlash("Suppression impossible");
+                    $flash->setFlash("Suppression impossible !");
                 }
             }
         //si ce baby exist

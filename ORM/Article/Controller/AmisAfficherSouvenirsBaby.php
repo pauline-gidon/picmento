@@ -13,15 +13,16 @@ use ORM\Baby\Model\ManagerBaby;
 use ORM\User\Model\ManagerUser;
 use ORM\Tribu\Model\ManagerTribu;
 use ORM\Article\Model\ManagerArticle;
+use OCFram\Navbaby;
 use ORM\Commentaire\Model\ManagerCommentaire;
 
 class AmisAfficherSouvenirsBaby extends Controller {
 
-	// use Navbaby;
+	use Navbaby;
 
 	function getResult() {
         $this->setLayout("back");
-		$this->setTitle("Les souvenirs");
+		$this->setTitle("Les souvenirs de <br>");
 		$this->setView("ORM/Article/View/ami-afficher-souvenirs-baby.php");
 		
 		$http 				= new HTTPRequest();
@@ -32,6 +33,11 @@ class AmisAfficherSouvenirsBaby extends Controller {
         //je verifie si la personne connecter et le profil visité son bien amis
         //je recupère la tribu de du baby pour recupérer les parents 
         $id_user = $_SESSION["ami"]["id"];
+        $manager1	= new ManagerBaby($cx);
+        $babys=  $manager1->allBabyHasUserAmi($id_user);
+
+        $this->navConstruction($babys);
+
         if($managerU->verifUserAmis($id_user)){
             //je verifie si ce baby appartien bien a id du parent
             if($managerU->verifUserBaby($id_baby, $id_user)){

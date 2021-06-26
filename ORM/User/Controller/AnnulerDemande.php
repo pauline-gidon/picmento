@@ -39,18 +39,21 @@ class AnnulerDemande extends Controller {
     
             $form 	= new FormAnnul();
             $build 	= $form->buildForm();
-            $flash->setFlash("Une demande a déjà été envoyer a \" ".$user->getEmailUser()." \" mais elle n'a pas encore été accepter, voulez-vous annuler cette demande pour en faire une nouvelle ? ");
+            $flash->setFlash("Une demande a déjà été envoyée a \" ".$user->getEmailUser()." \" mais elle n'a pas encore été acceptée, voulez-vous annuler cette demande pour en faire une nouvelle ?");
             $general [] = $build;
             if(($form->isSubmit("annuler"))&&($form->isValid())){
                 $annule = $http->getDataPost('annule');
+                // var_dump($annule); die();
                 if($annule == 1) {
                     if($managerAmis->deleteAmisByIdTribuAndIdDestinatatire($id_tribu,$id_user_dest)){
                         $flash->setFlash("La demande a bien été annulée, vous pouvez renvoyer une nouvelle demande !");
                         header("location: associer-parent-tribu-".$id_tribu."");
                         exit();
                     }
-                }else{
-                    $flash->setFlash("l'annulation n'a pas été effectuée ! <a href=\"afficher-tribu\" title=\"Retour Tribu\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
+                }elseif($annule == 0){
+                    $flash->setFlash("Votre invitation n'a pas été annulée !");
+                    header("location: afficher-tribu");
+                    exit();
                 }
             }
             $cx->close();

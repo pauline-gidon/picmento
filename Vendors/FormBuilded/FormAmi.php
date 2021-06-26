@@ -11,7 +11,7 @@ class FormAmi extends Form {
 	function buildForm(){
 
 		$this->add(new InputEmail([
-			"label" 		=> "L'adresse mail : ",
+			"label" 		=> "L'adresse mail",
 			"name" 			=> "email_user",
 			"cssLabel" 			=> "consigne",
 			"cssChamp" 			=> "champ",
@@ -22,7 +22,7 @@ class FormAmi extends Form {
 
 		$this->add(new InputSubmit([
 			"name" 			=> "go",
-			"cssChamp" 			=> "btn",
+			"cssChamp" 			=> "slide-hover-left",
 			"value" 		=> "Envoyer"
 		]));
 

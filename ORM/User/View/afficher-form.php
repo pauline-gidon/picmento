@@ -8,6 +8,8 @@ if(isset($result)){
 
 }
 ?>
-<script src="<?php echo DOMAINE; ?>templates/front/js/visuMdp.js"defer></script>
-<script src="<?php echo DOMAINE; ?>templates/front/js/creaMdp.js"defer></script>
-<script src="<?php echo DOMAINE; ?>templates/front/js/alerte.js"defer></script>
+<script src="<?php echo DOMAINE; ?>templates/front/js/visuMdp.js" defer></script>
+<script src="<?php echo DOMAINE; ?>templates/front/js/creaMdp.js" defer></script>
+<script src="<?php echo DOMAINE; ?>templates/front/js/alerte.js" defer></script>
+<script src="<?php echo DOMAINE; ?>templates/front/js/recaptcha.js" defer></script>
+<script src="<?php echo DOMAINE; ?>templates/front/js/designRGPD.js" defer></script>

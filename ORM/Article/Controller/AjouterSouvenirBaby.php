@@ -39,6 +39,7 @@ class AjouterSouvenirBaby extends Controller {
 
                 $nom_baby = $baby->getNomBaby();
                 $general[] = $baby;
+                $_SESSION["idBaby"] = $baby->getIdBaby();
                 // $nom_baby = $baby->getNomBaby();
                 
                 
@@ -46,7 +47,7 @@ class AjouterSouvenirBaby extends Controller {
                 $form 		= new FormSouvenir();
                 $build 		= $form->buildForm();
                 $general [] = $build;
-                if((($form->isSubmit("souvenir")) || ($form->isSubmit("addPhoto"))) && ($form->isValid())){
+                if((($form->isSubmit("souvenir"))&&($form->isValid())) || (($form->isSubmit("addPhoto"))&&($form->isValid()))){
   
 
 
@@ -69,15 +70,15 @@ class AjouterSouvenirBaby extends Controller {
 
                         if(($form->isSubmit("addPhoto")) && ($form->isValid())){
                             $flash->setFlash("Votre souvenir a bien été créé. Ajouter vos photos !");
-
+                            $_SESSION["newIdSouvenir"] = $new_id_article;
                             header("location: ajouter-photos-souvenir-".$new_id_article."");
                             exit();
                         }
-                        $flash->setFlash("Votre souvenir a bien été ajouté !");
+                        $flash->setFlash("Votre souvenir a bien été créé !");
                         header("location: afficher-souvenirs-".$id_baby."");
                         exit();
                     }else{
-                        $flash->setFlash("Impossible d'ajouter un souvenir à ".$nom_baby." veuillez réesayer ou contacter l'équipe <span class=\"flash-logo\">Picmento</span>");
+                        $flash->setFlash("Impossible d'ajouter un souvenir à ".$nom_baby." veuillez réessayer ou contacter l'équipe <span class=\"flash-logo\">Picmento</span>");
                     }                   
                 }
             }

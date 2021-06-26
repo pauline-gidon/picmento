@@ -271,21 +271,19 @@ class ManagerArticle extends Manager {
     }
 
     //----------------------------------------------------------
-	//ajouter un souvenir avec ses medias
+	//ajout d'un souvenir 
 	//----------------------------------------------------------
 
     function insertArticle(Article $new_article){
 
-        $titre_article = $this->db->real_escape_string($new_article->getTitreArticle());
+        $titre_article       = $this->db->real_escape_string($new_article->getTitreArticle());
         $description_article = $this->db->real_escape_string($new_article->getDescriptionArticle());
-        $date_article = $this->db->real_escape_string($new_article->getDateArticle());
-        $actif_article = $this->db->real_escape_string($new_article->getActifArticle());
-        $user_id_user = $_SESSION["auth"]["id"];
-        $validation_article = $this->db->real_escape_string($new_article->getValidationArticle());
+        $date_article        = $this->db->real_escape_string($new_article->getDateArticle());
+        $actif_article       = $this->db->real_escape_string($new_article->getActifArticle());
+        $user_id_user        = $_SESSION["auth"]["id"];
+        $validation_article  = $this->db->real_escape_string($new_article->getValidationArticle());
 
-        $req = "
-        INSERT INTO article 
-        VALUES(
+        $req = " INSERT INTO article  VALUES(
             NULL,
             '$titre_article',
             '$description_article',
@@ -294,8 +292,8 @@ class ManagerArticle extends Manager {
             '$user_id_user',
             $validation_article
             )";
-    $query = $this->db->query($req);
-    return $this->db->insert_id;
+        $query = $this->db->query($req);
+        return $this->db->insert_id;
      
     }
     //--------------------------------------------------------
@@ -303,9 +301,7 @@ class ManagerArticle extends Manager {
 	//--------------------------------------------------------
 	function insertArticleHasbaby($id_baby,$id_article){
         if((is_numeric($id_baby)) && (is_numeric($id_article))) {
-            $req = "
-                INSERT INTO baby_has_article 
-                VALUES(
+            $req = " INSERT INTO baby_has_article VALUES(
                     '$id_baby',
                     '$id_article'
                 )";
@@ -442,7 +438,7 @@ class ManagerArticle extends Manager {
             WHERE baby_id_baby = $id_baby
             AND article.actif_article = 1
             GROUP BY article.id_article
-            ORDER BY article.date_article DESC
+            ORDER BY article.date_article DESC ,article.id_article DESC
                    ";
 
 
@@ -480,20 +476,6 @@ class ManagerArticle extends Manager {
 	//----------------------------------------------------------
     function fullArticlesValidationZero(){
         $id_user = $_SESSION["auth"]["id"];
-
-        // $req = "SELECT * FROM article
-        // INNER JOIN baby_has_article
-        // on baby_has_article.article_id_article = article.id_article
-        // INNER JOIN baby
-        // on baby_has_article.baby_id_baby = baby.id_baby
-        // INNER JOIN tribu
-        // ON baby.tribu_id_tribu = tribu.id_tribu
-        // INNER JOIN user
-        // ON tribu.user_id_parent1 = user.id_user
-        // OR tribu.user_id_parent2 = user.id_user
-        // WHERE article.validation_article = 0
-        // AND user.id_user = $id_user
-        // GROUP BY article.id_article";
 
         $req = "SELECT
         article.id_article,

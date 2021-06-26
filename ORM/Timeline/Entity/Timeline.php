@@ -17,7 +17,7 @@ class Timeline {
 
 	//GETTERS
 	function getIdTimeline(){
-		return $this->id_Timeline;
+		return $this->id_timeline;
 	}
 	function getNomPhotoTimeline(){
 		return $this->nom_photo_timeline;

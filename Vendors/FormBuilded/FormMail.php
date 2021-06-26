@@ -11,7 +11,7 @@ class FormMail extends Form {
 	function buildForm(){
 
 		$this->add(new InputEmail([
-			"label" 		=> "Votre adresse mail : ",
+			"label" 		=> "Votre adresse mail",
 			"name" 			=> "email_user",
 			"cssLabel" 			=> "consigne",
 			"cssChamp" 			=> "champ",
@@ -23,7 +23,7 @@ class FormMail extends Form {
 
 		$this->add(new InputSubmit([
 			"name" 			=> "go",
-			"cssChamp" 			=> "btn",
+			"cssChamp" 			=> "slide-hover-left",
 			"value" 		=> "Recevoir"
 		]));
 

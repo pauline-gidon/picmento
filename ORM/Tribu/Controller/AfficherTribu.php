@@ -22,7 +22,9 @@ class AfficherTribu extends Controller {
 		$tribus = $manager->oneTribuWithBabys();
 		
 		$cx->close();
-		
+        // je supprime la session si le user vien de visiter un de ces ami
+        unset($_SESSION["ami"]);
+
 		return $tribus;
 
     }

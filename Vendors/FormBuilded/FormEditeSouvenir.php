@@ -5,7 +5,6 @@ use Vendors\FormBuilder\Form;
 use Vendors\FormBuilder\InputDate;
 use Vendors\FormBuilder\TextArea;
 use Vendors\FormBuilder\InputText;
-use Vendors\FormBuilder\InputRadio;
 use Vendors\FormBuilder\InputSubmit;
 use Vendors\Validator\DateValidator;
 use Vendors\Validator\VideValidator;
@@ -59,7 +58,7 @@ class FormEditeSouvenir extends Form {
 
 		$this->add(new InputSubmit([
 		"name" 					=> "souvenir",
-		"cssChamp" 				=> "btn",
+		"cssChamp" 				=> "slide-hover-left",
 		"value" 				=> "Enregistrer"
 		]));
 

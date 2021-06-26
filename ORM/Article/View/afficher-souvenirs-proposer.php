@@ -33,11 +33,14 @@ if(isset($result)){
                 $nomsBaby = explode("/",$obj["article"]->liste_nom_baby);
                 $photosBaby = explode("/",$obj["article"]->liste_photo_baby);
 
-                echo "<div class=\"fc fw proposotion-souvenir\">
+                echo "<div class=\" proposotion-souvenir\">
                         <p>                
-                        ".$obj["auteur"][0]->getPrenomUser()." ".$obj["auteur"][0]->getNomUser()."
+                            ".$obj["auteur"][0]->getPrenomUser()." ".$obj["auteur"][0]->getNomUser()." vous propose se souvenir pour le(s) album(s) de :
                         </p>
-                        <div class=\"fc fw\">";
+                      
+        
+                        <div class=\"fc fw ai-c\">";
+                        //pour l'afffichage des photos
                         for ($i=0; $i < count($photosBaby); $i++) { 
                             echo "<div class=\"containerBull\">
                                     <div class=\"bulleBaby\">
@@ -47,8 +50,9 @@ if(isset($result)){
                                 </div>";
                             }
     
-                echo "</div>
-                    </div>
+                echo "</div> 
+             
+                    
                     <article id=\"ancre-".$obj["article"]->getIdArticle()."\" class=\"article-baby\">
                         <h1 class=\"title\">".ucfirst($obj["article"]->getTitreArticle())."</h1>
                         <p class=\"description\">".ucfirst($obj["article"]->getDescriptionArticle())."</p>
@@ -65,33 +69,31 @@ if(isset($result)){
                         }
                         echo "</div>";
                 
-                    }
+                    } //fin du if photo
                   
-                    echo "<p class=\"year\">souvenir ";
-                
-                    echo" de ".$year."</p>";
-      
-                echo"
-                
-                        <div class=\"menu-article souv\">
-                        <ul>
-                            <li>
-                                <a href=\"accepter-souvenir-proposer-".$obj["article"]->getIdArticle()."\" title=\"Accepter la proposition de souvenirs : ".$obj["article"]->getTitreArticle()." \">Accepter
-                                <i class=\"fas fa-check-square\"></i>
-                                </a>
-                            </li>
+                    echo "<p class=\"year\">souvenir de ".$year."</p>
                     
-                            <li>
-                                <a href=\"supprimer-souvenir-proposer-".$obj["article"]->getIdArticle()."\" title=\"refusé le souvenir\" class=\"gogo\" data-gogo=\"".$obj["article"]->getTitreArticle()."\">Refuser
+                    <div class=\"menu-article-proposer\">
+                            <ul>
+                                <li>
+                                    <a href=\"accepter-souvenir-proposer-".$obj["article"]->getIdArticle()."\" title=\"Accepter la proposition de souvenirs : ".$obj["article"]->getTitreArticle()." \">
+                                        <i class=\"fas fa-check-square\"></i>
+                                    </a>
+                                </li>
+                                    
+                                <li>
+                                    <a href=\"supprimer-souvenir-proposer-".$obj["article"]->getIdArticle()."\" title=\"refusé le souvenir\" class=\"gogo\" data-gogo=\"".$obj["article"]->getTitreArticle()."\">
                                         <i class=\"fas fa-window-close\"></i>
-                                </a>
-                            </li>
+                                    </a>
+                                </li>
 
-                        </ul>
-                    </div></article>";
+                            </ul>
+                        </div>
+                    </article>
+                </div>";
             
         
-        }
+        }// fin du foreach des souvenir
         echo "</section>
         <a href=\"#top\" title=\"Retour en haut de page\" class=\"btn-top\">
                 <i class=\"fas fa-angle-double-up\"></i>

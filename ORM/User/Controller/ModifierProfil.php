@@ -38,7 +38,7 @@ class ModifierProfil extends Controller {
             if($email !== $email_session){
                 $verif_user = $manager->userExist($email);
                 if(!is_null($verif_user)){
-                        $flash->setFlash("Cet email existe déja !");
+                        $flash->setFlash("Cet email existe déjà !");
                         header("location: modifier-profil");
                         exit();
                 }
@@ -47,7 +47,7 @@ class ModifierProfil extends Controller {
             $verif_pseudo = $http->getDataPost("pseudo_user");
             if(!empty($verif_pseudo)){
                 $verif_pseudo = $manager->pseudoExist($verif_pseudo);
-
+                var_dump($verif_pseudo);die();
                 if(!is_null($verif_pseudo)){
                     $flash->setFlash("Ce pseudo existe déjà !");
                     header("location: modifier-profil");
@@ -69,10 +69,15 @@ class ModifierProfil extends Controller {
                     $_SESSION["auth"]["prenom"] 	= $user->getPrenomUser();
                     $_SESSION["auth"]["pseudo"] 	= $user->getPseudoUser();
                     
-                    $flash->setFlash("Modification ok <a href=\"espace-perso\" title=\"retour espace perso\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
+                    $flash->setFlash("Modification ok !");
+                
+
                 }else{
-                    $flash->setFlash("Vous n'avez pas fait de modification <a href=\"espace-perso\" title=\"retour espace perso\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
+                    $flash->setFlash("Vous n'avez pas fait de modification !");
+                    
                 }
+                header("location: espace-perso");
+                exit();
 
             }else{
                 //Attention pas le bon mdp

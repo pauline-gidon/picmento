@@ -45,7 +45,7 @@ class AfficherSouvenirsProposer extends Controller {
             return $general;
             exit();
         }else{
-            $flash->setFlash("Aucune proposition de souvenirs reçu !");
+            $flash->setFlash("Aucune proposition de souvenirs reçus !");
             header("location: amis");
             exit();
         }

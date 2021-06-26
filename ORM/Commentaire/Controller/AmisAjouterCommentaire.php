@@ -53,7 +53,7 @@ class AmisAjouterCommentaire extends Controller {
                             
                         $managerC = new ManagerCommentaire($cx);
                         if($managerC->insertNewCommentaire($new_commentaire,$id_article)){
-                            $flash->setFlash("Votre commentaire a bien été ajouter !");
+                            $flash->setFlash("Votre commentaire a bien été ajouté !");
                         }else{
                             $flash->setFlash("Impossible d'ajouter votre commentaire !");
                         }

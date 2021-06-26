@@ -44,7 +44,7 @@ class ModifierMdp extends Controller {
 					$flash->setFlash("Pas de modification <a href=\"espace-perso\" title=\"retour espace perso\" class=\"flash-retour\"><i class=\"fas fa-undo-alt\"></i> Retour</a>");
 				}
 			}else{
-				$flash->setFlash("Mot de passe actuel incorrect");
+				$flash->setFlash("Mot de passe actuel incorrect !");
 			}
 
 			$connexion->close();

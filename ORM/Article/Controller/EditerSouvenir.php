@@ -22,6 +22,7 @@ class EditerSouvenir extends Controller {
 		
 		$cx			= new Connexion();
         $managerU = new ManagerUser($cx);
+        // je verifie si c'est bien l'un des deux parent de connecter
         if($managerU->verifUserArticle($id)){
             $manager	= new ManagerArticle($cx);
             $article = $manager->oneArticleById($id);
@@ -35,7 +36,7 @@ class EditerSouvenir extends Controller {
                     $flash = new Flash();
                     
                     $article->setTitreArticle(ucfirst($http->getDataPost("titre_article")));
-                    $article->setDescriptionArticle(ucfirst($http->getDataPost("description_article")));
+                    $article->setDescriptionArticle(ucfirst($http->getDataPost("description_article",1)));
                     $article->setDateArticle($http->getDataPost("date_article"));
                     
     

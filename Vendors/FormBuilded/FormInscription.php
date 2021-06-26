@@ -5,6 +5,7 @@ use Vendors\FormBuilder\InputText;
 use Vendors\FormBuilder\InputEmail;
 use Vendors\FormBuilder\InputPassword;
 use Vendors\FormBuilder\InputCheckBox;
+use Vendors\FormBuilder\InputHidden;
 use Vendors\FormBuilder\InputSubmit;
 use Vendors\Validator\EmailValidator;
 use Vendors\Validator\VideValidator;
@@ -76,12 +77,21 @@ class FormInscription extends Form {
 			]
 		]));
 
+        $this->add(new InputHidden([
+            "name"              => "recaptcha-response",
+            "id"                => "recaptchaResponse",
+            "validators" 		=> [
+				new VideValidator("Erreur spam")
+			]
+        ]));
+
 		$this->add(new InputSubmit([
 			"name" 					=> "inscription",
-			"cssChamp" 			=> "btn",
+			"cssChamp" 			=> "slide-hover-left",
 			"value" 				=> "S'inscrire"
 		]));
 
+      
 
 		return $this;
 

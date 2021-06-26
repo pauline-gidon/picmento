@@ -15,6 +15,9 @@ class InputPassword extends Field {
 
 
 		$widget .= "<input type=\"password\"";
+        
+        $widget .= isset($this->placeholder)
+		?" placeholder=\"".$this->placeholder."\"":NULL;
 
 		$widget .= isset($this->name)?" name=\"".$this->name."\"":NULL;
 		$widget .= " id=\"$id\"";

@@ -38,7 +38,7 @@ use Navbaby;
                 $baby = $managerB->oneBabyById($id_baby);
                 if(!is_null($baby)){
 
-                    $general[] = $baby;
+                    $general["baby"] = $baby;
         
         
         
@@ -46,10 +46,10 @@ use Navbaby;
                     $timeline = $managerT->oneTimelineByIdBaby($id_baby);
         
                     if(is_null($timeline)){
-                        $flash->setFlash("Cette timeline ne contient pas encore de photo, lancez-vous !");
+                        $flash->setFlash("Cette timeline ne contient pas encore de photo(s), lancez-vous !");
         
                     }else{
-                    $general [] = $timeline;
+                    $general["timeline"] = $timeline;
                     }
                 }
                 $cx->close();

@@ -27,8 +27,8 @@ class NewActivation extends Controller {
 			$http 	= new HTTPRequest();
 			$mail		= $http->getDataPost("email_user");
 			$flash 	= new Flash();
-			$date 	= new DateTime();
 			$token 	= time().rand(1000000,9000000);
+			$date 	= new DateTime();
 			$date->setTimestamp(strtotime("+15 minutes"));
 			$date_token = $date->format('Y-m-d H:i:s');
 
@@ -71,10 +71,10 @@ class NewActivation extends Controller {
 							exit();
 						}else{
 							//Erreur mail pas parti
-							$flash->setFlash("Pb lors de l'envoi du mail d'activation. Veuillez contacter le webmaster.");
+							$flash->setFlash("Pb lors de l'envoi du mail d'activation. Veuillez contacter l'équipe <span class=\"flash-logo\">Picmento</span> !");
 						}
 					}else{
-						$flash->setFlash("Pb, contactez le webmaster.");
+						$flash->setFlash("Pb, contactez l'équipe <span class=\"flash-logo\">Picmento</span> !");
 					}
 				}else{
 					$flash->setFlash("Connectez-vous ou utilisez la 

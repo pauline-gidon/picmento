@@ -17,11 +17,11 @@ use ORM\User\Model\ManagerUser;
 class AfficherSouvenirsBaby extends Controller {
 
 	use Navbaby;
-    use Recherche;
+    // use Recherche;
 
 	function getResult() {
         $this->setLayout("back");
-		$this->setTitle("Les souvenirs");
+		$this->setTitle("Les souvenirs de");
 		$this->setView("ORM/Article/View/afficher-souvenirs-baby.php");
 		
 		$http 				= new HTTPRequest();
@@ -31,7 +31,7 @@ class AfficherSouvenirsBaby extends Controller {
 		$cx			= new Connexion();
 		$managerU = new ManagerUser($cx);
         $id_user = $_SESSION["auth"]["id"];
-        $this->Rechercher();
+        // $this->Rechercher();
         if($managerU->verifUserBaby($id_baby, $id_user)){
 
             $manager1	= new ManagerBaby($cx);
@@ -45,15 +45,9 @@ class AfficherSouvenirsBaby extends Controller {
                 $nom = $baby->getNomBaby();
                 
                 $manager = new ManagerArticle($cx);
-                
+                //aller chercher tous les article du baby
                 $articles = $manager->fullArticleWithMedias($id_baby);
-                // $articles = [
-                //     "articles" => $articles
-                // ];
-               // $general[] = $articles;
-                // $articles_c = $manager->fullArticleWithCommentaire($id_baby);
-                // $id_user_com = $articles->get
-                //il faudra que je gère l'affichage des commantire $generale[] = $commentaires
+
                 if(is_null($articles)){
                     $flash = new Flash;
                     $flash->setFlash("Votre enfant n'a pas encore de souvenir, lancez-vous !");
@@ -81,17 +75,13 @@ class AfficherSouvenirsBaby extends Controller {
                                 array_push($wrapArticle["commentaires"], $com);
                             }
                         }
-                        // array_push($tableau,$coms);
+
                         
                         array_push($general["articles"],$wrapArticle);
                         
-                        // $id_user_com= $article_c->liste_is_user_com;
-                    }
-                   //$general[] =$articles;
-                        // array_push($general,$articles); 
 
-                        
-                    // $general[] = $articles_c;
+                    }
+
 
                 }
 

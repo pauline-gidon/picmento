@@ -1,5 +1,7 @@
 <?php
 namespace ORM\Timeline\Controller;
+
+use DateTime;
 use OCFram\Connexion;
 use OCFram\Controller;
 use OCFram\HTTPRequest;
@@ -32,35 +34,55 @@ class AjouterTimelineBaby extends Controller {
     
                 $form = new FormTimeline();
                 $build 		= $form->buildForm();
-    
+                $managerB = new ManagerBaby($cx);
+                $baby = $managerB->oneBabyById($id_baby);
+                $datebaby = $baby->getDateNaissanceBaby();
+                $datebaby = explode("-", $datebaby);
+                $babyYear = $datebaby[0];
+                $babyMonth = $datebaby[1];
+            
+
                 if(($form->isSubmit("timeline"))&&($form->isValid())){
-                    $file 		= $http->getDataFiles("nom_photo_timeline");
-                    $destination = "medias/timeline/";
-                    $uploader = new Uploader($file,$destination);
-                    $nom_file = $uploader->upload();
-                    
-                    if(!is_null($nom_file)){
-                        //Avec redimensionnement si nécessaire
-                        $uploader->imageSizing(400);
+                    $yearTimeline = $http->getDataPost("annee_photo_timeline");
+                    $monthTimeline = $http->getDataPost("mois_photo_timeline");
+                    $grossessY = $babyYear - 1;
+                    $grossessM = $babyMonth - 1;
+
+                        if($yearTimeline >= $grossessY && $monthTimeline>=$grossessY || $yearTimeline > $grossessY && $monthTimeline<=$grossessY){
+
+                        $file 		= $http->getDataFiles("nom_photo_timeline");
+                        $destination = "medias/timeline/";
+                        $uploader = new Uploader($file,$destination);
+                        $nom_file = $uploader->upload();
                         
-                    }
-                    $timeline = new Timeline([
-                        "nom_photo_timeline"    => $nom_file,
-                        "annee_photo_timeline"  => $http->getDataPost("annee_photo_timeline"),
-                        "mois_photo_timeline"   => $http->getDataPost("mois_photo_timeline"),
-                        "baby_id_baby"          => $id_baby
-                    ]);
-                    $managerT = new ManagerTimeline($cx);
+                        if(!is_null($nom_file)){
+                            //Avec redimensionnement si nécessaire
+                            $uploader->imageSizing(700);
+                            
+                        }
+                        $timeline = new Timeline([
+                            "nom_photo_timeline"    => $nom_file,
+                            "annee_photo_timeline"  => $yearTimeline,
+                            "mois_photo_timeline"   => $monthTimeline,
+                            "baby_id_baby"          => $id_baby
+                        ]);
+                        $managerT = new ManagerTimeline($cx);
     
-                    if($managerT->insertNewTimeline($timeline)){
-                        $flash->setFlash("La photo a bien été ajoutée à la timeline !");
+        
+                        if($managerT->insertNewTimeline($timeline)){
+                            $flash->setFlash("La photo a bien été ajoutée à la timeline !");
+                        }else{
+                            $flash->setFlash("Impossible d'ajouter la photo à la timeline. Veuillez réessayer ou contacter l'équipe <span class=\"flash-logo\">Picmento</span> ");
+                        }
+                        header("location: afficher-timeline-".$id_baby."");
+                        exit();
+
                     }else{
-                        $flash->setFlash("Impossible d'ajouter la photo à la timeline. Veuillez réesayer ou contacter l'équipe <span class=\"flash-logo\">Picmento</span> ");
+                        $flash->setFlash("Impossible d'ajouter la photo car la date renseigné est inférieure à la date estimé de grossesse !");
+
                     }
-                    header("location: afficher-timeline-".$id_baby."");
-                    exit();
     
-                }
+                } //submit timeline
             }else{
                 header("location: ".DOMAINE."errors/404.php");
                 die();

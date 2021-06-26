@@ -3,13 +3,7 @@ namespace Vendors\FormBuilded;
 use OCFram\HTTPRequest;
 use Vendors\FormBuilder\Form;
 use Vendors\FormBuilder\TextArea;
-use Vendors\FormBuilder\InputDate;
-use Vendors\FormBuilder\InputFile;
-use Vendors\FormBuilder\InputText;
-use Vendors\FormBuilder\InputFile2;
-use Vendors\FormBuilder\InputRadio;
 use Vendors\FormBuilder\InputSubmit;
-use Vendors\Validator\DateValidator;
 use Vendors\Validator\VideValidator;
 
 
@@ -19,8 +13,8 @@ class FormMessage extends Form {
 	function buildForm(){
 		$http = new HTTPRequest();
        
-		$this->add(new InputText([
-			"label" 				=> "Votre Message",
+		$this->add(new TextArea([
+			"label" 				=> "Votre message",
 			"name" 					=> "text_message",
 			"cssLabel" 				=> "consigne",
 			"cssChamp" 				=> "champ",
@@ -31,7 +25,7 @@ class FormMessage extends Form {
 
 		$this->add(new InputSubmit([
 		"name" 					=> "go",
-		"cssChamp" 				=> "btn",
+		"cssChamp" 				=> "slide-hover-left",
 		"value" 				=> "Envoyer"
 		]));
 

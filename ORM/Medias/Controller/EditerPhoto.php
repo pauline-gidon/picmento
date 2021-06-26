@@ -68,11 +68,11 @@ class EditerPhoto extends Controller {
                         if(!is_null($nom_file)){
                             //Avec redimensionnement si nécessaire
                             $photo->setNomMedias($nom_file);
-                            $uploader->imageSizing(400);
+                            $uploader->imageSizing(700);
         
                             if($managerM->updateMedias($photo)){
         
-                                $flash->setFlash("La photo a bien été modifée");
+                                $flash->setFlash("La photo a bien été modifée !");
                                 header("location: afficher-souvenirs-".$id_baby."#ancre-".$id_article."");
                                 exit();
         

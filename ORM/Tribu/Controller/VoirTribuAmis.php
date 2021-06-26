@@ -22,7 +22,7 @@ class VoirTribuAmis extends Controller {
 	function getResult(){
 
 		$this->setLayout("back");
-		$this->setTitle("Les tribu de mon ami");
+		$this->setTitle("Les tribus de mon ami");
 		$this->setView("ORM/Tribu/View/voir-tribu-ami.php");
 
         $flash 			= new Flash();
@@ -33,16 +33,20 @@ class VoirTribuAmis extends Controller {
         $managerA = new ManagerAmis($cx);
         //il faut que je verifie si une demande d'ami existe entre le user connecter et le profil amis visité
         $demandeAmis = $managerA->oneAmisByUsersIds($id_amis);
-
+        // je recupère sont profil pour l'affichage personalilsée
+        $managerU = new ManagerUser($cx);
+        $user_amis = $managerU->oneUserById($id_amis);
+        $general["user"] = $user_amis;
         if(!is_null($demandeAmis)){
             $managerT = new ManagerTribu($cx);
             $tribuBabys = $managerT->fullTribuWithBabys($id_amis);
-            if(!is_null($tribuBabys)){
 
+            if(!is_null($tribuBabys)){
+                $general["tribu"] = $tribuBabys;
                 $cx->close();
-                return $tribuBabys;
+                return $general;
             }else{
-            $flash->setFlash("Votre amis n'a pas encore de tribu !");
+            $flash->setFlash("Votre ami(e) n'a pas encore de tribu !");
             }
         }else{
             header("location: ".DOMAINE."errors/404.php");

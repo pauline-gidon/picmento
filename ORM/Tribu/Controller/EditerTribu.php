@@ -38,7 +38,7 @@ class EditerTribu extends Controller {
                     $tribu->setNomTribu(ucfirst($http->getDataPost("nom_tribu")));
         
                     if($manager->updateTribu($tribu)){
-                        $flash->setFlash("Modification appliquée");
+                        $flash->setFlash("Modification appliquée !");
                         header("location: afficher-tribu");
                         exit();
                     }else{

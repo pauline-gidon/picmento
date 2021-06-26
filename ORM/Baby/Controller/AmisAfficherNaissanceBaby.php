@@ -31,6 +31,10 @@ class AmisAfficherNaissanceBaby extends Controller {
             //je recupère la tribu de du baby pour recupérer les parents 
     
             $id_user = $_SESSION["ami"]["id"];
+            $manager1	= new ManagerBaby($cx);
+            $babys=  $manager1->allBabyHasUserAmi($id_user);
+    
+            $this->navConstruction($babys);
             if($managerU->verifUserAmis($id_user)){
                 
                 //je verifie si ce baby appartien bien a id du parent

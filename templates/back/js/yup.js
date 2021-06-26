@@ -1,4 +1,5 @@
-// alert('toto');
+
+
 document.querySelector('body').addEventListener('click',function(e){
     if(!e.target.classList.contains('.modale') && (!e.target.classList.contains('.id-baby')) )
     document.querySelectorAll('.modale').forEach(modale => {
@@ -18,9 +19,9 @@ document.querySelectorAll('.id-baby').forEach(el => {
         })
         const modal = document.querySelector('div[data-id=m-'+id+']')
         modal.classList.add('open');
-        modal.querySelector('.close').addEventListener('click',() => {
-            modal.classList.remove('open')
-        })
+        // modal.querySelector('.close').addEventListener('click',() => {
+        //     modal.classList.remove('open')
+        // })
     })
 })
 

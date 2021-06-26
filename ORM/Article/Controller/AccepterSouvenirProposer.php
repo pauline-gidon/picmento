@@ -31,11 +31,11 @@ class AccepterSouvenirProposer extends Controller {
                 $article->setActifArticle(1);
                 $article->setValidationArticle(1);
                 if($manager->updateArticle($article)){
-                    $flash->setFlash("Le souvenir a été accepter !");
+                    $flash->setFlash("Le souvenir a été accepté !");
                     header("location: afficher-souvenirs-proposer");
                     exit();
                 }else{
-                    $flash->setFlash("Impossible d'enregistrer le souvenir !");
+                    $flash->setFlash("Problème de validation. Veuillez réessayer ou contacter l'équipe <span class=\"flash-logo\">Picmento</span>");
                     header("location: afficher-souvenirs-proposer");
                     exit();
                 }

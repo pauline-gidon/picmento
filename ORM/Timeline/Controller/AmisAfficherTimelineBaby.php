@@ -31,6 +31,10 @@ use Navbaby;
         //je recupère la tribu de du baby pour recupérer les parents 
 
         $id_user = $_SESSION["ami"]["id"];
+        $manager1	= new ManagerBaby($cx);
+        $babys=  $manager1->allBabyHasUserAmi($id_user);
+
+        $this->navConstruction($babys);
         if($managerU->verifUserAmis($id_user)){
             
             //je verifie si ce baby appartien bien a id du parent
@@ -45,7 +49,7 @@ use Navbaby;
                     $timeline = $managerTime->oneTimelineByIdBaby($id_baby);
                 
                     if(is_null($timeline)){
-                        $flash->setFlash("Cette enfant n'as pas encore de timeline a vous montrez !");
+                        $flash->setFlash("Cette enfant n'a pas encore de timeline à vous montrer !");
                 
                     }else{
                     $general [] = $timeline;

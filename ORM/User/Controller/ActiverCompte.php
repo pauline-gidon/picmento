@@ -23,14 +23,14 @@ class ActiverCompte extends Controller {
 		$connexion 	= new Connexion();
 		$manager 	= new ManagerUser($connexion);
 		$flash 		= new Flash();
+        // var_dump($token); die();
 
 		$user = $manager->oneUserByTokenValid($token);
-
 		if(!is_null($user)){
 			$user->setStatutUser(1);
 			$user->setActifUser(1);
 			$manager->updateActivationUser($user);
-			$flash->setFlash("Compte activé, merci de vous connecter");
+			$flash->setFlash("Compte activé, merci de vous connecter !");
 			$manager = new ManagerTribu($connexion);
 			$manager->insertTribu();
 			header("Location: connexion");

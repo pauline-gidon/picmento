@@ -33,7 +33,7 @@ class ConnecterCompte extends Controller {
 			if(is_null($user)){
 				$flash = new Flash();
 				$flash->setFlash("Impossible de se connecter 
-					avec ces identifiants");
+					avec ces identifiants !");
 				sleep(3);
 			}else{
 				$_SESSION["auth"]["id"] 		= $user->getIdUser();

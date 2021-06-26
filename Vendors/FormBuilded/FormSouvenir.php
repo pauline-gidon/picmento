@@ -2,15 +2,15 @@
 namespace Vendors\FormBuilded;
 use OCFram\HTTPRequest;
 use Vendors\FormBuilder\Form;
+use Vendors\FormBuilder\Option;
+use Vendors\FormBuilder\Select;
 use Vendors\FormBuilder\TextArea;
 use Vendors\FormBuilder\InputDate;
-use Vendors\FormBuilder\InputFile;
 use Vendors\FormBuilder\InputText;
-use Vendors\FormBuilder\InputFile2;
-use Vendors\FormBuilder\InputRadio;
 use Vendors\FormBuilder\InputSubmit;
 use Vendors\Validator\DateValidator;
 use Vendors\Validator\VideValidator;
+use Vendors\Validator\SelectValidator;
 
 
 
@@ -45,6 +45,7 @@ class FormSouvenir extends Form {
 		$this->add(new InputDate([
 			"label" 		=> "Date du souvenir",
 			"name" 			=> "date_article",
+            "id"            => "dateOrder",
 			"cssLabel" 		=> "consigne",
 			"cssChamp" 		=> "champ",
 			"validators"	=> [
@@ -59,36 +60,40 @@ class FormSouvenir extends Form {
 
 
 
-        $this->add(new InputRadio([
-            // "checked"		=>TRUE,
-            "label" 		=> "Public",
-            "value"			=> 1,
+        $this->add(new Select([
+            "label" 		=> "Visibilité de ce souvenir",
             "name" 			=> "actif_article",
             "cssLabel" 		=> "consigne",
             "cssChamp" 		=> "champ",
             "getterEntity" 	=> "getActifArticle",
-            "selected"      => TRUE
+            "options"        => [ 
+                new Option([
+                    "label" => "Public",
+                    "value" => 1,
+                    "selected" => TRUE
+                ]),
+                new Option([
+                    "label" => "Privé",
+                    "value" => 0
+                ])
+            
+                ],
+            "validators" => [
+                new SelectValidator("Veuillez choisir la visibilité du souvenir")
+            ]
         ]));
-		$this->add(new InputRadio([
-			"label" 		=> "Privé (visible uniquement par le(s) parent(s) )",
-			"value" 		=> 0,
-			"name" 			=> "actif_article",
-			"cssLabel" 		=> "consigne",
-			"cssChamp" 		=> "champ",
-			"getterEntity" 	=> "getActifArticle"
-		]));
 
 
 		$this->add(new InputSubmit([
 		"name" 					=> "souvenir",
-		"cssChamp" 				=> "btn",
+		"cssChamp" 				=> "slide-hover-left",
 		"value" 				=> "Enregistrer"
 		]));
 
 		$this->add(new InputSubmit([
 		"name" 					=> "addPhoto",
-		"cssChamp" 				=> "btn",
-		"value" 				=> "Ajouter une photo"
+		"cssChamp" 				=> "slide-hover-left",
+		"value" 				=> "Ajouter des photos"
 		]));
 
 

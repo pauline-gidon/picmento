@@ -8,6 +8,7 @@ if(!defined('DOMAINE')) include_once("../config/settings.php");
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<title>404</title>
 	<link rel="stylesheet" type="text/css" href="<?php echo DOMAINE; ?>templates/front/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo DOMAINE ?>templates/front/css/starter.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo DOMAINE; ?>templates/front/css/404.css">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -18,13 +19,11 @@ if(!defined('DOMAINE')) include_once("../config/settings.php");
 	<h2>Erreur&nbsp;404</h2>  -->
     <div class="bg">
         <img class="m404" src="<?php echo DOMAINE; ?>templates/front/images/404-2.png" alt="">
-        <div id="oups">
-            <div class="rel">
-                <p>Oups c'est embarrassant, il semblerait que cette page n'existe pas ou n'existe plus.</p>
-                <a class="continuer" href="<?php echo DOMAINE; ?>" title="Retourner au site">
-                    <img class="tigre" src="<?php echo DOMAINE; ?>templates/front/images/tigrec2.png" alt="Continuer">
-                </a>
-            </div>
+        <div id="oups" class="wrap fc fw ai-c jc-sb">
+               <p>Oups c'est embarrassant, il semblerait que cette page n'existe pas ou n'existe plus.</p>
+               <a class="slide-hover-left" href="<?php echo DOMAINE; ?>" title="Retourner au site">Continuer</a>
+               
+        
         </div>
     </div>
 	

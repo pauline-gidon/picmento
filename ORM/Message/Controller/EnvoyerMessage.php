@@ -49,11 +49,11 @@ class EnvoyerMessage extends Controller {
         
                     if($manager->insertNewMessage($new_message)){
                         
-                        $flash->setFlash("Votre message à bien été envoyer");
+                        $flash->setFlash("Votre message à bien été envoyé !");
                         header("location: amis");
                         exit();
                     }else{
-                        $flash->setFlash("Impossible d'envoyer le message veuillez réesayer ou contacter l'équipe <span class=\"flash-logo\">Picmento</span>");
+                        $flash->setFlash("Impossible d'envoyer le message, veuillez réessayer ou contacter l'équipe <span class=\"flash-logo\">Picmento</span>");
                         header("location: amis");
                         exit();
                     }

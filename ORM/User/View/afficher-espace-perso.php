@@ -1,3 +1,9 @@
+<?php
+use Vendors\Flash\Flash;
+$flash = new Flash();
+echo $flash->getFlash();
+?>
+
 <div class="wrap container fc fw">
 	<nav id="secondaire" class="xlg-4 s-12">
 		<ul>
@@ -21,6 +27,19 @@
 				<a href="supprimer-compte" title="Supprimer mon compte">Supprimer compte</a>
 			</li>
 		</fieldset>
+        <?php if($_SESSION["auth"]["statut"] > 2): ?>
+		<fieldset>
+			<legend>Espace super admin</legend>
+			<li>
+				<i class="fas fa-exclamation-triangle"></i>
+				<a href="gerer-signalement" title="Gérer les signalements">Signalements</a>
+            </li>
+			<li>
+				<i class="fas fa-users-cog"></i>
+				<a href="gerer-users" title="Gérer les utilisateurs">Utilisateurs</a>
+            </li>
+		</fieldset>
+		<?php endif; ?>
         </ul>
 	</nav>
 </div>

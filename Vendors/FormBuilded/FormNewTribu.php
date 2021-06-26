@@ -12,7 +12,7 @@ class FormNewTribu extends Form {
 	function buildForm(){
 
 		$this->add(new InputText([
-			"label" 				=> "Le nom de ma tribu : ",
+			"label" 				=> "Le nom de ma tribu ",
 			"name" 					=> "nom_tribu",
 			"cssLabel" 			=> "consigne",
 			"cssChamp" 			=> "champ",
@@ -24,7 +24,7 @@ class FormNewTribu extends Form {
 
 		$this->add(new InputSubmit([
 			"name" 			=> "addtribu",
-			"cssChamp" 			=> "btn",
+			"cssChamp" 			=> "slide-hover-left",
 			"value" 		=> "Ajouter"
 		]));
 

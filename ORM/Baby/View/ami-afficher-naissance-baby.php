@@ -2,7 +2,7 @@
 
 if(isset($_SESSION["ami"]["id"])){
     echo " 
-                <a href=\"voir-tribu-amis-".$_SESSION["ami"]["id"]."\" title=\"Retour au tribus de mon ami\" class=\"btn-tribu-ami\">
+                <a href=\"amis-voir-tribu-".$_SESSION["ami"]["id"]."\" title=\"Retour au tribus de mon ami\" class=\"btn-tribu-ami\">
                     <i class=\"fas fa-undo-alt\"></i> Tribus ami
                 </a>
             ";

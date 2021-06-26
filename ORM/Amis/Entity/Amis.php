@@ -10,8 +10,8 @@ class Amis {
 	private $user_id_expediteur;
 	private $user_id_destinataire;
 	private $tribu_id_tribu;
-	private $token_tribu;
 	private $validity_token_tribu;
+	private $token_tribu;
 
 
 
@@ -32,11 +32,9 @@ class Amis {
 	function getUserIdExpediteur(){
 		return $this->user_id_expediteur;
 	}
-	
 	function getUserIdDestinataire(){
 		return $this->user_id_destinataire;
 	}
-	
 	function getTribuIdTribu(){
 		return $this->tribu_id_tribu;
 	}

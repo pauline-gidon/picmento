@@ -25,7 +25,7 @@ class SuppressionCompte extends Controller {
 			exit();
 		}else{
 			$flash->setFlash("Problème lors de la suppression, 
-			veuillez contacter un administrateur ou renouveler ultérieurement.");
+			veuillez réessayer ou contacter l'équipe <span class=\"flash-logo\">Picmento</span> !");
 		}	
 	}
 }

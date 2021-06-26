@@ -11,7 +11,7 @@ class FormAssociation extends Form {
 	function buildForm(){
 
 		$this->add(new InputEmail([
-			"label" 		=> "L'adresse mail du 2eme parent: ",
+			"label" 		=> "L'adresse mail du 2eme parent",
 			"name" 			=> "email_user",
 			"cssLabel" 			=> "consigne",
 			"cssChamp" 			=> "champ",
@@ -23,7 +23,7 @@ class FormAssociation extends Form {
 
 		$this->add(new InputSubmit([
 			"name" 			=> "go",
-			"cssChamp" 			=> "btn",
+			"cssChamp" 			=> "slide-hover-left",
 			"value" 		=> "Envoyer"
 		]));
 

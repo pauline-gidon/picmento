@@ -1,0 +1,109 @@
+										wysiwyg
+****************************************************************************************************************************************************************
+1/ layout lien ckeditor
+	<script src="<?php echo DOMAINE; ?>templates/back/ckeditor/ckeditor.js"></script>
+
+*****************************************************************************************************************************************************************
+
+2/ formulaire baisser le niveau de security dans le champ textearea security =>2
+	$this->add(new TextArea([
+			"label" 				=> "Votre description : ",
+			"name" 					=> "description_activite",
+			"cssLabel" 				=> "consigne",
+			"cssChamp" 				=> "champ",
+			"security" 				=> 2,
+        		"getterEntity"     		 	=> "getDescriptionActivite",
+			"validators" 		=> [
+				new VideValidator("Description de l'activité obligatoire")
+			]
+		]));
+******************************************************************************************************************************************************************
+3/ view activer le CKEDITOR sur le champ qui porte d'id du CKeditor
+		<script>
+			CKEDITOR.replace('description_activite');
+		</script>
+
+********************************************************************************************************************************************************************
+
+4/ config.js configuer le wysiwyg
+	
+	CKEDITOR.editorConfig = function( config ) {
+
+---------------------------------ASPECT DU WYSIWYG---------------------------------------------------
+
+    	config.language         = 'fr';
+    	config.width            = '100%';
+	config.uiColor          = '#767b77';
+
+---------------------------------CE QUE L'ON VA GARDER DANS LA TOLLBAR-----------------------------------
+
+    config.toolbar = [
+        ['Undo','Redo'],
+        ['NumberedList','BulletedList'],
+        ['Bold','Italic','Subscipt','Superscript','-','RemoveFormat'],
+        ['Link','Unlink'],
+        ['Find','Replace','-','SelectAll'],
+        ['Format','Styles','Source']
+    ];	
+
+
+--------------------------CE QUE L'ON SOUHAITE VOIR APPARAITRE DANS Formats---------------------------------
+
+    CKEDITOR.config.format_tags='p;h2;h3;h4'; 
+// faut que le CSS gere les H2 à H6 si on le lui en propose donc la gestion jusqu'au h4 en css
+
+----------------------------CE QUE L'ON SOUHAITE VOIR APPARAITRE DANS Styles------------------------------
+
+
+    CKEDITOR.stylesSet.add('my_styles',[ //Je prépare mes styles
+        {
+            name:       'Surlignage',
+            element:    'span',
+            styles:     {
+                'background-color': 'yellow',
+            
+            }
+        }
+    ]);
+    config.stylesSet = 'my_styles';// j'active mes styles
+
+};
+
+******************************************************************************************************************************************
+5/ controller baisser le niveau de security du getdatapost en 1
+
+	"description_activite" => $http->getDataPost("description_activite",1),
+
+
+
+
+
+
+
+
+***************************************************************************************************************
+************************************************CONFIG TOOLBAR***************************************************************
+**************************************************************************************************************
+
+
+
+
+/*
+	config.toolbar  = [
+		[ 'Source','-','Save','NewPage','DocProps','Preview','Print','-','Templates' ],
+		[ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ],
+		[ 'Find','Replace','-','SelectAll','-','SpellChecker', 'Scayt' ],
+		[ 'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField' ],
+		[ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ],
+		[ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ],
+		[ 'Link','Unlink','Anchor' ],
+		[ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ],
+		[ 'Styles','Format','Font','FontSize' ],
+		[ 'TextColor','BGColor' ],
+		[ 'Maximize', 'ShowBlocks','-','About' ]
+	];
+	*/
+
+Voir pour prendre une nouvelle version de CKEDITOR car la version du prof est ancienne
+
+overview dock

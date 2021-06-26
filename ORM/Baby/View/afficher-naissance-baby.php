@@ -29,7 +29,7 @@ if(isset($result)){
 
     // <img src=\"".DOMAINE."medias/photo-baby/".$result->getPhotoBaby()."\" alt=\"photo de ".$result->getNomBaby()."\">
   
-    echo    "<section class=\"fc jc-c ai-c\">
+    echo    "<section class=\"fc jc-c ai-c wrap\">
                 <div>
                     <p> La naissance de <span class=\"spnaissance\">".$result->getNomBaby()."</span> est arrivée le <span class=\"spnaissance\">".$jour." ".$mois."</span>, en <span class=\"spnaissance\">".$year."</span> dans la ville de&nbsp;<span class=\"spnaissance\">".$result->getLieuNaissanceBaby()."</span>.</p>
                     <p>C'était <span class=\"spnaissance\">".$heure."</span>, son poids était de <span class=\"spnaissance\">".$poids."</span> et sa taille de <span class=\"spnaissance\">".$result->getTailleNaissanceBaby()."&nbsp;Cm</span>.</p>

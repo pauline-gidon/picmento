@@ -16,23 +16,25 @@ class FormAnnul extends Form {
 		$this->add(new InputRadio([
 			"label" 		=> "Oui",
 			"value" 		=> 1,
+            "id"            => "annule1",
 			"name" 			=> "annule",
 			"cssLabel" 		=> "consigne",
-			"cssChamp" 		=> "champ"
-		]));
-		$this->add(new InputRadio([
-			// "checked"		=>TRUE,
-			"label" 		=> "Non",
-			"value"			=> 0,
+			"cssChamp" 		=> "switch"
+            ]));
+            $this->add(new InputRadio([
+            "label" 		=> "Non",
+            "id"            => "annule2",
+            "value"			=> 0,
+            "selected"		=> TRUE,
 			"name" 			=> "annule",
 			"cssLabel" 		=> "consigne",
-			"cssChamp" 		=> "champ"
+			"cssChamp" 		=> "switch"
 		]));
 
 
 		$this->add(new InputSubmit([
 		"name" 					=> "annuler",
-		"cssChamp" 				=> "btn",
+		"cssChamp" 				=> "slide-hover-left",
 		"value" 				=> "Enregistrer"
 		]));
 

@@ -167,10 +167,18 @@ $route[] = [
 	"droits"			=> 1
 ];
 $route[] = [
-	"url"				=> PTH."acceptation-([0-9]+)", 
+	"url"				=> PTH."amis-acceptation-([0-9]+)", 
 	"namespace"		    => "ORM", 
 	"module"			=> "Amis", 
 	"action"			=> "AcceptationAmis",  
+	"logged"			=> false, 
+	"droits"			=> null
+];
+$route[] = [
+	"url"				=> PTH."parent-acceptation-([0-9]+)", 
+	"namespace"		    => "ORM", 
+	"module"			=> "Amis", 
+	"action"			=> "AcceptationParent",  
 	"logged"			=> false, 
 	"droits"			=> null
 ];
@@ -234,7 +242,7 @@ $route[] = [
 ];
 
 $route[] = [
-	"url"				=> PTH."ajouter-souvenir-tribu-ami-([0-9]+)", 
+	"url"				=> PTH."amis-ajouter-souvenir-tribu-([0-9]+)", 
 	"namespace"			=> "ORM", 
 	"module"			=> "Tribu", 
 	"action"			=> "AjouterSouvenirTribuAmis",  
@@ -442,7 +450,7 @@ $route[] = [
 	"droits"			=> 1
 ];
 $route[] = [
-    "url"				=> PTH."voir-tribu-amis-([0-9]+)", 
+    "url"				=> PTH."amis-voir-tribu-([0-9]+)", 
 	"namespace"		    => "ORM", 
 	"module"			=> "Tribu", 
 	"action"			=> "VoirTribuAmis",  
@@ -534,7 +542,7 @@ $route[] = [
 	"droits"			=> 1
 ];
 $route[] = [
-	"url"				=> PTH."envoyer-message-([0-9]+)", 
+	"url"				=> PTH."amis-envoyer-message-([0-9]+)", 
 	"namespace"		    => "ORM", 
 	"module"			=> "Message", 
 	"action"			=> "EnvoyerMessage",  
@@ -553,12 +561,82 @@ $route[] = [
 //------------------------------------------------------trait recherche autocomplete
 
 $route[] =	[
-	"url"				=> PTH."autocomplete",
+    "url"				=> PTH."autocomplete",
 	"namespace"	    	=> "ORM",
 	"module"			=> "Article",
 	"action"			=> "Autocomplete",
 	"logged"			=> true, 
 	"droits"			=> 1
+];
+
+//------------------------------------------------------signalement
+$route[] = [
+    "url"				=> PTH."ami-signaler-photo-(.+)", 
+	"namespace"		    => "ORM", 
+	"module"			=> "Signalement", 
+	"action"			=> "SignalementPhoto",  
+	"logged"			=> true, 
+	"droits"			=> 1
+];
+
+$route[] = [
+    "url"				=> PTH."ami-signaler-commentaire-(.+)", 
+	"namespace"		    => "ORM", 
+	"module"			=> "Signalement", 
+	"action"			=> "SignalementCom",  
+	"logged"			=> true, 
+	"droits"			=> 1
+];
+
+$route[] = [
+    "url"				=> PTH."ami-signaler-souvenir-(.+)", 
+	"namespace"		    => "ORM", 
+	"module"			=> "Signalement", 
+	"action"			=> "SignalementSouvenir",  
+	"logged"			=> true, 
+	"droits"			=> 1
+];
+//------------------------------------------------------super admin
+$route[] = [
+    "url"				=> PTH."gerer-signalement", 
+	"namespace"		    => "ORM", 
+	"module"			=> "Signalement", 
+	"action"			=> "GererSignalement",  
+	"logged"			=> true, 
+	"droits"			=> 3
+];
+$route[] = [
+    "url"				=> PTH."gerer-users", 
+	"namespace"		    => "ORM", 
+	"module"			=> "User", 
+	"action"			=> "GererUsers",  
+	"logged"			=> true, 
+	"droits"			=> 3
+];
+//------------------------------------------------------ footer
+$route[] = [
+	"url" 				=> PTH."mentions-legales",
+	"namespace" 	    => "Vendors",
+	"module" 			=> "StaticPage",
+	"action" 			=> "AfficherMentionsLegales",
+	"logged" 			=> false,
+	"droits" 			=> null
+];
+$route[] = [
+	"url" 				=> PTH."politique-confidentialite",
+	"namespace" 	    => "Vendors",
+	"module" 			=> "StaticPage",
+	"action" 			=> "AfficherPolitiqueConfidentialite",
+	"logged" 			=> false,
+	"droits" 			=> null
+];
+$route[] = [
+	"url" 				=> PTH."cgu",
+	"namespace" 	    => "Vendors",
+	"module" 			=> "StaticPage",
+	"action" 			=> "AfficherConditionsGeneralesUtilisation",
+	"logged" 			=> false,
+	"droits" 			=> null
 ];
 
 return $route;

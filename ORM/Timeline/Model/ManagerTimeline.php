@@ -20,7 +20,10 @@ function deteleTimelineByIdBaby($id){
 //-------------------------------------------------------------
 function oneTimelineByIdBaby($id){
     if(is_numeric($id)){
-        $req = "SELECT * FROM timeline WHERE baby_id_baby = $id";
+        $req = "SELECT * FROM timeline
+         WHERE baby_id_baby = $id
+         ORDER BY annee_photo_timeline ASC, mois_photo_timeline ASC
+        ";
         $query = $this->db->query($req);
         if($query->num_rows > 0){
             while($row = $query->fetch_array()){

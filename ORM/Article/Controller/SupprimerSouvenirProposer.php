@@ -57,7 +57,7 @@ class SupprimerSouvenirProposer extends Controller {
               
             }
             if($managerA->deleteArticleByIds($id_article)){
-                $flash->setFlash("Le souvenir a bien été supprimer");
+                $flash->setFlash("Le souvenir a bien été supprimé !");
             }
         }
         $cx->close();

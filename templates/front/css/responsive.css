@@ -14,10 +14,11 @@ POINTS DE RUPTURE UTILES AU PROJET
         width: 100%;
         left:0;
     }
-    .inscription #zone-form p{
+
+    .inscription #zone-form p, .connexion #zone-form p {
         width: 100%;
     }
-    .inscription #zone-form .visu-mdp{
+    .inscription #zone-form .visu-mdp, .connexion #zone-form .visu-mdp {
         right: 10px;
     }
     .inscription form {
@@ -30,6 +31,79 @@ POINTS DE RUPTURE UTILES AU PROJET
         width: 100%;
     }
 }
+
+@media screen and (max-width: 1100px){
+    header nav {
+		width: 100%;
+    border-bottom: thick double var(--corail);
+	}
+	header nav ul {
+		width: 100%;
+        flex-wrap: nowrap;
+	}
+	header nav ul li {
+		width: 100%;
+		text-align: right;
+		padding: 10px 0 10px 0 ;
+        margin:0 25px;
+	}
+    header nav ul li a {
+		padding: 0 0 0 0;
+	}
+	header {
+		width: 100%;
+		height: 70px;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 50;
+	}
+    .wrapH {
+        width: 100%;
+        margin: 0 25px 0 0;
+    }
+	nav li:last-child {
+		border: none;
+	}
+	#burger {
+		position: absolute;
+		top: 15px;
+		right: 25px;
+		width: 40px;
+		height: 40px;
+		display: block;
+		cursor: pointer;
+		opacity: 0;
+		z-index: 53;
+	}
+	#burger + label {
+		display: block;
+		padding: 5px 0 10px 50px;
+		background-image: url(/picmento/site/templates/front/images/burgerSprite.png);
+		background-repeat: no-repeat;
+		background-size: 40px;
+		background-position: left top;
+		position: absolute;
+		top: 15px;
+		right: 25px;
+		z-index: 52;
+		transition: All 0.2s ease;
+		color: #F07167;
+		font-size: 18px;
+	}
+	#burger:checked + label {
+		background-position: left bottom;
+	}
+	header nav {
+		display: none;
+		padding-top: 70px;
+	}
+	#burger:checked ~ nav {
+		display: block;
+		background-color: var(--beige-claire);
+	}
+}
+
 
 @media screen and (max-width: 965px){
     h1 {
@@ -44,97 +118,15 @@ POINTS DE RUPTURE UTILES AU PROJET
 	#logo {
 		left: 6%;
 	}
-    header {
-		width: 100%;
-		height: 70px;
-		/* position: fixed;
-		top: 0;
-		left: 0;
-		z-index: 50; */
-        background-color: #f8dec5ce;
-	}
-	header nav {
-		width: 100%;
-        display: none;
-		padding-top: 70px;
-        background-color: #fed9b7de;
-        z-index: 50;
-	}
-	nav ul {
-        justify-content: end;
-	}
-
-	nav ul li {
-        width: 110px;
-		text-align: right;
-		padding: 10px 0 10px 0 ;
-        margin-left: 0;
-        margin-right: 25px;
-	}
-
-	nav ul li :hover {
-        background-color: transparent;
-        color: #FFF;
-		/* text-decoration: underline 2px #FFF; */
-	}
-	nav ul li a {
-		padding: 0 0 0 0;
-        display: block;
-	}
-
-
-
-	#burger {
-		position: absolute;
-		top: 15px;
-		right: 25px;
-		width: 40px;
-		height: 40px;
-		display: block;
-		cursor: pointer;
-		opacity: 0;
-		z-index: 53;
-	}
-	#burger + label {
-		display: block;
-		padding: 5px 0 7px 50px;
-		background-image: url(/picmento/site/templates/front/images/burgerSprite.png);
-		background-repeat: no-repeat;
-		background-size: 40px;
-		background-position: left top;
-		position: absolute;
-		top: 15px;
-		right: 25px;
-		z-index: 52;
-		transition: All 0.2s ease;
-		color: #F07167;
-		font-size: 18px;
-	}
-
-	#burger:checked + label {
-		background-position: left bottom;
-	}
-
-	#burger:checked ~ nav {
-		display: block;
-        background-color: #f8dec5;
-		box-shadow: 0  0px 10px #ffffff;
-
-	}
     form {
         padding: 20px;
-    
     }
-
-	
-
 }
 @media only screen and (max-width: 768px) {
     /* tablettes et ordinateurs */
     nav ul li {
         width: 110px;
     }
-
     footer #pipe{
         display: none;
     }
@@ -147,36 +139,39 @@ POINTS DE RUPTURE UTILES AU PROJET
     footer p a {
         width: 100%;
     }
+
 	
 }	
+
 @media only screen and (max-width: 664px) {
     /* tablettes et ordinateurs */
-
+    #video {
+        padding:30px;
+    }
 }	
+
 @media only screen and (max-width: 568px) {
 	/* tablettes et ordinateurs */
     .connexion h1 {
         font-size: 28px;
     }
-
-
-    
-
-	
+    .feedback {
+        margin: 0 auto 50px;
+    }
 }	
+	
+
 @media only screen and (max-width: 405px) {
-	/* tablettes et ordinateurs */
+    #video {
+        padding:20px;
+    }
 }
-
-
 
 @media only screen and (max-width: 378px) {
 	/* tablettes et ordinateurs */
-footer span {
-    display: none;
-}
-
-	
+    footer span {
+        display: none;
+    }
 }
 
 

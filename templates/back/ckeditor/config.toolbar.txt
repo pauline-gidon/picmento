@@ -1,0 +1,19 @@
+/*
+	config.toolbar  = [
+		[ 'Source','-','Save','NewPage','DocProps','Preview','Print','-','Templates' ],
+		[ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ],
+		[ 'Find','Replace','-','SelectAll','-','SpellChecker', 'Scayt' ],
+		[ 'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField' ],
+		[ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ],
+		[ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ],
+		[ 'Link','Unlink','Anchor' ],
+		[ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ],
+		[ 'Styles','Format','Font','FontSize' ],
+		[ 'TextColor','BGColor' ],
+		[ 'Maximize', 'ShowBlocks','-','About' ]
+	];
+	*/
+
+Voir pour prendre une nouvelle version de CKEDITOR car la version du prof est ancienne
+
+overview dock

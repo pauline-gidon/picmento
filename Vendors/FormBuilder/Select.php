@@ -23,7 +23,7 @@ class Select extends Field {
 		$widget	.= isset($this->cssChamp)?" class=\"".$this->cssChamp."\"":NULL;
 		$widget	.= ">";
 
-		$widget	.= "<option value=\"ras\">Sélectionnez</option>";
+		// $widget	.= "<option value=\"ras\">Sélectionnez</option>";
 
 		foreach($this->options as $option){
 			$widget	.= $option->getWidget();

@@ -29,7 +29,7 @@ class AjouterCommentaire extends Controller {
 
 		$cx			= new Connexion();
         $managerU = new ManagerUser($cx);
-        //pour ajouter un commentaire je verifie les relation user
+        //pour ajouter un commentaire je verifie les relations souvenir et baby
         //pour sa je vais recupéré la tribu lié a l'article du bébé
         $managerT = new ManagerTribu($cx);
         $tribu = $managerT->oneTribuByIdArticle($id_article,$id_baby);
@@ -37,7 +37,9 @@ class AjouterCommentaire extends Controller {
             //je recupère parent 1 et parent 2 et je les compare a l'auth qui est connecter
             $id_parent1 = $tribu->getUserIdParent1();
             $id_parent2 = $tribu->getUserIdParent2();
+            // je verifie les relation user_has_user par les id de parent de la tribu et l'auth connecter
             $user = $managerU->verifUserAmisUserConnecter($id_parent1, $id_parent2);
+            //seule les parent ou les amis des parent peuvent commenter le souvenir
             if(!is_null($user) || $tribu->getUserIdParent1() == $_SESSION["auth"]["id"] || $tribu->getUserIdParent2() == $_SESSION["auth"]["id"]){
                 $managerA = new ManagerArticle($cx);
                 $souvenir = $managerA->oneArticleById($id_article);
@@ -59,9 +61,9 @@ class AjouterCommentaire extends Controller {
                             
                         $managerC = new ManagerCommentaire($cx);
                         if($managerC->insertNewCommentaire($new_commentaire,$id_article) > 0){
-                            $flash->setFlash("Votre commentaire a bien été ajouter");
+                            $flash->setFlash("Votre commentaire a bien été ajouté !");
                         }else{
-                            $flash->setFlash("Impossible d'ajouter votre commentaire");
+                            $flash->setFlash("Impossible d'ajouter votre commentaire !");
                         }
                         header("location: afficher-souvenirs-".$id_baby."#ancre-".$id_article."");
                         exit();

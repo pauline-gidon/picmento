@@ -3,7 +3,7 @@ use Vendors\Flash\Flash;
 $flash = new Flash();
 echo $flash->getFlash();
 
-echo "<p class=\"btnAddAmis\"><a href=\"demande-ami\" title=\"Demande d'ami\"> Ajouter <br>un ami<i class=\"fas fa-user-plus\"></i></a></p>";
+echo "<p class=\"btnaddamis\"><a href=\"demande-ami\" title=\"Demande d'ami\"><i class=\"fas fa-plus\"></i><span>Ajouter un ami</span></a></p>";
 if(isset($result)){
 // var_dump($result);
 echo "<section class=\"fc fw \">
@@ -33,36 +33,55 @@ echo "<section class=\"fc fw \">
             </p>
         </div>
         <div class=\"listAmis\">";
-        
-        foreach ($result["user-amis"] as $obj) {
+
+ 
+
+
+        foreach ($result["user"] as $obj) {
              //avatar de la personne
-             if(is_null($obj->getAvatarUser())){
+             
+             if(is_null($obj["user-amis"]->getAvatarUser())){
                  $avatar = "avatar-picmento.png";
              }else{
-                 $avatar = $obj->getAvatarUser();
+                 $avatar = $obj["user-amis"]->getAvatarUser();
              }
-            echo"<div class=\"fc fw ai-c userListeAmis\">
-                    <div class=\"avatar-rond\">
-                        <img src=\"".DOMAINE."medias/avatar/".$avatar."\" alt=\"Photo de ".$obj->getPrenomUser()." ".$obj->getNomUser()."\">
-                    </div>
-                    <div class=\"fc fw ai-c jc-sb\">
-                        <p class=\"nomUserMessagerie\">".$obj->getPrenomUser()." ".$obj->getNomUser()."</p>
-                        <div class=\"fc fw ai-c\">
-                            <p>
-                                <a href=\"voir-tribu-amis-".$obj->getIdUser()."\" title=\"Voir ses tribus\">
-                                    <i class=\"fas fa-eye\"></i>
-                                </a>
-                            </p>
-                            <p>
-                                <a href=\"envoyer-message-".$obj->getIdUser()."\" title=\"Envoyer un message\">
-                                    <i class=\"fas fa-envelope\"></i>
-                                </a>
-                            </p>
+            if(!is_null($obj["user-amis"]->getNomUser())){
+                $actif = $obj["demande_amis"]->getActifAmis();
+                
+            echo"<div class=\"wrap fc fw ai-c jc-sb userListeAmis\">
+                    <div class=\"fc ai-c moduleUser\">
+                        <div class=\"avatar-rond\">
+                        <img src=\"".DOMAINE."medias/avatar/".$avatar."\" alt=\"Photo de ".$obj["user-amis"]->getPrenomUser()." ".$obj["user-amis"]->getNomUser()."\">
                         </div>
-                    
-                    
-                    </div>
-                </div>";
+                        <p class=\"nomUserMessagerie\">".$obj["user-amis"]->getPrenomUser()." ".$obj["user-amis"]->getNomUser()."</p>
+                    </div>";
+                    if($actif ==1){
+
+
+                        echo "<div class=\"fc fw ai-c jc-sb gestionAmis\">
+                                <p>
+                                    <a href=\"amis-voir-tribu-".$obj["user-amis"]->getIdUser()."\" title=\"Voir ses tribus\">
+                                        <i class=\"fas fa-eye\"></i>
+                                    </a>
+                                </p>
+                                <p>
+                                    <a href=\"amis-envoyer-message-".$obj["user-amis"]->getIdUser()."\" title=\"Envoyer un message\">
+                                        <i class=\"fas fa-envelope\"></i>
+                                    </a>
+                                </p>
+                                <p>
+                                    <a href=\"bloker-ami-".$obj["user-amis"]->getIdUser()."\" title=\"bloquer votre ami\">
+                                        <i class=\"fas fa-ban\"></i>
+                                    </a>
+                                </p>
+                        </div>";
+
+                    }else{
+                        echo"<div>Votre relation est blocker</div>";
+                    }
+
+                echo"</div>";
+            }
             }
     echo "</div>
     </section>";

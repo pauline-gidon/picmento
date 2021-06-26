@@ -2,7 +2,6 @@
 namespace Vendors\FormBuilded;
 use Vendors\FormBuilder\Form;
 use Vendors\FormBuilder\InputPassword;
-use Vendors\FormBuilder\Link;
 use Vendors\FormBuilder\InputSubmit;
 
 use Vendors\Validator\MinLengthValidator;
@@ -18,7 +17,7 @@ class FormMdp extends Form {
 	function buildForm(){
 		
 		$this->add(new InputPassword([
-			"label"	 		=> "Mot de passe : ",
+			"label"	 		=> "Mot de passe",
 			"name"	 		=> "pass_user",
 			"placeholder" 	=> "8 caractères, minuscule, majuscule, chiffre, 
 							caractère spécial",
@@ -43,7 +42,7 @@ class FormMdp extends Form {
 		$this->add(new InputSubmit([
 			"name"	 => "go",
 			"value"	 => "Réinitialiser",
-			"cssChamp"	 => "btn"
+			"cssChamp"	 => "slide-hover-left"
 		]));
 		
 		return $this;

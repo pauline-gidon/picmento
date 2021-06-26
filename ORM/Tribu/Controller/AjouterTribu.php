@@ -45,7 +45,7 @@ class AjouterTribu extends Controller {
 				$flash->setFlash("Votre nouvelle tribu a été ajoutée !");
                 
 			}else{
-				$flash->setFlash("l'ajout de votre tribu n'a pas fonctionné. Veuillez réesayer ou contacter l'équipe <span class=\"flash-logo\">Picmento</span> !");
+				$flash->setFlash("L'ajout de votre tribu n'a pas fonctionné. Veuillez réessayer ou contacter l'équipe <span class=\"flash-logo\">Picmento</span> !");
 			}
             header("location: afficher-tribu");
             exit();

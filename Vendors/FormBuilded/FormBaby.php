@@ -35,6 +35,7 @@ class FormBaby extends Form {
             "label" 				=> "Date de naissance",
             "name" 					=> "date_naissance_baby",
             "placeholder"       	=> "2019-05-18",
+            "id"                    => "dateOrder",
             "cssLabel" 		    	=> "consigne",
             "cssChamp" 		    	=> "champ",
             "getterEntity"          => "getDateNaissanceBaby",
@@ -104,7 +105,7 @@ class FormBaby extends Form {
 
 		$this->add(new InputSubmit([
 			"name" 			=> "addbaby",
-			"cssChamp" 		=> "btn",
+			"cssChamp" 		=> "slide-hover-left",
 			"value" 		=> "Enregistrer"
 		]));
 

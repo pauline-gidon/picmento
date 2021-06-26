@@ -7,7 +7,7 @@ CE QUI EST SPECIFIQUE AU PROJET
     --saumon: #FED9B7;
     --corail:#F07167;
     --bleu-claire: #00AFB9;
-    --bleu-confé:#0081A7;
+    --bleu-foncer:#0081A7;
 
   }
 
@@ -18,9 +18,11 @@ body {
 
     overflow: hidden;
     overflow-y: scroll;
+    -webkit-background-size: 12px 12px;
+    background-size: 12px 12px;
+    
 }
 /*----------------------------------- commun -----------------------------------------*/
-
 #logo {
     font-family: 'Hachi Maru Pop', cursive;
     font-size: 30px;
@@ -30,16 +32,21 @@ body {
     left: 10%;
     background-color: transparent;
     color: rgb(177, 98, 98);
-    /* color: rgb(255, 255, 255); */
-
 }
 .content{
-    min-height: 75vh;
+    min-height: 65vh;
 }
-.sauvegarde-de-souvenirs-en-ligne header{
+header{
     width: 100%;
     background-color: rgb(233, 202, 197);
-
+}
+.activez-votre-compte, .une-demande-pour-vous  {
+    background-image: url(../images/gradientrose.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.view{
+    min-height: 55vh;
 }
 .contact header, .inscription header, .connexion header {
     width: 100%;
@@ -55,45 +62,45 @@ header nav a {
     display: block;
     color: #614846;
     text-decoration: none;
-    padding: 20px 0;
+    padding: 20px 0 20px 75px;
 }
-header nav li :hover {
-    color:#F07167;
-    background-color: #FFFCF8;
+header nav a:hover {
+    text-decoration: underline overline #614846;
 }
 
 header nav li {
     text-align: center;
-    width: 17%;
     font-size: 20px;
 }
+
 h1 {
      font-size: 30px;
     text-align: center;
-    margin: 60px 0;
-    /* letter-spacing: 1px; */
+    margin: 60px auto;
+    width: 90%;
 }
 
-
-
-
-
-
+#imgBandeau {
+    z-index: -20;
+}
 .feedback {
-    padding: 10px;
-    background-color: #614846;
-    color: #CCC;
-    width:100%;
-    height: 90px;
+    padding: 10px 20px;
+    background-color: #494343c0;
+    color: rgb(255, 255, 255);
+    min-height: 90px;
+    margin-bottom: 30px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 75px;
+    z-index: 10;
+    border-radius: 10px;
+    width: 68%;
 }
-
-
-
 /*----------------------------------- page accueil-------------------------------------------- */
 
 .blok-presentation {
     border: solid 1px #cbb4bb;
-    border-radius: 5px;
+    border-radius: 10px;
     width: 30%;
     padding: 20px;
     margin-bottom: 30px;
@@ -115,13 +122,11 @@ h1 {
 
  #logo{
     color: rgb(177, 98, 98);
-    
 }
-
 .sauvegarde-de-souvenirs-en-ligne h1{
-    color: #eecdc2;
+    color: #e6a893;
 }
-.sauvegarde-de-souvenirs-en-ligne #imgBandeau{
+.sauvegarde-de-souvenirs-en-ligne #imgBandeau {
     background-image: url(../images/souvenir-enfant.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -131,6 +136,27 @@ h1 {
 .presentation{
     margin-bottom: 80px;
 }
+#video {
+    margin: 50px auto;
+    text-align: center;
+    background-color: #E9CAC5;
+    border-radius: 10px;
+    padding: 50px;
+} 
+video {
+    width: 100%;
+}
+.une-demande-pour-vous h1, .mot-de-passe-oublie h1, .activez-votre-compte h1, .recevoir-un-nouveau-mail-dactivation h1 {
+    color: #b16262;
+}
+.activez-votre-compte a {
+    text-decoration: underline #E9CAC5;
+    color: #E9CAC5;
+}
+.activez-votre-compte a:hover {
+    text-decoration: underline #FFF;
+    color: #FFF;
+}
 .accroche{
     width: 100%;
     padding: 0 0 40px;
@@ -138,16 +164,10 @@ h1 {
     color: #c0adaa;
 }
 #slideshow {
-    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#fed9b7+63,f07167+100 */
-    /* background: #fed9b7; /* Old browsers */
-    /* background: -moz-linear-gradient(top,  #fed9b7 63%, #f07167 100%);
-    background: -webkit-linear-gradient(top,  #fed9b7 63%,#f07167 100%); 
-    background: linear-gradient(to bottom,  #fed9b7 63%,#f07167 100%); 
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fed9b7', endColorstr='#f07167',GradientType=0 );  */
-    background-color: #cbb4bb;
+    background-color: #e6a893;
     padding: 55px 20px;
     margin: 0 auto;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 @keyframes gradient{
     0% {transform: translate(-25%, -50);
@@ -162,36 +182,12 @@ h1 {
     max-width:55vw;
     overflow: hidden;
     margin: 0 auto 20px;
-    background-color: black;
 }
 #bandeau {
     position: relative;
 }
 
-#slideshow figure img {
-    float: left;
-     width: 100%; 
-}
-#pagination{
-    text-align: center;
-}
-#pagination i {
-    font-size: 40px;
-    cursor: pointer;
-    margin: 0 10px;
-    color: #fed9b7;
-}
-#pagination i:hover {
-    color: #FFFCF8;
-    
-}
-
-
-
-
-/* ----------------------------------------------------------------------------------------------------------------------------- */
-/* ***************************************************************FORMULAIRE*************************************************** */
-/* --------------------------------------------------------------------------------------------------------------------------- */
+/* *************************************FORMULAIRE********************************************** */
 
 /* ---------------------------------COMMUN---------------------------------------------- */
 form {
@@ -205,64 +201,77 @@ form {
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     margin-bottom: 106px;
-
 }
-
 form p {
     padding: 20px 0;
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    
 }
 form a {
     color: #8994a6;
 }
-form ul {
-    padding-left: 20px;
-}
-
  .consigne {
     color: #707070;
     width: 20%;
     height: 35px;
     display: block;
-    
 }
-
 .champ {
     border: none;
     padding: 10px 15px;
-    border-radius: 5px;
+    border-radius: 10px;
     width: 55%;
     position: relative;
     left: 150px;
     background-color: rgba(255, 255, 255, 0.856);
-
-
 }
-.btn {
-    border: none;
-    margin-top: 10px;
-    padding: 10px 15px;
-    border-radius: 5px;
-    background: rgba( 254, 217, 183, 0.30 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 9.0px );
-    -webkit-backdrop-filter: blur( 9.0px );
-    /* border-radius: 10px; */
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-    color: #3f3d3d;
+input[type="submit"] {
+    border: 1px solid #C9918F;
+    background-color: transparent;
+    color: #C9918F;
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 10px;
+    text-transform: capitalize;
 }
-.btn:hover {
-    color: #707070;
-    text-decoration: underline #707070;
+.une-demande-pour-vous input[type="submit"] {
+    border: 1px solid var(--corail);
+    background-color: transparent;
+    color: var(--corail);
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 10px;
+    text-transform: capitalize;
 }
-/* #go{
-    color: #383232;
-} */
-
-
+input:focus {
+    outline: none;
+}
+/* slide hover left -1 css */
+.une-demande-pour-vous input.slide-hover-left {
+    background-image: linear-gradient(0, #F07167, #F07167);
+    background-size: 0;
+    transition: .8s;
+    background-repeat: no-repeat;
+}
+input.slide-hover-left {
+    background-image: linear-gradient(0, #C9918F, #C9918F);
+    background-size: 0;
+    transition: .8s;
+    background-repeat: no-repeat;
+}
+input.slide-hover-left:hover {
+    background-size: 100%;
+    color: #fff;
+}
 /* ---------------------------------page inscription-------------------------------------- */
 .inscription {
     background-image: url(../images/livre-boule-bleu.jpg);
@@ -279,25 +288,23 @@ color: #FFF;
     margin-top: 50px;
     position: relative;
 }
-
 .inscription form {
     background: rgba(255, 255, 255, 0.432);
     border-radius: 10px;
     margin-left: 0 auto;
     margin-bottom: 50px;
 }
-
 .inscription #zone-form  a{
     color: rgb(146, 221, 255) ;
 }
-.inscription #zone-form p{
+.inscription #zone-form p , .connexion #zone-form p{
     width: 930px;
     position: relative;
+    margin: 0 auto;
 }
 .inscription #zone-form .consigne, .inscription #zone-form label {
     color:rgb(31, 30, 30);
 }
-
 .inscription .champ {
     background-color: rgba(255, 255, 255,0.84);
 }
@@ -307,11 +314,10 @@ color: #FFF;
 form ::placeholder {
     letter-spacing: 0.5px;
 }
-
 .barre {
     text-decoration: line-through;
 }
-.visu-mdp{
+.inscription .visu-mdp{
     right: 100px;
     bottom: 30px;
 }
@@ -319,32 +325,21 @@ form ::placeholder {
     display: initial;
 }
 .messageAideMdp {
-    margin-bottom: 20px;
+    
+    list-style-type: none;
+    margin: 0 auto 20px;
+    max-width: 930px;
 }
-.btn-inscription {
-    text-align: center;
-    background-color: #FED9B7 ;
-    border-radius: 10px;
-    width: 170px;
-    padding: 15px 5px;
-    margin: 60px auto;
+.feedback a {
+    color : #FFF;
+    text-decoration: underline #fff;
 }
-.btn-inscription a {
-    display: block;
-    text-decoration: none;
-    width: 100%;
-    color: #fffcf8;
-    font-weight: 600;
+/* ---------------------------------------------recevoir un nouveau mail d'activation---------------------------------- */
+.recevoir-un-nouveau-mail-dactivation {
+    background-image: url(../images/gradientrose.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-#rgpd_user{
-    padding: 10px;
-    margin-right: 12px;
-}
-
-/* .inscription [type="checkbox"]{
-    width: 22px;
-	height: 22px;
-} */
 /* ----------------------------------------------------page connexion---------------------------------- */
 .connexion {
     background-image: url(../images/baby.jpg);
@@ -354,12 +349,8 @@ form ::placeholder {
     background-position: bottom;
 }
 .connexion header {
-    /* background-color: #926a45ce; */
     box-shadow: none;
 }
-
-
-
 .connexion h1 {
     color: rgb(255, 255, 255);
     text-shadow: 1px 1px 3px rgba(100, 100, 100, 0.472);
@@ -374,18 +365,13 @@ form ::placeholder {
 .connexion .champ {
     background-color: rgba(255, 255, 255, 0.692);
 }
-.connexion #zone-form form{
-    background: rgba( 255, 255, 255, 0.40 );
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-    margin-bottom: 106px;
-}
-.connexion #zone-form form p{
-    position: relative;
+
+.connexion .messageAideMdp {
+    display: none;
 }
 .connexion #zone-form #passe-oublie{
-    text-decoration: underline #8994a6;
+    /* text-decoration: underline #b86f6c; */
+    color: #b86f6c;
 }
 .connexion #zone-form #passe-oublie:hover{
     color: #4f6ea0;
@@ -393,6 +379,10 @@ form ::placeholder {
 }
 #connexion, #inscription, #go {
     background-color: rgba(255, 255, 255, 0.692);
+}
+.connexion .visu-mdp{
+    right: 100px;
+    bottom: 30px;
 }
 /* ---------------------------------------------- page contact ------------------------------------- */
 .contact {
@@ -409,48 +399,151 @@ form ::placeholder {
  color: var(--beige-claire)
 }
 
+/*------------------  checkbox---------------------- */
+/* Switch styles */
+/* Global styles */
 
+:root {
+    /* Colors */
+    --primary: #826eff;
+    --secondary: #c2c2c2;
+    --body-background: #f3f3f3;
+    --shadow: #0001;
+    --white: #fff;
+}
+*::before,
+*::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
 
+.switch {
+    appearance: none;
+    max-height: 25px;
+    min-width: 50px;
+    background-color: var(--secondary);
+    cursor: pointer;
+    border-radius: 12px;
+    position: relative;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+}
 
-
-
-
-
-
-
+.switch::before {
+    content: "";
+    height: 25px;
+    width: 25px;
+    background-color: white;
+    position: absolute;
+    border-radius: 50%;
+    border: var(--secondary) solid 0.2em;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+  
+.inscription .switch:checked {
+    background-color: var(--saumon);
+}
+  
+.inscription .switch:checked::before {
+    border-color: var(--saumon);
+    transform: translateX(100%);
+}
+  
+  @media screen and (max-width: 500px) {
+    .switch {
+      outline: none;
+    }
+  }
+.mentions-legales h3 {
+    margin-top: 30px;
+}
+.mentions-legales p:last-child, .politique-de-confidentialite p:last-child	{
+    margin-bottom: 40px;
+}	
+.politique-de-confidentialite h2{
+    margin-top: 30px;
+    
+}
+.politique-de-confidentialite p {
+    margin-bottom: 8px;
+}
+.politique-de-confidentialite ul {
+    margin-bottom: 30px;
+    margin-left: 25px;
+}
+.politique-de-confidentialite li {
+    margin-bottom: 4px;
+}
  /* -------------------------------------------LES FORMULAIRES-------------- */
 
-/* #zone-form {
-    background: rgba( 255, 255, 255, 0.15 );
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    backdrop-filter: blur( 9.0px );
-    -webkit-backdrop-filter: blur( 9.0px );
-    border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-    margin-bottom: 100px;
-    padding: 60px 0;
-} */
+/* ----------------------------------invitation-------------- */
+.une-demande-pour-vous .invitation {
+        margin-bottom: 20px;
+        color: #b16262c4;
+}
 
-
-
-
-
+:root {
+/* Colors */
+    --secondary: #c2c2c2;
+    --body-background: #f3f3f3;
+}
+*::before, *::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+    
+.switchDemande {
+    appearance: none;
+    max-height: 25px;
+    min-width: 50px;
+    background-color: var(--secondary);
+    cursor: pointer;
+    border-radius: 12px;
+    position: relative;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+}
+    
+.switchDemande::before {
+    content: "";
+    height: 25px;
+    width: 25px;
+    background-color: #FFF;
+    position: absolute;
+    border-radius: 50%;
+    border: var(--secondary) solid 0.2em;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.switchDemande:checked {
+    background-color: var(--corail);
+}
+      
+.switchDemande:checked::before {
+    border-color: var(--corail);
+    transform: translateX(100%);
+}
+@media screen and (max-width: 500px) {
+    .switchDemande {
+        outline: none;
+    }
+}
+/* -------------------------------------------mot de passe oublier-------------- */
+.mot-de-passe-oublie {
+    background-image: url(../images/gradientrose.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
  /* -------------------------------------------footer-------------- */
-
 footer a{
     color:#FFF
 }
-
 footer {
      background-color: rgba(0, 0, 0, 0.507);
     width: 100vw;
     padding: 5px 0;
-    /* position:fixed;
-    left: 0;
-    bottom: 0; */
 }
-
-
 footer p a {
     text-decoration: none;
     display: block;
@@ -460,21 +553,66 @@ footer p a {
 footer p a:hover {
     
     text-decoration: underline #FFF;
-
 }
-
  footer p {
     color: #FFF;
 }
 
 /* *****************************formulaire generale*******************************u */
-
 .alerte { 
     color: rgb(148, 25, 25);
     width: 100%;
     display: block;
 }
+.grecaptcha-badge { visibility: hidden; }
 
+/* ***************************** loader *******************************u */
+.loader {
+    position: absolute;
+    width: 32%;
+    top: 53%;
+    left: 50%;  
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    opacity: 0.7;
+    
+}
+.loader img{
+    width: 100%;
+    transform: scale(0.8);
+    /* animation: lds-heart 3.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1); */
+    animation: lds-heart 4.2s infinite; 
+    /* animation: lds-heart 1.2s 5s linear 2s infinite alternate; */
+    /* animation: couleur 5s linear 2s infinite alternate, */
+    
+}
+@keyframes lds-heart{
+
+    0% {
+        transform: scale(0.3);
+        opacity: 0.9;
+    }
+
+    50% {
+        transform: scale(0.8);
+        opacity: 0.4;
+    }
+
+    
+    100% {
+        transform: scale(0.4);
+        opacity: 0.8;
+    }
+
+  }
+
+  
+  .fondu-out {
+        opacity: 0;
+        transition: opacity 0.4s ease-out;
+        z-index: -10;
+        transition: z-index 0.4s ease-out;
+    }
 
 /*
 :nth-child(odd)			impaires

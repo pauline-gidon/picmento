@@ -33,8 +33,8 @@ class SupprimerTribu extends Controller {
 		$tribu 		= $managerT->oneTribuById($id);
 		//Je récupère l'id de la tribu
 		$id_tribu = $tribu->getIdTribu();  
-        //je verifie que se soit bien le parent1 de connecter
-        if($tribu->getUserIdParent1() == $_SESSION["auth"]["id"]){
+        //je verifie que se soit bien le parent1 de connecter ou le parent 2
+        if($tribu->getUserIdParent1() == $_SESSION["auth"]["id"] || $tribu->getUserIdParent2() == $_SESSION["auth"]["id"]){
             //je verifie si cette tribu a un deuxième parent
             $parent2 = $tribu->getUserIdParent2(); 
             if((is_null($parent2))){
@@ -127,7 +127,7 @@ class SupprimerTribu extends Controller {
                     //Je peux enfin supprimer la tribu
                 if($managerT->deleteTribu($id_tribu)){
                     
-                    $flash->setFlash("Votre tribu a bien été supprimée");
+                    $flash->setFlash("Votre tribu a bien été supprimée !");
                     header("location: afficher-tribu");
                     exit();
                 }else{
@@ -137,7 +137,10 @@ class SupprimerTribu extends Controller {
                 
     
             }else{
-                $flash->setFlash("La tribu ne peut pas être supprimer car elle est associé a un deuxième parents !");
+                $flash->setFlash("La tribu ne peut pas être supprimée, car elle est associée à un deuxième parent !");
+                header("location: afficher-tribu");
+                exit();
+
             }
 
         }else{

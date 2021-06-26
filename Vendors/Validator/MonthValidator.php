@@ -12,7 +12,10 @@ class MonthValidator extends Validator {
                 
                 if($saisie > 12){
                     $erreur = TRUE;
-                }      
+                }
+                if($saisie == 00){
+                    $erreur = TRUE;
+                }     
             }
             return $erreur;
 

@@ -45,18 +45,20 @@ class AmisEditerCommentaire extends Controller {
                 if(($form->isSubmit("go"))&&($form->isValid())){
                   
                         $com->setDescriptionCommentaire($http->getDataPost("description_commentaire"));
-                        $up_com = $managerC->updateCommentaire($com);
+                        // $up_com = $managerC->updateCommentaire($com);
                     if($managerC->updateCommentaire($com)){
 
-                        $flash->setFlash("Le commentaire a vien été modifié !");
+                        $flash->setFlash("Le commentaire a bien été modifié !");
+                        header("location: ami-afficher-souvenirs-".$id_baby."#ancre-".$id_article."");
+                        exit();
 
                     }else{
                         
                         $flash->setFlash("Vous n'avez pas fait de modification !");
+                        header("location: ami-afficher-souvenirs-".$id_baby."#ancre-".$id_article."");
+                        exit();
                         
                     }
-                    header("location: ami-afficher-souvenirs-".$id_baby."#ancre-".$id_article."");
-                    exit();
                 
                     
                 }

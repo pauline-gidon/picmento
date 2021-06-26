@@ -14,7 +14,6 @@ class ManagerBaby extends Manager {
              ON baby.tribu_id_tribu = tribu.id_tribu
              WHERE tribu.id_tribu = $id_tribu
              ORDER BY baby.id_baby";
-
 			$query = $this->db->query($req);
             if($query->num_rows > 0){
                 while($row = $query->fetch_array()){
@@ -70,6 +69,30 @@ class ManagerBaby extends Manager {
                           OR tribu.user_id_parent2 = $id_user
                           ORDER BY baby.id_baby";
                 
+                $query = $this->db->query($req);
+                if($query->num_rows > 0){
+                    while($row = $query->fetch_array()){
+                        $babys[] = new Baby($row);
+                        }
+                        return $babys;
+                    }else{
+                        return null;
+                    }      
+            }
+        }
+    //----------------------------------------------------------
+	//Tous les baby de cet user en bdd qui ne sont ceux du user connecter
+	//----------------------------------------------------------
+        function allBabyHasUserAmi($id_user_amis){
+            if(is_numeric($id_user_amis)){
+                $id_user_co = $_SESSION["auth"]["id"];
+                $req = "SELECT * FROM baby, tribu
+                        WHERE  baby.tribu_id_tribu = tribu.id_tribu
+                        AND (tribu.user_id_parent1 = $id_user_amis AND (tribu.user_id_parent2 !=$id_user_co OR tribu.user_id_parent2 IS NULL)
+                        OR(tribu.user_id_parent2 = $id_user_amis AND tribu.user_id_parent1 !=$id_user_co))
+                        ORDER BY baby.id_baby";
+
+                // var_dump($req);die();
                 $query = $this->db->query($req);
                 if($query->num_rows > 0){
                     while($row = $query->fetch_array()){

@@ -1,23 +1,25 @@
 <?php
 namespace Vendors\FormBuilded;
 use Vendors\FormBuilder\Form;
-use Vendors\FormBuilder\InputEmail;
-use Vendors\FormBuilder\InputText;
 use Vendors\FormBuilder\TextArea;
+use Vendors\FormBuilder\InputText;
+use Vendors\FormBuilder\InputEmail;
+use Vendors\FormBuilder\InputHidden;
 use Vendors\FormBuilder\InputSubmit;
-use Vendors\Validator\EmailValidator;
 use Vendors\Validator\VideValidator;
+use Vendors\Validator\EmailValidator;
 
 class FormContact extends Form {
 
 	function buildForm(){
-
+        
 		$this->add(new InputEmail([
 			"label" 				=> "Votre email ",
-			"placeholder" 	=> "toto@toto.fr",
+			"placeholder" 	=> "robin@gmail.com",
 			"name" 					=> "email",
 			"cssLabel" 			=> "consigne",
 			"cssChamp" 			=> "champ",
+            "getterEntity"      	=> "getEmailUser",
 			"validators" 		=> [
 				new EmailValidator("Email obligatoire")
 			]
@@ -43,9 +45,17 @@ class FormContact extends Form {
 			]
 		]));
 
+        $this->add(new InputHidden([
+            "name"              => "recaptcha-response",
+            "id"                => "recaptchaResponse",
+            "validators" 		=> [
+				new VideValidator("Erreur spam")
+			]
+        ]));
+
 		$this->add(new InputSubmit([
 			"name" 					=> "go",
-			"cssChamp" 			=> "btn",
+			"cssChamp" 			=> "slide-hover-left",
 			"value" 				=> "Envoyer"
 		]));
 

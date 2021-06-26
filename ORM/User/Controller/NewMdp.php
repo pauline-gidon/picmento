@@ -76,7 +76,7 @@ class NewMdp extends Controller {
 							exit();
 						}else{
 							//Erreur mail pas parti
-							$flash->setFlash("Pb lors de l'envoi du mail de réinitialisation. Veuillez contacter le webmaster.");
+							$flash->setFlash("Pb lors de l'envoi du mail de réinitialisation. Veuillez contacter l'équipe <span class=\"flash-logo\">Picmento</span> !");
 						}
 					}
 

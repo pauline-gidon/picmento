@@ -3,31 +3,17 @@ use Vendors\Flash\Flash;
 $flash = new Flash();
 echo $flash->getFlash();
 
-// if(isset($result)){
-// echo "<section class=\"baby\">";
-//     foreach ($result as $obj) {
-//         echo "<div class=\"photo-carre-tribu\">
-//                  <div class=\"cassbonbon\">
-//                     <img class=\"id-baby\" src=\"".DOMAINE."medias/photo-baby/".$obj->getPhotoBaby()."\" alt=\"Photo de ".$obj->getNomBaby()."\">
-//                 </div>
-//                 <h2 class=\"id-baby nom-baby\">".$obj->getNomBaby()."</h2>
-//             </div>
-//                <ul>
-//                <li><a href=\"ami-afficher-souvenirs-".$obj->getIdBaby()."\" title=\"Voir les souvenirs de ".$obj->getNomBaby()."\">Souvenirs</a></li>
-//                <li><a href=\"ami-afficher-naissance-".$obj->getIdBaby()."\" title=\"Naissance de ".$obj->getNomBaby()."\">Naissance</a></li>
-//                <li><a href=\"ami-afficher-timeline-".$obj->getIdBaby()."\" title=\"Afficher timeline de ".$obj->getNomBaby()."\">Timeline</a></li>
-//                </ul>";
-//             }
-//    echo "</section>";
-  
-// }
-
-///////////////////////////////////////////////////////////////////////////////////////////////
-
 
 if(isset($result)){
-    foreach($result as $obj) {
-        if(($obj->getUserIdParent1() != $_SESSION["auth"]["id"]) && ($obj->getUserIdParent2() != $_SESSION["auth"]["id"])){
+    // var_dump($result);
+    if(!is_null($result["user"]->getPseudoUser())){
+        $nom = $result["user"]->getPseudoUser();
+    }else{
+        $nom = $result["user"]->getPrenomUser();
+    }
+    echo"<h2 class='h2titre'>".$nom."</h2>";
+    foreach($result["tribu"] as $obj) {
+        // if(($obj->getUserIdParent1() != $_SESSION["auth"]["id"]) && ($obj->getUserIdParent2() != $_SESSION["auth"]["id"])){
           
             echo "<div class=\"tribubaby fc fw wrap\">
             <div class=\"colG\">";
@@ -41,9 +27,7 @@ if(isset($result)){
             
             for ($i=0; $i < count($ids); $i++) { 
                 if(!is_null($obj->liste_id)){
-                    // <a class=\"t-n-baby\"href=\"toto?id=".$ids[$i]."\"><img src=\"".DOMAINE."medias/photo-baby/".$photos[$i]."\" alt=\"Photo de ".$noms[$i]."\"></a>
-                    //             <a class=\"t-n-baby\"href=\"toto?id=".$ids[$i]."\">".$noms[$i]."</a>
-                    //         <p><a href=\"ajouter-souvenir-".$ids[$i]."\" title=\"Ajouter un souvenir à ".$noms[$i]."\">Ajouter un souvenir</a></p>
+
                     echo "<section class=\"baby\">
                              <div class=\"photo-carre-tribu\">
                                 <div class=\"cassbonbon\">
@@ -67,20 +51,24 @@ if(isset($result)){
                     }
             }
     
-            echo "  <p class=\"btn-add-souvenir-amis\">
-                        <a href=\"ajouter-souvenir-tribu-ami-".$obj->getIdTribu()."\" title=\"Ajouter un souvenir à la tribu de mon ami\">
-                            <i class=\"ico icofont-memorial\"></i>
-                        </a>
-                    </p>
-                    </div>
+            echo "<div class=\"nav-tribu\">
+                    <ul>
+                        <li>
+                            <a href=\"amis-ajouter-souvenir-tribu-".$obj->getIdTribu()."\" title=\"Ajouter un souvenir à la tribu de mon ami\">
+                                <i class=\"ico icofont-memorial\"></i>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
+            </div>
+        </div>
     
     
     
         </div>";                
-        }else{
-            echo"<p> Votre amis a une tribu en commun avec vous !</p>";
-        }
+        // }else{
+        //     echo"<p> Votre amis a une tribu en commun avec vous !</p>";
+        // }
     
     }//fin du foreach
 

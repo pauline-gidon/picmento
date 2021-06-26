@@ -10,6 +10,7 @@ use Vendors\Validator\VideValidator;
 use Vendors\Validator\UploadCodeValidator;
 use Vendors\Validator\UploadTypeValidator;
 use Vendors\Validator\UploadMaxSizeValidator;
+use Vendors\Validator\YearValidator;
 
 class FormTimeline extends Form {
     
@@ -18,31 +19,32 @@ class FormTimeline extends Form {
 
 
         $this->add(new InputText([
-            "label" 			=> "Année : ",
+            "label" 			=> "Année",
 			"name" 				=> "annee_photo_timeline",
-            "placeholder"       	=> "2021",
+            "placeholder"       => "2021",
 			"cssLabel" 			=> "consigne",
 			"cssChamp" 			=> "champ",
 			"getterEntity"      => "getAnneePhotoTimeline",
 			"validators" 		=> [
-                new VideValidator("L'année est obligatoire")
+                new VideValidator("L'année est obligatoire"),
+                new YearValidator("L'année ne peut pas être supérieur à l'année actuelle")
                 ]
         ]));
         $this->add(new InputText([
-            "label" 			=> "Mois : ",
+            "label" 			=> "Mois",
 			"name" 				=> "mois_photo_timeline",
-            "placeholder"       	=> "00, 05 ou 10 ...",
+            "placeholder"       	=> "01 => 12",
 			"cssLabel" 			=> "consigne",
 			"cssChamp" 			=> "champ",
 			"getterEntity"      => "getMoisPhotoTimeline",
 			"validators" 		=> [
                 new VideValidator("Le mois est obligatoire"),
-                new MonthValidator("Le mois ne doit pas être supérieur à 12")
+                new MonthValidator("Le mois ne doit pas être inférieur à 01 et supérieur à 12")
                 ]
         ]));
 
         $this->add(new InputFile([
-            "label" 		    => "Choisissez la photo : ",
+            "label" 		    => "Choisissez la photo",
             "name" 			    => "nom_photo_timeline",
             "cssLabel" 			=> "consigne",
             "cssChamp" 			=> "champ",
@@ -53,13 +55,14 @@ class FormTimeline extends Form {
                     ["image/jpeg","image/png"]
                 ),
                 new UploadMaxSizeValidator(
-                    "Sélectionnez un fichier inférieur à 2 Mo",
-                    $http->getDataFiles("nom_photo_timeline","size")
-                ),
+					"Sélectionnez un fichier inférieur à 512 Mo",
+					$http->getDataFiles("photo_baby","size")
+				),
                 new UploadCodeValidator(
                     "Upload impossible",
                     $http->getDataFiles("nom_photo_timeline","error")
                     )
+                    
                 ]
         
         ]));
@@ -69,7 +72,7 @@ class FormTimeline extends Form {
 
 		$this->add(new InputSubmit([
 			"name" 			=> "timeline",
-			"cssChamp" 		=> "btn",
+			"cssChamp" 		=> "slide-hover-left",
 			"value" 		=> "Enregistrer"
 		]));
 

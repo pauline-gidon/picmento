@@ -36,7 +36,7 @@ class FormConnexion extends Form {
 
 		$this->add(new InputSubmit([
 			"name" 					=> "connexion",
-			"cssChamp" 			=> "btn",
+			"cssChamp" 			=> "slide-hover-left",
 			"value" 				=> "Se connecter"
 		]));
 

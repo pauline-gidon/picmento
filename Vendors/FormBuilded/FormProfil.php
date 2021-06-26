@@ -15,7 +15,7 @@ class FormProfil extends Form {
 	function buildForm(){
 		
 		$this->add(new InputText([
-			"label"	 => "Nom : ",
+			"label"	 => "Nom",
 			"name"	 => "nom_user",
 			"id"	 => "nom_user",
 			"cssLabel" 			=> "consigne",
@@ -27,7 +27,7 @@ class FormProfil extends Form {
 		]));
 
 		$this->add(new InputText([
-			"label"	 => "Prénom : ",
+			"label"	 => "Prénom",
 			"name"	 => "prenom_user",
 			"id"	 => "prenom_user",
 			"cssLabel" 			=> "consigne",
@@ -39,7 +39,7 @@ class FormProfil extends Form {
 		]));
 
 		$this->add(new InputText([
-			"label"	 => "Pseudo : ",
+			"label"	 => "Pseudo",
 			"name"	 => "pseudo_user",
 			"id"	 => "pseudo_user",
 			"cssLabel" 			=> "consigne",
@@ -48,7 +48,7 @@ class FormProfil extends Form {
 		]));
 
 		$this->add(new InputEmail([
-			"label"	 => "Email : ",
+			"label"	 => "Email",
 			"name"	 => "email_user",
 			"id"	 => "email_user",
 			"cssLabel" 			=> "consigne",
@@ -60,9 +60,10 @@ class FormProfil extends Form {
 		]));
 
 		$this->add(new InputPassword([
-			"label"	 => "Mot de passe actuel (pour autoriser la modification) : ",
+			"label"	 => "Mot de passe actuel",
 			"name"	 => "pass_user",
 			"id"	 => "pass_user",
+            "placeholder" => "(pour autoriser la modification) ",
 			"cssLabel" 			=> "consigne",
 			"cssChamp" 			=> "champ aide-mdp",
 			"validators" => [
@@ -73,7 +74,7 @@ class FormProfil extends Form {
 		$this->add(new InputSubmit([
 			"name"	 => "go",
 			"value"	 => "Modifier",
-			"cssChamp"	 => "btn"
+			"cssChamp"	 => "slide-hover-left"
 		]));
 
 

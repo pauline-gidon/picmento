@@ -16,44 +16,45 @@ POINTS DE RUPTURE UTILES AU PROJET
         width: 100%;
         left:0;
     }
+    .champW {
+        width: 100%;
+        left:0;
+    }
+    #zone-form p {
+        width: 100%;
+    }
+    .visu-mdp {
+        right: 10px;
+    }
+    .containnerSupprimer {
+        margin-bottom: 30px;
+        width: 80%;
+    
+    }
+    .supprimer-votre-compte img {
+        margin-bottom: 30px;
+    }
 	
 }
 
-@media screen and (max-width: 965px){
-	header{
-
-		background-color: #FFFCF8!important;
-	}
-	.wrap {
-		width: 90%;
-	}
-	#logo {
-		left: 6%;
-	}
-	header nav {
+@media screen and (max-width: 1100px){
+    header nav {
 		width: 100%;
     border-bottom: thick double var(--corail);
 
 	}
 	header nav ul {
 		width: 100%;
+        flex-wrap: nowrap;
 	}
 
 	header nav ul li {
 		width: 100%;
 		text-align: right;
 		padding: 10px 0 10px 0 ;
+        margin:0 25px;
 	}
-    /* .votre-espace nav ul li {
-        text-align: left;
-        
-    } */
-	header nav ul li :hover {
-		width: 100%;
-		background-color: #FFFCF8;
-		text-decoration: underline 2px #FFF;
-	}
-	header nav ul li a {
+    header nav ul li a {
 		padding: 0 0 0 0;
 	}
 	header {
@@ -65,6 +66,11 @@ POINTS DE RUPTURE UTILES AU PROJET
 		background-color: #FFFCF8;
 		z-index: 50;
 	}
+    .wrapH {
+        width: 100%;
+        margin: 0 25px 0 0;
+
+    }
 	
 	nav li:last-child {
 		border: none;
@@ -110,7 +116,61 @@ POINTS DE RUPTURE UTILES AU PROJET
 		background-color: #FFFCF8;
 		box-shadow: 0  0px 10px #FFFCF8;
 
+
 	}
+    .xlg-3 {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    .xlg-9{
+        width: 100%;
+
+    }
+
+
+
+}
+@media screen and (max-width: 965px){
+	header{
+
+		background-color: #FFFCF8!important;
+	}
+	.wrap {
+		width: 90%;
+	}
+	#logo {
+		left: 6%;
+	}
+
+    /* .votre-espace nav ul li {
+        text-align: left;
+        
+    } */
+
+    form {
+        padding: 20px;
+    
+    }
+    
+    /* .ruban-date {
+        right: initial;
+        left: 0;
+    } */
+    .menu-article ul {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .menu-article {
+        right: -5px;
+        top: initial;
+        bottom: -59px;
+    }
+    .menu-article ul li {
+        margin: 0 3px 0;
+    }
+    .article-baby{
+        margin: 0 auto 125px
+    }
 
     /* ----------------------------tribu------------------------------- */
     .baby {
@@ -135,18 +195,19 @@ POINTS DE RUPTURE UTILES AU PROJET
     footer p a {
         width: 100%;
     }
-	
+    .consigne {
+        width: 100%;
+        min-height: 30px;
+    }
 }	
 
 @media only screen and (max-width: 700px) {
 	/* tablette */
 
-	/* .souv-carre {
-        width: 70%;
-    } */
-    /* .baby {
-        width: 100%;
-    } */
+    .souv-carre {
+        margin: 0 6px 20px;
+    }
+
     /* .wrap {
         width: 98%;
     } */
@@ -154,7 +215,7 @@ POINTS DE RUPTURE UTILES AU PROJET
         width: 100%;
     }
     .tribubaby .nav-tribu {
-        right: 26px;
+        right: 15px;
         top: -26px;
     }
     .tribubaby .nav-tribu ul{
@@ -167,7 +228,6 @@ POINTS DE RUPTURE UTILES AU PROJET
         width: 50px;
         height: 50px;
         margin: 0 2px;
-        border-radius: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -189,15 +249,30 @@ POINTS DE RUPTURE UTILES AU PROJET
         font-size: 35px;
     }
     .baby {
-        width: 50%;
+        width: 70%;
+    }
+    .souv-carre {
+        width: 70%;
     }
 	
 }	
-@media only screen and (max-width: 405px) {
+@media only screen and (max-width: 530px) {
 	/* SMARTPHONES */
-   
-    /* .baby {
-        width: 30;
-    } */
+    .gestionAmis {
+        width: 100%;
+    }
+    .feedback {
+        margin: 0 auto 50px;
+    }
+	
+}	
+@media only screen and (max-width: 450px) {
+	/* SMARTPHONES */
+    .baby {
+        width: 80%;
+    }
+    .souv-carre {
+        width: 75%;
+    }
 	
 }	

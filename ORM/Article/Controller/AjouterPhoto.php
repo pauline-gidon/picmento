@@ -52,7 +52,7 @@ class AjouterPhoto extends Controller {
                     
                     if(!is_null($nom_file)){
                         //Avec redimensionnement si nécessaire
-                        $uploader->imageSizing(400);
+                        $uploader->imageSizing(700);
                         $new_medias = new Medias([
                             "nom_medias" 	=> $nom_file
                             ]);
@@ -61,7 +61,7 @@ class AjouterPhoto extends Controller {
                             $new_id_medias = $manager1->insertMedias($new_medias);
                             //insertion d'une relation medias articles
                             $manager1->insertMediasHasArticle($id_article,$new_id_medias);
-                            $flash->setFlash("Votre photo a bien été ajouté !");
+                            $flash->setFlash("Votre photo a bien été ajoutée !");
                             header("location: afficher-souvenirs-".$_SESSION["idBaby"]."#ancre-".$id_article."");
                             exit();
 

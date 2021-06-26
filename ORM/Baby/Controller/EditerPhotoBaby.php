@@ -37,25 +37,30 @@ class EditerPhotoBaby extends Controller {
                 $nom_baby = $baby->getNomBaby();
                 $photo_baby = $baby->getPhotoBaby();
                 
-            
+                
                 $form 		= new FormPhotoBaby("post",$baby);
                 $build 		= $form->buildForm();
                 
                 $flash = new Flash();
+                
                 if(($form->isSubmit("addbaby"))&&($form->isValid())){
                     //suppression de l'ancienne image
                     $destination = "medias/photo-baby/";
                     unlink($destination.$photo_baby);
                     //upload de fichier
                     $file 		= $http->getDataFiles("photo_baby");
+
                     $uploader = new Uploader($file,$destination);
+        
                     $nom_file = $uploader->upload();
+             
                     
                     if(!is_null($nom_file)){
                         //Avec redimensionnement si nécessaire
                         $baby->setPhotoBaby($nom_file);
                         
-                        $uploader->imageSizing(300);
+                        $uploader->imageSizing(500);
+
 
                         if($manager->updatephotoBaby($baby)){
                             

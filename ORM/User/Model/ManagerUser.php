@@ -13,7 +13,6 @@ class ManagerUser extends Manager {
 
 		$req 		= "SELECT * FROM user WHERE email_user = '$email' ";
 		$query 	= $this->db->query($req);
-		//return ($query->num_rows == 1)? true : false;
 		return ($query->num_rows == 1)? new User($query->fetch_array()) : null;
 	}
 
@@ -21,9 +20,12 @@ class ManagerUser extends Manager {
 	//Un user avec ce pseudo existe-t-il déjà dans la BDD ?
 	//----------------------------------------------------------
 	function pseudoExist($pseudo){
+        $id = $_SESSION["auth"]["id"];
 		$pseudo 	= $this->db->real_escape_string($pseudo);
 
-		$req 		= "SELECT * FROM user WHERE pseudo_user = '$pseudo' ";
+		$req 		= "SELECT * FROM user WHERE pseudo_user = '$pseudo'
+                        AND id_user != $id
+        ";
 		$query 	= $this->db->query($req);
 		//return ($query->num_rows == 1)? true : false;
 		return ($query->num_rows == 1)? new User($query->fetch_array()) : null;
@@ -97,6 +99,8 @@ class ManagerUser extends Manager {
 			";
 
 			$query 	= $this->db->query($req);
+            return ($query->num_rows > 0)?new User($query->fetch_array()):NULL;
+
 		}
 	}
 
@@ -232,6 +236,17 @@ class ManagerUser extends Manager {
 		return ($this->db->affected_rows == 1)?TRUE:FALSE;
 	}
 	//----------------------------------------------------------
+	//supprimer Avatar rendre le champ Null en faisan un update
+	//----------------------------------------------------------
+	function deleteAvatar(User $user){
+
+		$req = "UPDATE user 
+			SET avatar_user = Null
+			WHERE id_user =".$user->getIdUser();
+		$query = $this->db->query($req);
+		return ($this->db->affected_rows == 1)?TRUE:FALSE;
+	}
+	//----------------------------------------------------------
 	//Ajouter des relation entre user
 	//----------------------------------------------------------
 	function insertUserHasUser($id1, $id2){
@@ -299,7 +314,9 @@ class ManagerUser extends Manager {
            INNER JOIN user
            ON tribu.user_id_parent1 = user.id_user OR tribu.user_id_parent2 = user.id_user
            WHERE user.id_user = $user_id
-           And medias.id_medias = $id_medias";        
+           And medias.id_medias = $id_medias
+           GROUP BY medias.id_medias";
+       
 		$query 	= $this->db->query($req);
 		return ($query->num_rows == 1)?TRUE:FALSE;
         }

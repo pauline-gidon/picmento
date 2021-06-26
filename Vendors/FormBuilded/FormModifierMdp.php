@@ -4,7 +4,6 @@ use OCFram\HTTPRequest;
 
 use Vendors\FormBuilder\Form;
 use Vendors\FormBuilder\InputPassword;
-use Vendors\FormBuilder\Link;
 use Vendors\FormBuilder\InputSubmit;
 
 use Vendors\Validator\VideValidator;
@@ -24,7 +23,7 @@ class FormModifierMdp extends Form {
 		$http = new HTTPRequest();
 
 		$this->add(new InputPassword([
-			"label"	 		=> "Mot de passe actuel : ",
+			"label"	 		=> "Mot de passe actuel",
 			"name"	 		=> "pass_user1",
 			"cssLabel" 			=> "consigne",
 			"cssChamp" 			=> "champ",
@@ -34,7 +33,7 @@ class FormModifierMdp extends Form {
 		]));
 		
 		$this->add(new InputPassword([
-			"label"	 		=> "Nouveau mot de passe : ",
+			"label"	 		=> "Nouveau mot de passe",
 			"name"	 		=> "pass_user2",
 			"cssLabel" 			=> "consigne",
 			"cssChamp" 			=> "champ",
@@ -48,17 +47,12 @@ class FormModifierMdp extends Form {
 			]
 		]));
 
-		/*$this->add(new Link([
-			"href"		=> "javascript:void(0)",
-			"title"		=> "Vérifiez votre saisie",
-			"id"		=> "confirmPass",
-			"label"		=> "Affichez le mot de passe"
-		]));*/
+
 
 		$this->add(new InputSubmit([
 			"name"	 => "go",
 			"value"	 => "Modifier",
-			"cssChamp"	 => "btn"
+			"cssChamp"	 => "slide-hover-left"
 		]));
 		
 		return $this;

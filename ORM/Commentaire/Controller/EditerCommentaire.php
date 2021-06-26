@@ -16,8 +16,7 @@ use ORM\Commentaire\Model\ManagerCommentaire;
 use ORM\Tribu\Model\ManagerTribu;
 
 class EditerCommentaire extends Controller {
-
-	function getResult() {
+    function getResult() {
         $this->setLayout("back");
 		$this->setTitle("Modifier un commentaire");
 		$this->setView("ORM/Article/View/afficher-form-simple.php");
@@ -25,14 +24,16 @@ class EditerCommentaire extends Controller {
         $http = new HTTPRequest();
 		$id_com = $http->getDataGet("id");
 		$id_baby = $http->getDataGet("idbaby");
-
+        
 		$cx			= new Connexion();
         //pour la Modification du commentaire je verifie si c'est la personne qui a écrit le commentaire 
         //pour sa je vais recupéré le commentaire
         $managerC = new ManagerCommentaire($cx);
+        
         $com = $managerC->oneCommentaireById($id_com);
         $flash = new Flash();
-
+        
+        // var_dump($id_com); die();
         if(!is_null($com)){
                     // il faut que je maitrise la modification de ce commentaire aussi lié a l'article du baby
         $id_article = $com->getArticleIdArticle();
@@ -56,11 +57,10 @@ class EditerCommentaire extends Controller {
                     
                     $com->setDescriptionCommentaire($http->getDataPost("description_commentaire"));
                     if($managerC->updateCommentaire($com)){
-
                         $flash->setFlash("Le commentaire a bien été modifié !");
                         header("location: afficher-souvenirs-".$id_baby."#ancre-".$id_article."");
                         exit();
-
+                        
                     }else{
                         
                         $flash->setFlash("Vous n'avez pas fait de modification !");
@@ -68,8 +68,6 @@ class EditerCommentaire extends Controller {
                         exit();
                         
                     }
-                
-                    // header("location: afficher-souvenirs-".$id_baby."");
                     
                 }
                 $cx->close();

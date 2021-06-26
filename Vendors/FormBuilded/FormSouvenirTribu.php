@@ -4,17 +4,15 @@ use OCFram\HTTPRequest;
 use Vendors\FormBuilder\Form;
 use Vendors\FormBuilder\TextArea;
 use Vendors\FormBuilder\InputDate;
-use Vendors\FormBuilder\InputFile;
 use Vendors\FormBuilder\InputText;
-use Vendors\FormBuilder\InputFile2;
-use Vendors\FormBuilder\InputRadio;
 use Vendors\FormBuilder\InputSubmit;
 use Vendors\Validator\DateValidator;
 use Vendors\Validator\VideValidator;
 use Vendors\FormBuilder\InputCheckBox;
+use Vendors\FormBuilder\Option;
+use Vendors\FormBuilder\Select;
 use Vendors\Validator\MultipleChoiceValidator;
-
-
+use Vendors\Validator\SelectValidator;
 
 class FormSouvenirTribu extends Form {
 
@@ -47,6 +45,7 @@ class FormSouvenirTribu extends Form {
 		$this->add(new InputDate([
 			"label" 		=> "Date du souvenir",
 			"name" 			=> "date_article",
+            "id"            => "dateOrder",
 			"cssLabel" 		=> "consigne",
 			"cssChamp" 		=> "champ",
 			"validators"	=> [
@@ -61,24 +60,30 @@ class FormSouvenirTribu extends Form {
 
 
 
-        $this->add(new InputRadio([
-            // "checked"		=>TRUE,
-            "label" 		=> "Public",
-            "value"			=> 1,
+        $this->add(new Select([
+            "label" 		=> "Visibilité de ce souvenir",
             "name" 			=> "actif_article",
             "cssLabel" 		=> "consigne",
             "cssChamp" 		=> "champ",
             "getterEntity" 	=> "getActifArticle",
-            "selected"      => TRUE
+            // "selected"      => TRUE,
+            "options"        => [ 
+                new Option([
+                    "label" => "Public",
+                    "value" => 1,
+                    "selected" => TRUE
+                ]),
+                new Option([
+                    "label" => "Privé",
+                    "value" => 0
+                ])
+            
+                ],
+            "validators" => [
+                new SelectValidator("Veuillez choisir la visibilité du souvenir")
+            ]
         ]));
-		$this->add(new InputRadio([
-			"label" 		=> "Privé (visible uniquement par le(s) parent(s) )",
-			"value" 		=> 0,
-			"name" 			=> "actif_article",
-			"cssLabel" 		=> "consigne",
-			"cssChamp" 		=> "champ",
-			"getterEntity" 	=> "getActifArticle"
-		]));
+
 
         //--------------------------------------------------
 		//Une partie du form créée dynamiquement sur la base
@@ -89,7 +94,7 @@ class FormSouvenirTribu extends Form {
 					"label"		=> $objet->getNomBaby(),
 					"value"		=> $objet->getIdBaby(),
 					"name"		=> "baby".$objet->getIdBaby(),
-					"cssChamp" 	=> "champ",
+					"cssChamp" 	=> "switch",
                     "selected"  => TRUE,
 					"validators" => [
 						new MultipleChoiceValidator(
@@ -104,7 +109,7 @@ class FormSouvenirTribu extends Form {
 					"label"		=> $objet->getNomBaby(),
 					"value"		=> $objet->getIdBaby(),
 					"name"		=> "baby".$objet->getIdBaby(),
-					"cssChamp" 	=> "champ",
+					"cssChamp" 	=> "switch",
                     "selected"  => TRUE,
     			"getterEntity" 	=> "getIdBaby"
 
@@ -115,14 +120,14 @@ class FormSouvenirTribu extends Form {
 
 		$this->add(new InputSubmit([
 		"name" 					=> "souvenir",
-		"cssChamp" 				=> "btn",
+		"cssChamp" 				=> "slide-hover-left",
 		"value" 				=> "Enregistrer"
 		]));
 
 		$this->add(new InputSubmit([
 		"name" 					=> "addPhoto",
-		"cssChamp" 				=> "btn",
-		"value" 				=> "Ajouter une photo"
+		"cssChamp" 				=> "slide-hover-left",
+		"value" 				=> "Ajouter des photos"
 		]));
 
 

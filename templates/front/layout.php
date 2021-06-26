@@ -6,10 +6,59 @@ if(!defined('DOMAINE')) die();
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
+    <!-- gestion des cookies -->
+    <script src="/tarteaucitron/tarteaucitron.js"></script>
+
+        <script>
+        tarteaucitron.init({
+    	  "privacyUrl": "", /* URL de la page de la politique d ela vie privé*/
+
+    	  "hashtag": "#tarteaucitron", /* ouvrir le panneau contenant ce hashtag */
+    	  "cookieName": "tarteaucitron", /* nom du cookies */
+    
+    	  "orientation": "middle", /* position de la bannière (top - bottom) */
+       
+          "groupServices": false, /* Group services by category */
+                           
+    	  "showAlertSmall": false, /* voir la bannière reduite en bas a droite */
+    	  "cookieslist": false, /* voir la liste des cookies */
+                           
+          "closePopup": false, /* Show a close X on the banner */
+
+          "showIcon": true, /* Show cookie icon to manage cookies */
+          //"iconSrc": "", /* Optionnal: URL or base64 encoded image */
+          "iconPosition": "BottomRight", /* BottomRight, BottomLeft, TopRight and TopLeft */
+
+    	  "adblocker": false, /* voir une alerte si un blocker de pub est détécté */
+                           
+          "DenyAllCta" : true, /* Show the deny all button */
+          "AcceptAllCta" : true, /* voir le bouton accepter tout quand (highPrivacy est a true) */
+          "highPrivacy": true, /* desactivé le consentement automatique*/
+                           
+    	  "handleBrowserDNTRequest": false, /* Si la protection du suivi du navigateur est activée, tout interdire */
+
+    	  "removeCredit": false, /* retirer le lien vers tarteaucitron.js */
+    	  "moreInfoLink": true, /* afficher le lien "voir plus d'info" */
+
+          "useExternalCss": false, /* si false, tarteaucriton.css sera charger*/
+          "useExternalJs": false, /* If false, the tarteaucitron.js file will be loaded */
+
+    	  //"cookieDomain": ".my-multisite-domaine.fr", /* Shared cookie for multisite */
+                          
+          "readmoreLink": "", /* lien vers page lire plus */
+
+          "mandatory": true, /* Show a message about mandatory cookies */
+        });
+        </script>
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="Toutes vos photos et videos conservées dans une capsule temporelle à partager avec vos proches ! N'hésitez plus et sauvegardez vos souvenirs en ligne">
+
+    <meta name="description" content="Toutes vos photos et videos conservées dans une capsule
+     temporelle à partager avec vos proches ! N'hésitez plus et sauvegardez vos souvenirs en ligne">
+
 	<title><?php if(isset($title)) echo $title; ?></title>
+    
     <link rel="icon" type="image/png" href="<?php echo DOMAINE; ?>templates/front/images/favicon.png" />
 	<!-- Nos feuilles de style -->
 	<link rel="stylesheet" type="text/css" href="<?php echo DOMAINE ?>templates/front/css/reset.css">
@@ -25,16 +74,28 @@ if(!defined('DOMAINE')) die();
     <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap" rel="stylesheet"> 
 	<!-- <link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">  -->
-
+    
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="<?php echo DOMAINE; ?>templates/front/js/slideshow.js"></script>
 
+	<!-- lien loader -->
+	<script src="<?php echo DOMAINE; ?>templates/front/js/loader.js" defer></script>
+    
+	<!-- lien recaptcha -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6LefU_YaAAAAAH4NSe1qGr5kNh086h3QMfyWDRtR"></script>
+
 
 	<!-- Le lien vers le CDN de jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
 
 </head>
 
 <body <?php if(isset($body_class)) echo "class=\"".$body_class."\""; ?>>
+<!-- <div class="loader">
+<img src="<?php echo DOMAINE; ?>templates/front/images/photo-loader-picmento.png" alt="loader">
+</div> -->
 	<header>
         <input type="checkbox" id="burger">
         <label for="burger">Menu</label>
@@ -58,12 +119,35 @@ if(!defined('DOMAINE')) die();
 				</li>
 
 				<?php else: if((isset($_SESSION["auth"]) && isset($_GET["id"]))){
-                               header("location: acceptation-".$_GET["id"]."");
+                            //    header("location: amis-acceptation-".$_GET["id"]."");
                                 }else{
-                               header("location: afficher-tribu");
+                            //    header("location: afficher-tribu");
                                 }  ?>
+                			<li class="mla">
+				<a class="" href="<?php echo DOMAINE; ?>afficher-tribu" title="Vos tribus">
+                <i class="fas fa-users"></i>
+                Mes tribus
+					
+				</a>
+			</li>
 
-				<li class="mla">
+			<li>
+				<a class="iamis" href="<?php echo DOMAINE;?>amis" title="Amis">
+				<i class="fas fa-user-friends iamis"></i>&nbsp;Amis
+				</a>
+			</li>
+            <li >
+				<a class="" href="<?php echo DOMAINE; ?>espace-perso" title="Votre espace personnel">
+					<i class=" i-user fas fa-user-circle"></i>
+					<?php
+					if((isset($_SESSION["auth"]["pseudo"]))&&(!empty($_SESSION["auth"]["pseudo"]))){
+						 echo $_SESSION["auth"]["pseudo"];
+						}else{
+						 echo $_SESSION["auth"]["prenom"];}?> 
+					
+				</a>
+			</li>
+				<li>
 					<a href="<?php echo DOMAINE; ?>deconnexion" title="Déconnexion">
                     <i class="fas fa-sign-out-alt"></i>
                     Déconnexion
@@ -78,7 +162,8 @@ if(!defined('DOMAINE')) die();
 	<h1><?php if(isset($title)) echo $title; ?></h1>
 
 
-	<div><?php if(isset($vue)) include($vue); ?></div>
+
+	<div class="view"><?php if(isset($vue)) include($vue); ?></div>
 
 		<footer id="bottom">
 		

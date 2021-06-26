@@ -14,7 +14,7 @@ class FormPhoto extends Form {
 		$http = new HTTPRequest();
 
         $this->add(new InputFile([
-            "label" 		    => "Choisissez une photo : ",
+            "label" 		    => "Choisissez une photo",
             "name" 			    => "photo",
             "cssLabel" 			=> "consigne",
             "cssChamp" 			=> "champ",
@@ -25,7 +25,7 @@ class FormPhoto extends Form {
 					["image/jpeg","image/png"]
 				),
 				new UploadMaxSizeValidator(
-					"Sélectionnez un fichier inférieur à 2 Mo",
+					"Sélectionnez un fichier inférieur à 512 Mo",
 					$http->getDataFiles("photo","size")
 				),
 				new UploadCodeValidator(
@@ -40,7 +40,7 @@ class FormPhoto extends Form {
 
 		$this->add(new InputSubmit([
 			"name" 			=> "addPhoto",
-			"cssChamp" 		=> "btn",
+			"cssChamp" 		=> "slide-hover-left",
 			"value" 		=> "Enregistrer"
 		]));
 

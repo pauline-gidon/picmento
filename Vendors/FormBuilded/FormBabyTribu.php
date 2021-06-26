@@ -1,7 +1,6 @@
 <?php
 namespace Vendors\FormBuilded;
 
-use NumberFormatter;
 use OCFram\HTTPRequest;
 use Vendors\FormBuilder\Form;
 use Vendors\FormBuilder\InputDate;
@@ -36,29 +35,47 @@ class FormBabyTribu extends Form {
         new VideValidator("Nom Enfant obligatoire")
         ]
         ]));
-                
-        if(!empty($_FILES["photo_baby"]) && isset($_SESSION["photo"])){
-                // $tmp = $_FILES["photo_baby"]["tmp_name"];
+        //si premiere submit ou photo déja enregister
+        // var_dump($_FILES["photo_baby"]);
+        // var_dump($_SESSION["nom_photo_baby"]);
+        if(isset($_SESSION["nom_photo_baby"])){
                 $this->add(new Inputfile2([
                     "label" 		    => "Photo enregistrée ✔️",
                     "name" 			    => "photo_baby",
                     "cssLabel" 			=> "consigne",
                     "cssChamp" 			=> "champ"
-                ]));
-        }else{
-            $this->add(new InputFile([
+                    ]));
+                }else{
+                    $this->add(new InputFile([
                 "label" 		    => "Choisissez sa photo",
+                "name" 			    => "photo_baby",
                 "cssLabel" 			=> "consigne",
-                "cssChamp" 			=> "champ"
+                "cssChamp" 			=> "champ",
+                "validators" 		=> [
+                    new UploadTypeValidator(
+                        "Veuillez choisir un format jpg ou png",
+                        $http->getDataFiles("photo_baby","type"),
+                        ["image/jpeg","image/png","image/jpg"]
+                    ),
+                    new UploadMaxSizeValidator(
+                        "Sélectionnez un fichier inférieur à 512 Mo",
+                        $http->getDataFiles("photo_baby","size")
+                    ),
+                    new UploadCodeValidator(
+                        "Upload impossible",
+                        $http->getDataFiles("photo_baby","error")
+                    )
+                ]
+            
             ]));
         }
-
 
         $this->add(new InputDate([
             "label" 				=> "Date de naissance",
             "name" 					=> "date_naissance_baby",
             "placeholder"       	=> "2019-05-18",
             "cssLabel" 		    	=> "consigne",
+            "id"                    => "dateOrder",
             "cssChamp" 		    	=> "champ",
             "getterEntity"          => "getDateNaissanceBaby",
             "validators" 	        => [
@@ -126,7 +143,7 @@ class FormBabyTribu extends Form {
 
 		$this->add(new InputSubmit([
 			"name" 			=> "addbaby",
-			"cssChamp" 		=> "btn",
+			"cssChamp" 		=> "slide-hover-left",
 			"value" 		=> "Enregistrer"
 		]));
 

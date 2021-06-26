@@ -17,3 +17,5 @@ if(isset($result)){
 
 }
 ?>
+<script>document.getElementById('dateOrder').value = "<?php echo date("Y-m-d"); ?>";</script>
+

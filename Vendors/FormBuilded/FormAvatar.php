@@ -17,7 +17,7 @@ class FormAvatar extends Form {
 		$http = new HTTPRequest();
 
 		$this->add(new InputFile([
-			"label" 		=> "Choisissez un avatar : ",
+			"label" 		=> "Choisissez un avatar",
 			"name" 			=> "avatar_user",
 			"cssLabel" 			=> "consigne",
 			"cssChamp" 			=> "champ",
@@ -41,8 +41,14 @@ class FormAvatar extends Form {
 
 		$this->add(new InputSubmit([
 			"name" 			=> "go",
-			"cssChamp" 			=> "btn",
+			"cssChamp" 			=> "slide-hover-left",
 			"value" 		=> "Charger"
+		]));
+
+		$this->add(new InputSubmit([
+			"name" 			=> "supprimer",
+			"cssChamp" 			=> "slide-hover-left",
+			"value" 		=> "supprimer mon avatar"
 		]));
 
 

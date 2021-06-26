@@ -14,25 +14,27 @@ class FormDemande extends Form {
 
 
 		$this->add(new InputRadio([
+            "selected"		=>TRUE,
 			"label" 		=> "Accepter",
 			"value" 		=> 1,
 			"name" 			=> "demande",
+            "id"            => "demande1",
 			"cssLabel" 		=> "consigne",
-			"cssChamp" 		=> "champ"
-		]));
-		$this->add(new InputRadio([
-			// "checked"		=>TRUE,
-			"label" 		=> "Refuser",
-			"value"			=> 0,
+			"cssChamp" 		=> "switchDemande"
+            ]));
+            $this->add(new InputRadio([
+            "label" 		=> "Refuser",
+            "value"			=> 0,
+            "id"            => "demande0",
 			"name" 			=> "demande",
 			"cssLabel" 		=> "consigne",
-			"cssChamp" 		=> "champ"
+			"cssChamp" 		=> "switchDemande"
 		]));
 
 
 		$this->add(new InputSubmit([
 		"name" 					=> "go",
-		"cssChamp" 				=> "btn",
+		"cssChamp" 				=> "slide-hover-left",
 		"value" 				=> "Enregistrer"
 		]));
 

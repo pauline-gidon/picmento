@@ -56,12 +56,14 @@ if(isset($result)){
                 
                 </div>
                 <div class=\"filou wrap id-".$obj["contenu"][0]->getIdMessage()."\">
-                    <div class=\"fc fw\">
+                    <div class=\"fc fw ai-c userMessage\">
                         <div class=\"avatar-rond\">
                             <img src=\"".DOMAINE."medias/avatar/".$avatar."\" alt=\"Photo de ".$obj["exp"][0]->getPrenomUser()." ".$obj["exp"][0]->getNomUser()."\">
                         </div>
-                        <p>".$obj["contenu"][0]->getTextMessage()."</p>
+                        <p>".$obj["exp"][0]->getPrenomUser()." ".$obj["exp"][0]->getNomUser()."</p>
+                        <p class=\"closeMessage mla\"><i class=\"ii fas fa-times\"></i></p>
                     </div>
+                    <p>".$obj["contenu"][0]->getTextMessage()."</p>
                     <nav>
                         <ul class=\"fc fw\">
                             <li class=\"mla\">

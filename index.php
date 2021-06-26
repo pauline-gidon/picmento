@@ -1,4 +1,5 @@
 <?php
+session_set_cookie_params(604800,"/"); // 604800 = 7J
 session_start();
 
 include_once("inc/autoload.php");

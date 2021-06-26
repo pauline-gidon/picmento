@@ -69,7 +69,8 @@ class ManagerTribu extends Manager {
         }
     }
 	//----------------------------------------------------------
-	//Pour la modification/suppression je verifie si cette tribu existe en BDD par son id ?
+	//Pour la modification/suppression/ajout d'un enfant 
+    //je vérifie si cette tribu existe en BDD par son id 
 	//----------------------------------------------------------
     function oneTribuById($id){
         if(is_numeric($id)){
@@ -185,7 +186,7 @@ class ManagerTribu extends Manager {
             }
     }
     //----------------------------------------------------------
-    //la/les tribu avec ses baby(s) dans la bdd 
+    //la/les tribu avec ses baby(s) dans la bdd mais pas du user connecter
     //----------------------------------------------------------
     
     function fullTribuWithBabys($id_amis){
@@ -200,8 +201,8 @@ class ManagerTribu extends Manager {
                 GROUP_CONCAT(baby.nom_baby SEPARATOR '/') AS liste_nom,
                 GROUP_CONCAT(baby.photo_baby SEPARATOR '/') AS liste_photo
                 FROM tribu LEFT JOIN baby ON baby.tribu_id_tribu = tribu.id_tribu
-             WHERE tribu.user_id_parent1 = $id_amis
-             OR tribu.user_id_parent2 = $id_amis
+             WHERE(tribu.user_id_parent1 = $id_amis AND (tribu.user_id_parent2 != $id OR tribu.user_id_parent2 IS NULL)
+                        OR(tribu.user_id_parent2 = $id_amis AND tribu.user_id_parent1 != $id))
              GROUP BY tribu.id_tribu";
     
             $query = $this->db->query($req);

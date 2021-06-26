@@ -1,9 +1,7 @@
         document.querySelector('body').addEventListener('click',function(e){
             if(!e.target.classList.contains('.checked'))
             document.querySelectorAll('.chec').forEach(el => {
-                // modale.style.left = '-100vw';
                 el.classList.add('d-none');
-                // alert('cc');
             })
 
         })

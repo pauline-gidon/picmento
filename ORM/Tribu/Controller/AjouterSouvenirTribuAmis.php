@@ -25,7 +25,7 @@ class AjouterSouvenirTribuAmis extends Controller {
 
 	function getResult() {
         $this->setLayout("back");
-		$this->setTitle("Ajouter un souvenir à la tribu");
+		$this->setTitle("Ajouter pour mon ami un souvenir à la tribu");
 		$this->setView("ORM/Tribu/View/form-souvenir-tribu.php");
 
         $flash = new Flash();
@@ -37,11 +37,15 @@ class AjouterSouvenirTribuAmis extends Controller {
         $managerU = new ManagerUser($cx);
         //une variable de session a été crée à, l'affichage des tribu de mon amis avec id ami $_SESSION["ami"]["id"]
         //je verifie si la personne connecter et le profil visité son bien amis
-        
-        $id_user = $_SESSION["ami"]["id"];
+        if(isset($_SESSION["ami"]["id"])){
+
+            $id_user = $_SESSION["ami"]["id"];
+        }
+        //je verifie si l'id_ami et id_user co sont bien amis
+       
         if($managerU->verifUserAmis($id_user)){
-            //Je verifie si cette tribu appartien bien a mon amis
             $managerT = new ManagerTribu($cx);
+            //Je verifie si cette tribu appartien bien a mon amis
             $tribu = $managerT->oneTribuByIds($id_tribu, $id_user);
             if(!is_null($tribu)){
             
@@ -63,6 +67,7 @@ class AjouterSouvenirTribuAmis extends Controller {
                 $build 		= $form->buildForm($babys);
                 
                 $general[]= $build;
+
                 if(($form->isSubmit("souvenir")) || ($form->isSubmit("addPhoto")) &&($form->isValid())){
                     
                     $new_souvenir = new Article([
@@ -85,15 +90,16 @@ class AjouterSouvenirTribuAmis extends Controller {
                                 $managerA->insertArticleHasbaby($id_baby, $new_id_article);
                             }
                             if(($form->isSubmit("addPhoto")) && ($form->isValid())){
-                                $flash->setFlash("Votre proposition de souvenir a bien été envoyer. Ajouter lui des photos !");
+                                $flash->setFlash("Votre proposition de souvenir a bien été envoyée. Ajoutez-lui des photos !");
+                                $_SESSION["newIdSouvenir"] = $new_id_article;
                                 header("location: tribu-ajouter-photos-souvenir-".$new_id_article."");
                                 exit();
                             }               
-                            $flash->setFlash("Votre proposition de souvenir a bien été envoyer !");
+                            $flash->setFlash("Votre proposition de souvenir a bien été envoyée !");
                         }else{
-                            $flash->setFlash("Impossible d'envoyer un souvenir. Veuillez réesayer ou contacter l'équipe <span class=\"flash-logo\">Picmento</span> !");
+                            $flash->setFlash("Impossible d'enregistrer le souvenir. Veuillez réessayer ou contacter l'équipe <span class=\"flash-logo\">Picmento</span> !");
                         }
-                    header("location: voir-tribu-amis-".$id_user."");
+                    header("location: amis-voir-tribu-".$id_user."");
                         exit();
         
                     }
@@ -102,8 +108,8 @@ class AjouterSouvenirTribuAmis extends Controller {
                 return $general;
         
                 }else{
-                    $flash->setFlash("Pour ajouter un souvenir la tribu doit être composée d'au moins un enfant !");
-                    header("location: voir-tribu-amis-".$id_user."");
+                    $flash->setFlash("Pour ajouter un souvenir, la tribu doit être composée d'au moins un enfant !");
+                    header("location: amis-voir-tribu-".$id_user."");
                     exit();
     
                 }

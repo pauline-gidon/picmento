@@ -4,10 +4,7 @@ use OCFram\HTTPRequest;
 use Vendors\FormBuilder\Form;
 use Vendors\FormBuilder\TextArea;
 use Vendors\FormBuilder\InputDate;
-use Vendors\FormBuilder\InputFile;
 use Vendors\FormBuilder\InputText;
-use Vendors\FormBuilder\InputFile2;
-use Vendors\FormBuilder\InputRadio;
 use Vendors\FormBuilder\InputSubmit;
 use Vendors\Validator\DateValidator;
 use Vendors\Validator\VideValidator;
@@ -48,6 +45,7 @@ class FormSouvenirTribuAmis extends Form {
 			"label" 		=> "Date du souvenir",
 			"name" 			=> "date_article",
 			"cssLabel" 		=> "consigne",
+            "id"            => "dateOrder",
 			"cssChamp" 		=> "champ",
 			"validators"	=> [
 				new DateValidator(
@@ -69,7 +67,7 @@ class FormSouvenirTribuAmis extends Form {
 					"label"		=> $objet->getNomBaby(),
 					"value"		=> $objet->getIdBaby(),
 					"name"		=> "baby".$objet->getIdBaby(),
-					"cssChamp" 	=> "champ",
+					"cssChamp" 	=> "switch",
                     "selected"  => TRUE,
 					"validators" => [
 						new MultipleChoiceValidator(
@@ -84,7 +82,7 @@ class FormSouvenirTribuAmis extends Form {
 					"label"		=> $objet->getNomBaby(),
 					"value"		=> $objet->getIdBaby(),
 					"name"		=> "baby".$objet->getIdBaby(),
-					"cssChamp" 	=> "champ",
+					"cssChamp" 	=> "switch",
                     "selected"  => TRUE,
     			"getterEntity" 	=> "getIdBaby"
 
@@ -95,14 +93,14 @@ class FormSouvenirTribuAmis extends Form {
 
 		$this->add(new InputSubmit([
 		"name" 					=> "souvenir",
-		"cssChamp" 				=> "btn",
+		"cssChamp" 				=> "slide-hover-left",
 		"value" 				=> "Envoyer"
 		]));
 
 		$this->add(new InputSubmit([
 		"name" 					=> "addPhoto",
-		"cssChamp" 				=> "btn",
-		"value" 				=> "Ajouter une photo"
+		"cssChamp" 				=> "slide-hover-left",
+		"value" 				=> "Ajouter des photos"
 		]));
 
 

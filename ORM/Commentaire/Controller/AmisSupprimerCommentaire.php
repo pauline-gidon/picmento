@@ -47,8 +47,10 @@ class AmisSupprimerCommentaire extends Controller {
             if($com->getUserIdUser() == $_SESSION["auth"]["id"] || $tribu->getUserIdParent1() == $_SESSION["auth"]["id"] || $tribu->getUserIdParent2() == $_SESSION["auth"]["id"]){
 
                 $managerC->deleteCommentaireById($id_com);
-                $flash->setFlash("Le commentaire a Bien été supprimé !");
-               
+                $flash->setFlash("Le commentaire a bien été supprimé !");
+                header("location: ami-afficher-souvenirs-".$id_baby."#ancre-".$id_article."");
+                exit();
+                
             }else{
                 $flash->setFlash("Vous n'avez pas les droits pour supprimer ce commentaire !");
             }
