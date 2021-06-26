@@ -4,6 +4,7 @@ session_start();
 
 include_once("inc/autoload.php");
 include_once("config/settings.php");
+include_once("config/secretKey.gi.php");
 
 $appli 				= new OCFram\Application(
 									new OCFram\Router(
