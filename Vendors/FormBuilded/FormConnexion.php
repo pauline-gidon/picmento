@@ -1,13 +1,14 @@
 <?php
 namespace Vendors\FormBuilded;
 use Vendors\FormBuilder\Form;
-use Vendors\FormBuilder\InputEmail;
-use Vendors\FormBuilder\InputPassword;
-use Vendors\FormBuilder\InputSubmit;
 use Vendors\FormBuilder\Link;
+use Vendors\FormBuilder\InputEmail;
+use Vendors\FormBuilder\InputHidden;
+use Vendors\FormBuilder\InputSubmit;
 
-use Vendors\Validator\EmailValidator;
 use Vendors\Validator\VideValidator;
+use Vendors\Validator\EmailValidator;
+use Vendors\FormBuilder\InputPassword;
 
 class FormConnexion extends Form {
 
@@ -33,6 +34,14 @@ class FormConnexion extends Form {
 				new VideValidator("Mot de passe obligatoire")
 			]
 		]));
+        
+        $this->add(new InputHidden([
+            "name"              => "recaptcha-response",
+            "id"                => "recaptchaResponse",
+            "validators" 		=> [
+				new VideValidator("Erreur spam")
+			]
+        ]));
 
 		$this->add(new InputSubmit([
 			"name" 					=> "connexion",

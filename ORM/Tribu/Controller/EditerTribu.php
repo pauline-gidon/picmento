@@ -6,10 +6,7 @@ use OCFram\Connexion;
 
 
 use ORM\Tribu\Model\ManagerTribu;
-// use ORM\Tribu\Entity\Tribu;
-// use ORM\Baby\Model\ManagerBaby;
 use Vendors\FormBuilded\FormTribu;
-
 use Vendors\Flash\Flash;
 
 class EditerTribu extends Controller {

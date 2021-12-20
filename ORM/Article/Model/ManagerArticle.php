@@ -262,9 +262,14 @@ class ManagerArticle extends Manager {
 
     function deleteArticleByIds($id_article){
         if((is_numeric($id_article))){
+            //si il est supprimer par un signalement je supprimer d'habord le signalement
+            $req= "DELETE FROM signalement WHERE article_id_article = $id_article";
+            $query = $this->db->query($req);
+         
 
             $req = "DELETE FROM article WHERE id_article = $id_article";
             $query = $this->db->query($req);
+         
             return ($this->db->affected_rows == 1)?true:false;
 
         }

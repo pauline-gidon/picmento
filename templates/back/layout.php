@@ -30,8 +30,7 @@
 
     <!-- pour le slider year -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <!--  le trait nav baby -->
@@ -47,9 +46,7 @@
     <!-- lien Recaptcha antispam -->
     <script src="https://www.google.com/recaptcha/api.js?render=6LefU_YaAAAAAH4NSe1qGr5kNh086h3QMfyWDRtR"></script>
     
-    <!-- lien carousel -->
-    <link type="text/css" rel="stylesheet" href="magicscroll/magicscroll.css"/>
-    <script type="text/javascript" src="magicscroll/magicscroll.js"></script>
+    
 </head>
 
 <body <?php if(isset($body_class)) echo "class=\"".$body_class."\"" ?> >
@@ -154,7 +151,7 @@
 
 	
 
-<div class="content"><?php if(isset($vue)) include($vue); ?></div>
+<div class="view"><?php if(isset($vue)) include($vue); ?></div>
 
 
 

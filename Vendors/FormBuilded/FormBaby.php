@@ -10,6 +10,7 @@ use Vendors\Validator\DateValidator;
 use Vendors\Validator\TimeValidator;
 
 use Vendors\Validator\VideValidator;
+use Vendors\Validator\PoidsValidator;
 use Vendors\Validator\NumberValidator;
 
 class FormBaby extends Form {
@@ -74,13 +75,15 @@ class FormBaby extends Form {
 
 
         $this->add(new InputText([
-            "label" 			=> "Poids de naissance (kg)",
+            "label" 			=> "Poids de naissance \"2.230\"(kg)",
             "name" 				=> "poids_naissance_baby",
             "placeholder"       	=> "3.130",
             "cssLabel" 			=> "consigne",
             "cssChamp" 			=> "champ",
             "validators" 		=> [
                 new NumberValidator("Le poids doit être numérique"),
+                new PoidsValidator("Le poids ne doit pas être négatif et cohérant avec un poids de naissance"),
+
                 new VideValidator("Le poids de naissance est obligatoire")
             ],
                 "getterEntity"      => "getPoidsNaissanceBaby"

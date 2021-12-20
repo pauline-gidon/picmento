@@ -29,7 +29,7 @@ class SignalementCom extends Controller {
         $managerM = new ManagerCommentaire($cx);
         $com = $managerM->oneCommentaireById($id_com);
 
-        // est-ce qu'il existe cette photo en bdd avec cet id
+        // est-ce qu'il existe ce commentaire en bdd avec cet id
         if(!is_null($com)){
             $general["com"] = $com;
             $form 		= new FormSignalement();

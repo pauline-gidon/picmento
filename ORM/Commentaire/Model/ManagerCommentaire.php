@@ -33,6 +33,10 @@ class ManagerCommentaire extends Manager {
 	//----------------------------------------------------------
     function deleteCommentaireById($id_com){
         if(is_numeric($id_com)){
+            //si il est supprimer par un signalement je supprimer d'habord le signalement
+            $req= "DELETE FROM signalement WHERE commentaire_id_commentaire = $id_com";
+            $query = $this->db->query($req);
+            
             $req = "DELETE FROM commentaire WHERE id_commentaire = $id_com";
             $query = $this->db->query($req);
 

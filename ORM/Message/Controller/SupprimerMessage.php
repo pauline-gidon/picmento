@@ -21,7 +21,7 @@ class SupprimerMessage extends Controller {
         $message = $manager->oneMessageById($id_message);
         if(!is_null($message)){
             if($manager->deleteMessageById($id_message)){
-                header("location: afficher-messages-recu");
+                header("location: afficher-messages");
                 exit();
             }
         }

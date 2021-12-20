@@ -50,6 +50,7 @@ class AcceptationParent extends Controller {
                 // je verifie si il y a bien un id de tribu renseigner dans la demande
                 if(!is_null($amis->getTribuIdTribu())){
                     $id_exp = $amis->getUserIdExpediteur();
+                    //je recupère l'id de l'amis
                     $id_dest = $amis->getUserIdDestinataire();
             
                     // je fait une requete pour avoir son profil utilisateur pour de l'affichage dynamique et savoir si son compt est actif
@@ -68,6 +69,7 @@ class AcceptationParent extends Controller {
                             $managerT = new ManagerTribu($cx);
                             // je fais un update de ta table tribu avec le user parent 2
                             $managerT->updateTribuUser2($amis);
+                            //
                             $user_dest = $managerUser->oneUserById($id_dest);
 
                             $automailer = new AutoMailer(

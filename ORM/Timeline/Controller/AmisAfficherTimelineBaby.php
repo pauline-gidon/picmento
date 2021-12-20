@@ -43,7 +43,7 @@ use Navbaby;
                 $baby = $managerB->oneBabyById($id_baby);
                 if(!is_null($baby)){
                 
-                    $general[] = $baby;
+                    $general["baby"] = $baby;
                 
                     $managerTime = new ManagerTimeline($cx);
                     $timeline = $managerTime->oneTimelineByIdBaby($id_baby);
@@ -52,7 +52,7 @@ use Navbaby;
                         $flash->setFlash("Cette enfant n'a pas encore de timeline à vous montrer !");
                 
                     }else{
-                    $general [] = $timeline;
+                        $general["timeline"] = $timeline;
                     }
                 }
                 $cx->close();

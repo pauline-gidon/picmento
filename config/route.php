@@ -182,6 +182,14 @@ $route[] = [
 	"logged"			=> false, 
 	"droits"			=> null
 ];
+$route[] = [
+	"url"				=> PTH."supprimer-ami-([0-9]+)", 
+	"namespace"		    => "ORM", 
+	"module"			=> "Amis", 
+	"action"			=> "SupprimerAmi",  
+	"logged"			=> false, 
+	"droits"			=> null
+];
 
 
 
@@ -367,6 +375,14 @@ $route[] = [
 	"droits"			=> 1
 ];
 $route[] = [
+	"url"				=> PTH."supprimer-commentaire-([0-9]+)", 
+	"namespace"		    => "ORM", 
+	"module"			=> "Commentaire", 
+	"action"			=> "SupprimerCommentaire",  
+	"logged"			=> true, 
+	"droits"			=> 1
+];
+$route[] = [
 	"url"				=> PTH."editer-commentaire-([0-9]+)-([0-9]+)", 
 	"namespace"		    => "ORM", 
 	"module"			=> "Commentaire", 
@@ -428,6 +444,22 @@ $route[] = [
 	"namespace"		    => "ORM", 
 	"module"			=> "Timeline", 
 	"action"			=> "AjouterTimelineBaby",  
+	"logged"			=> true, 
+	"droits"			=> 1
+];
+$route[] = [
+    "url"				=> PTH."editer-photo-timeline-(.+)", 
+	"namespace"		    => "ORM", 
+	"module"			=> "Timeline", 
+	"action"			=> "EditerPhotoTimeline",  
+	"logged"			=> true, 
+	"droits"			=> 1
+];
+$route[] = [
+    "url"				=> PTH."supprimer-photo-timeline-(.+)", 
+	"namespace"		    => "ORM", 
+	"module"			=> "Timeline", 
+	"action"			=> "SupprimerPhotoTimeline",  
 	"logged"			=> true, 
 	"droits"			=> 1
 ];
@@ -510,7 +542,7 @@ $route[] = [
 //------------------------------------------------------service messages
 
 $route[] = [
-	"url"				=> PTH."afficher-messages-recu", 
+	"url"				=> PTH."afficher-messages", 
 	"namespace"		    => "ORM", 
 	"module"			=> "Message", 
 	"action"			=> "AfficherMessagesRecu",  
@@ -596,6 +628,31 @@ $route[] = [
 	"logged"			=> true, 
 	"droits"			=> 1
 ];
+$route[] = [
+    "url"				=> PTH."voir-signalement-comentaire-(.+)", 
+	"namespace"		    => "ORM", 
+	"module"			=> "Signalement", 
+	"action"			=> "VoirSignalementCommentaire",  
+	"logged"			=> true, 
+	"droits"			=> 3
+];
+$route[] = [
+    "url"				=> PTH."voir-signalement-media-(.+)", 
+	"namespace"		    => "ORM", 
+	"module"			=> "Signalement", 
+	"action"			=> "VoirSignalementMedia",  
+	"logged"			=> true, 
+	"droits"			=> 3
+];
+$route[] = [
+    "url"				=> PTH."voir-signalement-article-(.+)", 
+	"namespace"		    => "ORM", 
+	"module"			=> "Signalement", 
+	"action"			=> "VoirSignalementArticle",  
+	"logged"			=> true, 
+	"droits"			=> 3
+];
+
 //------------------------------------------------------super admin
 $route[] = [
     "url"				=> PTH."gerer-signalement", 

@@ -1,6 +1,7 @@
 const modale = document.querySelector("#modale");
 const close = document.querySelector(".close");
-const links = document.querySelectorAll(".galerie a");
+
+const links = document.querySelectorAll(".galerie .openPhoto");
 for(let link of links){
     link.addEventListener("click", function(e){
 
@@ -11,6 +12,7 @@ for(let link of links){
         image.src = this.href;
         //j'affiche la modale
         modale.classList.remove("d-none");
+     
     });
 
     // le boutton close
@@ -23,4 +25,5 @@ for(let link of links){
     modale.addEventListener("click", function(){
         modale.classList.add("d-none");
     });
+
 }

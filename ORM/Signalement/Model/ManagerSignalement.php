@@ -48,7 +48,8 @@ class ManagerSignalement extends Manager {
 	// tous les signalements
 	// ----------------------------------------------------------
     function fullSignalement(){
-        $req = "SELECT * FROM signalement INNER JOIN user ON user.id_user = signalement.user_id_user
+        $req = "SELECT * FROM signalement 
+        INNER JOIN user ON user.id_user = signalement.user_id_user
         LEFT JOIN article ON article.id_article = signalement.article_id_article
         LEFT JOIN commentaire ON commentaire.id_commentaire = signalement.commentaire_id_commentaire
         LEFT JOIN medias ON medias.id_medias = signalement.medias_id_medias
@@ -64,6 +65,21 @@ class ManagerSignalement extends Manager {
         }      
 
     }
-
-
+    function oneSignalementCommentaire($id){
+        if(is_numeric($id)){
+            $req = " SELECT * FROM signalement
+            WHERE commentaire_id_commentaire  = $id
+            ";
+            $query = $this->db->query($req);     
+            if($query->num_rows > 0){
+                while($row = $query->fetch_array()){
+                $objs[] = new Signalement($row);
+                }
+                return $objs;
+            }else{
+                return null;
+            }      
+                
+        }
+    }
 }

@@ -34,13 +34,13 @@ body {
     color: rgb(177, 98, 98);
 }
 .content{
-    min-height: 65vh;
+    min-height: 80vh;
 }
 header{
     width: 100%;
     background-color: rgb(233, 202, 197);
 }
-.activez-votre-compte, .une-demande-pour-vous  {
+.activez-votre-compte, .une-demande-pour-vous, .recreer-un-mot-de-passe  {
     background-image: url(../images/gradientrose.jpg);
     background-repeat: no-repeat;
     background-size: cover;

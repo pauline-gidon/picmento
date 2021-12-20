@@ -15,7 +15,7 @@ class Cryptor
     public function __construct($key = FALSE, $method = FALSE)
     {
       if(!$key) {
-        $key = 'CKXH2U9RPY3EFD70TLS1ZG4N8WQBOVI6AMJ4'; //default encryption key if none supplied
+        $key = KEYCHIFFREMENT; //default encryption key if none supplied
       }
       if(ctype_print($key)) {
         // convert ASCII keys to binary format
@@ -49,4 +49,5 @@ class Cryptor
         }
       }
       return FALSE; // failed to decrypt
-    }}
+    }
+}

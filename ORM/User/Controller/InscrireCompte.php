@@ -64,11 +64,9 @@ class InscrireCompte extends Controller {
          // On vérifie qu'on a une réponse
          if(empty($response) || is_null($response)){
             //  header('Location: index.php');
-            //var_dump($response);
             die("empty response");
          }else{
              $data = json_decode($response);
-             //var_dump($data); die();
              if($data->success){ // pas un spam, on traite l'inscription
                 # ---
                 // Traitement final

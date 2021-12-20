@@ -43,12 +43,21 @@ class AjouterTimelineBaby extends Controller {
             
 
                 if(($form->isSubmit("timeline"))&&($form->isValid())){
-                    $yearTimeline = $http->getDataPost("annee_photo_timeline");
-                    $monthTimeline = $http->getDataPost("mois_photo_timeline");
-                    $grossessY = $babyYear - 1;
-                    $grossessM = $babyMonth - 1;
+                    $dateTimeline = $http->getDataPost("date_timeline");
+                    list($yearTimeline,$monthTimeline,$day) = explode("-",substr($dateTimeline,0,10));
+      
+                    //j'estime une date de grossess (1 an avan la naissance de l'enfant)
+                    $yearGrossess = $babyYear - 1;
+                    $monthGrossess = $babyMonth ;
 
-                        if($yearTimeline >= $grossessY && $monthTimeline>=$grossessY || $yearTimeline > $grossessY && $monthTimeline<=$grossessY){
+                        if(
+                            $yearTimeline == $yearGrossess && $monthTimeline>=$monthGrossess 
+                            || 
+                            $yearTimeline > $yearGrossess && $monthTimeline <= $monthGrossess 
+                            || 
+                            $yearTimeline > $yearGrossess && $monthTimeline >= $monthGrossess
+                            
+                            ){
 
                         $file 		= $http->getDataFiles("nom_photo_timeline");
                         $destination = "medias/timeline/";

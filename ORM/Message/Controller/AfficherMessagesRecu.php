@@ -17,7 +17,7 @@ class AfficherMessagesRecu extends Controller {
 	function getResult() {
 		$this->setLayout("back");
 		$this->setTitle("Messagerie");
-		$this->setView("ORM/Message/View/afficher-messages-recu.php");
+		$this->setView("ORM/Message/View/messages-recu.php");
 
         $flash = new Flash;
 		$cx = new Connexion();
@@ -41,7 +41,7 @@ class AfficherMessagesRecu extends Controller {
             return $general;
         }else{
             $flash->setFlash("Vous n'avez aucun message !");
-            header("location: afficher-messages");
+            header("location: amis");
             exit();
         }
     $cx->close();

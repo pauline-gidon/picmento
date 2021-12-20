@@ -2,15 +2,14 @@
 namespace Vendors\FormBuilded;
 use OCFram\HTTPRequest;
 use Vendors\FormBuilder\Form;
+use Vendors\FormBuilder\InputDate;
 use Vendors\FormBuilder\InputFile;
-use Vendors\FormBuilder\InputText;
 use Vendors\FormBuilder\InputSubmit;
-use Vendors\Validator\MonthValidator;
+use Vendors\Validator\DateValidator;
 use Vendors\Validator\VideValidator;
 use Vendors\Validator\UploadCodeValidator;
 use Vendors\Validator\UploadTypeValidator;
 use Vendors\Validator\UploadMaxSizeValidator;
-use Vendors\Validator\YearValidator;
 
 class FormTimeline extends Form {
     
@@ -18,30 +17,19 @@ class FormTimeline extends Form {
         $http = new HTTPRequest();
 
 
-        $this->add(new InputText([
-            "label" 			=> "Année",
-			"name" 				=> "annee_photo_timeline",
-            "placeholder"       => "2021",
-			"cssLabel" 			=> "consigne",
-			"cssChamp" 			=> "champ",
-			"getterEntity"      => "getAnneePhotoTimeline",
-			"validators" 		=> [
-                new VideValidator("L'année est obligatoire"),
-                new YearValidator("L'année ne peut pas être supérieur à l'année actuelle")
+        $this->add(new InputDate([
+            "label" 				=> "Date de la photo",
+            "name" 					=> "date_timeline",
+            "placeholder"       	=> "2019-05-18",
+            "id"                    => "dateOrder",
+            "cssLabel" 		    	=> "consigne",
+            "cssChamp" 		    	=> "champ",
+            "validators" 	        => [
+                new DateValidator("Choisissez une date inférieur ou égale à aujourd'hui"),
+                new VideValidator("La date de naissance est obligatoire")
+                
                 ]
-        ]));
-        $this->add(new InputText([
-            "label" 			=> "Mois",
-			"name" 				=> "mois_photo_timeline",
-            "placeholder"       	=> "01 => 12",
-			"cssLabel" 			=> "consigne",
-			"cssChamp" 			=> "champ",
-			"getterEntity"      => "getMoisPhotoTimeline",
-			"validators" 		=> [
-                new VideValidator("Le mois est obligatoire"),
-                new MonthValidator("Le mois ne doit pas être inférieur à 01 et supérieur à 12")
-                ]
-        ]));
+                ]));
 
         $this->add(new InputFile([
             "label" 		    => "Choisissez la photo",

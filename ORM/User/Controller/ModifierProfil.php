@@ -47,7 +47,6 @@ class ModifierProfil extends Controller {
             $verif_pseudo = $http->getDataPost("pseudo_user");
             if(!empty($verif_pseudo)){
                 $verif_pseudo = $manager->pseudoExist($verif_pseudo);
-                var_dump($verif_pseudo);die();
                 if(!is_null($verif_pseudo)){
                     $flash->setFlash("Ce pseudo existe déjà !");
                     header("location: modifier-profil");

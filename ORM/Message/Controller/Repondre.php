@@ -8,6 +8,7 @@ use OCFram\HTTPRequest;
 use ORM\Message\Entity\Message;
 use Vendors\Flash\Flash;
 use ORM\Message\Model\ManagerMessage;
+use ORM\User\Model\ManagerUser;
 use Vendors\FormBuilded\FormMessage;
 
 // use ORM\Tribu\Entity\Tribu;
@@ -19,8 +20,8 @@ class Repondre extends Controller {
 
 	function getResult() {
         $this->setLayout("back");
-		$this->setTitle("Envoyez un message");
-		$this->setView("ORM/Article/View/afficher-form-simple.php");
+		$this->setTitle("Répondre à un message");
+		$this->setView("ORM/Message/View/repondre-msg.php");
 
 		$http 			= new HTTPRequest();
 		$id_message = $http->getDataGet("id");
@@ -28,11 +29,16 @@ class Repondre extends Controller {
 
 		$cx 				= new Connexion();
 		$manager 		= new ManagerMessage($cx);
+		$managerU 		= new ManagerUser($cx);
         $message = $manager->oneMessageById($id_message);
+        $general["message"] = $message;
+        $user = $managerU->oneUserById($message->getUserIdDestinataire());
+        $general["user"] = $user;
         if(!is_null($message)){
             if($message->getUserIdDestinataire() == $_SESSION["auth"]["id"]){
                 $form 		= new FormMessage();
                 $build 		= $form->buildForm();
+                $general["form"] = $build;
                 if(($form->isSubmit("go"))&&($form->isValid())){
 
                     $date_message = new DateTime('NOW');
@@ -48,11 +54,11 @@ class Repondre extends Controller {
                         if($manager->insertNewMessage($new_message)){
                             
                             $flash->setFlash("Votre message à bien été envoyé !");
-                            header("location: afficher-messages-recu");
+                            header("location: afficher-messages");
                             exit();
                         }else{
                             $flash->setFlash("Impossible d'envoyer le message, veuillez réessayer ou contacter l'équipe <span class=\"flash-logo\">Picmento</span>");
-                            header("location: afficher-messages-recu");
+                            header("location: afficher-messages");
                             exit();
                         }
         
@@ -61,7 +67,7 @@ class Repondre extends Controller {
 
 
                 
-                return $build;
+                return $general;
             }else{
                 header("location: ".DOMAINE."errors/404.php");
                 exit();

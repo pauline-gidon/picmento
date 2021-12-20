@@ -11,10 +11,7 @@ use ORM\User\Entity\User;
 use ORM\Amis\Model\ManagerAmis;
 use ORM\User\Model\ManagerUser;
 use Vendors\FormBuilded\FormAmi;
-use ORM\Tribu\Model\ManagerTribu;
 use Vendors\AutoMailer\AutoMailer;
-use Vendors\FormBuilded\FormDemande;
-use Vendors\FormBuilded\FormAssociation;
 
 
 class DemandeAmi extends Controller {

@@ -63,7 +63,7 @@ if(isset($result)){
                         <p>".$obj["exp"][0]->getPrenomUser()." ".$obj["exp"][0]->getNomUser()."</p>
                         <p class=\"closeMessage mla\"><i class=\"ii fas fa-times\"></i></p>
                     </div>
-                    <p>".$obj["contenu"][0]->getTextMessage()."</p>
+                    <p class=\"textMsgrecu\">".$obj["contenu"][0]->getTextMessage()."</p>
                     <nav>
                         <ul class=\"fc fw\">
                             <li class=\"mla\">

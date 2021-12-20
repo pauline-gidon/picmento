@@ -32,6 +32,9 @@ class EditerBaby extends Controller {
 
             $manager	= new ManagerBaby($cx);
             $baby 		= $manager->oneBabyById($id_baby);
+            $heure = $baby->getHeureNaissanceBaby();
+            $heure = substr($heure,0,5);
+            $baby->setHeureNaissanceBaby($heure);
             $nom_baby = $baby->getNomBaby();
             if(!is_null($baby)){
 
@@ -41,13 +44,20 @@ class EditerBaby extends Controller {
                 if(($form->isSubmit("addbaby"))&&($form->isValid())){
                     $flash = new Flash();
                     
-        
-                    
+                    //j'ajouter les 3 zero si c'est un poids rond
+                    $poids = $http->getDataPost("poids_naissance_baby");
+                    if(strlen($poids) == 1){
+                        $poids = sprintf('%0.3f', $poids);
+                    }
+                    //j'ajouter les seonde a l'heur saisie
+                    $heur_naissance = $http->getDataPost("heure_naissance_baby");
+                    $heur_naissance = $heur_naissance.":00";
+
                     $baby->setNomBaby(ucfirst($http->getDataPost("nom_baby")));
                     $baby->setDateNaissanceBaby($http->getDataPost("date_naissance_baby"));
-                    $baby->setHeureNaissanceBaby($http->getDataPost("heure_naissance_baby"));
+                    $baby->setHeureNaissanceBaby($heur_naissance);
                     $baby->setLieuNaissanceBaby(ucfirst($http->getDataPost("lieu_naissance_baby")));
-                    $baby->setPoidsNaissanceBaby($http->getDataPost("poids_naissance_baby"));
+                    $baby->setPoidsNaissanceBaby($poids);
                     $baby->setTailleNaissanceBaby($http->getDataPost("taille_naissance_baby"));
                         if($manager->updateProfilBaby($baby)){
                             

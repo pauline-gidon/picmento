@@ -5,9 +5,9 @@ use OCFram\HTTPRequest;
 use Vendors\FormBuilder\Form;
 use Vendors\FormBuilder\InputDate;
 use Vendors\FormBuilder\InputFile;
-use Vendors\FormBuilder\InputFile2;
-
 use Vendors\FormBuilder\InputText;
+
+use Vendors\FormBuilder\InputFile2;
 use Vendors\FormBuilder\InputSubmit;
 use Vendors\Validator\DateValidator;
 use Vendors\Validator\TimeValidator;
@@ -15,6 +15,7 @@ use Vendors\Validator\VideValidator;
 use Vendors\Validator\PoidsValidator;
 use Vendors\Validator\NumberValidator;
 
+use Vendors\Validator\PoidsRondValidator;
 use Vendors\Validator\UploadCodeValidator;
 use Vendors\Validator\UploadTypeValidator;
 use Vendors\Validator\UploadMaxSizeValidator;
@@ -88,11 +89,11 @@ class FormBabyTribu extends Form {
         $this->add(new InputText([
             "label" 			=> "Heure de naissance",
             "name" 				=> "heure_naissance_baby",
-            "placeholder"   	=> "15:23:00",
+            "placeholder"   	=> "15:23",
             "cssLabel" 			=> "consigne",
             "cssChamp" 			=> "champ",
             "validators" 		=> [
-        new TimeValidator("L'heure de naissance est obligatoire")
+        new TimeValidator("L'heure de naissance est obligatoire et valide")
         ],
         "getterEntity"      => "getHeureNaissanceBaby"
         ]));
@@ -117,6 +118,7 @@ class FormBabyTribu extends Form {
             "cssLabel" 			=> "consigne",
             "cssChamp" 			=> "champ",
             "validators" 		=> [
+       
         new PoidsValidator("Le poids ne doit pas être négatif et cohérant avec un poids de naissance"),
         new VideValidator("Le poids de naissance est obligatoire"),
         new NumberValidator("Le poids doit être numérique")

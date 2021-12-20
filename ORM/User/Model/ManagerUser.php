@@ -36,22 +36,33 @@ class ManagerUser extends Manager {
 	//Insérer un nouveau User
 	//----------------------------------------------------------
 	function insertUser(User $new_user){
-		//Appel d'une méthode dans le Manager pour parcourir l'objet User et lui appliquer des real_escape_string
-		//!!! Appel ici avant la req d'insertion !!!
+
+        $nom_user		= $this->db->real_escape_string($new_user->getNomUser());
+		$prenom_user	= $this->db->real_escape_string($new_user->getPrenomUser());
+		$email_user		= $this->db->real_escape_string($new_user->getEmailUser());
+		$pass_user	= $this->db->real_escape_string($new_user->getPassUser());
+		$actif_user	= $this->db->real_escape_string($new_user->getActifUser());
+		$statut_user	= $this->db->real_escape_string($new_user->getStatutUser());
+		$rgpd_user	= $this->db->real_escape_string($new_user->getRgpdUser());
+		$date_rgpd_user	= $this->db->real_escape_string($new_user->getDateRgpdUser());
+		$token_user	= $this->db->real_escape_string($new_user->getTokenUser());
+		$validity_token_user	= $this->db->real_escape_string($new_user->getValidityTokenUser());
+        $pass_userOK = hash("whirlpool",$pass_user);
+
 		$req 		= "INSERT INTO user VALUES(
 			NULL,
-			'".$new_user->getNomUser()."',
-			'".$new_user->getPrenomUser()."',
-			'".$new_user->getPseudoUser()."',
-			'".$new_user->getEmailUser()."',
-			'".hash("whirlpool",$new_user->getPassUser())."',
+			'$nom_user',
+			'$prenom_user',
+            NULL,
+			'$email_user',
+			'$pass_userOK',
 			NULL,
-			'".$new_user->getRgpdUser()."',
-			'".$new_user->getDateRgpdUser()."',
-			".$new_user->getStatutUser().",
-			".$new_user->getActifUser().",
-			'".$new_user->getTokenUser()."',
-			'".$new_user->getValidityTokenUser()."'
+			'$rgpd_user',
+			'$date_rgpd_user	',
+			$statut_user,
+			$actif_user,
+			'$token_user',
+			'$validity_token_user'
 		)";
 		$query 	= $this->db->query($req);
 
@@ -239,10 +250,12 @@ class ManagerUser extends Manager {
 	//supprimer Avatar rendre le champ Null en faisan un update
 	//----------------------------------------------------------
 	function deleteAvatar(User $user){
+        $id = $this->db->real_escape_string($user->getIdUser ());
 
 		$req = "UPDATE user 
 			SET avatar_user = Null
-			WHERE id_user =".$user->getIdUser();
+			WHERE id_user = $id
+            ";
 		$query = $this->db->query($req);
 		return ($this->db->affected_rows == 1)?TRUE:FALSE;
 	}
@@ -458,6 +471,19 @@ class ManagerUser extends Manager {
 		return ($this->db->affected_rows == 1)?TRUE:FALSE;
 	}
     
+	//----------------------------------------------------------
+	//Supprimer relation user_has_user
+	//----------------------------------------------------------
+	function deleteUserHasUser($id_ami, $id_user){
+        if(is_numeric($id_ami) && is_numeric($id_user)){
+            $req = "DELETE FROM user_has_user
+            WHERE user_id_user = $id_ami AND user_id_user1 = $id_user
+            OR user_id_user = $id_user AND user_id_user1 = $id_ami
+            ";
 
+            $query = $this->db->query($req);
+            return ($this->db->affected_rows == 1)?TRUE:FALSE;
+        }
+	}
 //Fermeture ManagerUser
 }

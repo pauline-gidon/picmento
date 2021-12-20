@@ -28,10 +28,12 @@ class GererSignalement extends Controller {
         if($_SESSION["auth"]["statut"] == 3){
             $manager = new ManagerSignalement($cx);
             $signalements = $manager->fullSignalement();
+            var_dump($signalements);
             if(is_null($signalements)){
                 $flash->setFlash("Vous n'avez pas de signalement(s) à traiter !");
             }
         
+            return $signalements;
         }else{
             header("location: ".DOMAINE."errors/404.php");
             exit();
@@ -42,7 +44,6 @@ class GererSignalement extends Controller {
 
 
         $cx->close();
-        return $signalements;
     }
 }
 

@@ -23,7 +23,7 @@ POINTS DE RUPTURE UTILES AU PROJET
     #zone-form p {
         width: 100%;
     }
-    .visu-mdp {
+    .visu-mdp, .modifier-votre-profil .visu-mdp {
         right: 10px;
     }
     .containnerSupprimer {

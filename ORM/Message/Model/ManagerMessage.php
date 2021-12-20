@@ -22,9 +22,13 @@ class ManagerMessage extends Manager {
 	//update du message lu au click
 	//----------------------------------------------------------
 	function messageLu(Message $message){
+        $lu_message		= $this->db->real_escape_string($message->getLuMessage());
+        $id_message		= $this->db->real_escape_string($message->getIdMessage());
+        
 		$req = "UPDATE message SET 
-			lu_message		= ".$message->getLuMessage()."
-			WHERE id_message = ".$message->getIdMessage();
+			lu_message		= $lu_message
+			WHERE id_message = $id_message 
+            ";
 
 		$query = $this->db->query($req);
 		return ($this->db->affected_rows == 1)?TRUE:FALSE;

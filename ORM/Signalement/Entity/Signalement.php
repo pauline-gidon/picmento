@@ -17,7 +17,7 @@ class Signalement {
 	}
 
 	//GETTERS
-	function getIdSignalemen(){
+	function getIdSignalement(){
 		return $this->id_signalement;
 	}
 	function getTextSignalement(){

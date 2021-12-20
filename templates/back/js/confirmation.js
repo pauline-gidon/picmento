@@ -6,18 +6,4 @@ $(function(){
 });
 
 
-/*
-
-	const tableau = document.querySelectorAll('.gogo');
-	function confirmation(titre){
-		return(confirm('Souhaitez-vous supprimer votre participation à "'+titre+'" ?'));
-	}
-	for(obj of tableau) {
-		obj.addEventListener('click',function(){
-			confirmation(this.getAttribute('data-gogo'));
-		});
-
-	}
-	
-*/
 

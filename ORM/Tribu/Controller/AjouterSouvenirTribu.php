@@ -53,7 +53,7 @@ class AjouterSouvenirTribu extends Controller {
                     //je crée un souvenir en récupérant les donnée poster
                     $new_souvenir = new Article([
                         "titre_article" 	    => ucfirst($http->getDataPost("titre_article")),
-                        "description_article" 	=> ucfirst($http->getDataPost("description_article")),
+                        "description_article" 	=> ucfirst($http->getDataPost("description_article",1)),
                         "date_article" 	        => $http->getDataPost("date_article"),
                         "actif_article" 	    => $http->getDataPost("actif_article"),
                         "validation_article"    => 1

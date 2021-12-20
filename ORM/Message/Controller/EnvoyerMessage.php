@@ -21,7 +21,7 @@ class EnvoyerMessage extends Controller {
 	function getResult() {
         $this->setLayout("back");
 		$this->setTitle("Envoyez un message");
-		$this->setView("ORM/Article/View/afficher-form-simple.php");
+		$this->setView("ORM/Message/View/repondre-msg.php");
 
 		$http 			= new HTTPRequest();
 		$id_ami = $http->getDataGet("id");
@@ -30,11 +30,14 @@ class EnvoyerMessage extends Controller {
 		$cx 				= new Connexion();
 		$manager 		= new ManagerMessage($cx);
         $managerU = new ManagerUser($cx);
-  
         if($managerU->verifUserAmis($id_ami)){
-            // var_dump($message);
+            $user = $managerU->oneUserById($id_ami);
+            $general["user"] = $user;
+
             $form 		= new FormMessage();
             $build 		= $form->buildForm();
+            $general["form"] = $build; 
+
             if(($form->isSubmit("go"))&&($form->isValid())){
 
                 $date_message = new DateTime('NOW');
@@ -63,7 +66,7 @@ class EnvoyerMessage extends Controller {
 
 
                     
-                    return $build;
+                    return $general;
             
            
         }else{

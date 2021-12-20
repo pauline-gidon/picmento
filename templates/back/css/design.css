@@ -8,6 +8,11 @@ CE QUI EST SPECIFIQUE AU PROJET
     --corail:#F07167;
     --bleu-claire: #00AFB9;
     --bleu-foncer:#0081A7;
+    --violet: #a74f67;
+    --rose: #df7f98;
+    --rose-claire:#D2AEAE;
+    --marron-fonce: #614846;
+    --marron-claire:#b16262; 
 
   }
 body {
@@ -35,7 +40,7 @@ input[type=number]::-webkit-outer-spin-button {
 -------------------------------------------------------------------*/
 
 /* importation de mes vue en une div */
-.content{
+.view, .content{
     min-height: 90vh;
 }
 #logo {
@@ -64,12 +69,12 @@ header{
 
 header nav a {
     display: block;
-    color: #614846;
+    color: var(--marron-fonce);
     text-decoration: none;
     padding: 20px 0 20px 75px;
 }
 header nav a:hover {
-    text-decoration: underline overline #614846;
+    text-decoration: underline overline var(--marron-fonce);
 }
 header nav li {
     text-align: center;
@@ -138,15 +143,25 @@ footer p a:hover {
     width: 430px;
 }
 .votre-espace, .envoyer-une-demande-dami {
-    /* background-image: url(../images/gradient-picmento-souvenir2.jpg);
+    /* background-image: url(../images/gradient-picmento-souvenir.jpg);
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center ; */
-    background: #EFA486;
+    background-position: center; */
+    background-color: var(--rose-claire);
 
 }
-.votre-espace h1, .envoyer-une-demande-dami h1 {
+.votre-espace h1 {
+    color:var(--beige-claire);
+    margin: 60px auto 30px;
+}
+.votre-espace fieldset i{
+    color:var(--marron-fonce);
+}
+.votre-espace fieldset {
+    color: #B46462;
+}
+.envoyer-une-demande-dami h1 {
   color: var(--beige-claire);
  
 }
@@ -159,7 +174,7 @@ input[type=email]:focus {
     color: rgb(58, 58, 58);
     border:none;
 }
-.votre-espace fieldset, .votre-espace fieldset i, .votre-espace  fieldset a{
+.votre-espace  fieldset a{
 color: #FFF;
 
 }
@@ -167,22 +182,21 @@ color: #FFF;
 
 
 .votre-espace legend {
-    padding: 0 15px;
-    /* margin-bottom: 20px; */
     position: relative;
-    bottom:12px;
     font-size: 20px;
+    padding: 12px;
+    color: var(--violet);
+    bottom: 13px;
 }
 
 
 .votre-espace fieldset {
-    padding: 15px 0 15px 25px;
+    padding: 0px 0 20px 24px;
     margin: 0 0 45px;
-
     border-radius: 10px;
-    background: rgba( 255, 255, 255, 0.11 );
-    box-shadow: 0 10px 25px 1px rgba(255, 255, 255, 0.25);
-    border: 1px solid rgba( 255, 255, 255, 0.20 );
+    background: rgba( 255, 255, 255, 0.15 );
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border: 1px solid rgba( 255, 255, 255, 0.18 ); 
 }
 .votre-espace fieldset a {
     display: inline-block;
@@ -190,7 +204,7 @@ color: #FFF;
     margin: 10px ;
 }
 .votre-espace fieldset a:hover {
-    color: #614846;
+    color: var(--rose);
     text-decoration: underline;
 }
 
@@ -204,24 +218,31 @@ color: #FFF;
     background-position: center;
     
 }
+.modifier-votre-profil .consigne {
+    color:var(--beige-claire);
+}
+.modifier-votre-profil .visu-mdp {
+    right: 67px;
+}
+
 /* _____________________________FORMULAIRE modifier-votre-mdp____________________________ */
 
-.modifiez-votre-mot-de-passe {
+/* .modifiez-votre-mot-de-passe {
     background-image: url(../images/gradient-picmento-souvenir.jpg);
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-}
+} */
 /* _____________________________avatar_______________________________________ */
-.votre-avatar{
+/* .votre-avatar{
     background-image: url(../images/gradient-picmento-souvenir.jpg);
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     
-}
+} */
 .avatar{
     width: 220px;
     height: 220px;
@@ -558,7 +579,8 @@ color: #FFF;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom; */
-    background: #EFA486;
+    /* background: #EFA486; */
+    background:#D2AEAE;
  }
 .les-souvenirs-de h1 {
    color: var(--beige-claire);
@@ -573,7 +595,8 @@ color: #FFF;
     color: var(--corail);
 }
 .article-baby h1 {
-    color: #b16262;
+    color: var(--violet);
+    margin: 0 auto;
     padding: 15px 0 15px ; 
 }
 .containnerDescription h3 {
@@ -594,13 +617,13 @@ color: #FFF;
 
     width: 264px;
     padding: 10px;
-    background: var(--corail);
+    background: var(--violet);
     box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.37);
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 .btnaddsouvenir:hover{
-    background: #f8a17bc9;
+    background: var(--rose);
     text-align: center;
     margin: 0 auto 50px;
     border-radius: 10px;
@@ -698,13 +721,13 @@ list-style-type: none;
     font-size: 25px;
 }
 .menu-article a {
-    color: #b16262;
+    color: var(--marron-fonce);
     display: block;
     padding: 10px;
 
 }
 .menu-article a:hover {
-    color: #f8a17bc9;;
+    color: var(--marron-claire);;
 
 
 }
@@ -781,7 +804,7 @@ list-style-type: none;
     z-index: 15;
 }
 .btn-top:hover {
-    color: #614846;
+    color: var(--marron-fonce);
 }
 .year{
     color: var(--beige-claire);
@@ -791,28 +814,34 @@ list-style-type: none;
 /* _______________________________________ commentaire _________________________________ */
 
 .commentaires-users {
-    border-top: thick double var(--beige);
-    /* margin: 10px 0 0; */
-    /* padding: 10px 0 ; */
+    border-top: thick double var(--beige-claire);
+    margin-top: 6px;
 }
 .commentaires {
     padding: 12px;
     border-radius: 10px;
-    background-color: #f6cfc3dc;
-    /* box-shadow: 0 8px 32px 0 rgba(182, 182, 182, 0.37); */
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    background-color: var(--rose-claire);
     margin: 10px 0 0;
+    /* box-shadow: 0 8px 32px 0 rgba(182, 182, 182, 0.37); */
+    background: rgba( 255, 255, 255, 0.45 );
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border: 1px solid rgba( 255, 255, 255, 0.18 ); 
     
 }
 .commentaires i{
-    color: var(--beige);
+    color: var(--violet);
     font-size: 21px;
     padding: 8px 4px;
+}
+.commentaires i:hover{
+    color: var(--rose);
+
 }
 .auteur-com {
     padding-top: 14px;
     font-size: 20px;
     font-weight: bold;
+    color: var(--marron-fonce)
 }
 .text-com, .gestion-com {
     margin: 8px 0 0;
@@ -837,18 +866,19 @@ list-style-type: none;
     text-align: center;
     cursor: pointer;
     padding-top: 8px;
-
+    
 }
 .btncom i:hover {
-
-    border-radius: 50%;
     
+    border-radius: 50%;
+      
 }
 .btncom i{
     border-radius: 10px;
-    color: var(--beige);
+    border: solid 1px var(--beige-claire);
+    color: var(--beige-claire);
+    color: var(--rose);
     font-size: 20px;
-    border: solid 1px var(--beige);
     width: 30px;
     height: 30px;
     padding: 4px;
@@ -861,32 +891,36 @@ list-style-type: none;
 /* --------------------------------------------------------------
                  Section souvenir proposer
 ---------------------------------------------------------------- */
-.les-souvenirs-proposer, .messagerie {
-    background-image: url(../images/gradient-picmento-souvenir.jpg);
+.les-souvenirs-proposer, .messagerie, .repondre-a-un-message, .votre-avatar, .modifiez-votre-mot-de-passe {
+    /* background-image: url(../images/gradient-picmento-souvenir.jpg);
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
+    background-position: center; */
+    background-color: var(--rose-claire);
 
 }
 .proposotion-souvenir {
-    border: 2px solid #FFF;
+    /* border: 2px solid #FFF; */
     border-radius: 10px;
     padding: 30px;
     margin: 30px auto;
     width: 100%;
+    background: rgba( 255, 255, 255, 0.45 );
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 .les-souvenirs-proposer article {
     margin: 30px 0 0;
 }
 .les-souvenirs-proposer p{
-    color: #614846;
+    color: var(--marron-fonce);
 }
 .les-souvenirs-proposer .description {
     margin-bottom: 12px;
 }
 .les-souvenirs-proposer .year{
-    color:var(--beige-claire);
+    color:var(--rose);
 }
 .les-souvenirs-proposer .ruban-date{
     color: var(--corail);
@@ -903,7 +937,7 @@ margin-top: 20px;
     font-size: 25px;
 }
 .menu-article-proposer a {
-    color: #b16262;
+    color: var(--violet);
     display: block;
     background-color: rgba(255, 255, 255, 0.534);
     padding: 10px;
@@ -916,10 +950,13 @@ margin-top: 20px;
 
 }
 .menu-article-proposer a:hover {
-    color: #f8a17bc9;;
+    color: var(--rose);
 }
 .menu-article-proposer ul li {
     margin: 0  4px;
+}
+.containerBaby{
+    margin-top: 12px;
 }
 
 
@@ -927,12 +964,13 @@ margin-top: 20px;
                  formulaire de souvenirs baby : modifier, ajouter photo, commenter
 ---------------------------------------------------------------- */
 
-.modifier-un-souvenir, .ajouter-une-photo, .ajouter-un-commentaire, .modifier-un-commentaire, .ajouter-un-souvenir-a, .modifier-une-photo, .ajouter-des-photos  {
-    background-image: url(../images/gradient-picmento-souvenir.jpg);
+.modifier-un-souvenir, .ajouter-une-photo, .ajouter-un-commentaire, .modifier-un-commentaire, .ajouter-un-souvenir-a, .modifier-une-photo, .ajouter-des-photos, .voir-signalement-commentaire  {
+    /* background-image: url(../images/gradient-picmento-souvenir.jpg);
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
+    background-position: center; */
+    background-color: var(--rose-claire);
 
 }
 .ajouter-un-commentaire .champW, .modifier-un-commentaire .champW, .signalement .champW, .envoyez-un-message .champW {
@@ -953,7 +991,7 @@ left: 0;
     margin-bottom: 30px;
 }
 /* __________________________________ajouter des photos */
-.ajouter-des-photos h1, .ajouter-des-photos .consigne, .ajouter-une-photo h1, .ajouter-une-photo .consigne, .ajouter-un-commentaire h1, .ajouter-un-commentaire .consigne{
+.ajouter-des-photos h1, .ajouter-des-photos .consigne, .ajouter-une-photo h1 .ajouter-un-commentaire h1{
     color: var(--beige-claire);
     
 }
@@ -1257,7 +1295,7 @@ padding-left: 25px;
     background: #FFF;
 }
 .mes-amis {
-    background-image: url(../images/souvenirgradient2.jpg);
+    background-image: url(../images/souvenirgradient.jpg);
     background-attachment: fixed;
     background-size: cover;
     min-height: 90vh;
@@ -1268,7 +1306,7 @@ padding-left: 25px;
 .btnaddamis{
     text-align: center;
     margin: 0 auto 50px;
-    background: var(--corail);
+    background: var(--violet);
     width: 264px;
     padding: 10px;
     border-radius: 10px;
@@ -1277,15 +1315,15 @@ padding-left: 25px;
 }
 
 .btnaddamis:hover{
-    background: #f05d53;
+    background: var(--rose);
 }
 .btnaddamis a{
-    color: var(--beige);
+    color: var(--beige-claire);
 }
 .btnaddamis i {
-    color: var(--beige);
+    color: var(--beige-claire);
     padding: 8px;
-    border: solid 1px var(--beige);
+    border: solid 1px var(--beige-claire);
     border-radius: 10px;
     margin-right: 10px;
 }
@@ -1307,7 +1345,6 @@ padding-left: 25px;
     margin: 12px auto; 
     padding: 12px 0; 
     background: rgba(255, 255, 255, 0.568);
-    /* box-shadow: 0 5px 42px 2px rgba(255, 255, 255, 0.37); */
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
@@ -1318,7 +1355,6 @@ padding-left: 25px;
     border-radius: 10px;
     color: #53b8e4;
 
-    /* border : solid 1px black; */
     box-shadow: 0 0 2px 0 #02AEBA;
     border: solid 1px #02AEBA;
     background: rgba(255, 255, 255, 0.568);
@@ -1335,7 +1371,25 @@ padding-left: 25px;
     font-size: 25px;
 }
 /* _______________________boite message */
-.messagerie 
+/* ---------------------------Repondre---------------------- */
+.textMsg{
+    margin: 20px auto;
+}
+.userMsg {
+    background: rgba( 255, 255, 255, 0.45 );
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border-radius: 10px;
+    padding : 20px;
+    margin-bottom: 30px;
+}
+
+.repondre-a-un-message h1 {
+    margin-bottom: 30px;
+}
+.repondre-a-un-message form{
+    padding: 30px;
+}
 /* --------------------------------------------------------------
        ******FORMULAIRE******COMMUN
 ---------------------------------------------------------------- */
@@ -1417,9 +1471,9 @@ form ul {
     display: none;
 }
 input[type="submit"] {
-    border: 1px solid #614846;
+    border: 1px solid var(--marron-fonce);
     background-color: rgba(255, 255, 255, 0.479);
-    color: #614846;
+    color: var(--marron-fonce);
     padding: 10px 12px;
     font-size: 15px;
     font-weight: 500;
@@ -1436,7 +1490,7 @@ input:focus {
 }
 
 input.slide-hover-left {
-    background-image: linear-gradient(0, #614846, #614846);
+    background-image: linear-gradient(0, var(--marron-fonce), var(--marron-fonce));
     background-size: 0;
     transition: .8s;
     background-repeat: no-repeat;
@@ -1446,12 +1500,32 @@ input.slide-hover-left:hover {
     background-size: 100%;
     color: #fff;
 }
-
+p.slide-hover{
+    background-image: linear-gradient(0, var(--marron-fonce), var(--marron-fonce));
+    background-size: 0;
+    transition: .8s;
+    background-repeat: no-repeat;
+    border: 1px solid var(--marron-fonce);
+    background-color: rgba(255, 255, 255, 0.479);
+    color: var(--marron-fonce);
+    padding: 10px 12px;
+    font-size: 15px;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 10px;
+    text-transform: capitalize;
+}
+p.slide-hover:hover {
+    background-size: 100%;
+    color: #fff;
+}
 
 /* --------------------------------------------------------------
         Timeline baby
 ---------------------------------------------------------------- */
-.timeline, .conception-de-la-timeline {
+.timeline, .conception-de-la-timeline, .modification-de-la-timeline {
     background-image: url(../images/picmento-oranger.jpg);
     background-attachment: fixed;
     background-size: cover;
@@ -1459,25 +1533,39 @@ input.slide-hover-left:hover {
 
     
 }
+.timeline h1, .conception-de-la-timeline h1, .modification-de-la-timeline h1 {
+margin-bottom: 0;
+color: #AC405A;
+}
+.timeline h2 {
+margin-bottom: 30px;
+text-align: center;
+color: #AC405A;
+}
+
 
 .conception-de-la-timeline, .consigne{
     color: var(--corail);
 }
 .time-carre {
-    /* background-color: #FFF; */
     width: 300px;
 	position: relative;
     margin: 0 25px;
     border-radius: 10px;
     margin: 0 20px 25px;
     display: block;
+    background-size: cover;
+	background-position: center center;
+}
+.timeline .menu-photo {
+    right: 30px;
 }
 .time-carre:after {
     content:'';
     display: block;
     padding-bottom: 100%;
 }
-.time-carre img {
+/* .time-carre img {
     width: 100%;
 	height: 100%;
 	position: absolute;
@@ -1487,17 +1575,31 @@ input.slide-hover-left:hover {
 	transition: .3s ease-in-out;
     border-radius: 10px;
     transition: transform .2s; 
+} */
+.openPhoto {
+    position: absolute;
+    bottom: 3px;
+    right: 63px;
+    color: #535252;
+}
+.openPhoto i, .trashPhoto i {
+    font-size: 20px;
+}
+.trashPhoto{
+    position: absolute;
+    bottom: 5px;
+    right: 29px;
+    color: #535252;
 }
 .blockTimeCarre {
     margin-bottom: 20px;
+    position: relative;
 }
-.time-carre:hover img {
-    /* box-shadow: 0 8px 32px 0 rgb(27, 42, 75); */
+/* .time-carre:hover img {
+    box-shadow: 0 8px 32px 0 rgb(27, 42, 75);
     filter: brightness(133%);
-    
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.55);
-    transform: scale(1.1);
-}
+} */
 .btnaddtimeline{
     text-align: center;
     margin: 0 auto 30px;
@@ -1506,13 +1608,13 @@ input.slide-hover-left:hover {
     padding: 10px;
     box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.37);
     /* border: 1px solid rgb(255, 255, 255); */
-    background: #a74f67;
+    background: var(--violet);
 
 
 }
 .btnaddtimeline:hover{
     /* border: 1px solid var(--beige-claire); */
-    background: var(--corail);
+    background: var(--rose);
 }
 .btnaddtimeline a{
     display: block;
@@ -1536,22 +1638,20 @@ input.slide-hover-left:hover {
 }
 .modal {
     position: fixed;
-    width: 100%;
+    width: 100vw;
     top: 0;
     bottom: 0;
+    right: 0;
+    left: 0;
     background-color: rgba(0, 0, 0, 0.603);
     z-index: 54;
 }
 .modal-content{
-    width: 90vw;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: 67%;
+    margin: 15px auto;
 }
 .modal-content img {
     width: 100%;
-  
     object-fit: contain;
 }
 .close{
@@ -1570,17 +1670,44 @@ input.slide-hover-left:hover {
     display: block;
 }
 .galerie {
-    position: relative;
-    padding: 22px;
-    overflow: hidden;
+    padding-top: 30px;
     margin: 0 auto;
     background: rgba( 255, 255, 255, 0.45 );
     box-shadow: 0 5px 42px 2px rgba(255, 255, 255, 0.37);
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     border-radius: 10px;
     margin-bottom: 30px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    user-select: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s;
+    transform: scale(0.98);
+
+}
+.galerie::-webkit-scrollbar { /* WebKit */
+    opacity: 0;
 }
 
+.galerieEnfant {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding-bottom: 20px;
+
+}
+.galerie::-webkit-scrollbar {
+    display: none;
+  }
+*:before, *:after {
+    box-sizing: inherit;
+}
+.galerie.active {
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
+    transform: scale(1);
+}
 
 
 
@@ -1728,7 +1855,7 @@ input.slide-hover-left:hover {
     padding: 5px;
     font-size: 25px;
 }
-.filou p {
+.textMsgrecu {
     min-height: 90px;
 }
 
@@ -1892,9 +2019,7 @@ input.slide-hover-left:hover {
 .les-souvenirs-de-br .article-baby i:hover {
     color: var(--beige-claire)
 }
-.article-baby h1 {
-    margin: 0 auto;
-}
+
 .ajouter-pour-mon-ami-un-souvenir-a-la-tribu .consigne{
     color: #43637a;
 }
@@ -1938,7 +2063,7 @@ input.slide-hover-left:hover {
     display: none;
 }
 .focus {
-    text-decoration: underline overline #614846;
+    text-decoration: underline overline var(--marron-fonce);
 }
   /* ----------------------------------------------------------------------
                     tableau signalement super admin

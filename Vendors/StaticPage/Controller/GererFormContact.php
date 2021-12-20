@@ -59,11 +59,10 @@ class GererFormContact extends Controller {
         
                 // On vérifie qu'on a une réponse
                 if(empty($response) || is_null($response)){
-                   //  header('Location: index.php');
                    die("empty response");
                 }else{
                     $data = json_decode($response);
-                    if($data->success){ // pas un spam, on traite l'inscription
+                    if($data->success){ // pas un spam, on traite le formulaire
                        # ---
                        // Traitement final
                        

@@ -81,6 +81,7 @@ if(isset($result["articles"])){
                     if(!empty($article["commentaires"])){
                         echo"<section class=\"commentaires-users\">
                                 <p class=\"btncom\">
+                                
                                     <i class=\"fas fa-chevron-down\"></i>
                                 </p>
                                 <div class=\"containerCom d-none\">";

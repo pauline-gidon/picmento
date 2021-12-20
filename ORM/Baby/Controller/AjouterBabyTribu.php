@@ -77,14 +77,23 @@ class AjouterBabyTribu extends Controller {
                 $id_tribu = $tribu->getIdTribu();
 
                     if(($form->isSubmit("addbaby"))&&($form->isValid())){
-          
+                        //si le poids est rond je vais lui ajouter les 3 zero
+                        $poids = $http->getDataPost("poids_naissance_baby");
+                        if(strlen($poids) == 1){
+                            $poids = sprintf('%0.3f', $poids);
+                        }
+
+                        //j'ajouter les seonde a l'heur saisie
+                        $heur_naissance = $http->getDataPost("heure_naissance_baby");
+                        $heur_naissance = $heur_naissance.":00";
+
                     $new_baby = new Baby([
                         "nom_baby" 	=> ucfirst($http->getDataPost("nom_baby")),
                         "photo_baby" => $_SESSION["nom_photo_baby"],
                         "date_naissance_baby" 	=> $http->getDataPost("date_naissance_baby"),
-                        "heure_naissance_baby" => $http->getDataPost("heure_naissance_baby"),
+                        "heure_naissance_baby" => $heur_naissance,
                         "lieu_naissance_baby" => ucfirst($http->getDataPost("lieu_naissance_baby")),
-                        "poids_naissance_baby" 	=> $http->getDataPost("poids_naissance_baby"),
+                        "poids_naissance_baby" 	=> $poids,
                         "taille_naissance_baby" 	=> $http->getDataPost("taille_naissance_baby"),
                         "tribu_id_tribu"		=> $id_tribu
                         ]);

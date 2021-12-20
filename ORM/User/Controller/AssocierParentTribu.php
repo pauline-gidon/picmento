@@ -54,7 +54,12 @@ class AssocierParentTribu extends Controller {
                         if($actif == 0){
                             header("Location: annuler-demande-".$id_tribu."");
                         }else{
-                            $flash->setFlash("Désolé un parent est déjà associé à cette tribu, il ne peut pas être remplacé !");
+                            $id_coparent = $amis->getUserIdDestinataire();
+                            $user = $managerU->oneUserById($id_coparent);
+                            
+                            
+                            $flash->setFlash("Désolé un parent est déjà associé à cette tribu, il ne peut pas être remplacé.
+                            Ce parent est ".$user->getPrenomUser()." ".$user->getNomUser()." !");
                             header("location: afficher-tribu");
                             exit();
     

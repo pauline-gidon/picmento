@@ -39,7 +39,7 @@ if(isset($result)){
                         </p>
                       
         
-                        <div class=\"fc fw ai-c\">";
+                        <div class=\"fc fw ai-c containerBaby\">";
                         //pour l'afffichage des photos
                         for ($i=0; $i < count($photosBaby); $i++) { 
                             echo "<div class=\"containerBull\">

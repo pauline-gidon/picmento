@@ -67,28 +67,32 @@ class Uploader {
         }
         
         // en fonction de l'orientation lue en EXIF on fait tourner l'image pour la remettre d'aplomb
-        $exif = exif_read_data($this->destination.$this->name);
-        if(!empty($exif['Orientation'])) {
-            $inversionHL = TRUE;
-            switch($exif['Orientation']) {
-                case 8:
-                    $copie = imagerotate($copie,90,0);
-                    break;
-                case 3:
-                    $copie = imagerotate($copie,180,0);
-                    $inversionHL = FALSE;
-                    break;
-                case 6:
-                    $copie = imagerotate($copie,-90,0);
-                    break;
-            }
-        }
+        if($typefile == 2){
 
-        if($inversionHL===TRUE) {
-                            // inversion largeur et hauteur
-                            $temp = $hauteur;
-                            $hauteur = $largeur;
-                            $largeur = $temp;
+            $exif = exif_read_data($this->destination.$this->name);
+            if(!empty($exif['Orientation'])) {
+                switch($exif['Orientation']) {
+                    case 8:
+                        $copie = imagerotate($copie,90,0);
+                        $inversionHL = TRUE;
+                        break;
+                        case 3:
+                            $copie = imagerotate($copie,180,0);
+                            $inversionHL = FALSE;
+                        break;
+                        case 6:
+                            $copie = imagerotate($copie,-90,0);
+                            $inversionHL = TRUE;
+                        break;
+                }
+                if($inversionHL===TRUE) {
+                                    // inversion largeur et hauteur
+                                    $temp = $hauteur;
+                                    $hauteur = $largeur;
+                                    $largeur = $temp;
+                }
+            }
+    
         }
         // si image est trop grande
 		if($largeur > $new_largeur){

@@ -72,7 +72,7 @@ class AjouterSouvenirTribuAmis extends Controller {
                     
                     $new_souvenir = new Article([
                         "titre_article" 	=> ucfirst($http->getDataPost("titre_article")),
-                        "description_article" 	=> ucfirst($http->getDataPost("description_article")),
+                        "description_article" 	=> ucfirst($http->getDataPost("description_article",1)),
                         "date_article" 	=> $http->getDataPost("date_article"),
                         "actif_article" 	=> 0, 
                         "validation_article" 	=> 0

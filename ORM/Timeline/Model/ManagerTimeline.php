@@ -35,6 +35,25 @@ function oneTimelineByIdBaby($id){
         }      
     }
 }
+//-------------------------------------------------------------
+// Timeline par son id 
+//-------------------------------------------------------------
+function oneTimelineById($id){
+    if(is_numeric($id)){
+        $req = "SELECT * FROM timeline
+         WHERE id_timeline = $id
+         ";
+        $query = $this->db->query($req);
+        if($query->num_rows == 1 ){
+            while($row = $query->fetch_array()){
+            $timeline = new Timeline($row);
+            }
+            return $timeline;
+        }else{
+            return null;
+        }      
+    }
+}
 
 //----------------------------------------------------------
 //insert imeline
@@ -56,6 +75,17 @@ function insertNewTimeline(Timeline $obj){
     return $this->db->insert_id;
 
 
+}
+//-------------------------------------------------------------
+// Delete Timeline par son id 
+//-------------------------------------------------------------
+function deleteTimelineById($id){
+    if(is_numeric($id)){
+        $req = "DELETE FROM timeline WHERE id_timeline = $id";
+        $query = $this->db->query($req);
+
+        return ($this->db->affected_rows == 1)?true:false;
+    }
 }
 
 

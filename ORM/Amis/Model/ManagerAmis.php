@@ -257,5 +257,22 @@ function deleteAmisByIdAmis($id_amis){
     }
 
 }
+//-------------------------------------------------------------------------------------------------
+// supprimerssion d'une relation amis'
+//-------------------------------------------------------------------------------------------------
+function deleteAmisByIds($id_ami,$id_user){
+    if((is_numeric($id_ami)) && (is_numeric($id_user))){
+        $req 	= " DELETE  
+            FROM amis 
+            WHERE 
+            user_id_expediteur  = $id_ami AND user_id_destinataire = $id_user
+            OR  user_id_expediteur  = $id_user AND user_id_destinataire = $id_ami
+        ";
+
+        $query 	= $this->db->query($req);
+        return ($this->db->affected_rows == 1)?TRUE:FALSE;
+    }
+
+}
 
 }

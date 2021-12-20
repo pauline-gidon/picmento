@@ -10,9 +10,15 @@ class ManagerMedias extends Manager {
 	//----------------------------------------------------------
     function deleteMediasById($id){
         if(is_numeric($id)){
-            $req = "DELETE FROM article_has_medias WHERE medias_id_medias = $id";
+            //si il est supprimer par un signalement je supprimer d'habord le signalement
+            $req= "DELETE FROM signalement WHERE medias_id_medias = $id";
             $query = $this->db->query($req);
 
+            // je supprime la relation medias a son article
+            $req = "DELETE FROM article_has_medias WHERE medias_id_medias = $id";
+            $query = $this->db->query($req);
+            
+            //je suppirme le media
             $req = "DELETE FROM medias WHERE id_medias = $id";
             $query = $this->db->query($req);
             return ($this->db->affected_rows == 1)?true:false;
@@ -38,11 +44,11 @@ class ManagerMedias extends Manager {
     function oneMediasById($id){
         if(is_numeric($id)){
 
+            $req 		= "SELECT * FROM medias WHERE id_medias = $id";
+            $query = $this->db->query($req);
+            return ($query->num_rows == 1)?new Medias($query->fetch_array()):NULL;
         }
 
-        $req 		= "SELECT * FROM medias WHERE id_medias = $id";
-        $query = $this->db->query($req);
-        return ($query->num_rows == 1)?new Medias($query->fetch_array()):NULL;
 
   }
   //--------------------------------------------------------

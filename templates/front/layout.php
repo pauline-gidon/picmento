@@ -7,50 +7,10 @@ if(!defined('DOMAINE')) die();
 <html lang="fr">
 <head>
     <meta charset="utf-8">
-    <!-- gestion des cookies -->
-    <script src="/tarteaucitron/tarteaucitron.js"></script>
 
-        <script>
-        tarteaucitron.init({
-    	  "privacyUrl": "", /* URL de la page de la politique d ela vie privé*/
-
-    	  "hashtag": "#tarteaucitron", /* ouvrir le panneau contenant ce hashtag */
-    	  "cookieName": "tarteaucitron", /* nom du cookies */
-    
-    	  "orientation": "middle", /* position de la bannière (top - bottom) */
-       
-          "groupServices": false, /* Group services by category */
-                           
-    	  "showAlertSmall": false, /* voir la bannière reduite en bas a droite */
-    	  "cookieslist": false, /* voir la liste des cookies */
-                           
-          "closePopup": false, /* Show a close X on the banner */
-
-          "showIcon": true, /* Show cookie icon to manage cookies */
-          //"iconSrc": "", /* Optionnal: URL or base64 encoded image */
-          "iconPosition": "BottomRight", /* BottomRight, BottomLeft, TopRight and TopLeft */
-
-    	  "adblocker": false, /* voir une alerte si un blocker de pub est détécté */
-                           
-          "DenyAllCta" : true, /* Show the deny all button */
-          "AcceptAllCta" : true, /* voir le bouton accepter tout quand (highPrivacy est a true) */
-          "highPrivacy": true, /* desactivé le consentement automatique*/
-                           
-    	  "handleBrowserDNTRequest": false, /* Si la protection du suivi du navigateur est activée, tout interdire */
-
-    	  "removeCredit": false, /* retirer le lien vers tarteaucitron.js */
-    	  "moreInfoLink": true, /* afficher le lien "voir plus d'info" */
-
-          "useExternalCss": false, /* si false, tarteaucriton.css sera charger*/
-          "useExternalJs": false, /* If false, the tarteaucitron.js file will be loaded */
-
-    	  //"cookieDomain": ".my-multisite-domaine.fr", /* Shared cookie for multisite */
-                          
-          "readmoreLink": "", /* lien vers page lire plus */
-
-          "mandatory": true, /* Show a message about mandatory cookies */
-        });
-        </script>
+        <!-- cookies osano -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+      
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -58,7 +18,7 @@ if(!defined('DOMAINE')) die();
      temporelle à partager avec vos proches ! N'hésitez plus et sauvegardez vos souvenirs en ligne">
 
 	<title><?php if(isset($title)) echo $title; ?></title>
-    
+    <!-- lien favicon -->
     <link rel="icon" type="image/png" href="<?php echo DOMAINE; ?>templates/front/images/favicon.png" />
 	<!-- Nos feuilles de style -->
 	<link rel="stylesheet" type="text/css" href="<?php echo DOMAINE ?>templates/front/css/reset.css">
@@ -182,10 +142,33 @@ if(!defined('DOMAINE')) die();
 				<a href="<?php echo DOMAINE; ?>cgu" title="Conditions Générales d'Utilisation">
 					Conditions Générales d'Utilisation
 				</a>
+
 			</p>
 
-	</footer>
 
+	</footer>
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#64386b",
+      "text": "#ffcdfd"
+    },
+    "button": {
+      "background": "#f8a8ff",
+      "text": "#3f0045"
+    }
+  },
+  "content": {
+    "message": "Ce site utilise des cookies pour offrir aux visiteurs une expérience de navigation bien meilleure et des services adaptés aux besoins et aux intérêts de chacun.",
+    "dismiss": "J'ai compris !",
+    "link": "En savoir plus",
+    "href": "https://picmento.fr/politique-confidentialite"
+  }
+});
+</script>
 </body>
 
 </html>
+
