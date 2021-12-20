@@ -1,5 +1,7 @@
 <?php
+// define("PTH","/");
 define("PTH","/picmento/site/");
+// C:\wamp64\www\picmento\site
 
 /*LES PAGES DU FRONT*/
 $route[] = [

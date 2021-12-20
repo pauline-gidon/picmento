@@ -315,7 +315,10 @@ form ::placeholder {
     letter-spacing: 0.5px;
 }
 .barre {
-    text-decoration: line-through;
+    /* text-decoration: line-through; */
+}
+.mdpOK {
+    color: rgb(81, 143, 81);
 }
 .inscription .visu-mdp{
     right: 100px;
@@ -329,6 +332,7 @@ form ::placeholder {
     list-style-type: none;
     margin: 0 auto 20px;
     max-width: 930px;
+    color:rgb(155, 74, 26);
 }
 .feedback a {
     color : #FFF;

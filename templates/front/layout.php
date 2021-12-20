@@ -18,7 +18,7 @@ if(!defined('DOMAINE')) die();
      temporelle à partager avec vos proches ! N'hésitez plus et sauvegardez vos souvenirs en ligne">
 
 	<title><?php if(isset($title)) echo $title; ?></title>
-    <!-- lien favicon -->
+    
     <link rel="icon" type="image/png" href="<?php echo DOMAINE; ?>templates/front/images/favicon.png" />
 	<!-- Nos feuilles de style -->
 	<link rel="stylesheet" type="text/css" href="<?php echo DOMAINE ?>templates/front/css/reset.css">

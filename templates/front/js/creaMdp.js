@@ -21,39 +21,39 @@ $(function(){
         const saisie = $(this).val();
 
         if(saisie.length >=8) {
-            $('.messageAideMdp li:nth-child(1)').addClass('barre');
+            $('.messageAideMdp li:nth-child(1)').addClass('mdpOK');
         }else{
-            $('.messageAideMdp li:nth-child(1)').removeClass('barre');
+            $('.messageAideMdp li:nth-child(1)').removeClass('mdpOK');
 
         }
 
         if(saisie.match(/(?=.*[A-Z])/)){//Expression régulière pour savoir si il y a une majuscules
-            $('.messageAideMdp li:nth-child(2)').addClass('barre');
+            $('.messageAideMdp li:nth-child(2)').addClass('mdpOK');
 
         }else{
-            $('.messageAideMdp li:nth-child(2)').removeClass('barre');
+            $('.messageAideMdp li:nth-child(2)').removeClass('mdpOK');
         }
 
 
         if(saisie.match(/(?=.*[a-z])/)){//Expression régulière pour savoir si il y a une minuscule
-            $('.messageAideMdp li:nth-child(3)').addClass('barre');
+            $('.messageAideMdp li:nth-child(3)').addClass('mdpOK');
 
         }else{
-            $('.messageAideMdp li:nth-child(3)').removeClass('barre');
+            $('.messageAideMdp li:nth-child(3)').removeClass('mdpOK');
         }
 
         if(saisie.match(/(?=.*[0-9])/)){//Expression régulière pour savoir si il y a un chiffre
-            $('.messageAideMdp li:nth-child(4)').addClass('barre');
+            $('.messageAideMdp li:nth-child(4)').addClass('mdpOK');
 
         }else{
-            $('.messageAideMdp li:nth-child(4)').removeClass('barre');
+            $('.messageAideMdp li:nth-child(4)').removeClass('mdpOK');
         }
         
         if(saisie.match(/(?=.*\W)/)){//Expression régulière pour savoir si il y a un caractère special
-            $('.messageAideMdp li:nth-child(5)').addClass('barre');
+            $('.messageAideMdp li:nth-child(5)').addClass('mdpOK');
 
         }else{
-            $('.messageAideMdp li:nth-child(5)').removeClass('barre');
+            $('.messageAideMdp li:nth-child(5)').removeClass('mdpOK');
         }
         
     });

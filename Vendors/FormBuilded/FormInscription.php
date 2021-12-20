@@ -21,7 +21,7 @@ class FormInscription extends Form {
 	function buildForm(){
 
 		$this->add(new InputText([
-			"label" 				=> "Votre&nbsp;nom ",
+			"label" 				=> "Votre&nbsp;nom&nbsp;* ",
 			"name" 					=> "nom_user",
 			"cssLabel" 			=> "consigne",
 			"cssChamp" 			=> "champ",
@@ -31,7 +31,7 @@ class FormInscription extends Form {
 		]));
 
 		$this->add(new InputText([
-			"label" 				=> "Votre&nbsp;prénom ",
+			"label" 				=> "Votre&nbsp;prénom&nbsp;* ",
 			"name" 					=> "prenom_user",
 			"cssLabel" 			=> "consigne",
 			"cssChamp" 			=> "champ",
@@ -41,8 +41,7 @@ class FormInscription extends Form {
 		]));
 
 		$this->add(new InputEmail([
-			"label" 				=> "Votre&nbsp;email ",
-			"placeholder" 	=> "Anthea@free.fr",
+			"label" 				=> "Votre&nbsp;email&nbsp;* ",
 			"name" 					=> "email_user",
 			"cssLabel" 			=> "consigne",
 			"cssChamp" 			=> "champ",
@@ -53,8 +52,7 @@ class FormInscription extends Form {
 		]));
 
 		$this->add(new InputPassword([
-			"label" 				=> "Votre&nbsp;mot&nbsp;de&nbsp;passe ",
-			"placeholder" 	=> "8 caractères minimum",
+			"label" 				=> "Votre&nbsp;mot&nbsp;de&nbsp;passe&nbsp;* ",
 			"name" 					=> "pass_user",
 			"cssLabel" 			=> "consigne",
 			"cssChamp" 			=> "champ aide-mdp",
